@@ -85,7 +85,7 @@ NOVENAS = {
         "Senhor Jesus, Coração Sacratissimo, hoje venho a Vos com humildade e confianca. Que o Vossó amor inflame meu coração e me transforme em instrumento da Vossa paz. Amem.",
         "Sagrado Coração de Jesus, que tanto amais os homens, dai-me um coração semelhante ao Vosso, cheio de amor, misericórdia e bondade para com todos. Amem.",
         "Senhor, que o Vossó Coração aberto na Cruz sejá para mim fonte de graça e misericórdia. Lava-me do péçado e purifica-me. Amem.",
-        "Coração de Jesus, Rei e centro de todos os corações, fazei que o Vossó Reino venha em mim, em minha família e em todo o mundo. Amem.",
+        "Coração de Jesus, Rei e centro de todos os coracoes, fazei que o Vossó Reino venha em mim, em minha família e em todo o mundo. Amem.",
         "Senhor Jesus, que prometestés paz as famílias consagradas ao Vossó Sagrado Coração, consagro hoje minha família a Vos. Sede o seu Rei e Senhor. Amem.",
         "Sagrado Coração de Jesus, consolai os que sofrem, fortalecei os que lutam e dai espéranca aos que desespéram. Que ninguem fique sem o Vossó amor. Amem.",
         "Senhor, pélo Vossó Coração traspassado, intercedei pélos que estão longe de Deus. Que Vossó amor os alcance e os traga de volta. Amem.",
@@ -322,8 +322,8 @@ div[data-testid="stForm"] {{
 API_KEY = st.secrets.get("GROQ_API_KEY", os.environ.get("GROQ_API_KEY", ""))
 
 for key, val in [("logado", False), ("username", None), ("chats", {}),
-                  ("chat_atual", None), ("input_key", 0), ("péndente", None), ("nome_usuario", ""),
-                  ("aba_chat", "chat"), ("oração_aberta", None), ("terco_aberto", None), ("terco_misterio", None), ("novena_aberta", None), ("novena_dia", None)]:
+                  ("chat_atual", None), ("input_key", 0), ("pendente", None), ("nome_usuario", ""),
+                  ("aba_chat", "chat"), ("oracao_aberta", None), ("terco_aberto", None), ("terco_misterio", None), ("novena_aberta", None), ("novena_dia", None)]:
     if key not in st.session_state: st.session_state[key] = val
 
 if "cliente" not in st.session_state:
@@ -466,9 +466,9 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
 
         # ── ORAÇÕES / BÍBLIA ──
         st.markdown("<p style='color:#c8a96e;font-weight:700;margin:0.3rem 0;'>🙏 RECURSOS</p>", unsafe_allow_html=True)
-        if st.button("🙏 Orações", use_container_width=True, key="btn_orações"):
-            st.session_state.aba_chat = "orações"
-            st.session_state.oração_aberta = None
+        if st.button("🙏 Orações", use_container_width=True, key="btn_oracoes"):
+            st.session_state.aba_chat = "oracoes"
+            st.session_state.oracao_aberta = None
             st.rerun()
         if st.button("📖 Bíblia", use_container_width=True, key="btn_biblia"):
             st.session_state.aba_chat = "biblia"
@@ -503,9 +503,9 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
             st.rerun()
 
     # ── ABA ORAÇÕES ──
-    if st.session_state.aba_chat == "orações":
-        if st.session_state.oração_aberta:
-            titulo_o = st.session_state.oração_aberta
+    if st.session_state.aba_chat == "oracoes":
+        if st.session_state.oracao_aberta:
+            titulo_o = st.session_state.oracao_aberta
             texto_o = ORACOES[titulo_o].replace("\n", "<br>")
             st.markdown(f"""
             <div style="background:rgba(255,255,255,0.92);border-radius:16px;padding:1.5rem;margin-top:1rem;border:1px solid #e8e0d0;">
@@ -514,13 +514,13 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
             </div>
             """, unsafe_allow_html=True)
             if st.button("← Voltar"):
-                st.session_state.oração_aberta = None
+                st.session_state.oracao_aberta = None
                 st.rerun()
         else:
             st.markdown("<br>", unsafe_allow_html=True)
             for nome_oração in ORACOES:
                 if st.button(f"🙏 {nome_oração}", use_container_width=True, key=f"o_{nome_oração}"):
-                    st.session_state.oração_aberta = nome_oração
+                    st.session_state.oracao_aberta = nome_oração
                     st.rerun()
         st.stop()
 
@@ -859,7 +859,7 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
         st.markdown(f"""
         <div class="welcome">
             <div style="margin-bottom:1rem;">{logo_html}</div>
-            <h2 style="color:#1a1a1a!important;-webkit-text-fill-color:#1a1a1a;">Olá, {nome}! 🙏</h2>
+            <h2 style="color:#1a1a1a !important;-webkit-text-fill-color:#1a1a1a;">Olá, {nome}! 🙏</h2>
             <p style="color:#333!important;">Abra <b>Conversas</b> e clique em <b>Novo chat</b>.</p>
         </div>
         """, unsafe_allow_html=True)
@@ -867,8 +867,8 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
         chat_id = st.session_state.chat_atual
         historico = st.session_state.chats[chat_id]["historico"]
 
-        if st.session_state.péndente:
-            st.session_state.péndente = None
+        if st.session_state.pendente:
+            st.session_state.pendente = None
             resposta = st.session_state.cliente.chat.completions.create(
                 model="llama-3.3-70b-versatile",
                 messages=[{"role": "system", "content": system_prompt}, *historico]
@@ -894,15 +894,15 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
 
         chat_html = ""
         if not historico:
-            chat_html = '<div class="welcome"><h2 style="color:#1a1a1a!important;">Nova conversa 🙏</h2><p style="color:#333!important;">Como possó te ajudar?</p></div>'
+            chat_html = '<div class="welcome"><h2 style="color:#1a1a1a !important;">Nova conversa 🙏</h2><p style="color:#333!important;">Como possó te ajudar?</p></div>'
         else:
             for msg in historico:
                 if msg["role"] == "user":
                     chat_html += f'<div class="msg-user"><div class="bubble-user">{msg["content"]}</div></div>'
                 else:
-                    chat_html += f'<div class="msg-bot"><div style="flex-shrink:0;margin-top:2px;">{logo_html}</div><div class="bubble-bot" style="color:#1a1a1a!important;background:rgba(255,255,255,0.85);padding:0.7rem 1rem;border-radius:0 16px 16px 16px;">{msg["content"]}</div></div>'
+                    chat_html += f'<div class="msg-bot"><div style="flex-shrink:0;margin-top:2px;">{logo_html}</div><div class="bubble-bot" style="color:#1a1a1a !important;background:rgba(255,255,255,0.85);padding:0.7rem 1rem;border-radius:0 16px 16px 16px;">{msg["content"]}</div></div>'
 
-        if st.session_state.péndente:
+        if st.session_state.pendente:
             chat_html += f'<div class="msg-bot"><div style="flex-shrink:0;margin-top:2px;">{logo_html}</div><div class="typing"><span></span><span></span><span></span></div></div>'
 
         st.markdown(chat_html, unsafe_allow_html=True)
@@ -911,6 +911,6 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
         if user_input and user_input.strip():
             historico.appénd({"role": "user", "content": user_input.strip()})
             st.session_state.chats[chat_id]["historico"] = historico
-            st.session_state.péndente = user_input.strip()
+            st.session_state.pendente = user_input.strip()
             st.session_state.input_key += 1
             st.rerun()
