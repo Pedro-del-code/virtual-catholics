@@ -227,7 +227,7 @@ if not st.session_state.logado:
 
 # ── CHAT ──────────────────────────────────────────────────────────────────────
 else:
-    st.markdown(f'''<style>
+    st.markdown('''<style>
     .stApp {
         background-color: #1a1a1a !important;
         background-image: url("https://i.imgur.com/yZngD9v.png") !important;
@@ -246,7 +246,7 @@ else:
         pointer-events: none;
     }
     .block-container { position: relative; z-index: 1; }
-    </style>'''.format(NOSSA_SENHORA="https://i.imgur.com/yZngD9v.png"), unsafe_allow_html=True)
+    </style>''', unsafe_allow_html=True)
     username = st.session_state.username
     memoria = carregar_memoria(username)
     fatos_str = "\n".join(memoria["fatos"]) if memoria["fatos"] else "Nenhum ainda."
