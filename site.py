@@ -229,19 +229,18 @@ if not st.session_state.logado:
 else:
     st.markdown('''<style>
     .stApp {
-        background-color: #1a1a1a !important;
+        background-color: #ffffff !important;
         background-image: url("https://i.imgur.com/yZngD9v.png") !important;
-        background-size: 85% auto !important;
+        background-size: cover !important;
         background-position: center center !important;
         background-repeat: no-repeat !important;
         background-attachment: fixed !important;
-        opacity: 1 !important;
     }
     .stApp::before {
         content: "";
         position: fixed;
         top: 0; left: 0; right: 0; bottom: 0;
-        background: rgba(26, 26, 26, 0.92);
+        background: rgba(255, 255, 255, 0.80);
         z-index: 0;
         pointer-events: none;
     }
