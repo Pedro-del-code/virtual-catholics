@@ -134,6 +134,19 @@ st.markdown("""
     color: #ececec !important; border: 1px solid #3e3e3e !important;
     min-height: 48px !important;
 }
+
+/* Remove caixa vazia do radio */
+.stRadio > div > div {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+}
+div[data-testid="stRadio"] > div {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
 </style>
 """, unsafe_allow_html=True)
 
