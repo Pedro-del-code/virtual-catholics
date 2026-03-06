@@ -227,7 +227,26 @@ if not st.session_state.logado:
 
 # ── CHAT ──────────────────────────────────────────────────────────────────────
 else:
-    st.markdown('<style>.stApp { background-color: #212121 !important; background-image: none !important; color: #ececec !important; }</style>', unsafe_allow_html=True)
+    st.markdown(f'''<style>
+    .stApp {
+        background-color: #1a1a1a !important;
+        background-image: url("https://i.imgur.com/yZngD9v.png") !important;
+        background-size: 85% auto !important;
+        background-position: center center !important;
+        background-repeat: no-repeat !important;
+        background-attachment: fixed !important;
+        opacity: 1 !important;
+    }
+    .stApp::before {
+        content: "";
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(26, 26, 26, 0.92);
+        z-index: 0;
+        pointer-events: none;
+    }
+    .block-container { position: relative; z-index: 1; }
+    </style>'''.format(NOSSA_SENHORA="https://i.imgur.com/yZngD9v.png"), unsafe_allow_html=True)
     username = st.session_state.username
     memoria = carregar_memoria(username)
     fatos_str = "\n".join(memoria["fatos"]) if memoria["fatos"] else "Nenhum ainda."
@@ -310,12 +329,9 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
             chat_html += f'<div class="msg-bot"><div style="flex-shrink:0;margin-top:2px;">{logo_html}</div><div class="typing"><span></span><span></span><span></span></div></div>'
         st.markdown(chat_html, unsafe_allow_html=True)
 
-        col1, col2 = st.columns([9, 1])
-        with col1:
-            user_input = st.text_input("", placeholder="Manda uma mensagem...", key=f"inp_{st.session_state.input_key}", label_visibility="collapsed")
-        with col2:
-            enviar = st.button("➤")
-        if (enviar or user_input) and user_input.strip():
+        user_input = st.text_input("", placeholder="Manda uma mensagem... ➤", key=f"inp_{st.session_state.input_key}", label_visibility="collapsed")
+        enviar = False
+        if user_input and user_input.strip():
             historico.append({"role": "user", "content": user_input.strip()})
             st.session_state.chats[chat_id]["historico"] = historico
             salvar_chats(username, st.session_state.chats)
