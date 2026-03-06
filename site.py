@@ -289,17 +289,53 @@ Fatos que você já sabe sobre ele: {fatos_str}
 Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
 """
 
-    col_t1, col_t2 = st.columns(2)
-    with col_t1:
-        if st.button("💬 Conversas", use_container_width=True, key="tab_conv"):
+    with st.expander("📋 Menu"):
+        # ── CHATS ──
+        st.markdown("<p style='color:#c8a96e;font-weight:700;margin:0.5rem 0 0.3rem 0;'>💬 CHATS</p>", unsafe_allow_html=True)
+        if st.button("➕ Novo chat", use_container_width=True):
+            chat_id = novo_chat_id()
+            st.session_state.chats[chat_id] = {"titulo": "Nova conversa", "historico": []}
+            salvar_chat(username, chat_id, "Nova conversa", [])
+            st.session_state.chat_atual = chat_id
             st.session_state.aba_chat = "chat"
+            st.session_state.input_key += 1
+            st.rerun()
+        for chat_id in sorted(st.session_state.chats.keys(), reverse=True):
+            titulo = st.session_state.chats[chat_id]["titulo"]
+            if st.button(f"💬 {titulo}", key=f"c_{chat_id}", use_container_width=True):
+                st.session_state.chat_atual = chat_id
+                st.session_state.aba_chat = "chat"
+                st.session_state.input_key += 1
+                st.rerun()
+        if st.session_state.chat_atual and st.session_state.chat_atual in st.session_state.chats:
+            if st.button("🗑️ Deletar conversa", use_container_width=True):
+                deletar_chat(username, st.session_state.chat_atual)
+                del st.session_state.chats[st.session_state.chat_atual]
+                st.session_state.chat_atual = None
+                st.rerun()
+
+        st.markdown("<hr style='border-color:#3e3e3e;margin:0.8rem 0;'>", unsafe_allow_html=True)
+
+        # ── ORAÇÕES / BÍBLIA ──
+        st.markdown("<p style='color:#c8a96e;font-weight:700;margin:0.3rem 0;'>🙏 RECURSOS</p>", unsafe_allow_html=True)
+        if st.button("🙏 Orações", use_container_width=True, key="btn_oracoes"):
+            st.session_state.aba_chat = "oracoes"
             st.session_state.oracao_aberta = None
             st.rerun()
-    with col_t2:
-        if st.button("🙏 Orações", use_container_width=True, key="tab_orac"):
-            st.session_state.aba_chat = "oracoes"
+        if st.button("📖 Bíblia", use_container_width=True, key="btn_biblia"):
+            st.session_state.aba_chat = "biblia"
             st.rerun()
 
+        st.markdown("<hr style='border-color:#3e3e3e;margin:0.8rem 0;'>", unsafe_allow_html=True)
+
+        # ── CONTA ──
+        st.markdown("<p style='color:#c8a96e;font-weight:700;margin:0.3rem 0;'>👤 CONTA</p>", unsafe_allow_html=True)
+        if st.button("🚪 Sair", use_container_width=True):
+            for k in ["logado", "username", "chats", "chat_atual", "nome_usuario"]:
+                st.session_state[k] = False if k == "logado" else None if k != "chats" else {}
+            st.rerun()
+
+    # ── ABA ORAÇÕES ──
     if st.session_state.aba_chat == "oracoes":
         if st.session_state.oracao_aberta:
             titulo_o = st.session_state.oracao_aberta
@@ -321,30 +357,43 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
                     st.rerun()
         st.stop()
 
-    with st.expander(f"💬 Conversas — {nome}"):
-        if st.button("✏️ Novo chat"):
-            chat_id = novo_chat_id()
-            st.session_state.chats[chat_id] = {"titulo": "Nova conversa", "historico": []}
-            salvar_chat(username, chat_id, "Nova conversa", [])
-            st.session_state.chat_atual = chat_id
-            st.session_state.input_key += 1
-            st.rerun()
-        for chat_id in sorted(st.session_state.chats.keys(), reverse=True):
-            titulo = st.session_state.chats[chat_id]["titulo"]
-            if st.button(f"💬 {titulo}", key=f"c_{chat_id}"):
-                st.session_state.chat_atual = chat_id
-                st.session_state.input_key += 1
-                st.rerun()
-        if st.session_state.chat_atual and st.session_state.chat_atual in st.session_state.chats:
-            if st.button("🗑️ Deletar conversa"):
-                deletar_chat(username, st.session_state.chat_atual)
-                del st.session_state.chats[st.session_state.chat_atual]
-                st.session_state.chat_atual = None
-                st.rerun()
-        if st.button("🚪 Sair"):
-            for k in ["logado", "username", "chats", "chat_atual", "nome_usuario"]:
-                st.session_state[k] = False if k == "logado" else None if k != "chats" else {}
-            st.rerun()
+    # ── ABA BÍBLIA ──
+    if st.session_state.aba_chat == "biblia":
+        st.markdown("<br>", unsafe_allow_html=True)
+        livros = ["genesis","exodo","levitico","numeros","deuteronomio","josue","juizes","rute","1samuel","2samuel","1reis","2reis","1cronicas","2cronicas","esdras","neemias","ester","jo","salmos","proverbios","eclesiastes","cantares","isaias","jeremias","lamentacoes","ezequiel","daniel","oseias","joel","amos","abdias","jonas","miqueias","naum","habacuque","sofonias","ageu","zacarias","malaquias","mateus","marcos","lucas","joao","atos","romanos","1corintios","2corintios","galatas","efesios","filipenses","colossenses","1tessalonicenses","2tessalonicenses","1timoteo","2timoteo","tito","filemom","hebreus","tiago","1pedro","2pedro","1joao","2joao","3joao","judas","apocalipse"]
+        livros_display = [l.replace("1","1 ").replace("2","2 ").replace("3","3 ").title() for l in livros]
+
+        col_b1, col_b2 = st.columns([3,1])
+        with col_b1:
+            livro_sel = st.selectbox("Livro", livros_display, label_visibility="collapsed")
+        with col_b2:
+            cap_sel = st.number_input("Cap", min_value=1, max_value=150, value=1, label_visibility="collapsed")
+
+        livro_api = livros[livros_display.index(livro_sel)]
+
+        if st.button("📖 Ler", use_container_width=True):
+            import requests as req
+            try:
+                url = f"https://bible-api.com/{livro_api}+{cap_sel}?translation=almeida"
+                r = req.get(url, timeout=10)
+                data = r.json()
+                if "verses" in data:
+                    versiculos = ""
+                    for v in data["verses"]:
+                        versiculos += f'<p style="margin:0.4rem 0;color:#1a1a1a;"><b style="color:#c8a96e;">{v["verse"]}</b> {v["text"]}</p>'
+                    st.markdown(f"""
+                    <div style="background:rgba(255,255,255,0.92);border-radius:16px;padding:1.5rem;margin-top:1rem;border:1px solid #e8e0d0;max-height:60vh;overflow-y:auto;">
+                        <h3 style="color:#c8a96e;margin-bottom:1rem;">📖 {livro_sel} {cap_sel}</h3>
+                        {versiculos}
+                    </div>
+                    """, unsafe_allow_html=True)
+                else:
+                    st.error("Capítulo não encontrado!")
+            except:
+                st.error("Erro ao carregar a Bíblia. Tente novamente!")
+        st.stop()
+
+
 
     if not st.session_state.chat_atual or st.session_state.chat_atual not in st.session_state.chats:
         st.markdown(f"""
