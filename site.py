@@ -527,7 +527,7 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
         if st.button("⭐ Creditos", use_container_width=True, key="btn_creditos"):
             st.session_state.aba_chat = "creditos"
             st.rerun()
-        if st.button("💛 Doacoes", use_container_width=True, key="btn_doacoes"):
+        if st.button("💛 Doações", use_container_width=True, key="btn_doacoes"):
             st.session_state.aba_chat = "doacoes"
             st.rerun()
 
