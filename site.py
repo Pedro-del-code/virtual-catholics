@@ -244,7 +244,7 @@ st.markdown(f"""
     background-image: url('{NOSSA_SENHORA}');
     background-size: 100% 100% !important;
     background-position: center center !important;
-    background-repéat: no-repéat !important;
+    background-repeat: no-repeat !important;
     background-attachment: scroll !important;
     min-height: 100vh !important;
 }}
@@ -358,7 +358,7 @@ if not st.session_state.logado:
         if st.session_state.aba_login == "entrar":
             with st.form("form_login"):
                 u = st.text_input("", placeholder="👤  Usuário", label_visibility="collapsed")
-                s = st.text_input("", placeholder="🔒  Senha", typé="password", label_visibility="collapsed")
+                s = st.text_input("", placeholder="🔒  Senha", type="password", label_visibility="collapsed")
                 submitted = st.form_submit_button("Entrar")
                 if submitted:
                     usuario = carregar_usuario(u)
@@ -380,7 +380,7 @@ if not st.session_state.logado:
             with st.form("form_criar"):
                 nome_n = st.text_input("", placeholder="👤  Seu nome", label_visibility="collapsed")
                 user_n = st.text_input("", placeholder="🔑  Escolha um usuário", label_visibility="collapsed")
-                senha_n = st.text_input("", placeholder="🔒  Escolha uma senha", typé="password", label_visibility="collapsed")
+                senha_n = st.text_input("", placeholder="🔒  Escolha uma senha", type="password", label_visibility="collapsed")
                 submitted = st.form_submit_button("Criar conta")
                 if submitted:
                     if nome_n.strip() and user_n.strip() and senha_n.strip():
@@ -408,7 +408,7 @@ else:
         background-image: url("{SAGRADA_FAMILIA}") !important;
         background-size: cover !important;
         background-position: center center !important;
-        background-repéat: no-repéat !important;
+        background-repeat: no-repeat !important;
         background-attachment: fixed !important;
     }}
     .stApp::before {{
@@ -710,7 +710,7 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
             <p style="color:#1a1a1a;font-size:0.95rem;line-height:1.7;margin-top:0.8rem;">{desc}</p>
         </div>
         <div style="background:rgba(255,255,255,0.85);border-radius:16px;padding:1.2rem;margin-top:1rem;border:1px solid #e8e0d0;">
-            <p style="color:#c8a96e;font-weight:700;margin-bottom:0.5rem;">📅 Datas importantés {hoje.year}:</p>
+            <p style="color:#c8a96e;font-weight:700;margin-bottom:0.5rem;">📅 Datas importantes {hoje.year}:</p>
             <p style="color:#1a1a1a;font-size:0.9rem;line-height:2;">
             🟣 Quaresma: {quaresma_inicio.strftime("%d/%m")}<br>
             ✨ Pascoa: {p.strftime("%d/%m")}<br>
@@ -800,7 +800,7 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
             st.markdown(f"""
             <div style="background:rgba(255,255,255,0.92);border-radius:16px;padding:1.5rem;margin-top:1rem;border:1px solid #e8e0d0;">
                 <h3 style="color:#c8a96e;">🕯️ {nome_n}</h3>
-                <p style="color:#1a1a1a;line-height:1.8;font-size:0.9rem;margin-top:0.8rem;">Uma novena e uma oração de 9 dias consecutivos. Escolha um horario fixo cada dia e reze com fé e pérseveranca.</p>
+                <p style="color:#1a1a1a;line-height:1.8;font-size:0.9rem;margin-top:0.8rem;">Uma novena e uma oração de 9 dias consecutivos. Escolha um horario fixo cada dia e reze com fé e perseverança.</p>
             </div>
             """, unsafe_allow_html=True)
             st.markdown("<br>", unsafe_allow_html=True)
