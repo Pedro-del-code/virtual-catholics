@@ -645,7 +645,7 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
             k = c % 4
             l = (32 + 2*e + 2*i - h - k) % 7
             m = (a + 11*h + 22*l) // 451
-            més = (h + l - 7*m + 114) // 31
+            mes = (h + l - 7*m + 114) // 31
             dia = ((h + l - 7*m + 114) % 31) + 1
             return date(ano, mes, dia)
 
