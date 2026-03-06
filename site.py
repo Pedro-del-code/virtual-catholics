@@ -80,6 +80,52 @@ ORACOES = {
     "Creio em Deus Pai": "Creio em Deus Pai todo-poderoso,\ncriador do ceu e da terra;\ne em Jesus Cristo, seu unico Filho, nosso Senhor;\nque foi concebido pelo poder do Espirito Santo;\nnasceu da Virgem Maria;\npadeceu sob Poncio Pilatos;\nfoi crucificado, morto e sepultado;\ndesceu a mansao dos mortos;\nressuscitou ao terceiro dia;\nsubiu aos ceus;\nesta sentado a direita de Deus Pai todo-poderoso;\ndonde ha de vir a julgar os vivos e os mortos.\nCreio no Espirito Santo;\nna Santa Igreja Catolica;\nna comunhao dos santos;\nna remissao dos pecados;\nna ressurreicao da carne;\nna vida eterna.\nAmem."
 }
 
+NOVENAS = {
+    "Novena ao Sagrado Coracao de Jesus": [
+        "Senhor Jesus, Coracao Sacratissimo, hoje venho a Vos com humildade e confianca. Que o Vosso amor inflame meu coracao e me transforme em instrumento da Vossa paz. Amem.",
+        "Sagrado Coracao de Jesus, que tanto amais os homens, dai-me um coracao semelhante ao Vosso, cheio de amor, misericordia e bondade para com todos. Amem.",
+        "Senhor, que o Vosso Coracao aberto na Cruz seja para mim fonte de graca e misericordia. Lava-me do pecado e purifica-me. Amem.",
+        "Coracao de Jesus, Rei e centro de todos os coracoes, fazei que o Vosso Reino venha em mim, em minha familia e em todo o mundo. Amem.",
+        "Senhor Jesus, que prometestes paz as familias consagradas ao Vosso Sagrado Coracao, consagro hoje minha familia a Vos. Sede o seu Rei e Senhor. Amem.",
+        "Sagrado Coracao de Jesus, consolai os que sofrem, fortalecei os que lutam e dai esperanca aos que desesperam. Que ninguem fique sem o Vosso amor. Amem.",
+        "Senhor, pelo Vosso Coracao traspassado, intercedei pelos que estao longe de Deus. Que Vosso amor os alcance e os traga de volta. Amem.",
+        "Coracao de Jesus, refugio dos pecadores, que eu nunca perca a confianca na Vossa misericordia. Sempre voltarei a Vos, arrependido e confiante. Amem.",
+        "Sagrado Coracao de Jesus, neste ultimo dia de novena, ofereco-Vos minha vida inteira. Que eu viva e morra no Vosso amor. Amem."
+    ],
+    "Novena a Nossa Senhora Aparecida": [
+        "Nossa Senhora Aparecida, Rainha e Mae do Brasil, hoje inicio esta novena com fe e esperanca. Intercedei por mim junto ao Vosso Filho Jesus. Amem.",
+        "Mae Aparecida, que vos mostrastes humilde e simples como a imagem de barro, ensinai-me a simplicidade e a humildade no meu dia a dia. Amem.",
+        "Nossa Senhora, que iluminastes as aguas escuras do Rio Paraiba com Vossa presenca, iluminai tambem os momentos escuros da minha vida. Amem.",
+        "Mae do Brasil, povo que tanto vos ama, intercedei por nossa patria. Que Deus abencoe esta terra e este povo. Amem.",
+        "Nossa Senhora Aparecida, Mae dos pobres e dos simples, lembrai-vos dos que sofrem, dos doentes, dos abandonados. Cobri-os com Vosso manto. Amem.",
+        "Mae Aparecida, que por tantos seculos ouvistes os clamores do povo brasileiro, ouvi tambem o meu clamor hoje. (Faca seu pedido com confianca). Amem.",
+        "Nossa Senhora, que fostes encontrada pelos pescadores e realizastes milagres, realizai tambem o milagre que tanto espero, se for da Vontade de Deus. Amem.",
+        "Mae Aparecida, ensinai-me a rezar, a confiar, a amar a Deus sobre todas as coisas. Que eu nunca me afaste do Vosso manto protetor. Amem.",
+        "Nossa Senhora Aparecida, neste ultimo dia de novena, renovo minha consagracao a Vos. Sou vosso filho(a) para sempre. Protegei-me e levai-me a Jesus. Amem."
+    ],
+    "Novena ao Espirito Santo": [
+        "Vem, Espirito Santo, enchei os coracoes dos Vossos fieis e acendei neles o fogo do Vosso amor. Dai-me a graca da sabedoria para conhecer a Deus. Amem.",
+        "Espirito de Deus, dai-me o dom do entendimento, para que eu compreenda as verdades da fe e as aplique em minha vida. Amem.",
+        "Espirito Santo Paraclete, dai-me o dom do conselho, para que eu saiba sempre escolher o bem e evitar o mal em todas as situacoes. Amem.",
+        "Vem, Espirito Santo, dai-me o dom da fortaleza para enfrentar com coragem as dificuldades, tentacoes e sofrimentos da vida. Amem.",
+        "Espirito de sabedoria e de ciencia, iluminai minha mente para que eu conheca cada vez mais a Deus e me aproxime Dele. Amem.",
+        "Espirito Santo, dai-me o dom da piedade, para que eu ame a Deus como Pai e trate com bondade todos os meus irmaos. Amem.",
+        "Vem, Espirito Santo, dai-me o dom do temor a Deus, para que eu nunca O ofenda e viva sempre em conformidade com a Sua Vontade. Amem.",
+        "Espirito Santo, transformai-me em testemunha viva de Cristo. Que minha vida seja um reflexo do Vosso amor ao mundo. Amem.",
+        "Vem, Espirito Santo, no ultimo dia desta novena, vem com toda Vossa plenitude. Renovai em mim os dons recebidos no Batismo e na Crisma. Amem."
+    ],
+    "Novena a Sao Jose": [
+        "Sao Jose, Pai adotivo de Jesus e esposo de Maria, intercedei por mim junto a Sagrada Familia. Ensinai-me a fidelidade e o trabalho honesto. Amem.",
+        "Glorioso Sao Jose, padroeiro dos trabalhadores, intercedei por todos que buscam trabalho digno e pelos que sofrem no trabalho. Amem.",
+        "Sao Jose, modelo de obediencia a Deus, ensinai-me a confiar na Providencia Divina mesmo quando nao entendo os caminhos de Deus. Amem.",
+        "Glorioso patriarca Sao Jose, protegei as familias. Que cada lar seja como Nazare: simples, trabalhador, cheio de amor e de Deus. Amem.",
+        "Sao Jose, que guardastes Jesus e Maria em perigo, guardai tambem minha familia de todo o mal, do pecado e do inimigo. Amem.",
+        "Glorioso Sao Jose, padroeiro da Igreja universal, intercedei pelo Papa, pelos bispos, pelos sacerdotes e por toda a Igreja. Amem.",
+        "Sao Jose, que recebestes de Deus a missao de cuidar do Filho de Deus, ensinai-me a cumprir com amor a missao que Deus me confiou. Amem.",
+        "Glorioso Sao Jose, padroeiro de uma boa morte, acompanhai-me na hora de minha morte. Que eu morra em paz, na graca de Deus. Amem.",
+        "Sao Jose, neste ultimo dia de novena, confio a Vos minha vida, minha familia e meus projetos. Sede meu pai e meu protetor para sempre. Amem."
+    ]
+}
 TERCOS = {
     "Misterios Gozosos (Segundas e Sabados)": [
         ("1 - Anunciacao do anjo a Nossa Senhora", "Mae da Divina Graca, dai-nos a virtude da total entrega, num sim sempre constante a Vontade de Deus Pai. Amem."),
@@ -277,7 +323,7 @@ API_KEY = st.secrets.get("GROQ_API_KEY", os.environ.get("GROQ_API_KEY", ""))
 
 for key, val in [("logado", False), ("username", None), ("chats", {}),
                   ("chat_atual", None), ("input_key", 0), ("pendente", None), ("nome_usuario", ""),
-                  ("aba_chat", "chat"), ("oracao_aberta", None), ("terco_aberto", None), ("terco_misterio", None)]:
+                  ("aba_chat", "chat"), ("oracao_aberta", None), ("terco_aberto", None), ("terco_misterio", None), ("novena_aberta", None), ("novena_dia", None)]:
     if key not in st.session_state: st.session_state[key] = val
 
 if "cliente" not in st.session_state:
@@ -432,6 +478,20 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
             st.session_state.terco_aberto = None
             st.session_state.terco_misterio = None
             st.rerun()
+        if st.button("📖 Liturgia do Dia", use_container_width=True, key="btn_liturgia"):
+            st.session_state.aba_chat = "liturgia"
+            st.rerun()
+        if st.button("📅 Calendário Litúrgico", use_container_width=True, key="btn_calendario"):
+            st.session_state.aba_chat = "calendario"
+            st.rerun()
+        if st.button("⭐ Santo do Dia", use_container_width=True, key="btn_santo"):
+            st.session_state.aba_chat = "santo"
+            st.rerun()
+        if st.button("🕯️ Novenas", use_container_width=True, key="btn_novenas"):
+            st.session_state.aba_chat = "novenas"
+            st.session_state.novena_aberta = None
+            st.session_state.novena_dia = None
+            st.rerun()
 
         st.markdown("<hr style='border-color:#3e3e3e;margin:0.8rem 0;'>", unsafe_allow_html=True)
 
@@ -520,6 +580,240 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
             for nome_t in TERCOS:
                 if st.button(f"📿 {nome_t}", use_container_width=True, key=f"t_{nome_t}"):
                     st.session_state.terco_aberto = nome_t
+                    st.rerun()
+        st.stop()
+
+    # ── ABA SANTO DO DIA ──
+    if st.session_state.aba_chat == "santo":
+        st.markdown("<br>", unsafe_allow_html=True)
+        from datetime import date
+        import requests as req
+        hoje = date.today()
+        try:
+            r = req.get(f"https://www.santosdomundo.com.br/api/santos?mes={hoje.month}&dia={hoje.day}", timeout=8)
+            data = r.json()
+            if data and isinstance(data, list):
+                santos = data
+            else:
+                santos = []
+        except:
+            santos = []
+
+        # Fallback simples por data
+        SANTOS_FIXOS = {
+            (1,1):"Maria Santissima, Mae de Deus",(1,6):"Epifania do Senhor",(1,13):"Santo Hilario",(1,17):"Santo Antonio Abade",
+            (2,2):"Apresentacao do Senhor",(2,14):"Santo Valentim",(2,22):"Catedral de Sao Pedro",
+            (3,7):"Santas Perpetua e Felicidade",(3,17):"Santo Patricio",(3,19):"Sao Jose, Esposo de Maria",(3,25):"Anunciacao do Senhor",
+            (4,23):"Sao Jorge",(4,25):"Sao Marcos Evangelista",
+            (5,1):"Sao Jose Operario",(5,13):"Nossa Senhora de Fatima",(5,31):"Visitacao de Nossa Senhora",
+            (6,13):"Santo Antonio de Lisboa",(6,24):"Natividade de Sao Joao Batista",(6,29):"Sao Pedro e Sao Paulo",
+            (7,16):"Nossa Senhora do Carmo",(7,22):"Santa Maria Madalena",(7,25):"Sao Tiago Apostolo",
+            (8,6):"Transfiguracao do Senhor",(8,10):"Sao Lourenco",(8,15):"Assuncao de Nossa Senhora",(8,28):"Santo Agostinho",
+            (9,8):"Natividade de Nossa Senhora",(9,14):"Exaltacao da Santa Cruz",(9,29):"Sao Miguel, Gabriel e Rafael",
+            (10,4):"Sao Francisco de Assis",(10,12):"Nossa Senhora Aparecida",(10,15):"Santa Teresa de Avila",
+            (11,1):"Todos os Santos",(11,2):"Finados",(11,11):"Sao Martinho de Tours",(11,30):"Sao Andre Apostolo",
+            (12,8):"Imaculada Conceicao",(12,12):"Nossa Senhora de Guadalupe",(12,25):"Natividade do Senhor",(12,26):"Santo Estevao"
+        }
+        santo_nome = SANTOS_FIXOS.get((hoje.month, hoje.day), "Santo(a) do dia")
+        meses = ["","Janeiro","Fevereiro","Marco","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"]
+        st.markdown(f"""
+        <div style="background:rgba(255,255,255,0.92);border-radius:16px;padding:1.5rem;margin-top:1rem;border:1px solid #e8e0d0;text-align:center;">
+            <p style="color:#888;font-size:0.8rem;margin:0;">{hoje.day} de {meses[hoje.month]} de {hoje.year}</p>
+            <h2 style="color:#c8a96e;margin:0.8rem 0;">⭐ {santo_nome}</h2>
+            <p style="color:#1a1a1a;font-size:0.9rem;line-height:1.7;margin-top:1rem;">Que a intercessao deste santo(a) nos alcance as gracas de que tanto precisamos. Que sua vida seja inspiracao para nos neste dia. Amem.</p>
+        </div>
+        """, unsafe_allow_html=True)
+        st.stop()
+
+    # ── ABA CALENDARIO LITURGICO ──
+    if st.session_state.aba_chat == "calendario":
+        st.markdown("<br>", unsafe_allow_html=True)
+        from datetime import date, timedelta
+        import math
+        hoje = date.today()
+
+        def pascoa(ano):
+            a = ano % 19
+            b = ano // 100
+            c = ano % 100
+            d = b // 4
+            e = b % 4
+            f = (b + 8) // 25
+            g = (b - f + 1) // 3
+            h = (19*a + b - d - g + 15) % 30
+            i = c // 4
+            k = c % 4
+            l = (32 + 2*e + 2*i - h - k) % 7
+            m = (a + 11*h + 22*l) // 451
+            mes = (h + l - 7*m + 114) // 31
+            dia = ((h + l - 7*m + 114) % 31) + 1
+            return date(ano, mes, dia)
+
+        p = pascoa(hoje.year)
+        quaresma_inicio = p - timedelta(days=46)
+        advento_inicio = date(hoje.year, 12, 25) - timedelta(days=22)
+        pentecostes = p + timedelta(days=49)
+        corpus_christi = p + timedelta(days=60)
+
+        if hoje < quaresma_inicio:
+            tempo = "Tempo Comum"
+            cor = "#4CAF50"
+            emoji = "🟢"
+            desc = "Tempo de crescimento na fe e na vida crista."
+        elif hoje == quaresma_inicio:
+            tempo = "Quarta-feira de Cinzas"
+            cor = "#666"
+            emoji = "⚫"
+            desc = "Inicio da Quaresma. Tempo de penitencia e conversao."
+        elif hoje <= p - timedelta(days=1):
+            dias = (p - hoje).days
+            tempo = "Quaresma"
+            cor = "#9C27B0"
+            emoji = "🟣"
+            desc = f"Tempo de penitencia, oracao e jejum. Faltam {dias} dias para a Pascoa."
+        elif hoje == p:
+            tempo = "Pascoa do Senhor!"
+            cor = "#FFD700"
+            emoji = "✨"
+            desc = "Aleluia! Cristo ressuscitou! O dia mais importante do ano liturgico."
+        elif hoje <= pentecostes:
+            dias = (hoje - p).days
+            tempo = f"Tempo Pascal (Dia {dias})"
+            cor = "#FFD700"
+            emoji = "🟡"
+            desc = "Tempo de alegria e celebracao da Ressurreicao de Cristo."
+        elif hoje >= advento_inicio:
+            tempo = "Advento"
+            cor = "#9C27B0"
+            emoji = "🟣"
+            dias = (date(hoje.year, 12, 25) - hoje).days
+            desc = f"Tempo de espera e preparacao para o Natal. Faltam {dias} dias."
+        elif date(hoje.year, 12, 25) <= hoje <= date(hoje.year, 12, 31):
+            tempo = "Tempo do Natal"
+            cor = "#FFD700"
+            emoji = "⭐"
+            desc = "Celebramos o nascimento de Jesus Cristo, nosso Salvador."
+        else:
+            tempo = "Tempo Comum"
+            cor = "#4CAF50"
+            emoji = "🟢"
+            desc = "Tempo de crescimento na fe e na vida crista."
+
+        meses = ["","Janeiro","Fevereiro","Marco","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"]
+        dias_semana = ["Segunda-feira","Terca-feira","Quarta-feira","Quinta-feira","Sexta-feira","Sabado","Domingo"]
+        dia_sem = dias_semana[hoje.weekday()]
+
+        st.markdown(f"""
+        <div style="background:rgba(255,255,255,0.92);border-radius:16px;padding:1.5rem;margin-top:1rem;border:2px solid {cor};text-align:center;">
+            <p style="color:#888;font-size:0.8rem;">{dia_sem}, {hoje.day} de {meses[hoje.month]} de {hoje.year}</p>
+            <h2 style="color:{cor};margin:0.5rem 0;">{emoji} {tempo}</h2>
+            <p style="color:#1a1a1a;font-size:0.95rem;line-height:1.7;margin-top:0.8rem;">{desc}</p>
+        </div>
+        <div style="background:rgba(255,255,255,0.85);border-radius:16px;padding:1.2rem;margin-top:1rem;border:1px solid #e8e0d0;">
+            <p style="color:#c8a96e;font-weight:700;margin-bottom:0.5rem;">📅 Datas importantes {hoje.year}:</p>
+            <p style="color:#1a1a1a;font-size:0.9rem;line-height:2;">
+            🟣 Quaresma: {quaresma_inicio.strftime("%d/%m")}<br>
+            ✨ Pascoa: {p.strftime("%d/%m")}<br>
+            🕊️ Pentecostes: {pentecostes.strftime("%d/%m")}<br>
+            🌟 Corpus Christi: {corpus_christi.strftime("%d/%m")}<br>
+            🟣 Advento: {advento_inicio.strftime("%d/%m")}<br>
+            ⭐ Natal: 25/12
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
+        st.stop()
+
+    # ── ABA LITURGIA DO DIA ──
+    if st.session_state.aba_chat == "liturgia":
+        st.markdown("<br>", unsafe_allow_html=True)
+        from datetime import date
+        import requests as req
+        hoje = date.today()
+        meses = ["","Janeiro","Fevereiro","Marco","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"]
+        st.markdown(f"""
+        <div style="background:rgba(255,255,255,0.92);border-radius:16px;padding:1.5rem;margin-top:1rem;border:1px solid #e8e0d0;">
+            <h3 style="color:#c8a96e;margin-bottom:0.5rem;">📖 Liturgia do Dia</h3>
+            <p style="color:#888;font-size:0.85rem;">{hoje.day} de {meses[hoje.month]} de {hoje.year}</p>
+            <hr style="border-color:#e8e0d0;margin:1rem 0;">
+            <p style="color:#1a1a1a;font-size:0.95rem;line-height:1.7;">
+            Para acompanhar as leituras completas da Missa de hoje, acesse o site oficial da CNBB:
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
+        url_cnbb = f"https://liturgiadiaria.site/"
+        st.markdown(f'<a href="{url_cnbb}" target="_blank" style="display:block;background:linear-gradient(135deg,#c8a96e,#a07840);color:#fff;text-align:center;padding:1rem;border-radius:12px;font-weight:700;text-decoration:none;margin-top:1rem;">📖 Ver Liturgia de Hoje</a>', unsafe_allow_html=True)
+        st.markdown('<br>', unsafe_allow_html=True)
+
+        # IA comenta a liturgia
+        if st.button("✨ Pedir comentario da IA sobre a liturgia de hoje", use_container_width=True):
+            with st.spinner("Gerando reflexao..."):
+                import datetime
+                data_str = f"{hoje.day} de {meses[hoje.month]} de {hoje.year}"
+                resp = st.session_state.cliente.chat.completions.create(
+                    model="llama-3.3-70b-versatile",
+                    messages=[{"role":"user","content":f"Faca uma breve reflexao catolica sobre o espirito da liturgia do dia de hoje, {data_str}, considerando o tempo liturgico atual e o chamado de Jesus para nossa vida. Em portugues, de forma acolhedora e espiritual. Maximo 150 palavras."}]
+                )
+                reflexao = resp.choices[0].message.content
+                st.markdown(f"""
+                <div style="background:rgba(255,255,255,0.92);border-radius:16px;padding:1.5rem;margin-top:1rem;border:1px solid #e8e0d0;">
+                    <p style="color:#c8a96e;font-weight:700;">✨ Reflexao do Dia</p>
+                    <p style="color:#1a1a1a;line-height:1.8;font-size:0.95rem;">{reflexao}</p>
+                </div>
+                """, unsafe_allow_html=True)
+        st.stop()
+
+    # ── ABA NOVENAS ──
+    if st.session_state.aba_chat == "novenas":
+        st.markdown("<br>", unsafe_allow_html=True)
+        if st.session_state.novena_aberta and st.session_state.novena_dia is not None:
+            nome_n = st.session_state.novena_aberta
+            dias_n = NOVENAS[nome_n]
+            dia_idx = st.session_state.novena_dia
+            st.markdown(f"""
+            <div style="background:rgba(255,255,255,0.92);border-radius:16px;padding:1.5rem;margin-top:1rem;border:1px solid #e8e0d0;">
+                <p style="color:#888;font-size:0.8rem;">{nome_n}</p>
+                <h3 style="color:#c8a96e;margin:0.5rem 0;">🕯️ {dia_idx + 1}º Dia</h3>
+                <p style="color:#1a1a1a;line-height:2;font-size:1rem;margin-top:1rem;">{dias_n[dia_idx]}</p>
+            </div>
+            """, unsafe_allow_html=True)
+            col_a, col_p = st.columns(2)
+            with col_a:
+                if dia_idx > 0:
+                    if st.button("← Anterior", use_container_width=True):
+                        st.session_state.novena_dia -= 1
+                        st.rerun()
+            with col_p:
+                if dia_idx < 8:
+                    if st.button("Próximo →", use_container_width=True):
+                        st.session_state.novena_dia += 1
+                        st.rerun()
+                else:
+                    if st.button("✅ Concluída!", use_container_width=True):
+                        st.session_state.novena_aberta = None
+                        st.session_state.novena_dia = None
+                        st.rerun()
+            if st.button("← Voltar"):
+                st.session_state.novena_dia = None
+                st.rerun()
+        elif st.session_state.novena_aberta:
+            nome_n = st.session_state.novena_aberta
+            st.markdown(f"""
+            <div style="background:rgba(255,255,255,0.92);border-radius:16px;padding:1.5rem;margin-top:1rem;border:1px solid #e8e0d0;">
+                <h3 style="color:#c8a96e;">🕯️ {nome_n}</h3>
+                <p style="color:#1a1a1a;line-height:1.8;font-size:0.9rem;margin-top:0.8rem;">Uma novena e uma oracao de 9 dias consecutivos. Escolha um horario fixo cada dia e reze com fe e perseveranca.</p>
+            </div>
+            """, unsafe_allow_html=True)
+            st.markdown("<br>", unsafe_allow_html=True)
+            if st.button("▶️ Começar pelo 1º dia", use_container_width=True):
+                st.session_state.novena_dia = 0
+                st.rerun()
+            if st.button("← Voltar"):
+                st.session_state.novena_aberta = None
+                st.rerun()
+        else:
+            for nome_n in NOVENAS:
+                if st.button(f"🕯️ {nome_n}", use_container_width=True, key=f"nov_{nome_n}"):
+                    st.session_state.novena_aberta = nome_n
                     st.rerun()
         st.stop()
 
