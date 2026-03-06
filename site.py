@@ -12,207 +12,179 @@ st.set_page_config(
 )
 
 LOGO = "https://i.imgur.com/ilafAhJ.png"
+NOSSA_SENHORA = "https://i.imgur.com/8OWNsBk.png"
 logo_html = f'<img src="{LOGO}" style="width:40px;height:40px;border-radius:50%;object-fit:cover;"/>'
 
-st.markdown("""
+st.markdown(f"""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
-* { font-family: 'Inter', sans-serif; box-sizing: border-box; }
-.stApp { background-color: #ffffff; color: #ececec; }
-/* Fundo branco só na tela de login */
-#MainMenu, footer, header { visibility: hidden; }
-.block-container { padding: 1rem 1rem 160px 1rem !important; max-width: 700px !important; }
+* {{ font-family: 'Inter', sans-serif; box-sizing: border-box; }}
+#MainMenu, footer, header {{ visibility: hidden; }}
+.block-container {{ padding: 1rem 1rem 160px 1rem !important; max-width: 700px !important; }}
 
-.msg-user { display: flex; justify-content: flex-end; margin: 0.8rem 0; }
-.bubble-user {
-    background-color: #2f2f2f; color: #ececec;
-    padding: 0.75rem 1rem; border-radius: 18px 18px 4px 18px;
-    max-width: 85%; font-size: 0.95rem; line-height: 1.6; word-break: break-word;
-}
-.msg-bot { display: flex; justify-content: flex-start; gap: 0.6rem; margin: 0.8rem 0; align-items: flex-start; }
-.bubble-bot { color: #ececec; font-size: 0.95rem; line-height: 1.7; max-width: 85%; word-break: break-word; }
+/* ── LOGIN ── */
+.stApp {{ background-color: #ffffff; }}
 
-.typing { display: flex; align-items: center; gap: 4px; padding: 0.5rem 0; }
-.typing span { width: 8px; height: 8px; background: #888; border-radius: 50%; animation: bounce 1.2s infinite; }
-.typing span:nth-child(2) { animation-delay: 0.2s; }
-.typing span:nth-child(3) { animation-delay: 0.4s; }
-@keyframes bounce {
-    0%, 80%, 100% { transform: scale(0.7); opacity: 0.4; }
-    40% { transform: scale(1); opacity: 1; }
-}
-
-.welcome { text-align: center; padding: 3rem 1rem 2rem 1rem; }
-.welcome h2 { color: #ececec; font-size: 1.6rem; font-weight: 600; margin-bottom: 0.5rem; }
-.welcome p { color: #888; font-size: 0.9rem; }
-
-.auth-page {
-    min-height: 100vh;
-    background: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.auth-bg {
+.nossa-senhora-bg {{
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
-    background-color: #ffffff;
-    background-image: url('https://i.imgur.com/8OWNsBk.png');
-    background-size: 90% auto;
+    background-image: url('{NOSSA_SENHORA}');
+    background-size: 85% auto;
     background-position: center center;
     background-repeat: no-repeat;
-    opacity: 0.25;
+    opacity: 0.2;
     z-index: 0;
     pointer-events: none;
-}
-.auth-wrapper {
+}}
+
+.auth-wrapper {{
     max-width: 380px;
-    margin: 3rem auto;
+    margin: 2rem auto 0 auto;
     padding: 0 1rem;
     text-align: center;
     position: relative;
     z-index: 1;
-}
-.auth-box {
-    background: #fff;
+}}
+.auth-title {{ color: #1a1a1a; font-size: 1.7rem; font-weight: 700; margin: 0.5rem 0 0.1rem 0; }}
+.auth-subtitle {{ color: #c8a96e; font-size: 0.8rem; letter-spacing: 1px; margin-bottom: 1.5rem; }}
+
+.auth-box {{
+    background: rgba(255,255,255,0.85);
     border: 1px solid #e8e0d0;
     border-radius: 20px;
-    padding: 2rem 1.5rem;
-    box-shadow: 0 8px 40px rgba(180, 140, 60, 0.12);
-    margin-top: 1.5rem;
-}
-.auth-title {
-    color: #1a1a1a;
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 0.2rem;
-}
-.auth-subtitle {
-    color: #c8a96e;
-    font-size: 0.85rem;
-    margin-bottom: 1.5rem;
-    letter-spacing: 1px;
-}
-.error-msg { color: #cc3333; font-size: 0.85rem; margin-top: 0.5rem; }
+    padding: 1.5rem 1.2rem;
+    box-shadow: 0 4px 30px rgba(180,140,60,0.1);
+    position: relative;
+    z-index: 2;
+}}
 
-/* Input claro na tela de login */
-.auth-box .stTextInput > div > div > input {
+/* Inputs brancos na tela de login */
+.auth-box input {{
     background: #f5f0e8 !important;
     border: 1px solid #d4c5a0 !important;
     color: #1a1a1a !important;
-}
-.auth-box .stTextInput > div > div > input::placeholder { color: #999 !important; }
-.auth-box .stButton > button {
-    background: linear-gradient(135deg, #c8a96e, #a07840) !important;
-    border: none !important;
-    color: #fff !important;
-    font-weight: 600 !important;
-    letter-spacing: 0.5px !important;
-}
-.auth-box .stButton > button:hover {
-    background: linear-gradient(135deg, #d4b87a, #b08850) !important;
-}
+    border-radius: 12px !important;
+    padding: 0.8rem 1rem !important;
+    font-size: 1rem !important;
+    width: 100% !important;
+}}
+.auth-box input::placeholder {{ color: #999 !important; }}
 
-.stTextInput > div > div > input {
+.error-msg {{ color: #cc3333; font-size: 0.85rem; margin-top: 0.5rem; }}
+
+/* Esconde caixas extras do Streamlit */
+div[data-testid="stVerticalBlock"] > div:has(> div[data-testid="stRadio"]) {{
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}}
+
+/* ── CHAT ── */
+.chat-stapp {{ background-color: #212121 !important; color: #ececec !important; }}
+
+.msg-user {{ display: flex; justify-content: flex-end; margin: 0.8rem 0; }}
+.bubble-user {{
+    background-color: #2f2f2f; color: #ececec;
+    padding: 0.75rem 1rem; border-radius: 18px 18px 4px 18px;
+    max-width: 85%; font-size: 0.95rem; line-height: 1.6; word-break: break-word;
+}}
+.msg-bot {{ display: flex; gap: 0.6rem; margin: 0.8rem 0; align-items: flex-start; }}
+.bubble-bot {{ color: #ececec; font-size: 0.95rem; line-height: 1.7; max-width: 85%; word-break: break-word; }}
+
+.typing {{ display: flex; align-items: center; gap: 4px; padding: 0.5rem 0; }}
+.typing span {{ width: 8px; height: 8px; background: #888; border-radius: 50%; animation: bounce 1.2s infinite; }}
+.typing span:nth-child(2) {{ animation-delay: 0.2s; }}
+.typing span:nth-child(3) {{ animation-delay: 0.4s; }}
+@keyframes bounce {{
+    0%, 80%, 100% {{ transform: scale(0.7); opacity: 0.4; }}
+    40% {{ transform: scale(1); opacity: 1; }}
+}}
+
+.welcome {{ text-align: center; padding: 3rem 1rem 2rem 1rem; }}
+.welcome h2 {{ color: #ececec; font-size: 1.6rem; font-weight: 600; margin-bottom: 0.5rem; }}
+.welcome p {{ color: #888; font-size: 0.9rem; }}
+
+.stTextInput > div > div > input {{
     background: #2f2f2f !important; border: 1px solid #3e3e3e !important;
     border-radius: 12px !important; color: #ececec !important;
     font-size: 1rem !important; padding: 0.8rem 1rem !important;
-}
-.stTextInput > div > div > input:focus { border-color: #555 !important; box-shadow: none !important; }
-.stTextInput > div > div > input::placeholder { color: #666 !important; }
+}}
+.stTextInput > div > div > input:focus {{ border-color: #555 !important; box-shadow: none !important; }}
+.stTextInput > div > div > input::placeholder {{ color: #666 !important; }}
 
-.stButton > button {
+.stButton > button {{
     background: #2f2f2f !important; border: 1px solid #3e3e3e !important;
     color: #ececec !important; border-radius: 12px !important;
     padding: 0.75rem 1rem !important; font-size: 0.95rem !important;
     width: 100% !important; min-height: 48px !important;
     transition: background 0.2s !important;
-}
-.stButton > button:hover { background: #3e3e3e !important; }
+}}
+.stButton > button:hover {{ background: #3e3e3e !important; }}
 
-.streamlit-expanderHeader {
+.streamlit-expanderHeader {{
     background: #2f2f2f !important; border-radius: 12px !important;
     color: #ececec !important; border: 1px solid #3e3e3e !important;
     min-height: 48px !important;
-}
-
-/* Remove caixa vazia do radio */
-.stRadio > div > div {
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-    padding: 0 !important;
-}
-div[data-testid="stRadio"] > div {
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-}
+}}
 </style>
 """, unsafe_allow_html=True)
 
 API_KEY = st.secrets.get("GROQ_API_KEY", os.environ.get("GROQ_API_KEY", ""))
 USUARIOS_ARQUIVO = "usuarios.json"
 
-def hash_senha(senha):
-    return hashlib.sha256(senha.encode()).hexdigest()
+def hash_senha(s): return hashlib.sha256(s.encode()).hexdigest()
 
 def carregar_usuarios():
     if os.path.exists(USUARIOS_ARQUIVO):
-        with open(USUARIOS_ARQUIVO, "r", encoding="utf-8") as f:
-            return json.load(f)
+        with open(USUARIOS_ARQUIVO, "r", encoding="utf-8") as f: return json.load(f)
     return {}
 
 def salvar_usuarios(u):
-    with open(USUARIOS_ARQUIVO, "w", encoding="utf-8") as f:
-        json.dump(u, f, ensure_ascii=False, indent=2)
+    with open(USUARIOS_ARQUIVO, "w", encoding="utf-8") as f: json.dump(u, f, ensure_ascii=False, indent=2)
 
 def carregar_memoria(username):
     arq = f"user_{username}_memoria.json"
     if os.path.exists(arq):
-        with open(arq, "r", encoding="utf-8") as f:
-            return json.load(f)
+        with open(arq, "r", encoding="utf-8") as f: return json.load(f)
     return {"nome": username, "fatos": []}
 
-def salvar_memoria(username, memoria):
-    with open(f"user_{username}_memoria.json", "w", encoding="utf-8") as f:
-        json.dump(memoria, f, ensure_ascii=False, indent=2)
+def salvar_memoria(username, m):
+    with open(f"user_{username}_memoria.json", "w", encoding="utf-8") as f: json.dump(m, f, ensure_ascii=False, indent=2)
 
 def carregar_chats(username):
     arq = f"user_{username}_chats.json"
     if os.path.exists(arq):
-        with open(arq, "r", encoding="utf-8") as f:
-            return json.load(f)
+        with open(arq, "r", encoding="utf-8") as f: return json.load(f)
     return {}
 
 def salvar_chats(username, chats):
-    with open(f"user_{username}_chats.json", "w", encoding="utf-8") as f:
-        json.dump(chats, f, ensure_ascii=False, indent=2)
+    with open(f"user_{username}_chats.json", "w", encoding="utf-8") as f: json.dump(chats, f, ensure_ascii=False, indent=2)
 
-def novo_chat_id():
-    return datetime.now().strftime("%Y%m%d%H%M%S")
+def novo_chat_id(): return datetime.now().strftime("%Y%m%d%H%M%S")
 
 for key, val in [("logado", False), ("username", None), ("chats", {}),
                   ("chat_atual", None), ("input_key", 0), ("pendente", None)]:
-    if key not in st.session_state:
-        st.session_state[key] = val
+    if key not in st.session_state: st.session_state[key] = val
 
 if "cliente" not in st.session_state:
     st.session_state.cliente = Groq(api_key=API_KEY)
 
+# ── LOGIN ─────────────────────────────────────────────────────────────────────
 if not st.session_state.logado:
+    st.markdown('<div class="nossa-senhora-bg"></div>', unsafe_allow_html=True)
     st.markdown(f"""
-    <div class="auth-bg"></div>
     <div class="auth-wrapper">
-        <div style="margin-bottom:0.5rem;">{logo_html}</div>
+        <img src="{LOGO}" style="width:56px;height:56px;border-radius:50%;object-fit:cover;"/>
         <div class="auth-title">Virtual Catholics</div>
         <div class="auth-subtitle">✝️ ASSISTENTE CATÓLICO</div>
-        <div class="auth-box">
+    </div>
     """, unsafe_allow_html=True)
 
     col1, col2, col3 = st.columns([1, 3, 1])
     with col2:
         aba = st.radio("", ["Entrar", "Criar conta"], horizontal=True, label_visibility="collapsed")
-        st.markdown("<br>", unsafe_allow_html=True)
+        st.markdown('<div class="auth-box">', unsafe_allow_html=True)
+
         if aba == "Entrar":
             u = st.text_input("", placeholder="Usuário", key="lu", label_visibility="collapsed")
             s = st.text_input("", placeholder="Senha", type="password", key="ls", label_visibility="collapsed")
@@ -245,9 +217,12 @@ if not st.session_state.logado:
                 else:
                     st.markdown('<p class="error-msg">Preencha todos os campos!</p>', unsafe_allow_html=True)
 
-    st.markdown("</div></div>", unsafe_allow_html=True)
+        st.markdown('</div>', unsafe_allow_html=True)
 
+# ── CHAT ──────────────────────────────────────────────────────────────────────
 else:
+    st.markdown('<style>.stApp { background-color: #212121 !important; color: #ececec !important; }</style>', unsafe_allow_html=True)
+
     username = st.session_state.username
     memoria = carregar_memoria(username)
 
