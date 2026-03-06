@@ -44,10 +44,71 @@ st.markdown("""
 .welcome h2 { color: #ececec; font-size: 1.6rem; font-weight: 600; margin-bottom: 0.5rem; }
 .welcome p { color: #888; font-size: 0.9rem; }
 
-.auth-wrapper { max-width: 360px; margin: 4rem auto; padding: 0 1rem; text-align: center; }
-.auth-wrapper h2 { color: #ececec; margin-bottom: 0.3rem; font-size: 1.4rem; }
-.auth-wrapper p { color: #888; font-size: 0.85rem; margin-bottom: 1.5rem; }
-.error-msg { color: #ff6b6b; font-size: 0.85rem; margin-top: 0.5rem; }
+.auth-page {
+    min-height: 100vh;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.auth-bg {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: url('https://i.imgur.com/8OWNsBk.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.15;
+    z-index: 0;
+    pointer-events: none;
+}
+.auth-wrapper {
+    max-width: 380px;
+    margin: 3rem auto;
+    padding: 0 1rem;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+.auth-box {
+    background: #fff;
+    border: 1px solid #e8e0d0;
+    border-radius: 20px;
+    padding: 2rem 1.5rem;
+    box-shadow: 0 8px 40px rgba(180, 140, 60, 0.12);
+    margin-top: 1.5rem;
+}
+.auth-title {
+    color: #1a1a1a;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+}
+.auth-subtitle {
+    color: #c8a96e;
+    font-size: 0.85rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 1px;
+}
+.error-msg { color: #cc3333; font-size: 0.85rem; margin-top: 0.5rem; }
+
+/* Input claro na tela de login */
+.auth-box .stTextInput > div > div > input {
+    background: #f5f0e8 !important;
+    border: 1px solid #d4c5a0 !important;
+    color: #1a1a1a !important;
+}
+.auth-box .stTextInput > div > div > input::placeholder { color: #999 !important; }
+.auth-box .stButton > button {
+    background: linear-gradient(135deg, #c8a96e, #a07840) !important;
+    border: none !important;
+    color: #fff !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.5px !important;
+}
+.auth-box .stButton > button:hover {
+    background: linear-gradient(135deg, #d4b87a, #b08850) !important;
+}
 
 .stTextInput > div > div > input {
     background: #2f2f2f !important; border: 1px solid #3e3e3e !important;
@@ -125,11 +186,12 @@ if "cliente" not in st.session_state:
 
 if not st.session_state.logado:
     st.markdown(f"""
+    <div class="auth-bg"></div>
     <div class="auth-wrapper">
-        <div style="margin-bottom:1rem;">{logo_html}</div>
-        <h2>Virtual Catholics</h2>
-        <p>✝️ Assistente Católico</p>
-    </div>
+        <div style="margin-bottom:0.5rem;">{logo_html}</div>
+        <div class="auth-title">Virtual Catholics</div>
+        <div class="auth-subtitle">✝️ ASSISTENTE CATÓLICO</div>
+        <div class="auth-box">
     """, unsafe_allow_html=True)
 
     col1, col2, col3 = st.columns([1, 3, 1])
@@ -168,6 +230,8 @@ if not st.session_state.logado:
                         st.rerun()
                 else:
                     st.markdown('<p class="error-msg">Preencha todos os campos!</p>', unsafe_allow_html=True)
+
+    st.markdown("</div></div>", unsafe_allow_html=True)
 
 else:
     username = st.session_state.username
