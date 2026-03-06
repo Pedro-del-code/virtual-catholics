@@ -286,8 +286,8 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
         st.markdown(f"""
         <div class="welcome">
             <div style="margin-bottom:1rem;">{logo_html}</div>
-            <h2 style="color:#1a1a1a!important;">Olá, {memoria['nome']}! 🙏</h2>
-            <p style="color:#333!important;">Abra <b>Conversas</b> e clique em <b>Novo chat</b>.</p>
+            <h2 style="color:#222!important;text-shadow:0 1px 3px rgba(255,255,255,0.8);">Olá, {memoria['nome']}! 🙏</h2>
+            <p style="color:#333!important;text-shadow:0 1px 2px rgba(255,255,255,0.8);">Abra <b>Conversas</b> e clique em <b>Novo chat</b>.</p>
         </div>
         """, unsafe_allow_html=True)
     else:
@@ -317,13 +317,13 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
 
         chat_html = ""
         if not historico:
-            chat_html = '<div class="welcome"><h2 style="color:#1a1a1a!important;">Nova conversa 🙏</h2><p style="color:#333!important;">Como posso te ajudar?</p></div>'
+            chat_html = '<div class="welcome"><h2 style="color:#222!important;">Nova conversa 🙏</h2><p style="color:#333!important;">Como posso te ajudar?</p></div>'
         else:
             for msg in historico:
                 if msg["role"] == "user":
                     chat_html += f'<div class="msg-user"><div class="bubble-user">{msg["content"]}</div></div>'
                 else:
-                    chat_html += f'<div class="msg-bot"><div style="flex-shrink:0;margin-top:2px;">{logo_html}</div><div class="bubble-bot" style="color:#1a1a1a!important;background:rgba(255,255,255,0.85);padding:0.7rem 1rem;border-radius:0 16px 16px 16px;">{msg["content"]}</div></div>'
+                    chat_html += f'<div class="msg-bot"><div style="flex-shrink:0;margin-top:2px;">{logo_html}</div><div class="bubble-bot" style="color:#ffffff!important;background:rgba(50,50,50,0.85);padding:0.7rem 1rem;border-radius:0 16px 16px 16px;">{msg["content"]}</div></div>'
         if st.session_state.pendente:
             chat_html += f'<div class="msg-bot"><div style="flex-shrink:0;margin-top:2px;">{logo_html}</div><div class="typing"><span></span><span></span><span></span></div></div>'
         st.markdown(chat_html, unsafe_allow_html=True)
