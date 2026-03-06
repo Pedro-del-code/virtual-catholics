@@ -252,15 +252,7 @@ if not st.session_state.logado:
 
     st.markdown('</div></div>', unsafe_allow_html=True)
 
-    col1, col2 = st.columns(2)
-    with col1:
-        if st.button("→ Entrar", use_container_width=True):
-            st.session_state.aba_login = "entrar"
-            st.rerun()
-    with col2:
-        if st.button("→ Criar conta", use_container_width=True):
-            st.session_state.aba_login = "criar"
-            st.rerun()
+
 
 # ── CHAT ──────────────────────────────────────────────────────────────────────
 else:
