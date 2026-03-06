@@ -11,15 +11,8 @@ st.set_page_config(
     layout="centered"
 )
 
-def get_logo_base64():
-    logo_path = os.path.join(os.path.dirname(__file__), "logo.jpeg")
-    if os.path.exists(logo_path):
-        with open(logo_path, "rb") as f:
-            return base64.b64encode(f.read()).decode()
-    return None
-
-
-logo_html = f'<img src="data:image/png;base64,{logo_b64}" style="width:36px;height:36px;border-radius:50%;object-fit:cover;"/>' if logo_b64 else '<img src="https://i.imgur.com/ilafAhJ.png" style="width:36px;height:36px;border-radius:50%;object-fit:cover;"/>'
+LOGO = "https://i.imgur.com/ilafAhJ.png"
+logo_html = f'<img src="{LOGO}" style="width:40px;height:40px;border-radius:50%;object-fit:cover;"/>'
 
 st.markdown("""
 <style>
@@ -38,19 +31,8 @@ st.markdown("""
 .msg-bot { display: flex; justify-content: flex-start; gap: 0.6rem; margin: 0.8rem 0; align-items: flex-start; }
 .bubble-bot { color: #ececec; font-size: 0.95rem; line-height: 1.7; max-width: 85%; word-break: break-word; }
 
-/* Animação dos pontinhos */
-.typing {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    padding: 0.5rem 0;
-}
-.typing span {
-    width: 8px; height: 8px;
-    background: #888;
-    border-radius: 50%;
-    animation: bounce 1.2s infinite;
-}
+.typing { display: flex; align-items: center; gap: 4px; padding: 0.5rem 0; }
+.typing span { width: 8px; height: 8px; background: #888; border-radius: 50%; animation: bounce 1.2s infinite; }
 .typing span:nth-child(2) { animation-delay: 0.2s; }
 .typing span:nth-child(3) { animation-delay: 0.4s; }
 @keyframes bounce {
@@ -141,7 +123,6 @@ for key, val in [("logado", False), ("username", None), ("chats", {}),
 if "cliente" not in st.session_state:
     st.session_state.cliente = Groq(api_key=API_KEY)
 
-# ── Login ──────────────────────────────────────────────────────────────────
 if not st.session_state.logado:
     st.markdown(f"""
     <div class="auth-wrapper">
@@ -202,7 +183,6 @@ Fatos que você já sabe sobre ele: {fatos_str}
 Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
 """
 
-    # Menu conversas
     with st.expander(f"💬 Conversas — {memoria['nome']}"):
         if st.button("✏️ Novo chat"):
             chat_id = novo_chat_id()
@@ -231,7 +211,6 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
                 st.session_state[k] = False if k == "logado" else None if k != "chats" else {}
             st.rerun()
 
-    # Chat
     if not st.session_state.chat_atual or st.session_state.chat_atual not in st.session_state.chats:
         st.markdown(f"""
         <div class="welcome">
@@ -240,7 +219,6 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
             <p>Abra <b>Conversas</b> e clique em <b>Novo chat</b>.</p>
         </div>
         """, unsafe_allow_html=True)
-
     else:
         chat_id = st.session_state.chat_atual
         historico = st.session_state.chats[chat_id]["historico"]
@@ -277,16 +255,11 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
                 else:
                     chat_html += f'<div class="msg-bot"><div style="flex-shrink:0;margin-top:2px;">{logo_html}</div><div class="bubble-bot">{msg["content"]}</div></div>'
 
-        # Mostra pontinhos se tiver mensagem pendente
         if st.session_state.pendente:
-            chat_html += f'''<div class="msg-bot">
-                <div style="flex-shrink:0;margin-top:2px;">{logo_html}</div>
-                <div class="typing"><span></span><span></span><span></span></div>
-            </div>'''
+            chat_html += f'<div class="msg-bot"><div style="flex-shrink:0;margin-top:2px;">{logo_html}</div><div class="typing"><span></span><span></span><span></span></div></div>'
 
         st.markdown(chat_html, unsafe_allow_html=True)
 
-        # Input só aparece quando tem chat aberto
         col1, col2 = st.columns([9, 1])
         with col1:
             user_input = st.text_input("", placeholder="Manda uma mensagem...", key=f"inp_{st.session_state.input_key}", label_visibility="collapsed")
