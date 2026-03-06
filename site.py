@@ -2,7 +2,6 @@ import streamlit as st
 from groq import Groq
 import json
 import os
-import base64
 import hashlib
 from datetime import datetime
 
@@ -19,7 +18,7 @@ def get_logo_base64():
             return base64.b64encode(f.read()).decode()
     return None
 
-logo_b64 = get_logo_base64()
+
 logo_html = f'<img src="data:image/png;base64,{logo_b64}" style="width:36px;height:36px;border-radius:50%;object-fit:cover;"/>' if logo_b64 else '<img src="https://i.imgur.com/ilafAhJ.png" style="width:36px;height:36px;border-radius:50%;object-fit:cover;"/>'
 
 st.markdown("""
