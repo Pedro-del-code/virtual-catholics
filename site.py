@@ -323,7 +323,7 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
                 if msg["role"] == "user":
                     chat_html += f'<div class="msg-user"><div class="bubble-user">{msg["content"]}</div></div>'
                 else:
-                    chat_html += f'<div class="msg-bot"><div style="flex-shrink:0;margin-top:2px;">{logo_html}</div><div class="bubble-bot" style="color:#1a1a1a!important;">{msg["content"]}</div></div>'
+                    chat_html += f'<div class="msg-bot"><div style="flex-shrink:0;margin-top:2px;">{logo_html}</div><div class="bubble-bot" style="color:#1a1a1a!important;background:rgba(255,255,255,0.85);padding:0.7rem 1rem;border-radius:0 16px 16px 16px;">{msg["content"]}</div></div>'
         if st.session_state.pendente:
             chat_html += f'<div class="msg-bot"><div style="flex-shrink:0;margin-top:2px;">{logo_html}</div><div class="typing"><span></span><span></span><span></span></div></div>'
         st.markdown(chat_html, unsafe_allow_html=True)
