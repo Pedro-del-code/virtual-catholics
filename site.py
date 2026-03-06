@@ -80,6 +80,108 @@ ORACOES = {
     "Creio em Deus Pai": "Creio em Deus Pai todo-poderoso,\ncriador do ceu e da terra;\ne em Jesus Cristo, seu unico Filho, nosso Senhor;\nque foi concebido pelo poder do Espirito Santo;\nnasceu da Virgem Maria;\npadeceu sob Poncio Pilatos;\nfoi crucificado, morto e sepultado;\ndesceu a mansao dos mortos;\nressuscitou ao terceiro dia;\nsubiu aos ceus;\nesta sentado a direita de Deus Pai todo-poderoso;\ndonde ha de vir a julgar os vivos e os mortos.\nCreio no Espirito Santo;\nna Santa Igreja Catolica;\nna comunhao dos santos;\nna remissao dos pecados;\nna ressurreicao da carne;\nna vida eterna.\nAmem."
 }
 
+TERCOS = {
+    "Misterios Gozosos (Segundas e Sabados)": [
+        ("1 - Anunciacao do anjo a Nossa Senhora", "Mae da Divina Graca, dai-nos a virtude da total entrega, num sim sempre constante a Vontade de Deus Pai. Amem."),
+        ("2 - Visita de Nossa Senhora a Santa Isabel", "Mae amada, dai-nos a virtude de servir sempre, com amor, simplicidade e de louvarmos a Deus, como glorificastes, em Vosso Magnificat, ao nosso Pai e Criador, com todo coracao. Amem."),
+        ("3 - Nascimento de Jesus", "Mae e Rainha nossa, dai-nos um coracao humilde e acolhedor como a gruta de Belem, para que Jesus possa nascer e viver sempre dentro de nosso coracao. Amem."),
+        ("4 - Apresentacao de Jesus no Templo", "Mae nossa e Medianeira de todas as gracas, apresentamos ao altar do Senhor, tudo o que somos e temos, nossa familia, trabalho, lagrimas, sofrimentos e alegrias, para que o Senhor possa transformar em santidade o que e culpavel em nos. Amem."),
+        ("5 - Perda e reencontro de Jesus no Templo", "Mae amada, que nao deixemos a fe, a presenca de Jesus Cristo em nossa vida. Concedei-nos tambem o espirito do apostolado, nao somente por palavras, mas sobretudo pelos testemunhos de nossa vida. Amem.")
+    ],
+    "Misterios Dolorosos (Tercas e Sextas)": [
+        ("1 - Agonia de Jesus no Horto das Oliveiras", "Senhor, que sofrestes a dor profunda da agonia, sendo inocente e o mais santo entre todos os homens, concedei-nos a Vossa forca em nossas dores e que saibamos pagar sempre o mal com o bem. Amem."),
+        ("2 - Flagelacao de Jesus", "Senhor, perdoai-me por Vos flagelar quando peco contra meus irmaos, quando nao cumpro os Mandamentos, quando me esqueco do quanto sofrestes por me amar e desejar minha salvacao. Dai-me um coracao novo, fazei de mim uma nova criatura. Amem."),
+        ("3 - Jesus e coroado de espinhos", "Senhor, livrai-nos das aflicoes mentais, traumas, pensamentos maus que temos; dai-nos cura interior para que possamos ser instrumentos muito mais eficazes da Vossa Vontade. Amem."),
+        ("4 - Jesus carregando a Cruz", "Senhor, Vos que carregastes uma cruz tao pesada, rumo ao Calvario, sabendo o quanto haverieis de sofrer por meus pecados, fazei com que eu carregue todo fardo de meus dias com amor, paciencia e esperanca. E, que oferecendo tudo pelos meus pecados, pelas almas que sofrem no purgatorio, pelos que estejam sofrendo no mundo inteiro, jamais esbraveje e sim Vos louve em todo o tempo. Amem."),
+        ("5 - Crucificacao de Jesus", "Senhor, Vos que do alto da cruz pedistes, em Vosso Santissimo amor, que o Pai perdoasse a Vossos algozes, por que nao sabiam o que faziam, dai-me o dom do mais perfeito perdao. Dai-me a capacidade de amar e perdoar com perfeicao e rezar por todos aqueles que me persigam ou facam o mal contra mim. Amem.")
+    ],
+    "Misterios Gloriosos (Quartas e Domingos)": [
+        ("1 - A Ressurreicao de Jesus", "Senhor, Vos que gloriosamente ressuscitastes, vencendo a morte, glorificado pelo Pai, concedei-nos a graca de crer em santidade, segundo a Vossa Vontade, para que um dia possa estar convosco na Gloria eterna. Amem."),
+        ("2 - A Ascensao de Jesus aos Ceus", "Senhor, que cada dia de minha vida se torne um passo na ascensao a Vos. Que nada me faca retroceder no caminho em minha ascese. Quero viver em conformidade a Vossa Santissima Vontade hoje e sempre. Amem."),
+        ("3 - A Vinda do Espirito Santo (Pentecostes)", "Glorioso Jesus, que enviastes o Espirito Santo sobre os apostolos, antes ignorantes e medrosos, tornando-os destemidos, vem sobre mim e sobre a humanidade inteira, a fim de que pelo mesmo Espirito, possamos ser salvos e testemunhas do Vosso santo amor. Amem."),
+        ("4 - A Assuncao de Nossa Senhora aos Ceus", "Mae de Misericordia, apos terdes sofrido as dores das angustias, paixao e morte de Vosso divinissimo Filho, concedei-nos a graca de olhar a tudo com o Vosso olhar, amar com Vosso coracao, passar pelos sofrimentos com resignacao e coragem, guiados pela fe e pelo amor que temos em Vos. Amem."),
+        ("5 - A Coroacao de Nossa Senhora como Rainha dos Ceus", "Mae e Rainha nossa, revestindo-nos com Vossas santas virtudes de obediente e boa maternal bondade, a fim de que possamos atingir esta coroa de Vossa santidade. Depositamos neste altar de meu amor e devocao a Vossos santissimos pes, com total confianca a Vossa maternal e constante protecao. Amem.")
+    ],
+    "Misterios Luminosos (Somente as quintas)": [
+        ("1 - Batismo de Jesus no Jordao", "Senhor, lavai minha alma de todo pecado e rancores, ressentimentos passados. Vinde sobre mim, com Vosso Espirito Santo. Amem."),
+        ("2 - Auto-revelacao de Jesus nas Bodas de Cana", "Senhor, assim como transformastes a agua em vinho, por amor a Vossos filhos, transformai tudo o que impede de Vos causar alegria. Transformai o meu coracao no Vosso coracao. A nossa Mae Santissima, advogada dos pobres pecadores que somos, peco que interceda junto a Deus, por mim e por toda a humanidade. Amem."),
+        ("3 - Jesus anuncia o Reino de Deus com o convite a conversao", "Senhor, dirijo-me a Vos para, com total confianca e humildade, reconhecer minhas culpas e pedir-Vos perdao. Converte-me inteiramente, a fim de que eu possa ser instrumento de conversao para muitos de Vossos filhos. Amem."),
+        ("4 - Transfiguracao de Jesus", "Senhor, que minha vida seja vivida como no Monte Tabor, catasiada com Vossos prodigios e santidade. Reluz em minha face o brilho da Vossa Face e concede-me a graca de viver unicamente para Vos, em todos os momentos de minha vida. Amem."),
+        ("5 - Instituicao da Eucaristia", "Senhor, eu Vos dou gracas por terdes permanecido entre nos, em especial na Santa Eucaristia. Vos Dou gracas pelos sacerdotes, pois somente por eles pode ocorrer o sublime milagre da Transfiguracao. Fazei descer o Espirito Santo sobre os sacerdotes do mundo inteiro, sobre todo o clero. Amem.")
+    ],
+    "Terco da Batalha": [
+        ("Inicio", "Credo, Pai Nosso, Ave Maria 3x."),
+        ("Nas contas grandes", "Deus do ceu, me de forcas. Jesus Cristo me de o poder de vencer. Nossa Senhora me de coragem para me defender. Sem morrer, sem enlouquecer, serei militante ate o fim. Deus pode, Deus quer; esta batalha eu hei de vencer."),
+        ("Nas contas pequenas", "Eu hei de vencer."),
+        ("No final", "Salve Rainha. Mae de Jesus e nossa Mae, abencoa-nos e ouvi nossos rogos. A vitoria e nossa pelo sangue de Jesus!")
+    ],
+    "Terco de Sao Bento": [
+        ("Inicio", "Em nome do Pai, do Filho e do Espirito Santo. Amem. Vinde Espirito Santo, enchei nos coracoes dos Vossos fieis e acendei neles o fogo do Vosso Amor. Enviai o Vosso Espirito e tudo sera criado e renovai a face da terra. O Deus Santo, faze que apreciemos, chamando-nos sempre segundo o mesmo Espirito e governemos a face de Vosso Santo Senhor Nosso. Amem."),
+        ("Credo e Pai Nosso + Oracao Inicial", "Recite o Credo e um Pai Nosso. ORACAO INICIAL: O Glorioso Sao Bento que sempre demonstrou compromisso com os seus afazeres, atendendo a Vossa chamada a paz e a tranquilidade; que em nossas familias cure a paz e a tranquilidade, que se afastem todas as desgragas, junto corporais como espirituais, especialmente o pecado. Alcancai Sao Bento, do Senhor Deus Onipotente, a graca que necessitamos."),
+        ("Nas contas do Pai Nosso", "A Cruz Sagrada seja a minha luz, nao seja o dragao o meu guia. Retira-te, satanas! Nunca me aconselhes coisas vas. E mau o que tu me ofereces, bebe tu mesmo o teu veneno! Sao Bento dai-nos a graca de que, ao terminar nossa vida neste vale de lagrimas, possamos ir louvar a Deus convosco no Paraiso."),
+        ("Nas contas da Ave Maria", "Sao Bento, Vos intercedei por nos, libertai-nos do inveja. Sede Vos nossa libertador do mal, libertai-nos do pecado!"),
+        ("Ao final", "Em nome do Pai, do Filho e do Espirito Santo. Amem.")
+    ],
+    "Terco do Louvor": [
+        ("Como rezar", "O Terco do Louvor pode ser rezado em qualquer ocasiao ou lugar, usando um Rosario comum. Voce rezara nas contas maiores, onde se reza o Pai Nosso, a seguinte oracao: Senhor, abri meus labios a fim de que minha boca anuncie Vossos louvores (cf. Sl 50,17)"),
+        ("Nas contas menores (10 Ave Marias)", "Jesus, te louvo e te bendigo... (Colocando aqui o seu motivo de louvor). Por exemplo: pelo meu marido(a), pela minha esposa, pelo meu filho(a), pela minha saude, por minha situacao, pelo meu emprego, pela minha vida, pelo meu paroco, pela minha familia. Voce pode acrescentar inumeras outras intencoes, rezando o Terco inteiro ou uma intencao em cada dezena."),
+        ("Finalizando cada dezena", "Gloria ao Pai, ao Filho e ao Espirito Santo. Como era no principio, agora e sempre. Amem.")
+    ],
+    "Terco da Paixao": [
+        ("No principio", "Pai Nosso, Ave Maria 3x."),
+        ("Nas contas grandes", "Divino, porque da Vossa Paixao e Morte..."),
+        ("Nas contas pequenas", "...pela misericordia de nos e do mundo inteiro."),
+        ("Ao final do Terco, reze 3 vezes", "Tende piedade de nos e do mundo inteiro."),
+        ("Encerramento", "Deus Imortal, tende piedade de nos e do mundo inteiro. Amem.")
+    ],
+    "Terco da Libertacao": [
+        ("Apresentacao", "No principio e acao: Se Jesus me liberta, sou verdadeiramente livre! Nas contas grandes e acao: Se Jesus me liberta, liverta-me! Observacao: O Terco pode ser rezado por voce, sua familia, e por outras pessoas."),
+        ("Em cada dezena - nas contas grandes", "Chagas abertas, coracao ferido, o sangue de Cristo esta entre (poe-se a intencao) e o perigo."),
+        ("Nas contas pequenas", "Jesus, pelas chagas da Vossa coracao ferido, o sangue de Cristo esta entre (poe-se a intencao) e o perigo. Jesus, pelas chagas da Vossa coracao ferido liberte (poe a pessoa ou a intencao)."),
+        ("Quinta dezena - Oremos", "Jesus, o Senhor carregou todos as nossas dores e enfermidades, carregou os nossos sofrimentos, pelo Seu sangue redentor, liberta-nos do mal, liberta-nos do pecado. Amem."),
+        ("Encerramento", "Deus da misericordia, do amor, medo, falta de perdao, intrigas, brigas, discordias, ciume, divisao e reserva em nos liberta-nos. Saude desuniao, falta de fe, da esperanca e da caridade. Amem.")
+    ],
+    "Terco do Sagrado Coracao de Jesus": [
+        ("Inicio", "No principio: Credo, Pai Nosso, Ave Maria 3x, Gloria ao Pai. Sagrado Coracao, fonte do amor, templo de Deus, amado Jesus, Coracao amante dos homens, Coracao amantissimo de Jesus, Coracao obediente, humilde e brando, Coracao paciente e misericordioso, Coracao delicia de todos os Santos, Coracao desejoso da nossa salvacao, Coracao fonte de toda a santidade."),
+        ("Nas contas grandes", "Sagrado Coracao de Jesus, tende piedade de nos."),
+        ("Nas contas pequenas", "Sagrado Coracao de Jesus, eu vos amo."),
+        ("Graca a alcancar", "Peca a graca que necessita. Em Vos eu confio. Amem."),
+        ("Encerramento", "Sagrado Coracao de Jesus, em Vos eu confio. Amem.")
+    ],
+    "Terco da Vitoria pelas Chagas de Jesus": [
+        ("Abertura", "Cura-me, Senhor Jesus, Jesus coloca Tuas maos benditas, ensanguentadas, chagadas e abertas sobre mim neste momento. Tu podes curar e foi de Tuas maos que superamos o mais grande dos males - foram pregadas na cruz. Maos ensanguentadas de Jesus, maos feridas (poe-se a intencao), vem tocar em mim, vem, Senhor Jesus, vem todas, vem. Reza-se um Pai Nosso, Uma Ave Maria e o Credo."),
+        ("Em cada dezena - nas contas grandes", "Chagas abertas, coracao ferido, o sangue de Cristo esta entre (poe-se a intencao) e o perigo."),
+        ("Nas contas pequenas", "Jesus, pelas chagas da Vossa coracao ferido, o sangue de Cristo esta entre (poe-se a intencao) e o perigo. Jesus, pelas chagas da Vossa coracao ferido liberte (poe a pessoa ou a intencao)."),
+        ("Quinta dezena - Oremos", "Jesus, o Senhor sobre as nossas dores e enfermidades, carregou os nossos sofrimentos, pelo Seu sangue redentor, liberta-nos do nosso corpo, por todas as chagas do Seu corpo, por todas as chagas dos Seus pes liberte (poe a pessoa ou a intencao)."),
+        ("Encerramento", "Jesus, o Senhor carregou todos as nossas dores e enfermidades, pelo Seu sangue redentor, liberta-nos do mal, liberta-nos do pecado. Amem.")
+    ],
+    "Terco pelos Filhos": [
+        ("Inicio", "Em nome do Pai, do filho, do Espirito Santo, amem! Creio em Deus Pai... Pai Nosso que estais no ceu... Ave Maria (3 vezes)."),
+        ("Para iniciar", "Abro meu coracao, deixo o Espirito Santo entrar. Peco pra Ele mudar toda a minha situacao..."),
+        ("Nas Contas Maiores", "Quero de joelhos ver meus filhos de pe! Deus me sustenta e aumenta a minha fe!"),
+        ("Nas Contas Pequenas", "Deus, mantenha meu filho de pe! (10 vezes)"),
+        ("Para encerrar", "Deus pode tudo, tudo, tudo! (3 vezes)")
+    ],
+    "Terco do Agradecimento": [
+        ("Abertura", "Obrigado Jesus, por mais um dia de vida. Peco-te Senhor que me restaure, me cure, me liberte e me torne um(a) filho(a) obediente e grato e que eu possa a cada minuto Te agradecer por tudo."),
+        ("Nas contas", "Obrigado Senhor pela minha vida. Obrigado Senhor pela natureza. Obrigado Senhor pelo pao de cada dia. Obrigado Senhor por... (faca seu agradecimento)"),
+        ("Encerramento", "Gloria ao Pai, ao Filho e ao Espirito Santo. Como era no principio, agora e sempre. Amem.")
+    ]
+}
+
+COMO_REZAR_TERCO = """Como rezar o Terco:
+
+1. Comece com o Credo (Creio em Deus Pai)
+2. Reze 1 Pai Nosso
+3. Reze 3 Ave Marias (pelas virtudes de fe, esperanca e caridade)
+4. Reze 1 Gloria ao Pai
+5. Anuncie o 1 misterio e medite
+6. Reze 1 Pai Nosso
+7. Reze 10 Ave Marias meditando no misterio
+8. Reze 1 Gloria ao Pai
+9. Repita os passos 5 a 8 para cada misterio
+10. Termine com a Salve Rainha"""
+
 if "aba_login" not in st.session_state:
     st.session_state.aba_login = "entrar"
 
@@ -175,7 +277,7 @@ API_KEY = st.secrets.get("GROQ_API_KEY", os.environ.get("GROQ_API_KEY", ""))
 
 for key, val in [("logado", False), ("username", None), ("chats", {}),
                   ("chat_atual", None), ("input_key", 0), ("pendente", None), ("nome_usuario", ""),
-                  ("aba_chat", "chat"), ("oracao_aberta", None)]:
+                  ("aba_chat", "chat"), ("oracao_aberta", None), ("terco_aberto", None), ("terco_misterio", None)]:
     if key not in st.session_state: st.session_state[key] = val
 
 if "cliente" not in st.session_state:
@@ -325,6 +427,11 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
         if st.button("📖 Bíblia", use_container_width=True, key="btn_biblia"):
             st.session_state.aba_chat = "biblia"
             st.rerun()
+        if st.button("📿 Terço", use_container_width=True, key="btn_terco"):
+            st.session_state.aba_chat = "terco"
+            st.session_state.terco_aberto = None
+            st.session_state.terco_misterio = None
+            st.rerun()
 
         st.markdown("<hr style='border-color:#3e3e3e;margin:0.8rem 0;'>", unsafe_allow_html=True)
 
@@ -354,6 +461,65 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
             for nome_oracao in ORACOES:
                 if st.button(f"🙏 {nome_oracao}", use_container_width=True, key=f"o_{nome_oracao}"):
                     st.session_state.oracao_aberta = nome_oracao
+                    st.rerun()
+        st.stop()
+
+    # ── ABA TERCO ──
+    if st.session_state.aba_chat == "terco":
+        st.markdown("<br>", unsafe_allow_html=True)
+        if st.session_state.terco_misterio is not None:
+            nome_t = st.session_state.terco_aberto
+            misterios = TERCOS[nome_t]
+            idx = st.session_state.terco_misterio
+            titulo_m, texto_m = misterios[idx]
+            st.markdown(f"""
+            <div style="background:rgba(255,255,255,0.92);border-radius:16px;padding:1.5rem;margin-top:1rem;border:1px solid #e8e0d0;">
+                <p style="color:#c8a96e;font-size:0.8rem;font-weight:700;">{nome_t}</p>
+                <h3 style="color:#1a1a1a;margin:0.5rem 0;">📿 {titulo_m}</h3>
+                <p style="color:#1a1a1a;line-height:1.9;font-size:1rem;margin-top:1rem;">{texto_m}</p>
+                <br>
+                <p style="color:#888;font-size:0.85rem;">Reze 1 Pai Nosso + 10 Ave Marias + 1 Gloria ao Pai</p>
+            </div>
+            """, unsafe_allow_html=True)
+            col_ant, col_prox = st.columns(2)
+            with col_ant:
+                if idx > 0:
+                    if st.button("← Anterior", use_container_width=True):
+                        st.session_state.terco_misterio -= 1
+                        st.rerun()
+            with col_prox:
+                if idx < 4:
+                    if st.button("Próximo →", use_container_width=True):
+                        st.session_state.terco_misterio += 1
+                        st.rerun()
+                else:
+                    if st.button("✅ Concluído", use_container_width=True):
+                        st.session_state.terco_misterio = None
+                        st.session_state.terco_aberto = None
+                        st.rerun()
+            if st.button("← Voltar ao Terço"):
+                st.session_state.terco_misterio = None
+                st.rerun()
+        elif st.session_state.terco_aberto:
+            nome_t = st.session_state.terco_aberto
+            como = COMO_REZAR_TERCO.replace("\n", "<br>")
+            st.markdown(f"""
+            <div style="background:rgba(255,255,255,0.92);border-radius:16px;padding:1.5rem;margin-top:1rem;border:1px solid #e8e0d0;">
+                <h3 style="color:#c8a96e;margin-bottom:1rem;">📿 {nome_t}</h3>
+                <p style="color:#1a1a1a;line-height:1.9;font-size:0.9rem;">{como}</p>
+            </div>
+            """, unsafe_allow_html=True)
+            st.markdown("<br>", unsafe_allow_html=True)
+            if st.button("▶️ Começar os Mistérios", use_container_width=True):
+                st.session_state.terco_misterio = 0
+                st.rerun()
+            if st.button("← Voltar"):
+                st.session_state.terco_aberto = None
+                st.rerun()
+        else:
+            for nome_t in TERCOS:
+                if st.button(f"📿 {nome_t}", use_container_width=True, key=f"t_{nome_t}"):
+                    st.session_state.terco_aberto = nome_t
                     st.rerun()
         st.stop()
 
