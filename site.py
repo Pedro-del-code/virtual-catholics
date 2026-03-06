@@ -317,7 +317,7 @@ div[data-testid="stForm"] {{
     min-height: 48px !important;
 }}
 </style>
-""", unsafé_allow_html=True)
+""", unsafe_allow_html=True)
 
 API_KEY = st.secrets.get("GROQ_API_KEY", os.environ.get("GROQ_API_KEY", ""))
 
@@ -343,7 +343,7 @@ if not st.session_state.logado:
     });
     obs.observe(document.body, { childList: true, subtree: true });
     </script>
-    ''', unsafé_allow_html=True)
+    ''', unsafe_allow_html=True)
 
     col1, col2, col3 = st.columns([1, 4, 1])
     with col2:
@@ -353,7 +353,7 @@ if not st.session_state.logado:
             <div style="font-size:1.8rem;font-weight:700;color:#1a1a1a;margin:0.7rem 0 0.2rem 0;">Virtual Catholics</div>
             <div style="color:#c8a96e;font-size:0.8rem;letter-spacing:1.5px;font-weight:500;">✝️ ASSISTENTE CATÓLICO</div>
         </div>
-        """, unsafé_allow_html=True)
+        """, unsafe_allow_html=True)
 
         if st.session_state.aba_login == "entrar":
             with st.form("form_login"):
@@ -420,7 +420,7 @@ else:
         pointer-events: none;
     }}
     .block-container {{ position: relative; z-index: 1; }}
-    </style>''', unsafé_allow_html=True)
+    </style>''', unsafe_allow_html=True)
 
     username = st.session_state.username
     nome = st.session_state.nome_usuario
@@ -439,7 +439,7 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
 
     with st.expander("📋 Menu"):
         # ── CHATS ──
-        st.markdown("<p style='color:#c8a96e;font-weight:700;margin:0.5rem 0 0.3rem 0;'>💬 CHATS</p>", unsafé_allow_html=True)
+        st.markdown("<p style='color:#c8a96e;font-weight:700;margin:0.5rem 0 0.3rem 0;'>💬 CHATS</p>", unsafe_allow_html=True)
         if st.button("➕ Novo chat", use_container_width=True):
             chat_id = novo_chat_id()
             st.session_state.chats[chat_id] = {"titulo": "Nova conversa", "historico": []}
@@ -462,10 +462,10 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
                 st.session_state.chat_atual = None
                 st.rerun()
 
-        st.markdown("<hr style='border-color:#3e3e3e;margin:0.8rem 0;'>", unsafé_allow_html=True)
+        st.markdown("<hr style='border-color:#3e3e3e;margin:0.8rem 0;'>", unsafe_allow_html=True)
 
         # ── ORAÇÕES / BÍBLIA ──
-        st.markdown("<p style='color:#c8a96e;font-weight:700;margin:0.3rem 0;'>🙏 RECURSOS</p>", unsafé_allow_html=True)
+        st.markdown("<p style='color:#c8a96e;font-weight:700;margin:0.3rem 0;'>🙏 RECURSOS</p>", unsafe_allow_html=True)
         if st.button("🙏 Orações", use_container_width=True, key="btn_orações"):
             st.session_state.aba_chat = "orações"
             st.session_state.oração_aberta = None
@@ -493,10 +493,10 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
             st.session_state.novena_dia = None
             st.rerun()
 
-        st.markdown("<hr style='border-color:#3e3e3e;margin:0.8rem 0;'>", unsafé_allow_html=True)
+        st.markdown("<hr style='border-color:#3e3e3e;margin:0.8rem 0;'>", unsafe_allow_html=True)
 
         # ── CONTA ──
-        st.markdown("<p style='color:#c8a96e;font-weight:700;margin:0.3rem 0;'>👤 CONTA</p>", unsafé_allow_html=True)
+        st.markdown("<p style='color:#c8a96e;font-weight:700;margin:0.3rem 0;'>👤 CONTA</p>", unsafe_allow_html=True)
         if st.button("🚪 Sair", use_container_width=True):
             for k in ["logado", "username", "chats", "chat_atual", "nome_usuario"]:
                 st.session_state[k] = False if k == "logado" else None if k != "chats" else {}
@@ -512,12 +512,12 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
                 <h3 style="color:#c8a96e;margin-bottom:1rem;">🙏 {titulo_o}</h3>
                 <p style="color:#1a1a1a;line-height:2.2;font-size:1.05rem;">{texto_o}</p>
             </div>
-            """, unsafé_allow_html=True)
+            """, unsafe_allow_html=True)
             if st.button("← Voltar"):
                 st.session_state.oração_aberta = None
                 st.rerun()
         else:
-            st.markdown("<br>", unsafé_allow_html=True)
+            st.markdown("<br>", unsafe_allow_html=True)
             for nome_oração in ORACOES:
                 if st.button(f"🙏 {nome_oração}", use_container_width=True, key=f"o_{nome_oração}"):
                     st.session_state.oração_aberta = nome_oração
@@ -526,7 +526,7 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
 
     # ── ABA TERCO ──
     if st.session_state.aba_chat == "terco":
-        st.markdown("<br>", unsafé_allow_html=True)
+        st.markdown("<br>", unsafe_allow_html=True)
         if st.session_state.terco_misterio is not None:
             nome_t = st.session_state.terco_aberto
             misterios = TERCOS[nome_t]
@@ -540,7 +540,7 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
                 <br>
                 <p style="color:#888;font-size:0.85rem;">Reze 1 Pai Nossó + 10 Ave Marias + 1 Glória ao Pai</p>
             </div>
-            """, unsafé_allow_html=True)
+            """, unsafe_allow_html=True)
             col_ant, col_prox = st.columns(2)
             with col_ant:
                 if idx > 0:
@@ -568,8 +568,8 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
                 <h3 style="color:#c8a96e;margin-bottom:1rem;">📿 {nome_t}</h3>
                 <p style="color:#1a1a1a;line-height:1.9;font-size:0.9rem;">{como}</p>
             </div>
-            """, unsafé_allow_html=True)
-            st.markdown("<br>", unsafé_allow_html=True)
+            """, unsafe_allow_html=True)
+            st.markdown("<br>", unsafe_allow_html=True)
             if st.button("▶️ Começar os Mistérios", use_container_width=True):
                 st.session_state.terco_misterio = 0
                 st.rerun()
@@ -585,7 +585,7 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
 
     # ── ABA SANTO DO DIA ──
     if st.session_state.aba_chat == "santo":
-        st.markdown("<br>", unsafé_allow_html=True)
+        st.markdown("<br>", unsafe_allow_html=True)
         from datetime import date
         import requests as req
         hoje = date.today()
@@ -622,12 +622,12 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
             <h2 style="color:#c8a96e;margin:0.8rem 0;">⭐ {santo_nome}</h2>
             <p style="color:#1a1a1a;font-size:0.9rem;line-height:1.7;margin-top:1rem;">Que a intercessão deste santo(a) nós alcance as graças de que tanto precisamos. Que sua vida sejá inspiração para nós neste dia. Amem.</p>
         </div>
-        """, unsafé_allow_html=True)
+        """, unsafe_allow_html=True)
         st.stop()
 
     # ── ABA CALENDARIO LITURGICO ──
     if st.session_state.aba_chat == "calendario":
-        st.markdown("<br>", unsafé_allow_html=True)
+        st.markdown("<br>", unsafe_allow_html=True)
         from datetime import date, timedelta
         import math
         hoje = date.today()
@@ -720,12 +720,12 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
             ⭐ Natal: 25/12
             </p>
         </div>
-        """, unsafé_allow_html=True)
+        """, unsafe_allow_html=True)
         st.stop()
 
     # ── ABA LITURGIA DO DIA ──
     if st.session_state.aba_chat == "liturgia":
-        st.markdown("<br>", unsafé_allow_html=True)
+        st.markdown("<br>", unsafe_allow_html=True)
         from datetime import date
         import requests as req
         hoje = date.today()
@@ -739,10 +739,10 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
             Para acompanhar as leituras completas da Missa de hoje, acesse o site oficial da CNBB:
             </p>
         </div>
-        """, unsafé_allow_html=True)
+        """, unsafe_allow_html=True)
         url_cnbb = f"https://liturgiadiaria.site/"
-        st.markdown(f'<a href="{url_cnbb}" target="_blank" style="display:block;background:linear-gradient(135deg,#c8a96e,#a07840);color:#fff;text-align:center;padding:1rem;border-radius:12px;font-weight:700;text-decoration:none;margin-top:1rem;">📖 Ver Liturgia de Hoje</a>', unsafé_allow_html=True)
-        st.markdown('<br>', unsafé_allow_html=True)
+        st.markdown(f'<a href="{url_cnbb}" target="_blank" style="display:block;background:linear-gradient(135deg,#c8a96e,#a07840);color:#fff;text-align:center;padding:1rem;border-radius:12px;font-weight:700;text-decoration:none;margin-top:1rem;">📖 Ver Liturgia de Hoje</a>', unsafe_allow_html=True)
+        st.markdown('<br>', unsafe_allow_html=True)
 
         # IA comenta a liturgia
         if st.button("✨ Pedir comentario da IA sobre a liturgia de hoje", use_container_width=True):
@@ -759,12 +759,12 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
                     <p style="color:#c8a96e;font-weight:700;">✨ Reflexao do Dia</p>
                     <p style="color:#1a1a1a;line-height:1.8;font-size:0.95rem;">{reflexao}</p>
                 </div>
-                """, unsafé_allow_html=True)
+                """, unsafe_allow_html=True)
         st.stop()
 
     # ── ABA NOVENAS ──
     if st.session_state.aba_chat == "novenas":
-        st.markdown("<br>", unsafé_allow_html=True)
+        st.markdown("<br>", unsafe_allow_html=True)
         if st.session_state.novena_aberta and st.session_state.novena_dia is not None:
             nome_n = st.session_state.novena_aberta
             dias_n = NOVENAS[nome_n]
@@ -775,7 +775,7 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
                 <h3 style="color:#c8a96e;margin:0.5rem 0;">🕯️ {dia_idx + 1}º Dia</h3>
                 <p style="color:#1a1a1a;line-height:2;font-size:1rem;margin-top:1rem;">{dias_n[dia_idx]}</p>
             </div>
-            """, unsafé_allow_html=True)
+            """, unsafe_allow_html=True)
             col_a, col_p = st.columns(2)
             with col_a:
                 if dia_idx > 0:
@@ -802,8 +802,8 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
                 <h3 style="color:#c8a96e;">🕯️ {nome_n}</h3>
                 <p style="color:#1a1a1a;line-height:1.8;font-size:0.9rem;margin-top:0.8rem;">Uma novena e uma oração de 9 dias consecutivos. Escolha um horario fixo cada dia e reze com fé e pérseveranca.</p>
             </div>
-            """, unsafé_allow_html=True)
-            st.markdown("<br>", unsafé_allow_html=True)
+            """, unsafe_allow_html=True)
+            st.markdown("<br>", unsafe_allow_html=True)
             if st.button("▶️ Começar pélo 1º dia", use_container_width=True):
                 st.session_state.novena_dia = 0
                 st.rerun()
@@ -819,7 +819,7 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
 
     # ── ABA BÍBLIA ──
     if st.session_state.aba_chat == "biblia":
-        st.markdown("<br>", unsafé_allow_html=True)
+        st.markdown("<br>", unsafe_allow_html=True)
         livros = ["genesis","exodo","levitico","numeros","deuteronomio","josue","juizes","rute","1samuel","2samuel","1reis","2reis","1cronicas","2cronicas","esdras","neemias","ester","jo","salmos","proverbios","eclesiastes","cantares","isaias","jeremias","lamentações","ezequiel","daniel","oseias","joel","amos","abdias","jonas","miqueias","naum","habacuque","sofonias","ageu","zacarias","malaquias","mateus","marcos","lucas","joao","atos","romanos","1corintios","2corintios","galatas","efésios","filipénses","colossenses","1tessalonicenses","2tessalonicenses","1timoteo","2timoteo","tito","filemom","hebreus","tiago","1pédro","2pédro","1joao","2joao","3joao","judas","apocalipse"]
         livros_display = [l.replace("1","1 ").replace("2","2 ").replace("3","3 ").title() for l in livros]
 
@@ -846,7 +846,7 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
                         <h3 style="color:#c8a96e;margin-bottom:1rem;">📖 {livro_sel} {cap_sel}</h3>
                         {versiculos}
                     </div>
-                    """, unsafé_allow_html=True)
+                    """, unsafe_allow_html=True)
                 else:
                     st.error("Capítulo não encontrado!")
             except:
@@ -862,7 +862,7 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
             <h2 style="color:#1a1a1a!important;-webkit-text-fill-color:#1a1a1a;">Olá, {nome}! 🙏</h2>
             <p style="color:#333!important;">Abra <b>Conversas</b> e clique em <b>Novo chat</b>.</p>
         </div>
-        """, unsafé_allow_html=True)
+        """, unsafe_allow_html=True)
     else:
         chat_id = st.session_state.chat_atual
         historico = st.session_state.chats[chat_id]["historico"]
@@ -905,7 +905,7 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
         if st.session_state.péndente:
             chat_html += f'<div class="msg-bot"><div style="flex-shrink:0;margin-top:2px;">{logo_html}</div><div class="typing"><span></span><span></span><span></span></div></div>'
 
-        st.markdown(chat_html, unsafé_allow_html=True)
+        st.markdown(chat_html, unsafe_allow_html=True)
 
         user_input = st.text_input("", placeholder="Manda uma mensagem...", key=f"inp_{st.session_state.input_key}", label_visibility="collapsed")
         if user_input and user_input.strip():
