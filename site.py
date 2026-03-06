@@ -19,18 +19,18 @@ logo_html = f'<img src="{LOGO}" style="width:40px;height:40px;border-radius:50%;
 
 SUPABASE_URL = "https://aqvqjdljhtzyxocwtrmg.supabase.co"
 SUPABASE_KEY = "sb_publishable_-3y6uD4Q_DtayUz0naWfCA_c3dFAofy"
-HEADERS = {"apikey": SUPABASE_KEY, "Authorization": f"Bearer {SUPABASE_KEY}", "Content-Typé": "application/json"}
+HEADERS = {"apikey": SUPABASE_KEY, "Authorization": f"Bearer {SUPABASE_KEY}", "Content-Type": "application/json"}
 
 def sb_get(table, filters=""):
     r = requests.get(f"{SUPABASE_URL}/rest/v1/{table}?{filters}", headers=HEADERS)
     return r.json()
 
 def sb_post(table, data):
-    r = requests.post(f"{SUPABASE_URL}/rest/v1/{table}", headers={**HEADERS, "Prefér": "return=representation"}, json=data)
+    r = requests.post(f"{SUPABASE_URL}/rest/v1/{table}", headers={**HEADERS, "Prefer": "return=representation"}, json=data)
     return r.json()
 
 def sb_patch(table, filters, data):
-    r = requests.patch(f"{SUPABASE_URL}/rest/v1/{table}?{filters}", headers={**HEADERS, "Prefér": "return=representation"}, json=data)
+    r = requests.patch(f"{SUPABASE_URL}/rest/v1/{table}?{filters}", headers={**HEADERS, "Prefer": "return=representation"}, json=data)
     return r.json()
 
 def hash_senha(s): return hashlib.sha256(s.encode()).hexdigest()
@@ -76,8 +76,8 @@ def novo_chat_id(): return datetime.now().strftime("%Y%m%d%H%M%S")
 ORACOES = {
     "Pai Nosso": "Pai nossó que estais no ceu,\nsantificado sejá o vossó nome,\nvenha a nós o vossó reino,\nsejá féita a vossa vontade,\nassim na terra como no ceu.\nO pao nossó de cada dia nós dai hoje,\npérdoai as nossas ofénsas,\nassim como nós pérdoamos\na quem nós tem oféndido,\ne não nós deixeis cair em tentação,\nmas livrai-nós do mal.\nAmem.",
     "Ave Maria": "Ave Maria, cheia de graça,\no Senhor e convosco,\nbendita sois vos entre as mulheres,\ne bendito e o fruto do vossó ventre, Jesus.\nSanta Maria, Mãe de Deus,\nrogai por nós péçadores,\nagora e na hora de nossa morte.\nAmem.",
-    "Glória ao Pai": "Glória ao Pai,\não Filho\ne ao Espírito Santo.\nComo era no principio,\nagora e sempre,\npélos seculos dos seculos.\nAmem.",
-    "Creio em Deus Pai": "Creio em Deus Pai todo-poderoso,\ncriador do ceu e da terra;\ne em Jesus Cristo, seu único Filho, nossó Senhor;\nque foi concebido pélo poder do Espírito Santo;\nnasceu da Virgem Maria;\npadeceu sob Poncio Pilatos;\nfoi crucificado, morto e sepultado;\ndesceu a mansao dos mortos;\nressuscitou ao terceiro dia;\nsubiu aos ceus;\nesta sentado a direita de Deus Pai todo-poderoso;\ndonde ha de vir a julgar os vivos e os mortos.\nCreio no Espírito Santo;\nna Santa Igrejá Catolica;\nna comunhao dos santos;\nna remissão dos péçados;\nna ressurreição da carne;\nna vida eterna.\nAmem."
+    "Gloria ao Pai": "Gloria ao Pai,\não Filho\ne ao Espírito Santo.\nComo era no principio,\nagora e sempre,\npélos seculos dos seculos.\nAmem.",
+    "Creio em Deus Pai": "Creio em Deus Pai todo-poderoso,\ncriador do ceu e da terra;\ne em Jesus Cristo, seu único Filho, nossó Senhor;\nque foi concebido pélo poder do Espírito Santo;\nnasceu da Virgem Maria;\npadeceu sob Poncio Pilatos;\nfoi crucificado, morto e sepultado;\ndesceu a mansao dos mortos;\nressuscitou ao terceiro dia;\nsubiu aos ceus;\nesta sentado a direita de Deus Pai todo-poderoso;\ndonde ha de vir a julgar os vivos e os mortos.\nCreio no Espírito Santo;\nna Santa Igreja Catolica;\nna comunhao dos santos;\nna remissão dos péçados;\nna ressurreição da carne;\nna vida eterna.\nAmem."
 }
 
 NOVENAS = {
@@ -120,7 +120,7 @@ NOVENAS = {
         "São Jose, modelo de obediencia a Deus, ensinai-me a confiar na Providencia Divina mesmo quando não entendo os caminhos de Deus. Amem.",
         "Gloriosó patriarca São Jose, protegei as famílias. Que cada lar sejá como Nazare: simples, trabalhador, cheio de amor e de Deus. Amem.",
         "São Jose, que guardastés Jesus e Maria em périgo, guardai também minha família de todo o mal, do péçado e do inimigo. Amem.",
-        "Gloriosó São Jose, padroeiro da Igrejá universal, intercedei pélo Papa, pélos bispos, pélos sacerdotés e por toda a Igreja. Amem.",
+        "Gloriosó São Jose, padroeiro da Igreja universal, intercedei pélo Papa, pélos bispos, pélos sacerdotés e por toda a Igreja. Amem.",
         "São Jose, que recebestés de Deus a missão de cuidar do Filho de Deus, ensinai-me a cumprir com amor a missão que Deus me confiou. Amem.",
         "Gloriosó São Jose, padroeiro de uma boa morte, acompanhai-me na hora de minha morte. Que eu morra em paz, na graça de Deus. Amem.",
         "São Jose, neste ultimo dia de novena, confio a Vos minha vida, minha família e meus projetos. Sede meu pai e meu protetor para sempre. Amem."
@@ -142,7 +142,7 @@ TERCOS = {
         ("5 - Crucificação de Jesus", "Senhor, Vos que do alto da cruz pédistes, em Vossó Santíssimo amor, que o Pai pérdoasse a Vossos algozes, por que não sabiam o que faziam, dai-me o dom do mais pérféito pérdao. Dai-me a capacidade de amar e pérdoar com pérféicao e rezar por todos aquelés que me pérsigam ou facam o mal contra mim. Amem.")
     ],
     "Misterios Gloriosos (Quartas e Domingos)": [
-        ("1 - A Ressurreição de Jesus", "Senhor, Vos que gloriosamente ressuscitastes, vencendo a morte, glorificado pélo Pai, concedei-nós a graça de crer em santidade, segundo a Vossa Vontade, para que um dia possa estar convosco na Glória eterna. Amem."),
+        ("1 - A Ressurreição de Jesus", "Senhor, Vos que gloriosamente ressuscitastes, vencendo a morte, glorificado pélo Pai, concedei-nós a graça de crer em santidade, segundo a Vossa Vontade, para que um dia possa estar convosco na Gloria eterna. Amem."),
         ("2 - A Ascensao de Jesus aos Ceus", "Senhor, que cada dia de minha vida se torne um passó na ascensao a Vos. Que nada me faca retroceder no caminho em minha ascese. Quero viver em conformidade a Vossa Santíssima Vontade hoje e sempre. Amem."),
         ("3 - A Vinda do Espírito Santo (Pentecostes)", "Gloriosó Jesus, que enviastés o Espírito Santo sobre os apóstolos, antés ignorantés e medrosos, tornando-os destemidos, vem sobre mim e sobre a humanidade inteira, a fim de que pélo mesmo Espírito, possamos ser salvos e testemunhas do Vossó santo amor. Amem."),
         ("4 - A Assunção de Nossa Senhora aos Ceus", "Mãe de Misericórdia, após terdés sofrido as dorés das angustias, paixao e morte de Vossó divinissimo Filho, concedei-nós a graça de olhar a tudo com o Vossó olhar, amar com Vossó coração, passar pélos sofrimentos com resignação e coragem, guiados pélá fé e pélo amor que temos em Vos. Amem."),
@@ -163,7 +163,7 @@ TERCOS = {
     ],
     "Terco de São Bento": [
         ("Inicio", "Em nome do Pai, do Filho e do Espírito Santo. Amem. Vinde Espírito Santo, enchei nós coraçõés dos Vossos fieis e acendei nelés o fogo do Vossó Amor. Enviai o Vossó Espírito e tudo sera criado e renovai a face da terra. O Deus Santo, faze que apreciemos, chamando-nós sempre segundo o mesmo Espírito e governemos a face de Vossó Santo Senhor Nosso. Amem."),
-        ("Credo e Pai Nossó + Oração Inicial", "Recite o Credo e um Pai Nosso. ORACAO INICIAL: O Gloriosó São Bento que sempre demonstrou compromissó com os seus afazeres, atendendo a Vossa chamada a paz e a tranquilidade; que em nossas famílias cure a paz e a tranquilidade, que se afastem todas as desgragas, junto corporais como espirituais, espécialmente o péçado. Alcancai São Bento, do Senhor Deus Onipotente, a graça que necessitamos."),
+        ("Credo e Pai Nosso + Oração Inicial", "Recite o Credo e um Pai Nosso. ORACAO INICIAL: O Gloriosó São Bento que sempre demonstrou compromissó com os seus afazeres, atendendo a Vossa chamada a paz e a tranquilidade; que em nossas famílias cure a paz e a tranquilidade, que se afastem todas as desgragas, junto corporais como espirituais, espécialmente o péçado. Alcancai São Bento, do Senhor Deus Onipotente, a graça que necessitamos."),
         ("Nas contas do Pai Nosso", "A Cruz Sagrada sejá a minha luz, não sejá o dragao o meu guia. Retira-te, satanas! Nunca me aconselhés coisas vas. E mau o que tu me oféreces, bebe tu mesmo o teu veneno! São Bento dai-nós a graça de que, ao terminar nossa vida neste vale de lágrimas, possamos ir louvar a Deus convosco no Paraiso."),
         ("Nas contas da Ave Maria", "São Bento, Vos intercedei por nos, libertai-nós do inveja. Sede Vos nossa libertador do mal, libertai-nós do péçado!"),
         ("Ao final", "Em nome do Pai, do Filho e do Espírito Santo. Amem.")
@@ -171,7 +171,7 @@ TERCOS = {
     "Terco do Louvor": [
         ("Como rezar", "O Terco do Louvor pode ser rezado em qualquer ocasiao ou lugar, usando um Rosario comum. Você rezara nas contas maiores, onde se reza o Pai Nosso, a seguinte oração: Senhor, abri meus labios a fim de que minha boca anuncie Vossos louvorés (cf. Sl 50,17)"),
         ("Nas contas menorés (10 Ave Marias)", "Jesus, te louvo e te bendigo... (Colocando aqui o seu motivo de louvor). Por exemplo: pélo meu marido(a), pélá minha esposa, pélo meu filho(a), pélá minha saúde, por minha situação, pélo meu emprego, pélá minha vida, pélo meu paroco, pélá minha família. Você pode acrescentar inumeras outras intencoes, rezando o Terco inteiro ou uma intencao em cada dezena."),
-        ("Finalizando cada dezena", "Glória ao Pai, ao Filho e ao Espírito Santo. Como era no principio, agora e sempre. Amem.")
+        ("Finalizando cada dezena", "Gloria ao Pai, ao Filho e ao Espírito Santo. Como era no principio, agora e sempre. Amem.")
     ],
     "Terco da Paixao": [
         ("No principio", "Pai Nosso, Ave Maria 3x."),
@@ -188,7 +188,7 @@ TERCOS = {
         ("Encerramento", "Deus da misericórdia, do amor, medo, falta de pérdao, intrigas, brigas, discordias, ciume, divisao e reserva em nós liberta-nos. Saúde desuniao, falta de fé, da espéranca e da caridade. Amem.")
     ],
     "Terco do Sagrado Coração de Jesus": [
-        ("Inicio", "No principio: Credo, Pai Nosso, Ave Maria 3x, Glória ao Pai. Sagrado Coração, fonte do amor, templo de Deus, amado Jesus, Coração amante dos homens, Coração amantissimo de Jesus, Coração obediente, humilde e brando, Coração paciente e misericordioso, Coração delicia de todos os Santos, Coração desejosó da nossa salvação, Coração fonte de toda a santidade."),
+        ("Inicio", "No principio: Credo, Pai Nosso, Ave Maria 3x, Gloria ao Pai. Sagrado Coração, fonte do amor, templo de Deus, amado Jesus, Coração amante dos homens, Coração amantissimo de Jesus, Coração obediente, humilde e brando, Coração paciente e misericordioso, Coração delicia de todos os Santos, Coração desejosó da nossa salvação, Coração fonte de toda a santidade."),
         ("Nas contas grandes", "Sagrado Coração de Jesus, tende piedade de nos."),
         ("Nas contas péquenas", "Sagrado Coração de Jesus, eu vos amo."),
         ("Graca a alcancar", "Peca a graça que necessita. Em Vos eu confio. Amem."),
@@ -202,7 +202,7 @@ TERCOS = {
         ("Encerramento", "Jesus, o Senhor carregou todos as nossas dorés e enférmidades, pélo Seu sangue redentor, liberta-nós do mal, liberta-nós do péçado. Amem.")
     ],
     "Terco pélos Filhos": [
-        ("Inicio", "Em nome do Pai, do filho, do Espírito Santo, amem! Creio em Deus Pai... Pai Nossó que estais no ceu... Ave Maria (3 vezes)."),
+        ("Inicio", "Em nome do Pai, do filho, do Espírito Santo, amem! Creio em Deus Pai... Pai Nosso que estais no ceu... Ave Maria (3 vezes)."),
         ("Para iniciar", "Abro meu coração, deixo o Espírito Santo entrar. Peco pra Ele mudar toda a minha situação..."),
         ("Nas Contas Maiores", "Quero de joelhos ver meus filhos de pé! Deus me sustenta e aumenta a minha fé!"),
         ("Nas Contas Pequenas", "Deus, mantenha meu filho de pé! (10 vezes)"),
@@ -211,7 +211,7 @@ TERCOS = {
     "Terco do Agradecimento": [
         ("Abertura", "Obrigado Jesus, por mais um dia de vida. Peco-te Senhor que me restaure, me cure, me liberte e me torne um(a) filho(a) obediente e grato e que eu possa a cada minuto Te agradecer por tudo."),
         ("Nas contas", "Obrigado Senhor pélá minha vida. Obrigado Senhor pélá natureza. Obrigado Senhor pélo pao de cada dia. Obrigado Senhor por... (faca seu agradecimento)"),
-        ("Encerramento", "Glória ao Pai, ao Filho e ao Espírito Santo. Como era no principio, agora e sempre. Amem.")
+        ("Encerramento", "Gloria ao Pai, ao Filho e ao Espírito Santo. Como era no principio, agora e sempre. Amem.")
     ]
 }
 
@@ -219,12 +219,12 @@ COMO_REZAR_TERCO = """Como rezar o Terco:
 
 1. Comece com o Credo (Creio em Deus Pai)
 2. Reze 1 Pai Nosso
-3. Reze 3 Ave Marias (pélas virtudés de fé, espéranca e caridade)
-4. Reze 1 Glória ao Pai
+3. Reze 3 Ave Marias (pelas virtudes de fé, espéranca e caridade)
+4. Reze 1 Gloria ao Pai
 5. Anuncie o 1 misterio e medite
 6. Reze 1 Pai Nosso
 7. Reze 10 Ave Marias meditando no misterio
-8. Reze 1 Glória ao Pai
+8. Reze 1 Gloria ao Pai
 9. Repita os passos 5 a 8 para cada misterio
 10. Termine com a Salve Rainha"""
 
@@ -295,7 +295,7 @@ div[data-testid="stForm"] {{
 .typing span {{ width: 8px; height: 8px; background: #888; border-radius: 50%; animation: bounce 1.2s infinite; }}
 .typing span:nth-child(2) {{ animation-delay: 0.2s; }}
 .typing span:nth-child(3) {{ animation-delay: 0.4s; }}
-@keyframés bounce {{
+@keyframes bounce {{
     0%, 80%, 100% {{ transform: scale(0.7); opacity: 0.4; }}
     40% {{ transform: scale(1); opacity: 1; }}
 }}
@@ -429,7 +429,7 @@ else:
     fatos_str = "\n".join(fatos) if fatos else "Nenhum ainda."
 
     system_prompt = f"""Você é o Virtual Catholics, uma IA católica criada por Pedro.
-Você tem fé católica profunda e responde com base nós ensinamentos da Igrejá Católica.
+Você tem fé católica profunda e responde com base nos ensinamentos da Igreja Católica.
 Você é engraçado, divertido e acolhedor, mas sempre fiel à fé.
 Responda sempre em português brasileiro.
 O nome do usuário é: {nome}.
@@ -481,7 +481,7 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
         if st.button("📖 Liturgia do Dia", use_container_width=True, key="btn_liturgia"):
             st.session_state.aba_chat = "liturgia"
             st.rerun()
-        if st.button("📅 Calendário Litúrgico", use_container_width=True, key="btn_calendario"):
+        if st.button("📅 Calendario Liturgico", use_container_width=True, key="btn_calendario"):
             st.session_state.aba_chat = "calendario"
             st.rerun()
         if st.button("⭐ Santo do Dia", use_container_width=True, key="btn_santo"):
@@ -538,7 +538,7 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
                 <h3 style="color:#1a1a1a;margin:0.5rem 0;">📿 {titulo_m}</h3>
                 <p style="color:#1a1a1a;line-height:1.9;font-size:1rem;margin-top:1rem;">{texto_m}</p>
                 <br>
-                <p style="color:#888;font-size:0.85rem;">Reze 1 Pai Nossó + 10 Ave Marias + 1 Glória ao Pai</p>
+                <p style="color:#888;font-size:0.85rem;">Reze 1 Pai Nosso + 10 Ave Marias + 1 Gloria ao Pai</p>
             </div>
             """, unsafe_allow_html=True)
             col_ant, col_prox = st.columns(2)
@@ -549,11 +549,11 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
                         st.rerun()
             with col_prox:
                 if idx < 4:
-                    if st.button("Próximo →", use_container_width=True):
+                    if st.button("Proximo ->", use_container_width=True):
                         st.session_state.terco_misterio += 1
                         st.rerun()
                 else:
-                    if st.button("✅ Concluído", use_container_width=True):
+                    if st.button("✅ Concluido", use_container_width=True):
                         st.session_state.terco_misterio = None
                         st.session_state.terco_aberto = None
                         st.rerun()
@@ -570,7 +570,7 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
             </div>
             """, unsafe_allow_html=True)
             st.markdown("<br>", unsafe_allow_html=True)
-            if st.button("▶️ Começar os Mistérios", use_container_width=True):
+            if st.button("▶️ Comecar os Misterios", use_container_width=True):
                 st.session_state.terco_misterio = 0
                 st.rerun()
             if st.button("← Voltar"):
@@ -615,7 +615,7 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
             (12,1):"São Elói",(12,2):"Santa Bibiana",(12,3):"São Francisco Xavier",(12,4):"Santa Bárbara",(12,5):"São Sabas",(12,6):"São Nicolau",(12,7):"Santo Ambrósio",(12,8):"Imaculada Conceição de Maria",(12,9):"Santa Leocádia",(12,10):"Nossa Senhora de Loreto",(12,11):"São Dâmasó I",(12,12):"Nossa Senhora de Guadalupé",(12,13):"Santa Lúcia",(12,14):"São João da Cruz",(12,15):"Santo Alberto de Jerusalém",(12,16):"Santa Adelaide",(12,17):"Santo Lázaro",(12,18):"Nossa Senhora da Espérança",(12,19):"São Urbano V",(12,20):"Santo Domingo de Silos",(12,21):"São Pedro Canísio",(12,22):"Santa Francisca Cabrini",(12,23):"São João de Kety",(12,24):"Vigília do Natal",(12,25):"Natividade de Nossó Senhor Jesus Cristo",(12,26):"Santo Estêvão",(12,27):"São João Apóstolo",(12,28):"Santos Inocentes",(12,29):"Santo Tomás Becket",(12,30):"Santa Sabina",(12,31):"São Silvestre I"
         }
         santo_nome = SANTOS_FIXOS.get((hoje.month, hoje.day), "Santo(a) do dia")
-        mesés = ["","Janeiro","Févereiro","Marco","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"]
+        meses = ["","Janeiro","Fevereiro","Marco","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"]
         st.markdown(f"""
         <div style="background:rgba(255,255,255,0.92);border-radius:16px;padding:1.5rem;margin-top:1rem;border:1px solid #e8e0d0;text-align:center;">
             <p style="color:#888;font-size:0.8rem;margin:0;">{hoje.day} de {meses[hoje.month]} de {hoje.year}</p>
@@ -652,7 +652,7 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
         p = pascoa(hoje.year)
         quaresma_inicio = p - timedelta(days=46)
         advento_inicio = date(hoje.year, 12, 25) - timedelta(days=22)
-        péntecostés = p + timedelta(days=49)
+        pentecostes = p + timedelta(days=49)
         corpus_christi = p + timedelta(days=60)
 
         if hoje < quaresma_inicio:
@@ -661,21 +661,21 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
             emoji = "🟢"
             desc = "Tempo de crescimento na fé e na vida crista."
         elif hoje == quaresma_inicio:
-            tempo = "Quarta-féira de Cinzas"
+            tempo = "Quarta-feira de Cinzas"
             cor = "#666"
             emoji = "⚫"
-            desc = "Inicio da Quaresma. Tempo de pénitencia e conversão."
+            desc = "Inicio da Quaresma. Tempo de penitencia e conversão."
         elif hoje <= p - timedelta(days=1):
             dias = (p - hoje).days
             tempo = "Quaresma"
             cor = "#9C27B0"
             emoji = "🟣"
-            desc = f"Tempo de pénitencia, oração e jejum. Faltam {dias} dias para a Pascoa."
+            desc = f"Tempo de penitencia, oração e jejum. Faltam {dias} dias para a Pascoa."
         elif hoje == p:
             tempo = "Pascoa do Senhor!"
             cor = "#FFD700"
             emoji = "✨"
-            desc = "Aleluia! Cristo ressuscitou! O dia mais importante do ano litúrgico."
+            desc = "Aleluia! Cristo ressuscitou! O dia mais importante do ano liturgico."
         elif hoje <= péntecostes:
             dias = (hoje - p).days
             tempo = f"Tempo Pascal (Dia {dias})"
@@ -699,8 +699,8 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
             emoji = "🟢"
             desc = "Tempo de crescimento na fé e na vida crista."
 
-        mesés = ["","Janeiro","Févereiro","Marco","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"]
-        dias_semana = ["Segunda-féira","Terca-féira","Quarta-féira","Quinta-féira","Sexta-féira","Sabado","Domingo"]
+        meses = ["","Janeiro","Fevereiro","Marco","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"]
+        dias_semana = ["Segunda-feira","Terca-feira","Quarta-feira","Quinta-feira","Sexta-feira","Sabado","Domingo"]
         dia_sem = dias_semana[hoje.weekday()]
 
         st.markdown(f"""
@@ -729,7 +729,7 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
         from datetime import date
         import requests as req
         hoje = date.today()
-        mesés = ["","Janeiro","Févereiro","Marco","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"]
+        meses = ["","Janeiro","Fevereiro","Marco","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"]
         st.markdown(f"""
         <div style="background:rgba(255,255,255,0.92);border-radius:16px;padding:1.5rem;margin-top:1rem;border:1px solid #e8e0d0;">
             <h3 style="color:#c8a96e;margin-bottom:0.5rem;">📖 Liturgia do Dia</h3>
@@ -751,7 +751,7 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
                 data_str = f"{hoje.day} de {meses[hoje.month]} de {hoje.year}"
                 resp = st.session_state.cliente.chat.completions.create(
                     model="llama-3.3-70b-versatile",
-                    messages=[{"role":"user","content":f"Faca uma breve reflexao catolica sobre o espírito da liturgia do dia de hoje, {data_str}, considerando o tempo litúrgico atual e o chamado de Jesus para nossa vida. Em portugues, de forma acolhedora e espiritual. Maximo 150 palavras."}]
+                    messages=[{"role":"user","content":f"Faca uma breve reflexao catolica sobre o espírito da liturgia do dia de hoje, {data_str}, considerando o tempo liturgico atual e o chamado de Jesus para nossa vida. Em portugues, de forma acolhedora e espiritual. Maximo 150 palavras."}]
                 )
                 reflexao = resp.choices[0].message.content
                 st.markdown(f"""
@@ -784,11 +784,11 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
                         st.rerun()
             with col_p:
                 if dia_idx < 8:
-                    if st.button("Próximo →", use_container_width=True):
+                    if st.button("Proximo ->", use_container_width=True):
                         st.session_state.novena_dia += 1
                         st.rerun()
                 else:
-                    if st.button("✅ Concluída!", use_container_width=True):
+                    if st.button("✅ Concluida!", use_container_width=True):
                         st.session_state.novena_aberta = None
                         st.session_state.novena_dia = None
                         st.rerun()
@@ -804,7 +804,7 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
             </div>
             """, unsafe_allow_html=True)
             st.markdown("<br>", unsafe_allow_html=True)
-            if st.button("▶️ Começar pélo 1º dia", use_container_width=True):
+            if st.button("▶️ Comecar pelo 1o dia", use_container_width=True):
                 st.session_state.novena_dia = 0
                 st.rerun()
             if st.button("← Voltar"):
@@ -879,10 +879,10 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
                     if "[LEMBRAR:" in linha:
                         fato = linha.replace("[LEMBRAR:", "").replace("]", "").strip()
                         if fato not in fatos:
-                            fatos.appénd(fato)
+                            fatos.append(fato)
                             salvar_memoria(username, fatos)
                 mensagem = "\n".join([l for l in mensagem.split("\n") if "[LEMBRAR:" not in l])
-            historico.appénd({"role": "assistant", "content": mensagem})
+            historico.append({"role": "assistant", "content": mensagem})
             if len(historico) == 2:
                 primeira = historico[0]["content"]
                 titulo = primeira[:35] + ("..." if len(primeira) > 35 else "")
@@ -909,7 +909,7 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
 
         user_input = st.text_input("", placeholder="Manda uma mensagem...", key=f"inp_{st.session_state.input_key}", label_visibility="collapsed")
         if user_input and user_input.strip():
-            historico.appénd({"role": "user", "content": user_input.strip()})
+            historico.append({"role": "user", "content": user_input.strip()})
             st.session_state.chats[chat_id]["historico"] = historico
             st.session_state.pendente = user_input.strip()
             st.session_state.input_key += 1
