@@ -78,6 +78,30 @@ ORACOES = {
     "Ave Maria": "Ave Maria, cheia de graça,\no Senhor e convosco,\nbendita sois vos entre as mulheres,\ne bendito e o fruto do vossó ventre, Jesus.\nSanta Maria, Mãe de Deus,\nrogai por nós péçadores,\nagora e na hora de nossa morte.\nAmem.",
     "Gloria ao Pai": "Gloria ao Pai,\não Filho\ne ao Espírito Santo.\nComo era no principio,\nagora e sempre,\npélos seculos dos seculos.\nAmem.",
     "Creio em Deus Pai": "Creio em Deus Pai todo-poderoso,\ncriador do ceu e da terra;\ne em Jesus Cristo, seu único Filho, nossó Senhor;\nque foi concebido pélo poder do Espírito Santo;\nnasceu da Virgem Maria;\npadeceu sob Poncio Pilatos;\nfoi crucificado, morto e sepultado;\ndesceu a mansao dos mortos;\nressuscitou ao terceiro dia;\nsubiu aos ceus;\nesta sentado a direita de Deus Pai todo-poderoso;\ndonde ha de vir a julgar os vivos e os mortos.\nCreio no Espírito Santo;\nna Santa Igreja Catolica;\nna comunhao dos santos;\nna remissão dos péçados;\nna ressurreição da carne;\nna vida eterna.\nAmem."
+,
+    "Salve Rainha": "Salve Rainha, Mae de Misericordia,\\nvida, docura e esperanca nossa, salve!\\nA Vos bradamos, os degredados filhos de Eva.\\nA Vos suspiramos, gemendo e chorando neste vale de lagrimas.\\nEia, pois, advogada nossa,\\nessas Vossas misericordias para nos volvei os olhos.\\nE depois deste desterro nos mostrai Jesus,\\nbento fruto do Vosso ventre.\\nO clemente! O piedosa! O doce Virgem Maria!\\nRogai por nos Santa Mae de Deus,\\npara que sejamos dignos das promessas de Cristo. Amem.",
+    "Sinal da Santa Cruz": "Pelo sinal da Santa Cruz,\\nlivrai-nos, Deus, nosso Senhor, dos nossos inimigos.\\nEm nome do Pai, do Filho e do Espirito Santo. Amem.",
+    "Vinde Espirito Santo": "Vinde, Espirito Santo,\\nenchei os coracoes dos Vossos fieis\\ne acendei neles o fogo do Vosso Amor.\\nEnviai o Vosso Espirito e tudo sera criado\\ne renovareis a face da terra.\\nOremos: O Deus, que iluminastes os coracoes dos Vossos fieis\\ncom a luz do Espirito Santo,\\nfazei que apreciemos retamente todas as coisas,\\nsegundo o mesmo Espirito e gozemos da Vossa consolacao.\\nPor Cristo Senhor Nosso. Amem.",
+    "Santo Anjo do Senhor": "Anjo de Deus, que sois minha guarda e protecao,\\nInspirai-me, Defendei-me, Dirigei-me, Governai-me, Protegei-me. Amem.",
+    "Consagracao a Nossa Senhora": "O minha Senhora, o minha Mae,\\neu me ofereço todo a Vos,\\ne em prova de minha devocao para convosco,\\neu Vos consagro hoje meus olhos, meus ouvidos,\\nminha boca, meu coracao, inteiramente todo o meu ser.\\nE como assim sou Vosso,\\nconservai-me, guardai-me, como coisa e propriedade Vossa. Amem.",
+    "Oracao a Sao Miguel Arcanjo": "Sao Miguel Arcanjo, defendei-nos no combate,\\nSede nosso amparo contra as maldades e ciladas do diabo.\\nDeus o reprima, oramos suplicantes.\\nE Vos, Principe da Milicia Celestial,\\npelo poder divino, aterrai no inferno a Satanas\\ne a outros espiritos malignos\\nque andam pelo mundo para perdicao das almas. Amem.",
+    "Oracao a Nossa Senhora Desatadora dos Nos": "Em nome do Pai, do Filho e do Espirito Santo.\\nSanta Maria, Mae de Deus, Virgem cheia de graca,\\nVos sois a nossa desatadora dos nos.\\nCom as Vossas maos cheias do amor de Deus,\\nVos desatais os obstaculos de nosso caminho.\\nDesatai, Virgem e Mae, Santa e admiravel,\\ntodos os nos que criamos por vontade propria,\\ne todos os nos que impedem o nosso caminho.\\nLancai Vossos olhos de luz sobre eles,\\npara que todos os nos se desatem e,\\npara que, cheios de gratidao, possamos,\\npor Vossas maos, solucionar aquilo que nos parece impossivel. Amem.",
+    "Oracao a Santa Rita de Cassia": "O poderosa e gloriosa Santa Rita,\\neis a vossos pes uma alma desamparada\\nque necessitando de auxilio, a vos recorre com fe e esperanca,\\nque tens o titulo de Santa dos casos impossiveis.\\nO gloriosa Santa, olhai por minha causa,\\nintercedei junto a Deus para que me consiga\\na graca de que tanto necessito (faca seu pedido).\\nO Santa Rita, advogada dos impossiveis,\\nrogai por mim, rogai por todos nos. Amem!",
+    "Oracao para a Familia": "Jesus, Maria e Jose, modelos perfeitos de caridade e uniao,\\nalcancai-nos a graca de vos imitar.\\nLembrai-vos que somos todos vossos.\\nDefendei-nos de todo o perigo, socorrei-nos em nossas necessidades\\na fim de que, servindo-vos fielmente na terra,\\npossamos bendizer-vos eternamente no ceu.\\nAssim seja! Senhor, escutai nossa prece!",
+    "Oracao contra Enfermidade": "O querido e doce Menino Jesus,\\neis aqui um pobre enfermo que, movido pela mais viva fe,\\nsinceramente invoca Vossa divina ajuda em favor de sua enfermidade.\\nPonho em Vos toda a minha confianca.\\nSei que tudo podeis e sois muito misericordioso.\\nGrande pequenino, por Vossas divinas virtudes\\ne pelo imenso amor que nutris pelos sofredores,\\nouvi-me, bendizei-me, socorrei-me, consolai-me. Amem.\\nTres Gloria ao Pai.",
+    "Oracao a Santa Edwiges": "O Santa Edwiges,\\nvos que na terra fostes o amparo dos pobres,\\na ajuda dos desvalidos e o socorro dos endividados,\\nsuplicante te peco que sejais a minha advogada,\\npara que eu obtenha de Deus o auxilio de que urgentemente preciso (faca o pedido).\\nAlcancai-me tambem a suprema graca da salvacao eterna.\\nSanta Edwiges, rogai por nos. Amem.",
+    "Oracao pelas Vocacoes": "Filho de Deus, enviado pelo Pai para junto dos homens de todos os tempos!\\nInvocamos-Vos por meio de Maria, Vossa e nossa Mae;\\nfazei com que na Igreja nao faltem vocacoes,\\nem particular as de especial consagracao ao Vosso Reino.\\nJesus, unico Salvador do mundo!\\nPedimos-Vos pelos nossos irmaos e irmas,\\nque responderam sim ao Vosso apelo ao sacerdocio, a vida consagrada e a missao.\\nSenhor misericordioso e santo,\\ncontinuai a enviar novos trabalhadores para a messe do Vosso Reino!\\nVos, que sois Deus, vivei e reinais com o Pai e o Espirito Santo,\\nnos seculos dos seculos. Amem!",
+    "Oracao pelo Trabalhador": "Bom dia meu Deus!\\nAntes que comece este dia, quero falar com o Senhor.\\nDentro de mim existe uma gratidao imensa,\\nporque eu tenho um ganha-pao,\\nenquanto tantas pessoas sofrem com o desemprego e a fome.\\nMuitas vezes, quando chego em casa, sinto o meu corpo cansado,\\nmas ate por esse cansaco eu Lhe agradeco.\\nConceda-me, Senhor, aprender com as pessoas que trabalham comigo.\\nPermita-me ama-las, ainda que nao estejam abertas para o amor.\\nDerrame sobre o meu ambiente de trabalho a Sua paz.\\nQuero crescer com dignidade e respeito.\\nDe-me a coragem para prosseguir\\ne a certeza de que, atraves do meu trabalho,\\npoderei fazer com que um pedacinho do mundo se transforme num lugar melhor. Amem.",
+    "Oracao a Sao Bento": "Glorioso Sao Bento, que dedicaste toda sua vida a Cristo e aos irmaos,\\nprotegei-me contra os ataques do mal,\\nlivrai-me das insidias do inimigo,\\nconcedei-me a paz interior e a fortaleza diante das tempestades da vida.\\nO poderoso Sao Bento, defendei-me dos olhares invejosos\\ne ensinai-me a partilhar o amor com todos.\\nQue a Cruz do Senhor me guie pelos caminhos de luz.\\nAfasta de minha vida e de minha familia toda forca do mal. Amem!",
+    "Oracao pela Protecao": "Que Deus Pai, Senhor do Universo, Todo Poderoso,\\nnos proteja, nos ilumine e nos guarde.\\nQue os santos derramem sobre nos suas bencaos.\\nQue os anjos estejam sempre conosco, guardando nossas vidas,\\npara que por onde passarmos, a Sua luz chegue primeiro.\\nEm nome do Pai, do Filho e do Espirito Santo. Amem.",
+    "Oracao para Dormir": "Meu Pai, agora que as vozes silenciaram,\\naqui ao pe da cama minha alma se eleva a Ti.\\nDeposito nas Tuas maos a fadiga e a luta,\\nas alegrias e desencantos deste dia.\\nSe os nervos me trairam, se dei lugar ao rancor,\\nperdao, Senhor! Tem piedade de mim.\\nNesta noite nao quero entregar-me ao sono\\nsem sentir na minha alma a seguranca da Tua misericordia.\\nEu Te agradeco, meu Pai,\\nporque foste a sombra fresca que me cobriu durante todo este dia.\\nEnvia o anjo da paz a esta casa.\\nRelaxa meus nervos, sossega o meu espirito.\\nVela por mim, Pai querido,\\nenquanto eu me entrego confiante ao sono,\\ncomo uma crianca que dorme feliz em Teus bracos.\\nEm Teu Nome, Senhor, descansarei tranquilo. Amem.",
+    "Ato de Fe": "Meus Deus, creio firmemente em todas as verdades\\nque nos revelastes e que nos ensinais por Tua Igreja,\\nporque nao podes enganar nem nos enganar.",
+    "Ato de Esperanca": "Meu Deus, espero com firme confianca que me concederas,\\npelos meritos de Jesus Cristo, Tua graca neste mundo\\ne a felicidade eterna no outro,\\nporque assim o prometestes e sempre es fiel a Tuas promessas.",
+    "Ato de Caridade": "Meu Deus, amo-Te com todo meu coracao e sobre todas as coisas,\\nporque es infinitamente bom e amavel.\\nPrometo, com Tua graca, amar a meu proximo como a mim mesmo por Teu amor.",
+    "Ato de Contricao": "Meu Deus, tenho muita pena de ter pecado,\\npois mereci ser castigado por ter ofendido a Vos,\\nmeu Pai e meu Salvador.\\nPerdoai-me, Senhor. Nao quero mais pecar.",
+    "Invocacao ao Anjo da Guarda": "Anjo de Deus, que por Divina piedade,\\nsois minha guarda e protecao.\\nInspirai-me, Defendei-me, Dirigi-me, Governai-me, Protegei-me. Amem.",
+    "O Anjo do Senhor": "O anjo do Senhor anunciou a Maria...\\nE Ela concebeu do Espirito Santo.\\n(Reza-se a Ave-Maria 1x)\\nEis aqui a Serva do Senhor. Faca-se em mim segundo a Tua Palavra.\\n(Reza-se a Ave-Maria 1x)\\nE o Verbo se fez carne. E habitou entre nos.\\n(Reza-se a Ave-Maria 1x)\\nOREMOS: Infundi Senhor, nos Vos suplicamos,\\na Vossa graca em nossas almas,\\npara que nos, pela Anunciacao do Anjo,\\nconhecamos a Encarnacao de Jesus Cristo Vosso Filho,\\ne pela Sua Paixao e Morte na Cruz,\\nsejamos conduzidos a gloria na ressurreicao.\\n(Reza-se o Gloria ao Pai 1x). Amem."
+
 }
 
 NOVENAS = {
@@ -492,6 +516,20 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
             st.session_state.novena_aberta = None
             st.session_state.novena_dia = None
             st.rerun()
+        if st.button("📖 Catecismo", use_container_width=True, key="btn_catecismo"):
+            st.session_state.aba_chat = "catecismo"
+            st.rerun()
+
+        st.markdown("<hr style='border-color:#3e3e3e;margin:0.8rem 0;'>", unsafe_allow_html=True)
+
+        # ── SOBRE / DOACOES ──
+        st.markdown("<p style='color:#c8a96e;font-weight:700;margin:0.3rem 0;'>ℹ️ SOBRE</p>", unsafe_allow_html=True)
+        if st.button("⭐ Creditos", use_container_width=True, key="btn_creditos"):
+            st.session_state.aba_chat = "creditos"
+            st.rerun()
+        if st.button("💛 Doacoes", use_container_width=True, key="btn_doacoes"):
+            st.session_state.aba_chat = "doacoes"
+            st.rerun()
 
         st.markdown("<hr style='border-color:#3e3e3e;margin:0.8rem 0;'>", unsafe_allow_html=True)
 
@@ -854,6 +892,180 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
         st.stop()
 
 
+
+    # ── ABA CATECISMO ──
+    if st.session_state.aba_chat == "catecismo":
+        st.markdown("<br>", unsafe_allow_html=True)
+
+        PILARES = {
+            "I. A Profissao da Fe (O Credo)": [
+                ("Par. 26", "Deus vem ao encontro do homem. A fé crista não é antes de tudo um conjunto de verdades a crer, mas um encontro com uma Pessoa viva: Jesus Cristo."),
+                ("Par. 27", "O desejo de Deus esta inscrito no coracao do homem, porque o homem foi criado por Deus e para Deus. Deus nao cessa de atrair o homem para Si."),
+                ("Par. 42", "Deus transcende toda criatura. E preciso purificar continuamente nossa linguagem de tudo o que ela tem de limitado, de figurado, de imperfeito."),
+                ("Par. 150", "A fe e antes de tudo uma adesao pessoal do homem a Deus; e ao mesmo tempo, e inseparavel disso, o assentimento livre a toda a verdade que Deus revelou."),
+                ("Par. 153", "A fe e um dom de Deus, uma virtude sobrenatural infundida por Ele. Para que esta fe exista, sao necessarios a graca preveniente e a ajuda interior do Espirito Santo."),
+                ("Par. 166", "A fe e um ato pessoal: a resposta livre do homem a iniciativa de Deus que se revela. Mas a fe nao e um ato isolado. Ninguem pode crer sozinho."),
+                ("Par. 185", "Credo — eu creio. Este simbolo e uma sintese da nossa fe. As primeiras comunidades cristas formularam profissoes de fe breves para exprimir sua adesao a Cristo."),
+                ("Par. 198", "Nossa profissao de fe comeca por Deus, pois Deus e o Primeiro e o Ultimo, o Principio e o Fim de tudo. O Credo comeca com Deus Pai, pois o Pai e a primeira Pessoa divina da Santissima Trindade."),
+                ("Par. 232", "Os cristaos sao batizados em nome do Pai e do Filho e do Espirito Santo. Antes de receber o Batismo, respondem tres vezes: Creio, as tres perguntas sobre sua crença no Pai, no Filho e no Espirito Santo."),
+                ("Par. 234", "O misterio da Santissima Trindade e o misterio central da fe e da vida crista. E o misterio de Deus em Si mesmo."),
+                ("Par. 422", "O Filho de Deus se fez homem para nos salvar. A Encarnacao — o fato de o Filho de Deus ter assumido uma natureza humana para realizar nela a salvacao de todos os homens — e a verdade central da fe crista."),
+                ("Par. 456", "Com a Palavra feita carne, a luz da Sua gloria brilhou de modo novo nos olhos do nosso espirito, de modo que, contemplando a Deus visivelmente, sejamos por Ele arrebatados ao amor das coisas invisiveis."),
+                ("Par. 484", "A Anunciacao a Maria inaugura a plenitude dos tempos, ou seja, o cumprimento das promessas e das preparacoes. Maria foi convidada a conceber Aquele em quem habitaria corporalmente toda a plenitude da divindade."),
+                ("Par. 638", "A Ressurreicao de Cristo e a verdade culminante da nossa fe em Cristo. Ela e crida e vivida pela comunidade crista como verdade central."),
+                ("Par. 668", "Cristo morreu e voltou a vida para ser Senhor tanto dos mortos como dos vivos. Sua ascensao ao Ceu significa Sua participacao, em Sua humanidade, no poder e na autoridade do proprio Deus."),
+                ("Par. 683", "O Espirito Santo e enviado para santificar e vivificar a Igreja. O Espirito e o doador da vida; por Ele todos os fieis nascem de novo pela agua e pelo Espirito."),
+                ("Par. 748", "Cristo e a luz das nacoes. Esta luz de Cristo brilha no rosto da Igreja. A Igreja e, em Cristo, como que o sacramento, ou seja, o sinal e o instrumento da uniao intima com Deus e da unidade de todo o genero humano."),
+                ("Par. 988", "O dogma crista da ressurreicao dos mortos e uma verdade essencial da fe. A ressurreicao dos mortos e a ressurreicao de pessoas reais, que sao reconhecidas como tais."),
+                ("Par. 1020", "O cristao que une sua propria morte a de Jesus encarece nela a plenitude do misterio pascal. Haja vista o que Cristo nos disse: Quem cre em Mim, mesmo que morra, viverá."),
+                ("Par. 1023", "Os que morrem na graca e na amizade de Deus e estao perfeitamente purificados vivem para sempre com Cristo. Sao semelhantes a Deus, pois O veem tal como Ele e, face a face."),
+            ],
+            "II. A Celebracao do Misterio Crista (Os Sacramentos)": [
+                ("Par. 1066", "Na liturgia da Igreja, Cristo significa e realiza principalmente Seu misterio pascal. Durante Sua vida terrena, Jesus anunciava Sua Pascoa e a ela se preparava. Ao morrer, ressuscitar e ser glorificado, Ele a realizou uma vez por todas."),
+                ("Par. 1113", "Toda a vida liturgica da Igreja gira em torno do sacrificio eucaristico e dos sacramentos. Ha na Igreja sete sacramentos: o Batismo, a Crisma, a Eucaristia, a Penitencia, a Uncao dos Enfermos, a Ordem e o Matrimonio."),
+                ("Par. 1127", "Os sacramentos sao eficazes porque neles age o proprio Cristo. Cristo batiza, Cristo age nos sacramentos para comunicar a graca que o sacramento significa."),
+                ("Par. 1213", "O santo Batismo e o fundamento de toda a vida crista, o portico da vida no Espirito e a porta que abre o acesso aos outros sacramentos. Pelo Batismo somos libertados do pecado e regenerados como filhos de Deus."),
+                ("Par. 1244", "A imersaão na agua simboliza o sepultamento com Cristo. Sair da agua e como a ressurreicao com Cristo: nascer para uma vida nova. O Batismo e o sacramento da regeneracao pela agua e no Espirito."),
+                ("Par. 1285", "Com o Batismo e a Eucaristia, o sacramento da Crisma constitui o conjunto dos sacramentos da inicacao crista. Fortalece a graca batismal: e o sacramento que da o Espirito Santo para nos inserir mais plenamente na Igreja."),
+                ("Par. 1322", "A sagrada Eucaristia conclui a inicacao crista. Os que foram elevados a dignidade do sacerdocio real pelo Batismo e configurados mais profundamente a Cristo pela Crisma, participam por intermedio da Eucaristia com toda a comunidade no proprio sacrificio do Senhor."),
+                ("Par. 1324", "A Eucaristia e a fonte e o apice de toda a vida crista. Os outros sacramentos e todos os ministerios eclesiais estao ligados a Eucaristia e a ela se ordenam."),
+                ("Par. 1339", "Jesus escolheu o momento da Pascoa para realizar o que havia anunciado em Cafarnau: dar a Seus discipulos Seu Corpo e Seu Sangue. Na vespera de Sua Paixao, estando sentado a mesa com Seus Apostolos, Jesus instituiu a Eucaristia."),
+                ("Par. 1422", "Os que se aproximam do sacramento da Penitencia obtem da misericordia de Deus o perdoão das ofensas feitas a Ele; ao mesmo tempo, reconciliam-se com a Igreja, a qual feriram com seus pecados."),
+                ("Par. 1446", "Cristo instituiu o sacramento da Penitencia para todos os membros pecadores de Sua Igreja; antes de tudo para os que, depois do Batismo, caem no pecado grave e assim perdem a graca batismal."),
+                ("Par. 1499", "Pela santa Uncao dos Enfermos e pela oracao dos sacerdotes, a Igreja toda confia os doentes ao Senhor sofredor e glorificado para que Ele os alivie e os salve."),
+                ("Par. 1601", "A alianca matrimonial, pela qual o homem e a mulher constituem entre si uma intima comunhao de vida e de amor, foi fundada e dotada de suas leis proprias pelo Criador. Por sua natureza, e ordenada ao bem dos conjuges e a geracao e educacao dos filhos."),
+            ],
+            "III. A Vida em Cristo (Os Mandamentos)": [
+                ("Par. 1691", "Cristao, conhece tua dignidade. Tornaste-te participe da natureza divina; nao voltes a baixeza da tua antiga conduta. Lembra quem e tua Cabeca e de qual Corpo eres membro."),
+                ("Par. 1700", "A dignidade da pessoa humana tem seu fundamento na sua criacao a imagem e semelhanca de Deus. Dotada de alma espiritual e imortal, de inteligencia e de livre-arbitrio, a pessoa humana e ordenada a Deus e chamada a Ele."),
+                ("Par. 1730", "Deus criou o homem racional e, por conseguinte, livre. A liberdade e o poder, radicado na razao e na vontade, de agir ou nao agir, de fazer isto ou aquilo, de executar assim por si mesmo acoes deliberadas."),
+                ("Par. 1776", "A consciencia moral e um juizo da razao pelo qual a pessoa humana reconhece a qualidade moral de um ato concreto que vai praticar, esta praticando ou praticou."),
+                ("Par. 1803", "Uma virtude e uma disposicao habitual e firme para fazer o bem. A virtude permite a pessoa nao somente praticar atos bons, mas dar o melhor de si mesma."),
+                ("Par. 1822", "A caridade e a virtude teologal pela qual amamos a Deus sobre todas as coisas, por amor d'Ele mesmo, e o nosso proximo como a nos mesmos por amor de Deus."),
+                ("Par. 1849", "O pecado e uma falta contra a razao, a verdade, a consciencia reta; e uma transgressao em relacao ao amor verdadeiro para com Deus e para com o proximo. Ofende Deus e rompe a amizade com Ele."),
+                ("Par. 1855", "O pecado mortal destroi a caridade no coracao do homem pelo grave desprezo de Deus, afasta o homem de Deus, que e seu fim ultimo e sua beatitude. O pecado venial deixa subsistir a caridade, mas a ofende e a machuca."),
+                ("Par. 1968", "A lei evangelica cumpre, purifica, supera e eleva a lei antiga. As Bem-aventurancas revelam uma ordem de santidade. Prometem as bencaos e as recompensas ja entrevistas por Abraham. Realizam-nas e superam-nas."),
+                ("Par. 2052", "Jesus resume os mandamentos dizendo: Deves amar ao Senhor teu Deus com todo o teu coracao, com toda a tua alma e com todo o teu espirito. Este e o maior e o primeiro mandamento. O segundo e semelhante a este: Deves amar ao teu proximo como a ti mesmo."),
+                ("Par. 2083", "Jesus resumiu as obrigacoes do homem para com Deus no mandamento de amar a Deus de todo o coracao, com toda a alma e com toda a mente. Ao mesmo tempo, dirigiu a atencao para a autenticidade do culto divino."),
+                ("Par. 2196", "Em resposta a pergunta sobre o primeiro dos mandamentos, Jesus diz: O primeiro e: Ouve, Israel! O Senhor nosso Deus e o unico Senhor; e tu amaras o Senhor teu Deus de todo o teu coracao, de toda a tua alma, de todo o teu espirito e de todas as tuas forcas."),
+                ("Par. 2258", "A vida humana e sagrada porque, desde a sua origem, importa a acao criadora de Deus e permanece para sempre em relacao especial com o Criador, seu unico fim. So Deus e o Senhor da vida do seu inicio ate ao seu termo."),
+                ("Par. 2302", "O Senhor diz: Todo aquele que se encoleriza com seu irmao sera submetido ao juizo. A ira e o desejo de vinganca contra aquele que se considera responsavel por um dano sofrido. Jesus exige a reconciliacao."),
+                ("Par. 2401", "O setimo mandamento proibe tirar ou reter injustamente os bens do proximo e prejudica-lo de qualquer forma em seus bens. Prescreve a justica e a caridade na gestao dos bens terrestres."),
+            ],
+            "IV. A Oracao Crista": [
+                ("Par. 2558", "O grande drama da oracao e perseverarmos nela ate o fim e acreditarmos na eficacia da oracao. A oracao e um dom de Deus que transborda para o coracao do homem."),
+                ("Par. 2559", "A oracao e a elevacao da alma a Deus ou o pedido a Deus de bens conformes com a Sua vontade. Ela e sempre dom de Deus que vem ao encontro do homem."),
+                ("Par. 2566", "Deus chama o homem primeiro. Quer o homem se esqueca do seu Criador ou se esconda d'Ele, quer corra atras de seus idolos ou acuse a divindade de o ter abandonado, o Deus vivo e verdadeiro nao cessa de chamar cada pessoa ao encontro misterioso da oracao."),
+                ("Par. 2590", "O profeta eleva sua oracao a Deus e intercede por ele. A oracao prophetica e intercessao. E um dom especial de Deus, uma graca que Ele concede a quem escolhe."),
+                ("Par. 2607", "Jesus ora diante dos momentos decisivos de Sua missao: antes do Seu batismo e da Sua transfiguracao, na agonia do Getsemani, e ainda na Cruz."),
+                ("Par. 2623", "A Igreja comunica a seus filhos as formas de oracao: a bencao e a adoracao, a peticao, a intercessao, a acao de gracas e o louvor."),
+                ("Par. 2650", "A oracao nao se reduz ao jorro espontaneo de um impulso interior: para orar, e preciso querer orar. Tambem nao basta saber o que as Escrituras revelam sobre a oracao; e preciso aprender a orar."),
+                ("Par. 2697", "A oracao e a vida do coracao novo. Deve animar-nos em todo momento. Contudo, esquecemos d'Aquele que e nossa vida e nosso tudo. Por isso os Padres espirituais insistem na oracao como dever primeiro do cristao."),
+                ("Par. 2759", "Jesus nos ensinou a orar, respondendo ao pedido de um de Seus discipulos: Senhor, ensina-nos a orar, como Joao ensinou a seus discipulos. Ele nos disse entao o Pai Nosso, a mais perfeita das oracoes."),
+                ("Par. 2765", "A oracao dominical e verdadeiramente a sintese de todo o Evangelho. Desde que o Senhor a formulou, ela passou a ser o resumo de toda a fe e toda a esperanca do povo de Deus."),
+                ("Par. 2777", "Na liturgia judaica, este titulo e reservado ao Deus de Israel. Ao dizer Pai Nosso, Jesus nos revela que Deus e verdadeiramente Pai e que somos verdadeiramente Seus filhos."),
+                ("Par. 2803", "Depois de nos colocarmos sob a presenca de Deus e de o adorarmos, o Espirito de adocao suscita em nossos coracoes sete pedidos, sete bencaos. Os tres primeiros, mais teologicos, nos atraem para a gloria do Pai; os quatro ultimos oferecem ao Pai nossos miserias e nossas expectativas."),
+                ("Par. 2827", "Seja feita a Tua vontade assim na terra como no Ceu. Com Jesus, sabemos que Sua vontade e que todos os homens sejam salvos. E nossa oracao que tudo aquilo que queremos esteja conforme a Sua vontade."),
+                ("Par. 2850", "O ultimo pedido do Pai Nosso e tambem levado na oracao de Jesus ao Pai. Livrai-nos do Mal. O mal de que nos pede para ser libertados nao e uma abstracao, mas uma pessoa: Satanas, o Maligno, o anjo que se ops a Deus."),
+                ("Par. 2856", "No fim da oracao dominical, ha uma doxologia: Teu e o reino, o poder e a gloria, para sempre. A Igreja acrescenta Amem, que ratifica tudo o que esta contido na oracao ensinada por Deus."),
+            ],
+        }
+
+        if "cat_pilar" not in st.session_state:
+            st.session_state.cat_pilar = None
+
+        if st.session_state.cat_pilar is None:
+            st.markdown("""
+            <div style="background:rgba(255,255,255,0.92);border-radius:16px;padding:1.5rem;margin-top:1rem;border:1px solid #e8e0d0;text-align:center;">
+                <h2 style="color:#c8a96e;margin:0 0 0.3rem 0;">📖 Catecismo da Igreja Catolica</h2>
+                <p style="color:#888;font-size:0.85rem;margin:0;">Artigos selecionados — Escolha um dos 4 pilares</p>
+            </div>
+            """, unsafe_allow_html=True)
+            st.markdown("<br>", unsafe_allow_html=True)
+            for pilar in PILARES.keys():
+                num = pilar.split(".")[0].strip()
+                nome = pilar.split("(")[0].split(".")[1].strip() if "(" in pilar else pilar
+                desc = pilar.split("(")[1].replace(")", "") if "(" in pilar else ""
+                if st.button(f"{pilar}", use_container_width=True, key=f"pilar_{num}"):
+                    st.session_state.cat_pilar = pilar
+                    st.rerun()
+        else:
+            pilar_atual = st.session_state.cat_pilar
+            artigos = PILARES[pilar_atual]
+            st.markdown(f"""
+            <div style="background:rgba(255,255,255,0.92);border-radius:16px;padding:1.2rem;margin-top:1rem;border:1px solid #e8e0d0;text-align:center;">
+                <h3 style="color:#c8a96e;margin:0;">📖 {pilar_atual}</h3>
+            </div>
+            """, unsafe_allow_html=True)
+            st.markdown("<br>", unsafe_allow_html=True)
+            for num, texto in artigos:
+                with st.expander(f"📜 {num}"):
+                    st.markdown(f"""
+                    <div style="background:rgba(255,255,255,0.9);border-radius:12px;padding:1rem;border-left:4px solid #c8a96e;">
+                        <p style="color:#1a1a1a;line-height:1.8;margin:0;font-size:0.95rem;">{texto}</p>
+                    </div>
+                    """, unsafe_allow_html=True)
+            st.markdown("<br>", unsafe_allow_html=True)
+            if st.button("← Voltar aos Pilares", use_container_width=True):
+                st.session_state.cat_pilar = None
+                st.rerun()
+        st.stop()
+
+    # ── ABA CREDITOS ──
+    if st.session_state.aba_chat == "creditos":
+        st.markdown("<br>", unsafe_allow_html=True)
+        st.markdown("""
+        <div style="background:rgba(255,255,255,0.92);border-radius:16px;padding:2rem;margin-top:1rem;border:1px solid #e8e0d0;text-align:center;">
+            <h2 style="color:#c8a96e;margin:0 0 0.5rem 0;">✝️ Virtual Catholics</h2>
+            <p style="color:#888;font-size:0.85rem;margin:0 0 1.5rem 0;">Assistente Catolico Digital</p>
+            <div style="background:#f9f5ee;border-radius:12px;padding:1.2rem;margin-bottom:1rem;border:1px solid #e8e0d0;">
+                <p style="color:#c8a96e;font-weight:700;margin:0 0 0.3rem 0;">👨‍💻 Criador</p>
+                <p style="color:#1a1a1a;margin:0;font-size:1rem;font-weight:600;">Pedro</p>
+                <p style="color:#666;margin:0;font-size:0.85rem;">Desenvolvedor e idealizador do Virtual Catholics,<br>movido pela fe catolica e pelo desejo de levar<br>a fé digital a todos os cristaos.</p>
+            </div>
+            <div style="background:#f9f5ee;border-radius:12px;padding:1.2rem;margin-bottom:1rem;border:1px solid #e8e0d0;">
+                <p style="color:#c8a96e;font-weight:700;margin:0 0 0.3rem 0;">💡 Agradecimento Especial</p>
+                <p style="color:#1a1a1a;margin:0;font-size:1rem;font-weight:600;">Joao Lucas</p>
+                <p style="color:#666;margin:0;font-size:0.85rem;">Amigo e colaborador que contribuiu com ideias<br>fundamentais para o desenvolvimento do projeto.</p>
+            </div>
+            <div style="background:#f9f5ee;border-radius:12px;padding:1.2rem;margin-bottom:1.5rem;border:1px solid #e8e0d0;">
+                <p style="color:#c8a96e;font-weight:700;margin:0 0 0.3rem 0;">🙏 Dedicado a</p>
+                <p style="color:#1a1a1a;margin:0;font-size:0.9rem;">A Deus, a Nossa Senhora e a todos os cristaos<br>que buscam fortalecer sua fe no mundo digital.</p>
+            </div>
+            <p style="color:#aaa;font-size:0.75rem;margin:0;">Virtual Catholics © 2025 — Feito com fe e amor ✝️</p>
+        </div>
+        """, unsafe_allow_html=True)
+        st.stop()
+
+    # ── ABA DOACOES ──
+    if st.session_state.aba_chat == "doacoes":
+        st.markdown("<br>", unsafe_allow_html=True)
+        st.markdown("""
+        <div style="background:rgba(255,255,255,0.92);border-radius:16px;padding:2rem;margin-top:1rem;border:1px solid #e8e0d0;text-align:center;">
+            <h2 style="color:#c8a96e;margin:0 0 0.5rem 0;">💛 Apoie o Virtual Catholics</h2>
+            <p style="color:#666;font-size:0.9rem;margin:0 0 1.5rem 0;">Sua doacao ajuda a manter e expandir este ministerio digital</p>
+
+            <div style="background:#fffbf0;border-radius:12px;padding:1.2rem;margin-bottom:1rem;border:1px solid #f0e0a0;text-align:left;">
+                <p style="color:#c8a96e;font-weight:700;margin:0 0 0.8rem 0;text-align:center;">Para que vao as doacoes?</p>
+                <p style="color:#1a1a1a;margin:0 0 0.4rem 0;">🌐 <b>Manter o site no ar</b> — servidores e hospedagem</p>
+                <p style="color:#1a1a1a;margin:0 0 0.4rem 0;">🔗 <b>Dominio proprio</b> — um endereco exclusivo para o app</p>
+                <p style="color:#1a1a1a;margin:0 0 0.4rem 0;">⚙️ <b>Desenvolvimento</b> — novas funcionalidades e melhorias</p>
+                <p style="color:#1a1a1a;margin:0;">📱 <b>Expansao</b> — para que mais cristaos possam ser alcancados</p>
+            </div>
+
+            <div style="background:#f0fff4;border-radius:12px;padding:1.5rem;margin-bottom:1rem;border:2px solid #c8a96e;">
+                <p style="color:#c8a96e;font-weight:700;margin:0 0 0.5rem 0;font-size:1.1rem;">📱 Chave Pix</p>
+                <p style="color:#1a1a1a;font-size:1.3rem;font-weight:700;margin:0 0 0.5rem 0;letter-spacing:1px;">61 98510-1908</p>
+                <p style="color:#888;font-size:0.8rem;margin:0;">Qualquer valor e uma bencao enorme! 🙏</p>
+            </div>
+
+            <p style="color:#aaa;font-size:0.8rem;margin:0;">
+                Que Deus abencoe imensamente cada pessoa que contribui<br>
+                com este ministerio. Obrigado de coracao! ✝️
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
+        st.stop()
 
     if not st.session_state.chat_atual or st.session_state.chat_atual not in st.session_state.chats:
         st.markdown(f"""
