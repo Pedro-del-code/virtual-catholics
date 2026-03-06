@@ -20,107 +20,77 @@ if "aba_login" not in st.session_state:
 
 st.markdown(f"""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
-* {{ font-family: 'Inter', sans-serif; box-sizing: border-box; margin:0; padding:0; }}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+* {{ font-family: 'Inter', sans-serif; box-sizing: border-box; }}
 #MainMenu, footer, header {{ visibility: hidden; }}
-.block-container {{ padding: 1rem 1rem 160px 1rem !important; max-width: 700px !important; }}
+.block-container {{ padding: 0 !important; max-width: 100% !important; }}
 
-.stApp {{ background-color: #ffffff; }}
-
-.nossa-senhora-bg {{
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
+/* Fundo branco com Nossa Senhora */
+.stApp {{
+    background-color: #ffffff;
     background-image: url('{NOSSA_SENHORA}');
-    background-size: 85% auto;
+    background-size: 90% auto;
     background-position: center center;
     background-repeat: no-repeat;
-    opacity: 0.2;
-    z-index: 0;
-    pointer-events: none;
+    background-attachment: fixed;
 }}
 
-.auth-wrapper {{
-    max-width: 360px;
-    margin: 2rem auto 0 auto;
-    padding: 0 1rem;
-    text-align: center;
-    position: relative;
-    z-index: 1;
+/* Esconde TUDO do streamlit no login */
+.stTextInput > label {{ display: none; }}
+.stTextInput > div > div > input {{
+    background: rgba(255,255,255,0.9) !important;
+    border: 1.5px solid #e0d5c0 !important;
+    border-radius: 14px !important;
+    color: #1a1a1a !important;
+    font-size: 1rem !important;
+    padding: 0.9rem 1rem !important;
+    width: 100% !important;
 }}
-.auth-title {{ color: #1a1a1a; font-size: 1.7rem; font-weight: 700; margin: 0.5rem 0 0.1rem 0; }}
-.auth-subtitle {{ color: #c8a96e; font-size: 0.8rem; letter-spacing: 1px; margin-bottom: 1.2rem; }}
+.stTextInput > div > div > input:focus {{
+    border-color: #c8a96e !important;
+    box-shadow: 0 0 0 2px rgba(200,169,110,0.2) !important;
+}}
+.stTextInput > div > div > input::placeholder {{ color: #aaa !important; }}
 
-.tab-bar {{
-    display: flex;
-    gap: 0.5rem;
-    margin-bottom: 1.2rem;
-    background: #f0ebe0;
-    border-radius: 12px;
-    padding: 4px;
-}}
-.tab-btn {{
-    flex: 1;
-    padding: 0.6rem;
-    border-radius: 9px;
-    border: none;
-    font-size: 0.95rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s;
-}}
-.tab-btn.active {{
-    background: #fff;
-    color: #1a1a1a;
-    box-shadow: 0 1px 6px rgba(0,0,0,0.1);
-    font-weight: 600;
-}}
-.tab-btn.inactive {{
-    background: transparent;
-    color: #888;
+/* Form sem borda */
+div[data-testid="stForm"] {{
+    border: none !important;
+    padding: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
 }}
 
-.auth-box {{
-    background: rgba(255,255,255,0.88);
-    border: 1px solid #e8e0d0;
-    border-radius: 20px;
-    padding: 1.5rem 1.2rem;
-    box-shadow: 0 4px 30px rgba(180,140,60,0.1);
+/* Botão principal dourado */
+.stFormSubmitButton > button {{
+    background: linear-gradient(135deg, #c8a96e, #a07840) !important;
+    border: none !important;
+    border-radius: 14px !important;
+    color: #fff !important;
+    font-size: 1rem !important;
+    font-weight: 700 !important;
+    width: 100% !important;
+    padding: 0.9rem !important;
+    letter-spacing: 0.5px !important;
+    box-shadow: 0 4px 15px rgba(200,169,110,0.4) !important;
+}}
+.stFormSubmitButton > button:hover {{
+    background: linear-gradient(135deg, #d4b87a, #b08850) !important;
+    transform: translateY(-1px) !important;
 }}
 
-.auth-input {{
-    width: 100%;
-    background: #f5f0e8;
-    border: 1px solid #d4c5a0;
-    border-radius: 12px;
-    padding: 0.8rem 1rem;
-    font-size: 1rem;
-    color: #1a1a1a;
-    margin-bottom: 0.8rem;
-    outline: none;
-    font-family: 'Inter', sans-serif;
-}}
-.auth-input::placeholder {{ color: #999; }}
-
-.auth-btn {{
-    width: 100%;
-    background: linear-gradient(135deg, #c8a96e, #a07840);
-    border: none;
-    border-radius: 12px;
-    padding: 0.85rem;
-    color: #fff;
-    font-size: 1rem;
+/* Links criar conta */
+.link-criar {{
+    color: #c8a96e;
+    font-size: 0.9rem;
     font-weight: 600;
     cursor: pointer;
-    margin-top: 0.3rem;
-    letter-spacing: 0.3px;
+    text-decoration: underline;
+    background: none;
+    border: none;
+    padding: 0;
 }}
-.auth-btn:hover {{ background: linear-gradient(135deg, #d4b87a, #b08850); }}
-
-.error-msg {{ color: #cc3333; font-size: 0.85rem; margin-top: 0.5rem; }}
-.success-msg {{ color: #2a7a2a; font-size: 0.85rem; margin-top: 0.5rem; }}
 
 /* CHAT */
-.chat-app {{ background-color: #212121 !important; }}
 .msg-user {{ display: flex; justify-content: flex-end; margin: 0.8rem 0; }}
 .bubble-user {{
     background-color: #2f2f2f; color: #ececec;
@@ -196,67 +166,69 @@ if "cliente" not in st.session_state:
 
 # ── LOGIN ─────────────────────────────────────────────────────────────────────
 if not st.session_state.logado:
-    st.markdown('<div class="nossa-senhora-bg"></div>', unsafe_allow_html=True)
 
-    aba = st.session_state.aba_login
-    tab_entrar = "active" if aba == "entrar" else "inactive"
-    tab_criar = "active" if aba == "criar" else "inactive"
-
-    st.markdown(f"""
-    <div class="auth-wrapper">
-        <img src="{LOGO}" style="width:60px;height:60px;border-radius:50%;object-fit:cover;"/>
-        <div class="auth-title">Virtual Catholics</div>
-        <div class="auth-subtitle">✝️ ASSISTENTE CATÓLICO</div>
-        <div class="tab-bar">
-            <div class="tab-btn {tab_entrar}">Entrar</div>
-            <div class="tab-btn {tab_criar}">Criar conta</div>
+    col1, col2, col3 = st.columns([1, 4, 1])
+    with col2:
+        st.markdown(f"""
+        <div style="text-align:center; padding: 3rem 0 1.5rem 0;">
+            <img src="{LOGO}" style="width:70px;height:70px;border-radius:50%;object-fit:cover;box-shadow:0 4px 20px rgba(200,169,110,0.3);"/>
+            <div style="font-size:1.8rem;font-weight:700;color:#1a1a1a;margin:0.7rem 0 0.2rem 0;">Virtual Catholics</div>
+            <div style="color:#c8a96e;font-size:0.8rem;letter-spacing:1.5px;font-weight:500;">✝️ ASSISTENTE CATÓLICO</div>
         </div>
-        <div class="auth-box">
-    """, unsafe_allow_html=True)
+        """, unsafe_allow_html=True)
 
-    if aba == "entrar":
-        with st.form("form_entrar"):
-            u = st.text_input("", placeholder="Usuário", label_visibility="collapsed")
-            s = st.text_input("", placeholder="Senha", type="password", label_visibility="collapsed")
-            submitted = st.form_submit_button("Entrar →")
-            if submitted:
-                usuarios = carregar_usuarios()
-                if u in usuarios and usuarios[u] == hash_senha(s):
-                    st.session_state.logado = True
-                    st.session_state.username = u
-                    st.session_state.chats = carregar_chats(u)
-                    st.rerun()
-                else:
-                    st.markdown('<p class="error-msg">Usuário ou senha incorretos!</p>', unsafe_allow_html=True)
-    else:
-        with st.form("form_criar"):
-            nome_n = st.text_input("", placeholder="Seu nome", label_visibility="collapsed")
-            user_n = st.text_input("", placeholder="Escolha um usuário", label_visibility="collapsed")
-            senha_n = st.text_input("", placeholder="Escolha uma senha", type="password", label_visibility="collapsed")
-            submitted = st.form_submit_button("Criar conta →")
-            if submitted:
-                if nome_n.strip() and user_n.strip() and senha_n.strip():
+        if st.session_state.aba_login == "entrar":
+            with st.form("form_login"):
+                u = st.text_input("", placeholder="👤  Usuário", label_visibility="collapsed")
+                s = st.text_input("", placeholder="🔒  Senha", type="password", label_visibility="collapsed")
+                submitted = st.form_submit_button("Entrar")
+                if submitted:
                     usuarios = carregar_usuarios()
-                    if user_n in usuarios:
-                        st.markdown('<p class="error-msg">Usuário já existe!</p>', unsafe_allow_html=True)
-                    else:
-                        usuarios[user_n] = hash_senha(senha_n)
-                        salvar_usuarios(usuarios)
-                        salvar_memoria(user_n, {"nome": nome_n.strip(), "fatos": []})
+                    if u in usuarios and usuarios[u] == hash_senha(s):
                         st.session_state.logado = True
-                        st.session_state.username = user_n
-                        st.session_state.chats = {}
+                        st.session_state.username = u
+                        st.session_state.chats = carregar_chats(u)
                         st.rerun()
-                else:
-                    st.markdown('<p class="error-msg">Preencha todos os campos!</p>', unsafe_allow_html=True)
+                    else:
+                        st.error("Usuário ou senha incorretos!")
 
-    st.markdown('</div></div>', unsafe_allow_html=True)
+            st.markdown("<br>", unsafe_allow_html=True)
+            col_a, col_b = st.columns(2)
+            with col_a:
+                if st.button("Criar conta", use_container_width=True):
+                    st.session_state.aba_login = "criar"
+                    st.rerun()
 
+        else:
+            with st.form("form_criar"):
+                nome_n = st.text_input("", placeholder="👤  Seu nome", label_visibility="collapsed")
+                user_n = st.text_input("", placeholder="🔑  Escolha um usuário", label_visibility="collapsed")
+                senha_n = st.text_input("", placeholder="🔒  Escolha uma senha", type="password", label_visibility="collapsed")
+                submitted = st.form_submit_button("Criar conta")
+                if submitted:
+                    if nome_n.strip() and user_n.strip() and senha_n.strip():
+                        usuarios = carregar_usuarios()
+                        if user_n in usuarios:
+                            st.error("Usuário já existe!")
+                        else:
+                            usuarios[user_n] = hash_senha(senha_n)
+                            salvar_usuarios(usuarios)
+                            salvar_memoria(user_n, {"nome": nome_n.strip(), "fatos": []})
+                            st.session_state.logado = True
+                            st.session_state.username = user_n
+                            st.session_state.chats = {}
+                            st.rerun()
+                    else:
+                        st.error("Preencha todos os campos!")
 
+            st.markdown("<br>", unsafe_allow_html=True)
+            if st.button("← Voltar para login", use_container_width=True):
+                st.session_state.aba_login = "entrar"
+                st.rerun()
 
 # ── CHAT ──────────────────────────────────────────────────────────────────────
 else:
-    st.markdown('<style>.stApp { background-color: #212121 !important; color: #ececec !important; }</style>', unsafe_allow_html=True)
+    st.markdown('<style>.stApp { background-color: #212121 !important; background-image: none !important; color: #ececec !important; }</style>', unsafe_allow_html=True)
     username = st.session_state.username
     memoria = carregar_memoria(username)
     fatos_str = "\n".join(memoria["fatos"]) if memoria["fatos"] else "Nenhum ainda."
