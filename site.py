@@ -720,7 +720,7 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
             }
             st.session_state.chat_atual = novo_id
             st.session_state.aba_chat = None
-            st.session_state.pendente = f"Me conte sobre {santo_nome}: quem foi, sua historia de vida, seus milagres, por que foi canonizado e o que podemos aprender com seu exemplo de fe."
+            st.session_state.pendente = f"O santo(a) de hoje, {hoje.day}/{hoje.month}, é {santo_nome}. Me conte especificamente sobre {santo_nome}: quem foi, sua historia de vida, seus milagres, por que foi canonizado e o que podemos aprender com seu exemplo de fe. NAO confunda com outros santos."
             st.rerun()
         st.stop()
 
