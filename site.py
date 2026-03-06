@@ -39,6 +39,26 @@ st.markdown("""
 .msg-bot { display: flex; justify-content: flex-start; gap: 0.6rem; margin: 0.8rem 0; align-items: flex-start; }
 .bubble-bot { color: #ececec; font-size: 0.95rem; line-height: 1.7; max-width: 85%; word-break: break-word; }
 
+/* Animação dos pontinhos */
+.typing {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 0.5rem 0;
+}
+.typing span {
+    width: 8px; height: 8px;
+    background: #888;
+    border-radius: 50%;
+    animation: bounce 1.2s infinite;
+}
+.typing span:nth-child(2) { animation-delay: 0.2s; }
+.typing span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes bounce {
+    0%, 80%, 100% { transform: scale(0.7); opacity: 0.4; }
+    40% { transform: scale(1); opacity: 1; }
+}
+
 .welcome { text-align: center; padding: 3rem 1rem 2rem 1rem; }
 .welcome h2 { color: #ececec; font-size: 1.6rem; font-weight: 600; margin-bottom: 0.5rem; }
 .welcome p { color: #888; font-size: 0.9rem; }
@@ -65,55 +85,14 @@ st.markdown("""
 }
 .stButton > button:hover { background: #3e3e3e !important; }
 
-/* Barra fixa de input no fundo */
-.input-bar {
-    position: fixed;
-    bottom: 0; left: 0; right: 0;
-    background: #212121;
-    border-top: 1px solid #2e2e2e;
-    padding: 0.8rem 1rem;
-    z-index: 999;
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
-}
-.input-bar input {
-    flex: 1;
-    background: #2f2f2f;
-    border: 1px solid #3e3e3e;
-    border-radius: 24px;
-    color: #ececec;
-    font-size: 1rem;
-    padding: 0.75rem 1.2rem;
-    outline: none;
-    font-family: 'Inter', sans-serif;
-}
-.input-bar input::placeholder { color: #666; }
-.send-btn {
-    background: #3e3e3e;
-    border: none;
-    border-radius: 50%;
-    width: 44px; height: 44px;
-    color: #ececec;
-    font-size: 1.1rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
-
 .streamlit-expanderHeader {
-    background: #2f2f2f !important;
-    border-radius: 12px !important;
-    color: #ececec !important;
-    border: 1px solid #3e3e3e !important;
+    background: #2f2f2f !important; border-radius: 12px !important;
+    color: #ececec !important; border: 1px solid #3e3e3e !important;
     min-height: 48px !important;
 }
 </style>
 """, unsafe_allow_html=True)
 
-# ── Config ─────────────────────────────────────────────────────────────────
 API_KEY = st.secrets.get("GROQ_API_KEY", os.environ.get("GROQ_API_KEY", ""))
 USUARIOS_ARQUIVO = "usuarios.json"
 
@@ -262,6 +241,7 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
             <p>Abra <b>Conversas</b> e clique em <b>Novo chat</b>.</p>
         </div>
         """, unsafe_allow_html=True)
+
     else:
         chat_id = st.session_state.chat_atual
         historico = st.session_state.chats[chat_id]["historico"]
@@ -297,20 +277,26 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
                     chat_html += f'<div class="msg-user"><div class="bubble-user">{msg["content"]}</div></div>'
                 else:
                     chat_html += f'<div class="msg-bot"><div style="flex-shrink:0;margin-top:2px;">{logo_html}</div><div class="bubble-bot">{msg["content"]}</div></div>'
+
+        # Mostra pontinhos se tiver mensagem pendente
+        if st.session_state.pendente:
+            chat_html += f'''<div class="msg-bot">
+                <div style="flex-shrink:0;margin-top:2px;">{logo_html}</div>
+                <div class="typing"><span></span><span></span><span></span></div>
+            </div>'''
+
         st.markdown(chat_html, unsafe_allow_html=True)
 
-    # Input
-    col1, col2 = st.columns([9, 1])
-    with col1:
-        user_input = st.text_input("", placeholder="Manda uma mensagem...", key=f"inp_{st.session_state.input_key}", label_visibility="collapsed")
-    with col2:
-        enviar = st.button("➤")
+        # Input só aparece quando tem chat aberto
+        col1, col2 = st.columns([9, 1])
+        with col1:
+            user_input = st.text_input("", placeholder="Manda uma mensagem...", key=f"inp_{st.session_state.input_key}", label_visibility="collapsed")
+        with col2:
+            enviar = st.button("➤")
 
-    if (enviar or user_input) and user_input.strip():
-        if st.session_state.chat_atual and st.session_state.chat_atual in st.session_state.chats:
-            historico = st.session_state.chats[st.session_state.chat_atual]["historico"]
+        if (enviar or user_input) and user_input.strip():
             historico.append({"role": "user", "content": user_input.strip()})
-            st.session_state.chats[st.session_state.chat_atual]["historico"] = historico
+            st.session_state.chats[chat_id]["historico"] = historico
             salvar_chats(username, st.session_state.chats)
             st.session_state.pendente = user_input.strip()
             st.session_state.input_key += 1
