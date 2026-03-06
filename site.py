@@ -520,7 +520,7 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
             st.session_state.input_key += 1
             st.rerun()
         for chat_id in sorted(st.session_state.chats.keys(), reverse=True):
-            titulo = st.session_state.chats[chat_id]["titulo"]
+            titulo = st.session_state.chats[chat_id]["nome"]
             if st.button(f"💬 {titulo}", key=f"c_{chat_id}", use_container_width=True):
                 st.session_state.chat_atual = chat_id
                 st.session_state.aba_chat = "chat"
@@ -1164,10 +1164,10 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
             if len(historico) == 2:
                 primeira = historico[0]["content"]
                 titulo = primeira[:35] + ("..." if len(primeira) > 35 else "")
-                st.session_state.chats[chat_id]["titulo"] = titulo
+                st.session_state.chats[chat_id]["nome"] = titulo
                 salvar_chat(username, chat_id, titulo, historico)
             else:
-                salvar_chat(username, chat_id, st.session_state.chats[chat_id]["titulo"], historico)
+                salvar_chat(username, chat_id, st.session_state.chats[chat_id]["nome"], historico)
             st.rerun()
 
         chat_html = ""
