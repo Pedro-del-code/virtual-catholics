@@ -180,15 +180,34 @@ if not st.session_state.logado:
     </div>
     """, unsafe_allow_html=True)
 
+    if "aba_login" not in st.session_state:
+        st.session_state.aba_login = "Entrar"
+
     col1, col2, col3 = st.columns([1, 3, 1])
     with col2:
-        aba = st.radio("", ["Entrar", "Criar conta"], horizontal=True, label_visibility="collapsed")
+        st.markdown(f'''
+        <div style="display:flex;gap:0.5rem;margin-bottom:1rem;">
+            <button onclick="" style="flex:1;padding:0.6rem;border-radius:10px;border:{'2px solid #c8a96e' if st.session_state.aba_login == 'Entrar' else '1px solid #ddd'};background:{'#fff8ee' if st.session_state.aba_login == 'Entrar' else '#fff'};color:#1a1a1a;font-weight:{'600' if st.session_state.aba_login == 'Entrar' else '400'};font-size:0.95rem;cursor:pointer;">Entrar</button>
+            <button onclick="" style="flex:1;padding:0.6rem;border-radius:10px;border:{'2px solid #c8a96e' if st.session_state.aba_login == 'Criar conta' else '1px solid #ddd'};background:{'#fff8ee' if st.session_state.aba_login == 'Criar conta' else '#fff'};color:#1a1a1a;font-weight:{'600' if st.session_state.aba_login == 'Criar conta' else '400'};font-size:0.95rem;cursor:pointer;">Criar conta</button>
+        </div>
+        ''', unsafe_allow_html=True)
+
+        col_e, col_c = st.columns(2)
+        with col_e:
+            if st.button("Entrar", key="tab_entrar", use_container_width=True):
+                st.session_state.aba_login = "Entrar"
+                st.rerun()
+        with col_c:
+            if st.button("Criar conta", key="tab_criar", use_container_width=True):
+                st.session_state.aba_login = "Criar conta"
+                st.rerun()
+
         st.markdown('<div class="auth-box">', unsafe_allow_html=True)
 
-        if aba == "Entrar":
+        if st.session_state.aba_login == "Entrar":
             u = st.text_input("", placeholder="Usuário", key="lu", label_visibility="collapsed")
             s = st.text_input("", placeholder="Senha", type="password", key="ls", label_visibility="collapsed")
-            if st.button("Entrar →"):
+            if st.button("Entrar →", key="btn_entrar"):
                 usuarios = carregar_usuarios()
                 if u in usuarios and usuarios[u] == hash_senha(s):
                     st.session_state.logado = True
@@ -201,7 +220,7 @@ if not st.session_state.logado:
             nome_n = st.text_input("", placeholder="Seu nome", key="rn", label_visibility="collapsed")
             user_n = st.text_input("", placeholder="Escolha um usuário", key="ru", label_visibility="collapsed")
             senha_n = st.text_input("", placeholder="Escolha uma senha", type="password", key="rs", label_visibility="collapsed")
-            if st.button("Criar conta →"):
+            if st.button("Criar conta →", key="btn_criar"):
                 if nome_n.strip() and user_n.strip() and senha_n.strip():
                     usuarios = carregar_usuarios()
                     if user_n in usuarios:
