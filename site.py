@@ -73,6 +73,13 @@ def deletar_chat(username, chat_id):
 
 def novo_chat_id(): return datetime.now().strftime("%Y%m%d%H%M%S")
 
+ORACOES = {
+    "Pai Nosso": "Pai nosso que estais no ceu,\nsantificado seja o vosso nome,\nvenha a nos o vosso reino,\nseja feita a vossa vontade,\nassim na terra como no ceu.\nO pao nosso de cada dia nos dai hoje,\nperdoai as nossas ofensas,\nassim como nos perdoamos\na quem nos tem ofendido,\ne nao nos deixeis cair em tentacao,\nmas livrai-nos do mal.\nAmem.",
+    "Ave Maria": "Ave Maria, cheia de graca,\no Senhor e convosco,\nbendita sois vos entre as mulheres,\ne bendito e o fruto do vosso ventre, Jesus.\nSanta Maria, Mae de Deus,\nrogai por nos pecadores,\nagora e na hora de nossa morte.\nAmem.",
+    "Gloria ao Pai": "Gloria ao Pai,\nao Filho\ne ao Espirito Santo.\nComo era no principio,\nagora e sempre,\npelos seculos dos seculos.\nAmem.",
+    "Creio em Deus Pai": "Creio em Deus Pai todo-poderoso,\ncriador do ceu e da terra;\ne em Jesus Cristo, seu unico Filho, nosso Senhor;\nque foi concebido pelo poder do Espirito Santo;\nnasceu da Virgem Maria;\npadeceu sob Poncio Pilatos;\nfoi crucificado, morto e sepultado;\ndesceu a mansao dos mortos;\nressuscitou ao terceiro dia;\nsubiu aos ceus;\nesta sentado a direita de Deus Pai todo-poderoso;\ndonde ha de vir a julgar os vivos e os mortos.\nCreio no Espirito Santo;\nna Santa Igreja Catolica;\nna comunhao dos santos;\nna remissao dos pecados;\nna ressurreicao da carne;\nna vida eterna.\nAmem."
+}
+
 if "aba_login" not in st.session_state:
     st.session_state.aba_login = "entrar"
 
@@ -167,7 +174,8 @@ div[data-testid="stForm"] {{
 API_KEY = st.secrets.get("GROQ_API_KEY", os.environ.get("GROQ_API_KEY", ""))
 
 for key, val in [("logado", False), ("username", None), ("chats", {}),
-                  ("chat_atual", None), ("input_key", 0), ("pendente", None), ("nome_usuario", "")]:
+                  ("chat_atual", None), ("input_key", 0), ("pendente", None), ("nome_usuario", ""),
+                  ("aba_chat", "chat"), ("oracao_aberta", None)]:
     if key not in st.session_state: st.session_state[key] = val
 
 if "cliente" not in st.session_state:
@@ -280,6 +288,38 @@ O nome do usuário é: {nome}.
 Fatos que você já sabe sobre ele: {fatos_str}
 Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
 """
+
+    col_t1, col_t2 = st.columns(2)
+    with col_t1:
+        if st.button("💬 Conversas", use_container_width=True, key="tab_conv"):
+            st.session_state.aba_chat = "chat"
+            st.session_state.oracao_aberta = None
+            st.rerun()
+    with col_t2:
+        if st.button("🙏 Orações", use_container_width=True, key="tab_orac"):
+            st.session_state.aba_chat = "oracoes"
+            st.rerun()
+
+    if st.session_state.aba_chat == "oracoes":
+        if st.session_state.oracao_aberta:
+            titulo_o = st.session_state.oracao_aberta
+            texto_o = ORACOES[titulo_o].replace("\n", "<br>")
+            st.markdown(f"""
+            <div style="background:rgba(255,255,255,0.92);border-radius:16px;padding:1.5rem;margin-top:1rem;border:1px solid #e8e0d0;">
+                <h3 style="color:#c8a96e;margin-bottom:1rem;">🙏 {titulo_o}</h3>
+                <p style="color:#1a1a1a;line-height:2.2;font-size:1.05rem;">{texto_o}</p>
+            </div>
+            """, unsafe_allow_html=True)
+            if st.button("← Voltar"):
+                st.session_state.oracao_aberta = None
+                st.rerun()
+        else:
+            st.markdown("<br>", unsafe_allow_html=True)
+            for nome_oracao in ORACOES:
+                if st.button(f"🙏 {nome_oracao}", use_container_width=True, key=f"o_{nome_oracao}"):
+                    st.session_state.oracao_aberta = nome_oracao
+                    st.rerun()
+        st.stop()
 
     with st.expander(f"💬 Conversas — {nome}"):
         if st.button("✏️ Novo chat"):
