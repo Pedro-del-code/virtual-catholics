@@ -1043,25 +1043,25 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
         st.markdown("""
         <div style="background:rgba(255,255,255,0.92);border-radius:16px;padding:2rem;margin-top:1rem;border:1px solid #e8e0d0;text-align:center;">
             <h2 style="color:#c8a96e;margin:0 0 0.5rem 0;">💛 Apoie o Virtual Catholics</h2>
-            <p style="color:#666;font-size:0.9rem;margin:0 0 1.5rem 0;">Sua doacao ajuda a manter e expandir este ministerio digital</p>
+            <p style="color:#666;font-size:0.9rem;margin:0 0 1.5rem 0;">Sua doação ajuda a manter e expandir este ministério digital</p>
 
             <div style="background:#fffbf0;border-radius:12px;padding:1.2rem;margin-bottom:1rem;border:1px solid #f0e0a0;text-align:left;">
-                <p style="color:#c8a96e;font-weight:700;margin:0 0 0.8rem 0;text-align:center;">Para que vao as doacoes?</p>
-                <p style="color:#1a1a1a;margin:0 0 0.4rem 0;">🌐 <b>Manter o site no ar</b> — servidores e hospedagem</p>
-                <p style="color:#1a1a1a;margin:0 0 0.4rem 0;">🔗 <b>Dominio proprio</b> — um endereco exclusivo para o app</p>
-                <p style="color:#1a1a1a;margin:0 0 0.4rem 0;">⚙️ <b>Desenvolvimento</b> — novas funcionalidades e melhorias</p>
-                <p style="color:#1a1a1a;margin:0;">📱 <b>Expansao</b> — para que mais cristaos possam ser alcancados</p>
+                <p style="color:#c8a96e;font-weight:700;margin:0 0 0.8rem 0;text-align:center;">Para que vão as doações?</p>
+                <p style="color:#1a1a1a;margin:0 0 0.5rem 0;">🌐 <b>Manter o site no ar</b> — servidores e hospedagem</p>
+                <p style="color:#1a1a1a;margin:0 0 0.5rem 0;">🔗 <b>Domínio próprio</b> — um endereço exclusivo para o app</p>
+                <p style="color:#1a1a1a;margin:0 0 0.5rem 0;">⚙️ <b>Desenvolvimento</b> — novas funcionalidades e melhorias</p>
+                <p style="color:#1a1a1a;margin:0;">📱 <b>Expansão</b> — para que mais cristãos possam ser alcançados</p>
             </div>
 
             <div style="background:#f0fff4;border-radius:12px;padding:1.5rem;margin-bottom:1rem;border:2px solid #c8a96e;">
                 <p style="color:#c8a96e;font-weight:700;margin:0 0 0.5rem 0;font-size:1.1rem;">📱 Chave Pix</p>
                 <p style="color:#1a1a1a;font-size:1.3rem;font-weight:700;margin:0 0 0.5rem 0;letter-spacing:1px;">61 98510-1908</p>
-                <p style="color:#888;font-size:0.8rem;margin:0;">Qualquer valor e uma bencao enorme! 🙏</p>
+                <p style="color:#888;font-size:0.8rem;margin:0;">Qualquer valor é uma bênção enorme! 🙏</p>
             </div>
 
             <p style="color:#aaa;font-size:0.8rem;margin:0;">
-                Que Deus abencoe imensamente cada pessoa que contribui<br>
-                com este ministerio. Obrigado de coracao! ✝️
+                Que Deus abençoe imensamente cada pessoa que contribui<br>
+                com este ministério. Obrigado de coração! ✝️
             </p>
         </div>
         """, unsafe_allow_html=True)
