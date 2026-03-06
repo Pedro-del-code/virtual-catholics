@@ -1040,32 +1040,37 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
     # ── ABA DOACOES ──
     if st.session_state.aba_chat == "doacoes":
         st.markdown("<br>", unsafe_allow_html=True)
-        st.markdown("""
-        <div style="background:rgba(255,255,255,0.92);border-radius:16px;padding:2rem;margin-top:1rem;border:1px solid #e8e0d0;text-align:center;">
-            <h2 style="color:#c8a96e;margin:0 0 0.5rem 0;">💛 Apoie o Virtual Catholics</h2>
-            <p style="color:#666;font-size:0.9rem;margin:0 0 1.5rem 0;">Sua doação ajuda a manter e expandir este ministério digital</p>
-
-            <div style="background:#fffbf0;border-radius:12px;padding:1.2rem;margin-bottom:1rem;border:1px solid #f0e0a0;text-align:left;">
-                <p style="color:#c8a96e;font-weight:700;margin:0 0 0.8rem 0;text-align:center;">Para que vão as doações?</p>
-                <p style="color:#1a1a1a;margin:0 0 0.5rem 0;">🌐 <b>Manter o site no ar</b> — servidores e hospedagem</p>
-                <p style="color:#1a1a1a;margin:0 0 0.5rem 0;">🔗 <b>Domínio próprio</b> — um endereço exclusivo para o app</p>
-                <p style="color:#1a1a1a;margin:0 0 0.5rem 0;">⚙️ <b>Desenvolvimento</b> — novas funcionalidades e melhorias</p>
-                <p style="color:#1a1a1a;margin:0;">📱 <b>Expansão</b> — para que mais cristãos possam ser alcançados</p>
-            </div>
-
-            <div style="background:#f0fff4;border-radius:12px;padding:1.5rem;margin-bottom:1rem;border:2px solid #c8a96e;">
-                <p style="color:#c8a96e;font-weight:700;margin:0 0 0.5rem 0;font-size:1.1rem;">📱 Chave Pix</p>
-                <p style="color:#1a1a1a;font-size:1.3rem;font-weight:700;margin:0 0 0.5rem 0;letter-spacing:1px;">61 98510-1908</p>
-                <p style="color:#888;font-size:0.8rem;margin:0;">Qualquer valor é uma bênção enorme! 🙏</p>
-            </div>
-
-            <p style="color:#aaa;font-size:0.8rem;margin:0;">
-                Que Deus abençoe imensamente cada pessoa que contribui<br>
-                com este ministério. Obrigado de coração! ✝️
-            </p>
-        </div>
-        """, unsafe_allow_html=True)
+        st.markdown(
+            "<div style='background:rgba(255,255,255,0.92);border-radius:16px;padding:2rem;"
+            "margin-top:1rem;border:1px solid #e8e0d0;text-align:center;'>"
+            "<h2 style='color:#c8a96e;margin:0 0 0.5rem 0;'>&#128155; Apoie o Virtual Catholics</h2>"
+            "<p style='color:#666;font-size:0.9rem;margin:0 0 1.5rem 0;'>"
+            "Sua doa&#231;&#227;o ajuda a manter e expandir este minist&#233;rio digital</p>"
+            "<div style='background:#fffbf0;border-radius:12px;padding:1.2rem;"
+            "margin-bottom:1rem;border:1px solid #f0e0a0;text-align:left;'>"
+            "<p style='color:#c8a96e;font-weight:700;margin:0 0 0.8rem 0;text-align:center;'>"
+            "Para que v&#227;o as doa&#231;&#245;es?</p>"
+            "<p style='color:#1a1a1a;margin:0 0 0.5rem 0;'>&#127760; <b>Manter o site no ar</b> &#8212; servidores e hospedagem</p>"
+            "<p style='color:#1a1a1a;margin:0 0 0.5rem 0;'>&#128279; <b>Dom&#237;nio pr&#243;prio</b> &#8212; um endere&#231;o exclusivo para o app</p>"
+            "<p style='color:#1a1a1a;margin:0 0 0.5rem 0;'>&#9881;&#65039; <b>Desenvolvimento</b> &#8212; novas funcionalidades e melhorias</p>"
+            "<p style='color:#1a1a1a;margin:0 0 0.5rem 0;'>&#128241; <b>Desenvolvimento do aplicativo</b> &#8212; para que o app cres&#231;a</p>"
+            "<p style='color:#1a1a1a;margin:0;'>&#127371; <b>Expans&#227;o</b> &#8212; para que mais crist&#227;os possam ser alcan&#231;ados</p>"
+            "</div>"
+            "<div style='background:#f0fff4;border-radius:12px;padding:1.5rem;"
+            "margin-bottom:1rem;border:2px solid #c8a96e;'>"
+            "<p style='color:#c8a96e;font-weight:700;margin:0 0 0.5rem 0;font-size:1.1rem;'>&#128241; Chave Pix</p>"
+            "<p style='color:#1a1a1a;font-size:1.3rem;font-weight:700;margin:0 0 0.5rem 0;letter-spacing:1px;'>61 98510-1908</p>"
+            "<p style='color:#888;font-size:0.8rem;margin:0;'>Qualquer valor &#233; uma b&#234;n&#231;&#227;o enorme! &#128591;</p>"
+            "</div>"
+            "<p style='color:#aaa;font-size:0.8rem;margin:0;'>"
+            "Que Deus aben&#231;oe imensamente cada pessoa que contribui<br>"
+            "com este minist&#233;rio. Obrigado de cora&#231;&#227;o! &#10015;&#65039;"
+            "</p>"
+            "</div>",
+            unsafe_allow_html=True
+        )
         st.stop()
+
 
     if not st.session_state.chat_atual or st.session_state.chat_atual not in st.session_state.chats:
         st.markdown(f"""
