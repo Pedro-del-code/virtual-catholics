@@ -18,7 +18,8 @@ st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
 * { font-family: 'Inter', sans-serif; box-sizing: border-box; }
-.stApp { background-color: #212121; color: #ececec; }
+.stApp { background-color: #ffffff; color: #ececec; }
+/* Fundo branco só na tela de login */
 #MainMenu, footer, header { visibility: hidden; }
 .block-container { padding: 1rem 1rem 160px 1rem !important; max-width: 700px !important; }
 
@@ -54,11 +55,12 @@ st.markdown("""
 .auth-bg {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #ffffff;
     background-image: url('https://i.imgur.com/8OWNsBk.png');
-    background-size: cover;
-    background-position: center;
+    background-size: 90% auto;
+    background-position: center center;
     background-repeat: no-repeat;
-    opacity: 0.15;
+    opacity: 0.25;
     z-index: 0;
     pointer-events: none;
 }
@@ -198,7 +200,6 @@ if not st.session_state.logado:
     with col2:
         aba = st.radio("", ["Entrar", "Criar conta"], horizontal=True, label_visibility="collapsed")
         st.markdown("<br>", unsafe_allow_html=True)
-
         if aba == "Entrar":
             u = st.text_input("", placeholder="Usuário", key="lu", label_visibility="collapsed")
             s = st.text_input("", placeholder="Senha", type="password", key="ls", label_visibility="collapsed")
