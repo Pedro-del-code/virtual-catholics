@@ -286,7 +286,7 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
         st.markdown(f"""
         <div class="welcome">
             <div style="margin-bottom:1rem;">{logo_html}</div>
-            <h2 style="color:#222!important;text-shadow:0 1px 3px rgba(255,255,255,0.8);">Olá, {memoria['nome']}! 🙏</h2>
+            <h2 style="color:#1a1a1a!important;font-weight:700;-webkit-text-fill-color:#1a1a1a;">Olá, {memoria['nome']}! 🙏</h2>
             <p style="color:#333!important;text-shadow:0 1px 2px rgba(255,255,255,0.8);">Abra <b>Conversas</b> e clique em <b>Novo chat</b>.</p>
         </div>
         """, unsafe_allow_html=True)
