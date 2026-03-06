@@ -15,14 +15,16 @@ LOGO = "https://i.imgur.com/ilafAhJ.png"
 NOSSA_SENHORA = "https://i.imgur.com/8OWNsBk.png"
 logo_html = f'<img src="{LOGO}" style="width:40px;height:40px;border-radius:50%;object-fit:cover;"/>'
 
+if "aba_login" not in st.session_state:
+    st.session_state.aba_login = "entrar"
+
 st.markdown(f"""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
-* {{ font-family: 'Inter', sans-serif; box-sizing: border-box; }}
+* {{ font-family: 'Inter', sans-serif; box-sizing: border-box; margin:0; padding:0; }}
 #MainMenu, footer, header {{ visibility: hidden; }}
 .block-container {{ padding: 1rem 1rem 160px 1rem !important; max-width: 700px !important; }}
 
-/* ── LOGIN ── */
 .stApp {{ background-color: #ffffff; }}
 
 .nossa-senhora-bg {{
@@ -38,7 +40,7 @@ st.markdown(f"""
 }}
 
 .auth-wrapper {{
-    max-width: 380px;
+    max-width: 360px;
     margin: 2rem auto 0 auto;
     padding: 0 1rem;
     text-align: center;
@@ -46,42 +48,79 @@ st.markdown(f"""
     z-index: 1;
 }}
 .auth-title {{ color: #1a1a1a; font-size: 1.7rem; font-weight: 700; margin: 0.5rem 0 0.1rem 0; }}
-.auth-subtitle {{ color: #c8a96e; font-size: 0.8rem; letter-spacing: 1px; margin-bottom: 1.5rem; }}
+.auth-subtitle {{ color: #c8a96e; font-size: 0.8rem; letter-spacing: 1px; margin-bottom: 1.2rem; }}
+
+.tab-bar {{
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.2rem;
+    background: #f0ebe0;
+    border-radius: 12px;
+    padding: 4px;
+}}
+.tab-btn {{
+    flex: 1;
+    padding: 0.6rem;
+    border-radius: 9px;
+    border: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}}
+.tab-btn.active {{
+    background: #fff;
+    color: #1a1a1a;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.1);
+    font-weight: 600;
+}}
+.tab-btn.inactive {{
+    background: transparent;
+    color: #888;
+}}
 
 .auth-box {{
-    background: rgba(255,255,255,0.85);
+    background: rgba(255,255,255,0.88);
     border: 1px solid #e8e0d0;
     border-radius: 20px;
     padding: 1.5rem 1.2rem;
     box-shadow: 0 4px 30px rgba(180,140,60,0.1);
-    position: relative;
-    z-index: 2;
 }}
 
-/* Inputs brancos na tela de login */
-.auth-box input {{
-    background: #f5f0e8 !important;
-    border: 1px solid #d4c5a0 !important;
-    color: #1a1a1a !important;
-    border-radius: 12px !important;
-    padding: 0.8rem 1rem !important;
-    font-size: 1rem !important;
-    width: 100% !important;
+.auth-input {{
+    width: 100%;
+    background: #f5f0e8;
+    border: 1px solid #d4c5a0;
+    border-radius: 12px;
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    color: #1a1a1a;
+    margin-bottom: 0.8rem;
+    outline: none;
+    font-family: 'Inter', sans-serif;
 }}
-.auth-box input::placeholder {{ color: #999 !important; }}
+.auth-input::placeholder {{ color: #999; }}
+
+.auth-btn {{
+    width: 100%;
+    background: linear-gradient(135deg, #c8a96e, #a07840);
+    border: none;
+    border-radius: 12px;
+    padding: 0.85rem;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 0.3rem;
+    letter-spacing: 0.3px;
+}}
+.auth-btn:hover {{ background: linear-gradient(135deg, #d4b87a, #b08850); }}
 
 .error-msg {{ color: #cc3333; font-size: 0.85rem; margin-top: 0.5rem; }}
+.success-msg {{ color: #2a7a2a; font-size: 0.85rem; margin-top: 0.5rem; }}
 
-/* Esconde caixas extras do Streamlit */
-div[data-testid="stVerticalBlock"] > div:has(> div[data-testid="stRadio"]) {{
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-}}
-
-/* ── CHAT ── */
-.chat-stapp {{ background-color: #212121 !important; color: #ececec !important; }}
-
+/* CHAT */
+.chat-app {{ background-color: #212121 !important; }}
 .msg-user {{ display: flex; justify-content: flex-end; margin: 0.8rem 0; }}
 .bubble-user {{
     background-color: #2f2f2f; color: #ececec;
@@ -90,7 +129,6 @@ div[data-testid="stVerticalBlock"] > div:has(> div[data-testid="stRadio"]) {{
 }}
 .msg-bot {{ display: flex; gap: 0.6rem; margin: 0.8rem 0; align-items: flex-start; }}
 .bubble-bot {{ color: #ececec; font-size: 0.95rem; line-height: 1.7; max-width: 85%; word-break: break-word; }}
-
 .typing {{ display: flex; align-items: center; gap: 4px; padding: 0.5rem 0; }}
 .typing span {{ width: 8px; height: 8px; background: #888; border-radius: 50%; animation: bounce 1.2s infinite; }}
 .typing span:nth-child(2) {{ animation-delay: 0.2s; }}
@@ -99,28 +137,22 @@ div[data-testid="stVerticalBlock"] > div:has(> div[data-testid="stRadio"]) {{
     0%, 80%, 100% {{ transform: scale(0.7); opacity: 0.4; }}
     40% {{ transform: scale(1); opacity: 1; }}
 }}
-
 .welcome {{ text-align: center; padding: 3rem 1rem 2rem 1rem; }}
 .welcome h2 {{ color: #ececec; font-size: 1.6rem; font-weight: 600; margin-bottom: 0.5rem; }}
 .welcome p {{ color: #888; font-size: 0.9rem; }}
-
 .stTextInput > div > div > input {{
     background: #2f2f2f !important; border: 1px solid #3e3e3e !important;
     border-radius: 12px !important; color: #ececec !important;
     font-size: 1rem !important; padding: 0.8rem 1rem !important;
 }}
-.stTextInput > div > div > input:focus {{ border-color: #555 !important; box-shadow: none !important; }}
 .stTextInput > div > div > input::placeholder {{ color: #666 !important; }}
-
 .stButton > button {{
     background: #2f2f2f !important; border: 1px solid #3e3e3e !important;
     color: #ececec !important; border-radius: 12px !important;
     padding: 0.75rem 1rem !important; font-size: 0.95rem !important;
     width: 100% !important; min-height: 48px !important;
-    transition: background 0.2s !important;
 }}
 .stButton > button:hover {{ background: #3e3e3e !important; }}
-
 .streamlit-expanderHeader {{
     background: #2f2f2f !important; border-radius: 12px !important;
     color: #ececec !important; border: 1px solid #3e3e3e !important;
@@ -129,85 +161,65 @@ div[data-testid="stVerticalBlock"] > div:has(> div[data-testid="stRadio"]) {{
 </style>
 """, unsafe_allow_html=True)
 
+# ── Funções ───────────────────────────────────────────────────────────────────
 API_KEY = st.secrets.get("GROQ_API_KEY", os.environ.get("GROQ_API_KEY", ""))
 USUARIOS_ARQUIVO = "usuarios.json"
 
 def hash_senha(s): return hashlib.sha256(s.encode()).hexdigest()
-
 def carregar_usuarios():
     if os.path.exists(USUARIOS_ARQUIVO):
         with open(USUARIOS_ARQUIVO, "r", encoding="utf-8") as f: return json.load(f)
     return {}
-
 def salvar_usuarios(u):
     with open(USUARIOS_ARQUIVO, "w", encoding="utf-8") as f: json.dump(u, f, ensure_ascii=False, indent=2)
-
-def carregar_memoria(username):
-    arq = f"user_{username}_memoria.json"
+def carregar_memoria(un):
+    arq = f"user_{un}_memoria.json"
     if os.path.exists(arq):
         with open(arq, "r", encoding="utf-8") as f: return json.load(f)
-    return {"nome": username, "fatos": []}
-
-def salvar_memoria(username, m):
-    with open(f"user_{username}_memoria.json", "w", encoding="utf-8") as f: json.dump(m, f, ensure_ascii=False, indent=2)
-
-def carregar_chats(username):
-    arq = f"user_{username}_chats.json"
+    return {"nome": un, "fatos": []}
+def salvar_memoria(un, m):
+    with open(f"user_{un}_memoria.json", "w", encoding="utf-8") as f: json.dump(m, f, ensure_ascii=False, indent=2)
+def carregar_chats(un):
+    arq = f"user_{un}_chats.json"
     if os.path.exists(arq):
         with open(arq, "r", encoding="utf-8") as f: return json.load(f)
     return {}
-
-def salvar_chats(username, chats):
-    with open(f"user_{username}_chats.json", "w", encoding="utf-8") as f: json.dump(chats, f, ensure_ascii=False, indent=2)
-
+def salvar_chats(un, c):
+    with open(f"user_{un}_chats.json", "w", encoding="utf-8") as f: json.dump(c, f, ensure_ascii=False, indent=2)
 def novo_chat_id(): return datetime.now().strftime("%Y%m%d%H%M%S")
 
 for key, val in [("logado", False), ("username", None), ("chats", {}),
                   ("chat_atual", None), ("input_key", 0), ("pendente", None)]:
     if key not in st.session_state: st.session_state[key] = val
-
 if "cliente" not in st.session_state:
     st.session_state.cliente = Groq(api_key=API_KEY)
 
 # ── LOGIN ─────────────────────────────────────────────────────────────────────
 if not st.session_state.logado:
     st.markdown('<div class="nossa-senhora-bg"></div>', unsafe_allow_html=True)
+
+    aba = st.session_state.aba_login
+    tab_entrar = "active" if aba == "entrar" else "inactive"
+    tab_criar = "active" if aba == "criar" else "inactive"
+
     st.markdown(f"""
     <div class="auth-wrapper">
-        <img src="{LOGO}" style="width:56px;height:56px;border-radius:50%;object-fit:cover;"/>
+        <img src="{LOGO}" style="width:60px;height:60px;border-radius:50%;object-fit:cover;"/>
         <div class="auth-title">Virtual Catholics</div>
         <div class="auth-subtitle">✝️ ASSISTENTE CATÓLICO</div>
-    </div>
+        <div class="tab-bar">
+            <div class="tab-btn {tab_entrar}">Entrar</div>
+            <div class="tab-btn {tab_criar}">Criar conta</div>
+        </div>
+        <div class="auth-box">
     """, unsafe_allow_html=True)
 
-    if "aba_login" not in st.session_state:
-        st.session_state.aba_login = "Entrar"
-
-    col1, col2, col3 = st.columns([1, 3, 1])
-    with col2:
-        st.markdown(f'''
-        <div style="display:flex;gap:0.5rem;margin-bottom:1rem;">
-            <button onclick="" style="flex:1;padding:0.6rem;border-radius:10px;border:{'2px solid #c8a96e' if st.session_state.aba_login == 'Entrar' else '1px solid #ddd'};background:{'#fff8ee' if st.session_state.aba_login == 'Entrar' else '#fff'};color:#1a1a1a;font-weight:{'600' if st.session_state.aba_login == 'Entrar' else '400'};font-size:0.95rem;cursor:pointer;">Entrar</button>
-            <button onclick="" style="flex:1;padding:0.6rem;border-radius:10px;border:{'2px solid #c8a96e' if st.session_state.aba_login == 'Criar conta' else '1px solid #ddd'};background:{'#fff8ee' if st.session_state.aba_login == 'Criar conta' else '#fff'};color:#1a1a1a;font-weight:{'600' if st.session_state.aba_login == 'Criar conta' else '400'};font-size:0.95rem;cursor:pointer;">Criar conta</button>
-        </div>
-        ''', unsafe_allow_html=True)
-
-        col_e, col_c = st.columns(2)
-        with col_e:
-            if st.button("Entrar", key="tab_entrar", use_container_width=True):
-                st.session_state.aba_login = "Entrar"
-                st.rerun()
-        with col_c:
-            if st.button("Criar conta", key="tab_criar", use_container_width=True):
-                st.session_state.aba_login = "Criar conta"
-                st.rerun()
-
-        st.markdown('<div class="auth-box">', unsafe_allow_html=True)
-
-        if st.session_state.aba_login == "Entrar":
-            u = st.text_input("", placeholder="Usuário", key="lu", label_visibility="collapsed")
-            s = st.text_input("", placeholder="Senha", type="password", key="ls", label_visibility="collapsed")
-            if st.button("Entrar →", key="btn_entrar"):
+    if aba == "entrar":
+        with st.form("form_entrar"):
+            u = st.text_input("", placeholder="Usuário", label_visibility="collapsed")
+            s = st.text_input("", placeholder="Senha", type="password", label_visibility="collapsed")
+            submitted = st.form_submit_button("Entrar →")
+            if submitted:
                 usuarios = carregar_usuarios()
                 if u in usuarios and usuarios[u] == hash_senha(s):
                     st.session_state.logado = True
@@ -216,11 +228,13 @@ if not st.session_state.logado:
                     st.rerun()
                 else:
                     st.markdown('<p class="error-msg">Usuário ou senha incorretos!</p>', unsafe_allow_html=True)
-        else:
-            nome_n = st.text_input("", placeholder="Seu nome", key="rn", label_visibility="collapsed")
-            user_n = st.text_input("", placeholder="Escolha um usuário", key="ru", label_visibility="collapsed")
-            senha_n = st.text_input("", placeholder="Escolha uma senha", type="password", key="rs", label_visibility="collapsed")
-            if st.button("Criar conta →", key="btn_criar"):
+    else:
+        with st.form("form_criar"):
+            nome_n = st.text_input("", placeholder="Seu nome", label_visibility="collapsed")
+            user_n = st.text_input("", placeholder="Escolha um usuário", label_visibility="collapsed")
+            senha_n = st.text_input("", placeholder="Escolha uma senha", type="password", label_visibility="collapsed")
+            submitted = st.form_submit_button("Criar conta →")
+            if submitted:
                 if nome_n.strip() and user_n.strip() and senha_n.strip():
                     usuarios = carregar_usuarios()
                     if user_n in usuarios:
@@ -236,15 +250,23 @@ if not st.session_state.logado:
                 else:
                     st.markdown('<p class="error-msg">Preencha todos os campos!</p>', unsafe_allow_html=True)
 
-        st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown('</div></div>', unsafe_allow_html=True)
+
+    col1, col2 = st.columns(2)
+    with col1:
+        if st.button("→ Entrar", use_container_width=True):
+            st.session_state.aba_login = "entrar"
+            st.rerun()
+    with col2:
+        if st.button("→ Criar conta", use_container_width=True):
+            st.session_state.aba_login = "criar"
+            st.rerun()
 
 # ── CHAT ──────────────────────────────────────────────────────────────────────
 else:
     st.markdown('<style>.stApp { background-color: #212121 !important; color: #ececec !important; }</style>', unsafe_allow_html=True)
-
     username = st.session_state.username
     memoria = carregar_memoria(username)
-
     fatos_str = "\n".join(memoria["fatos"]) if memoria["fatos"] else "Nenhum ainda."
     system_prompt = f"""Você é o Virtual Catholics, uma IA católica criada por Pedro.
 Você tem fé católica profunda e responde com base nos ensinamentos da Igreja Católica.
@@ -254,7 +276,6 @@ O nome do usuário é: {memoria['nome']}.
 Fatos que você já sabe sobre ele: {fatos_str}
 Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
 """
-
     with st.expander(f"💬 Conversas — {memoria['nome']}"):
         if st.button("✏️ Novo chat"):
             chat_id = novo_chat_id()
@@ -263,21 +284,18 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
             st.session_state.chat_atual = chat_id
             st.session_state.input_key += 1
             st.rerun()
-
         for chat_id in sorted(st.session_state.chats.keys(), reverse=True):
             titulo = st.session_state.chats[chat_id]["titulo"]
             if st.button(f"💬 {titulo}", key=f"c_{chat_id}"):
                 st.session_state.chat_atual = chat_id
                 st.session_state.input_key += 1
                 st.rerun()
-
         if st.session_state.chat_atual and st.session_state.chat_atual in st.session_state.chats:
             if st.button("🗑️ Deletar conversa"):
                 del st.session_state.chats[st.session_state.chat_atual]
                 salvar_chats(username, st.session_state.chats)
                 st.session_state.chat_atual = None
                 st.rerun()
-
         if st.button("🚪 Sair"):
             for k in ["logado", "username", "chats", "chat_atual"]:
                 st.session_state[k] = False if k == "logado" else None if k != "chats" else {}
@@ -294,7 +312,6 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
     else:
         chat_id = st.session_state.chat_atual
         historico = st.session_state.chats[chat_id]["historico"]
-
         if st.session_state.pendente:
             st.session_state.pendente = None
             resposta = st.session_state.cliente.chat.completions.create(
@@ -326,10 +343,8 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
                     chat_html += f'<div class="msg-user"><div class="bubble-user">{msg["content"]}</div></div>'
                 else:
                     chat_html += f'<div class="msg-bot"><div style="flex-shrink:0;margin-top:2px;">{logo_html}</div><div class="bubble-bot">{msg["content"]}</div></div>'
-
         if st.session_state.pendente:
             chat_html += f'<div class="msg-bot"><div style="flex-shrink:0;margin-top:2px;">{logo_html}</div><div class="typing"><span></span><span></span><span></span></div></div>'
-
         st.markdown(chat_html, unsafe_allow_html=True)
 
         col1, col2 = st.columns([9, 1])
@@ -337,7 +352,6 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
             user_input = st.text_input("", placeholder="Manda uma mensagem...", key=f"inp_{st.session_state.input_key}", label_visibility="collapsed")
         with col2:
             enviar = st.button("➤")
-
         if (enviar or user_input) and user_input.strip():
             historico.append({"role": "user", "content": user_input.strip()})
             st.session_state.chats[chat_id]["historico"] = historico
