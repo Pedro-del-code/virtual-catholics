@@ -192,10 +192,9 @@ if not st.session_state.logado:
                     else:
                         st.error("Usuário ou senha incorretos!")
 
-            st.markdown("<br>", unsafe_allow_html=True)
             col_a, col_b = st.columns(2)
             with col_a:
-                if st.button("Criar conta", use_container_width=True):
+                if st.button("✏️ Criar conta"):
                     st.session_state.aba_login = "criar"
                     st.rerun()
 
