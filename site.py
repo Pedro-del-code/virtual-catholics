@@ -528,27 +528,37 @@ else:
         pointer-events: none;
     }}
     .block-container {{ position: relative; z-index: 1; }}
-    .stExpander, .stExpander > div {{
-        background: rgba(30, 30, 60, 0.95) !important;
-        color: #e8d5b0 !important;
-        border-color: #c8a96e !important;
+    /* Expanders */
+    .stExpander, .stExpander > div, section[data-testid="stExpander"] {{
+        background: rgba(30, 30, 60, 0.97) !important;
+        color: #f0e6d0 !important;
+        border-color: #c8a96e55 !important;
     }}
-    .stExpander label, .stExpander p, .stExpander span {{
-        color: #e8d5b0 !important;
+    .stExpander label, .stExpander p, .stExpander span, .stExpander div {{
+        color: #f0e6d0 !important;
     }}
-    /* Bolhas de chat escuro */
-    .msg-user {{ background: linear-gradient(135deg, #a07840, #c8a96e) !important; }}
-    .msg-bot {{ background: rgba(40, 40, 70, 0.95) !important; color: #e8d5b0 !important; }}
     /* Botões */
     .stButton > button {{
-        background: rgba(40,40,70,0.9) !important;
-        color: #e8d5b0 !important;
-        border-color: #c8a96e !important;
+        background: rgba(35,35,65,0.95) !important;
+        color: #f0e6d0 !important;
+        border: 1px solid #c8a96e88 !important;
     }}
-    /* Input */
+    .stButton > button:hover {{
+        background: rgba(200,169,110,0.25) !important;
+    }}
+    /* Input de texto */
     .stTextInput input, .stTextArea textarea {{
-        background: rgba(30,30,60,0.95) !important;
-        color: #e8d5b0 !important;
+        background: rgba(30,30,60,0.97) !important;
+        color: #f0e6d0 !important;
+        border-color: #c8a96e88 !important;
+    }}
+    /* Textos gerais */
+    p, span, label, div, h1, h2, h3 {{
+        color: #f0e6d0 !important;
+    }}
+    /* Menu lateral */
+    section[data-testid="stSidebar"] {{
+        background: rgba(20,20,50,0.98) !important;
     }}
     </style>''', unsafe_allow_html=True)
     else:
@@ -1292,7 +1302,11 @@ IMPORTANTE: Quando perguntado sobre um santo especifico, fale SOMENTE sobre esse
                 if msg["role"] == "user":
                     chat_html += f'<div class="msg-user"><div class="bubble-user">{msg["content"]}</div></div>'
                 else:
-                    chat_html += f'<div class="msg-bot"><div style="flex-shrink:0;margin-top:2px;">{logo_html}</div><div class="bubble-bot" style="color:#1a1a1a !important;background:rgba(255,255,255,0.85);padding:0.7rem 1rem;border-radius:0 16px 16px 16px;">{msg["content"]}</div></div>'
+                    if st.session_state.modo_escuro:
+                        bot_style = "color:#f0e6d0 !important;background:rgba(35,35,65,0.97);padding:0.7rem 1rem;border-radius:0 16px 16px 16px;border:1px solid #c8a96e44;"
+                    else:
+                        bot_style = "color:#1a1a1a !important;background:rgba(255,255,255,0.85);padding:0.7rem 1rem;border-radius:0 16px 16px 16px;"
+                    chat_html += f'<div class="msg-bot"><div style="flex-shrink:0;margin-top:2px;">{logo_html}</div><div class="bubble-bot" style="{bot_style}">{msg["content"]}</div></div>'
 
         if st.session_state.pendente:
             chat_html += f'<div class="msg-bot"><div style="flex-shrink:0;margin-top:2px;">{logo_html}</div><div class="typing"><span></span><span></span><span></span></div></div>'
