@@ -395,45 +395,48 @@ API_KEY = st.secrets.get("GROQ_API_KEY", os.environ.get("GROQ_API_KEY", ""))
 for key, val in [("logado", False), ("username", None), ("chats", {}),
                   ("chat_atual", None), ("input_key", 0), ("pendente", None), ("nome_usuario", ""),
                   ("aba_chat", "chat"), ("oracao_aberta", None), ("terco_aberto", None), ("terco_misterio", None), ("novena_aberta", None), ("novena_dia", None),
-                  ("cookie_lido", False)]:
+                  ("cookie_lido", False), ("modo_escuro", False)]:
     if key not in st.session_state: st.session_state[key] = val
 
-# ── AUTOLOGIN via localStorage ────────────────────────────────────────────────
+# ── AUTOLOGIN via cookie HTTP ─────────────────────────────────────────────────
 import streamlit.components.v1 as components
 
-# Passo 1: JS lê localStorage e injeta nos query params se não estiver logado
-if not st.session_state.logado and not st.session_state.cookie_lido:
-    components.html("""
-    <script>
-    const u = localStorage.getItem("vc_user");
-    const n = localStorage.getItem("vc_nome");
-    if (u && n) {
-        const url = new URL(window.parent.location.href);
-        if (url.searchParams.get("vc_u") !== u) {
-            url.searchParams.set("vc_u", u);
-            url.searchParams.set("vc_n", n);
-            window.parent.location.replace(url.toString());
-        }
-    }
-    </script>
-    """, height=0)
-
-# Passo 2: Streamlit lê os query params e loga
+# Lê query params primeiro (vindo de redirect do JS)
 if not st.session_state.logado:
     qp = st.query_params
     if "vc_u" in qp and "vc_n" in qp:
-        u_cookie = qp["vc_u"]
-        n_cookie = qp["vc_n"]
-        if u_cookie and n_cookie:
-            usuario_salvo = sb_get("usuarios", f"username=eq.{u_cookie}")
+        u_q = qp["vc_u"]
+        n_q = qp["vc_n"]
+        if u_q and n_q:
+            usuario_salvo = sb_get("usuarios", f"username=eq.{u_q}")
             if usuario_salvo:
                 st.session_state.logado = True
-                st.session_state.username = u_cookie
-                st.session_state.nome_usuario = n_cookie
-                st.session_state.chats = carregar_chats(u_cookie)
+                st.session_state.username = u_q
+                st.session_state.nome_usuario = n_q
+                st.session_state.chats = carregar_chats(u_q)
                 st.session_state.cookie_lido = True
+                st.query_params.clear()
                 st.rerun()
-st.session_state.cookie_lido = True
+
+# JS: ao carregar, lê cookie e redireciona com query params
+if not st.session_state.logado and not st.session_state.cookie_lido:
+    st.session_state.cookie_lido = True
+    components.html("""
+    <script>
+    (function() {
+        function getCookie(name) {
+            const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+            return match ? decodeURIComponent(match[2]) : null;
+        }
+        const u = getCookie('vc_user') || localStorage.getItem('vc_user');
+        const n = getCookie('vc_nome') || localStorage.getItem('vc_nome');
+        if (u && n) {
+            const base = window.location.origin + window.location.pathname;
+            window.location.replace(base + '?vc_u=' + encodeURIComponent(u) + '&vc_n=' + encodeURIComponent(n));
+        }
+    })();
+    </script>
+    """, height=0)
 
 if "cliente" not in st.session_state:
     st.session_state.cliente = Groq(api_key=API_KEY)
@@ -483,6 +486,9 @@ if not st.session_state.logado:
                         <script>
                         localStorage.setItem("vc_user", "{u}");
                         localStorage.setItem("vc_nome", "{usuario["nome"]}");
+                        const exp = new Date(Date.now() + 30*24*60*60*1000).toUTCString();
+                        document.cookie = "vc_user=" + encodeURIComponent("{u}") + "; expires=" + exp + "; path=/";
+                        document.cookie = "vc_nome=" + encodeURIComponent("{usuario["nome"]}") + "; expires=" + exp + "; path=/";
                         </script>
                         """, height=0)
                         st.rerun()
@@ -528,7 +534,50 @@ if not st.session_state.logado:
 
 # ── CHAT ──────────────────────────────────────────────────────────────────────
 else:
-    st.markdown(f'''<style>
+    if st.session_state.modo_escuro:
+        st.markdown(f'''<style>
+    .stApp {{
+        background-color: #1a1a2e !important;
+        background-image: url("{SAGRADA_FAMILIA}") !important;
+        background-size: cover !important;
+        background-position: center center !important;
+        background-repeat: no-repeat !important;
+        background-attachment: fixed !important;
+    }}
+    .stApp::before {{
+        content: "";
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(10, 10, 30, 0.88);
+        z-index: 0;
+        pointer-events: none;
+    }}
+    .block-container {{ position: relative; z-index: 1; }}
+    .stExpander, .stExpander > div {{
+        background: rgba(30, 30, 60, 0.95) !important;
+        color: #e8d5b0 !important;
+        border-color: #c8a96e !important;
+    }}
+    .stExpander label, .stExpander p, .stExpander span {{
+        color: #e8d5b0 !important;
+    }}
+    /* Bolhas de chat escuro */
+    .msg-user {{ background: linear-gradient(135deg, #a07840, #c8a96e) !important; }}
+    .msg-bot {{ background: rgba(40, 40, 70, 0.95) !important; color: #e8d5b0 !important; }}
+    /* Botões */
+    .stButton > button {{
+        background: rgba(40,40,70,0.9) !important;
+        color: #e8d5b0 !important;
+        border-color: #c8a96e !important;
+    }}
+    /* Input */
+    .stTextInput input, .stTextArea textarea {{
+        background: rgba(30,30,60,0.95) !important;
+        color: #e8d5b0 !important;
+    }}
+    </style>''', unsafe_allow_html=True)
+    else:
+        st.markdown(f'''<style>
     .stApp {{
         background-color: #ffffff !important;
         background-image: url("{SAGRADA_FAMILIA}") !important;
@@ -658,17 +707,25 @@ IMPORTANTE: Quando perguntado sobre um santo especifico, fale SOMENTE sobre esse
 
         # ── CONTA ──
         st.markdown("<p style='color:#c8a96e;font-weight:700;margin:0.3rem 0;'>👤 CONTA</p>", unsafe_allow_html=True)
+        # Toggle modo escuro
+        modo_label = "☀️ Modo Claro" if st.session_state.modo_escuro else "🌙 Modo Escuro"
+        if st.button(modo_label, use_container_width=True, key="btn_modo"):
+            st.session_state.modo_escuro = not st.session_state.modo_escuro
+            st.rerun()
+
         if st.button("🚪 Sair", use_container_width=True):
             st.query_params.clear()
             components.html("""
             <script>
             localStorage.removeItem("vc_user");
             localStorage.removeItem("vc_nome");
-            window.parent.location.replace(window.parent.location.pathname);
+            document.cookie = "vc_user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+            document.cookie = "vc_nome=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+            window.location.replace(window.location.origin + window.location.pathname);
             </script>
             """, height=0)
-            for k in ["logado", "username", "chats", "chat_atual", "nome_usuario", "cookie_lido"]:
-                st.session_state[k] = False if k == "logado" else None if k not in ["chats", "cookie_lido"] else ({} if k == "chats" else False)
+            for k in ["logado", "username", "chats", "chat_atual", "nome_usuario", "cookie_lido", "modo_escuro"]:
+                st.session_state[k] = False if k in ["logado","modo_escuro"] else None if k not in ["chats","cookie_lido"] else ({} if k=="chats" else False)
             st.rerun()
 
     # ── ABA ORAÇÕES ──
