@@ -394,8 +394,51 @@ API_KEY = st.secrets.get("GROQ_API_KEY", os.environ.get("GROQ_API_KEY", ""))
 
 for key, val in [("logado", False), ("username", None), ("chats", {}),
                   ("chat_atual", None), ("input_key", 0), ("pendente", None), ("nome_usuario", ""),
-                  ("aba_chat", "chat"), ("oracao_aberta", None), ("terco_aberto", None), ("terco_misterio", None), ("novena_aberta", None), ("novena_dia", None)]:
+                  ("aba_chat", "chat"), ("oracao_aberta", None), ("terco_aberto", None), ("terco_misterio", None), ("novena_aberta", None), ("novena_dia", None),
+                  ("cookie_lido", False)]:
     if key not in st.session_state: st.session_state[key] = val
+
+# ── COOKIE: ler login salvo ────────────────────────────────────────────────────
+if not st.session_state.cookie_lido:
+    cookie_html = """
+    <script>
+    function getCookie(name) {
+        const value = "; " + document.cookie;
+        const parts = value.split("; " + name + "=");
+        if (parts.length === 2) return decodeURIComponent(parts.pop().split(";").shift());
+        return null;
+    }
+    const u = getCookie("vc_user");
+    const n = getCookie("vc_nome");
+    if (u && n) {
+        const el = window.parent.document.querySelector("#vc_cookie_val");
+        if (!el) {
+            const div = window.parent.document.createElement("div");
+            div.id = "vc_cookie_val";
+            div.setAttribute("data-user", u);
+            div.setAttribute("data-nome", n);
+            div.style.display = "none";
+            window.parent.document.body.appendChild(div);
+        }
+    }
+    </script>
+    """
+    import streamlit.components.v1 as components
+    components.html(cookie_html, height=0)
+
+    # Verificar cookie via query params (metodo alternativo confiavel)
+    qp = st.query_params
+    if "vc_u" in qp and "vc_n" in qp:
+        u_cookie = qp["vc_u"]
+        n_cookie = qp["vc_n"]
+        if u_cookie and n_cookie:
+            usuario_salvo = sb_get("usuarios", f"username=eq.{u_cookie}")
+            if usuario_salvo:
+                st.session_state.logado = True
+                st.session_state.username = u_cookie
+                st.session_state.nome_usuario = n_cookie
+                st.session_state.chats = carregar_chats(u_cookie)
+    st.session_state.cookie_lido = True
 
 if "cliente" not in st.session_state:
     st.session_state.cliente = Groq(api_key=API_KEY)
@@ -438,6 +481,9 @@ if not st.session_state.logado:
                         st.session_state.username = u
                         st.session_state.nome_usuario = usuario["nome"]
                         st.session_state.chats = carregar_chats(u)
+                        # Salvar login via query params (persiste no URL)
+                        st.query_params["vc_u"] = u
+                        st.query_params["vc_n"] = usuario["nome"]
                         st.rerun()
                     else:
                         st.error("Usuário ou senha incorretos!")
@@ -463,6 +509,8 @@ if not st.session_state.logado:
                             st.session_state.username = user_n
                             st.session_state.nome_usuario = nome_n.strip()
                             st.session_state.chats = {}
+                            st.query_params["vc_u"] = user_n
+                            st.query_params["vc_n"] = nome_n.strip()
                             st.rerun()
                     else:
                         st.error("Preencha todos os campos!")
@@ -604,6 +652,7 @@ IMPORTANTE: Quando perguntado sobre um santo especifico, fale SOMENTE sobre esse
         # ── CONTA ──
         st.markdown("<p style='color:#c8a96e;font-weight:700;margin:0.3rem 0;'>👤 CONTA</p>", unsafe_allow_html=True)
         if st.button("🚪 Sair", use_container_width=True):
+            st.query_params.clear()
             for k in ["logado", "username", "chats", "chat_atual", "nome_usuario"]:
                 st.session_state[k] = False if k == "logado" else None if k != "chats" else {}
             st.rerun()
