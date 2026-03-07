@@ -720,7 +720,23 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
             }
             st.session_state.chat_atual = novo_id
             st.session_state.aba_chat = None
-            st.session_state.pendente = f"O santo(a) de hoje, {hoje.day}/{hoje.month}, é {santo_nome}. Me conte especificamente sobre {santo_nome}: quem foi, sua historia de vida, seus milagres, por que foi canonizado e o que podemos aprender com seu exemplo de fe. NAO confunda com outros santos."
+            CONTEXTOS_SANTOS = {
+                "São Colette": "Colette de Corbie (1381-1447), freira francesa da Ordem das Clarissas. Nasceu em Corbie, Franca. Orfã aos 17 anos, tornou-se terciaria franciscana. Reformou a Ordem das Clarissas voltando a regra original de Santa Clara de Assis. Fundou 17 mosteiros na Franca, Belgica e Savoia. Tinha dons misticos, visoes e curas. Padroeira das gravidas. Canonizada em 1807 por Pio VII. Festa: 6 de marco.",
+                "São Rupert": "Sao Ruperto de Salzburgo (660-718), bispo missionario irlandes. Evangelizou a Baviera e Austria. Fundou a cidade de Salzburgo e o mosteiro de Sao Pedro. Apostolo da Bavaria.",
+                "São Bento": "Sao Bento de Nursia (480-547), fundador do monasticismo ocidental. Criou a Regra de Sao Bento. Fundou o mosteiro de Monte Cassino. Padroeiro da Europa e protetor contra o veneno e mau-olhado.",
+                "São Francisco de Sales": "Sao Francisco de Sales (1567-1622), bispo de Genebra. Doutor da Igreja. Escreveu Introducao a Vida Devota. Padroeiro dos jornalistas e escritores. Fundou a Ordem da Visitacao com Santa Joana de Chantal.",
+                "Santa Rita de Cássia": "Santa Rita de Cassia (1381-1457), viuva italiana, depois religiosa agostiniana em Cascia, Italia. Chamada de padroeira das causas impossiveis. Recebeu o estigma de um espinho da coroa de Cristo na testa. Canonizada em 1900.",
+                "Nossa Senhora de Fátima": "Nossa Senhora de Fatima apareceu a tres pastorinhos (Lucia, Francisco e Jacinta) em Fatima, Portugal, entre maio e outubro de 1917. Pediu oracao, penitencia e consagracao ao Imaculado Coracao de Maria. O milagre do sol foi testemunhado por 70 mil pessoas em 13 de outubro de 1917.",
+                "Santo Antônio de Lisboa": "Santo Antonio de Lisboa ou de Padua (1195-1231), frade franciscano portugues nascido em Lisboa. Doutor da Igreja. Famoso pregador, taumaturgo. Padroeiro de Portugal, dos pobres e dos objetos perdidos. Canonizado apenas 1 ano apos sua morte.",
+                "São João Bosco": "Dom Bosco (1815-1888), sacerdote italiano fundador dos Salesianos. Dedicou sua vida a educacao dos jovens pobres de Turim. Criou o sistema preventivo de educacao baseado em razao, religiao e amorevolezza. Canonizado em 1934.",
+                "São Padre Pio": "Padre Pio de Pietrelcina (1887-1968), frade capuchinho italiano. Recebeu os estigmas de Cristo por 50 anos. Tinha dons de leitura de almas, bilocacao e curas. Fundou a Casa Alivio do Sofrimento. Canonizado em 2002 por Joao Paulo II.",
+                "São Pio de Pietrelcina - Padre Pio": "Padre Pio de Pietrelcina (1887-1968), frade capuchinho italiano. Recebeu os estigmas de Cristo por 50 anos. Tinha dons de leitura de almas, bilocacao e curas. Fundou a Casa Alivio do Sofrimento. Canonizado em 2002 por Joao Paulo II.",
+            }
+            contexto_extra = CONTEXTOS_SANTOS.get(santo_nome, "")
+            if contexto_extra:
+                st.session_state.pendente = f"Contexto importante: {contexto_extra}\n\nCom base nessas informacoes, me fale mais sobre {santo_nome}, aprofundando sua historia, virtudes e o que podemos aprender com seu exemplo."
+            else:
+                st.session_state.pendente = f"O santo(a) de hoje é {santo_nome}. Me conte sobre {santo_nome}: quem foi, sua historia de vida, seus milagres e o que podemos aprender com seu exemplo de fe."
             st.rerun()
         st.stop()
 
