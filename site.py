@@ -438,6 +438,8 @@ if not st.session_state.cookie_lido:
                 st.session_state.username = u_cookie
                 st.session_state.nome_usuario = n_cookie
                 st.session_state.chats = carregar_chats(u_cookie)
+                st.session_state.cookie_lido = True
+                st.rerun()
     st.session_state.cookie_lido = True
 
 if "cliente" not in st.session_state:
