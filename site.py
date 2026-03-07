@@ -399,8 +399,6 @@ for key, val in [("logado", False), ("username", None), ("chats", {}),
     if key not in st.session_state: st.session_state[key] = val
 
 # ── AUTOLOGIN via localStorage → Streamlit ────────────────────────────────────
-import streamlit.components.v1 as components
-
 # Lê query params (enviados pelo JS abaixo em execução anterior)
 if not st.session_state.logado:
     qp = st.query_params
@@ -418,28 +416,9 @@ if not st.session_state.logado:
                 st.query_params.clear()
                 st.rerun()
 
-# Se ainda não logou: JS injeta script no topo da página via st.markdown
-if not st.session_state.logado and not st.session_state.cookie_lido:
+# Autologin não disponível (limitação do Streamlit Cloud - iframe bloqueado)
+if not st.session_state.logado:
     st.session_state.cookie_lido = True
-    # Este script roda FORA do iframe, direto no HTML do Streamlit
-    st.markdown("""
-    <script>
-    (function() {
-        try {
-            const u = localStorage.getItem('vc_user');
-            const n = localStorage.getItem('vc_nome');
-            if (u && n) {
-                const url = new URL(window.location.href);
-                if (!url.searchParams.get('vc_u')) {
-                    url.searchParams.set('vc_u', u);
-                    url.searchParams.set('vc_n', n);
-                    window.location.replace(url.toString());
-                }
-            }
-        } catch(e) { console.log('autologin error', e); }
-    })();
-    </script>
-    """, unsafe_allow_html=True)
 
 if "cliente" not in st.session_state:
     st.session_state.cliente = Groq(api_key=API_KEY)
@@ -485,15 +464,10 @@ if not st.session_state.logado:
                         st.query_params["vc_u"] = u
                         st.query_params["vc_n"] = usuario["nome"]
                         # Salvar no localStorage para autologin futuro
-                        components.html(f"""
-                        <script>
-                        localStorage.setItem("vc_user", "{u}");
-                        localStorage.setItem("vc_nome", "{usuario["nome"]}");
-                        const exp = new Date(Date.now() + 30*24*60*60*1000).toUTCString();
-                        document.cookie = "vc_user=" + encodeURIComponent("{u}") + "; expires=" + exp + "; path=/";
-                        document.cookie = "vc_nome=" + encodeURIComponent("{usuario["nome"]}") + "; expires=" + exp + "; path=/";
-                        </script>
-                        """, height=0)
+                        st.markdown(f"""<script>
+                        localStorage.setItem('vc_user', '{u}');
+                        localStorage.setItem('vc_nome', '{usuario["nome"]}');
+                        </script>""", unsafe_allow_html=True)
                         st.rerun()
                     else:
                         st.error("Usuário ou senha incorretos!")
@@ -521,12 +495,10 @@ if not st.session_state.logado:
                             st.session_state.chats = {}
                             st.query_params["vc_u"] = user_n
                             st.query_params["vc_n"] = nome_n.strip()
-                            components.html(f"""
-                            <script>
-                            localStorage.setItem("vc_user", "{user_n}");
-                            localStorage.setItem("vc_nome", "{nome_n.strip()}");
-                            </script>
-                            """, height=0)
+                            st.markdown(f"""<script>
+                            localStorage.setItem('vc_user', '{user_n}');
+                            localStorage.setItem('vc_nome', '{nome_n.strip()}');
+                            </script>""", unsafe_allow_html=True)
                             st.rerun()
                     else:
                         st.error("Preencha todos os campos!")
@@ -718,15 +690,10 @@ IMPORTANTE: Quando perguntado sobre um santo especifico, fale SOMENTE sobre esse
 
         if st.button("🚪 Sair", use_container_width=True):
             st.query_params.clear()
-            components.html("""
-            <script>
-            localStorage.removeItem("vc_user");
-            localStorage.removeItem("vc_nome");
-            document.cookie = "vc_user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
-            document.cookie = "vc_nome=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
-            window.location.replace(window.location.origin + window.location.pathname);
-            </script>
-            """, height=0)
+            st.markdown("""<script>
+            localStorage.removeItem('vc_user');
+            localStorage.removeItem('vc_nome');
+            </script>""", unsafe_allow_html=True)
             for k in ["logado", "username", "chats", "chat_atual", "nome_usuario", "cookie_lido", "modo_escuro"]:
                 st.session_state[k] = False if k in ["logado","modo_escuro"] else None if k not in ["chats","cookie_lido"] else ({} if k=="chats" else False)
             st.rerun()
