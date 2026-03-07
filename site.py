@@ -499,13 +499,34 @@ else:
     fatos = memoria.get("fatos", [])
     fatos_str = "\n".join(fatos) if fatos else "Nenhum ainda."
 
+    from datetime import date as _date
+    _hoje = _date.today()
+    _SANTOS = {
+        (1,1):"Maria Santissima Mae de Deus",(1,6):"Epifania do Senhor",(1,17):"Santo Antonio Abade",(1,24):"Sao Francisco de Sales",(1,28):"Santo Tomas de Aquino",(1,31):"Sao Joao Bosco",
+        (2,2):"Apresentacao do Senhor",(2,11):"Nossa Senhora de Lourdes",(2,14):"Santos Cirilo e Metodio",(2,22):"Catedral de Sao Pedro",(2,23):"Sao Policarpo",
+        (3,4):"Sao Casimiro",(3,6):"Sao Colette - freira francesa (1381-1447) que reformou as Clarissas, fundou 17 mosteiros, tinha dons misticos e é padroeira das gravidas",(3,7):"Santas Perpetua e Felicidade",(3,8):"Sao Joao de Deus",(3,17):"Santo Patricio",(3,19):"Sao Jose Esposo de Maria",(3,25):"Anunciacao do Senhor",
+        (4,7):"Sao Joao Batista de La Salle",(4,23):"Sao Jorge",(4,25):"Sao Marcos Evangelista",(4,29):"Santa Catarina de Siena",
+        (5,1):"Sao Jose Operario",(5,13):"Nossa Senhora de Fatima",(5,22):"Santa Rita de Cassia",(5,24):"Santa Maria Auxiliadora",
+        (6,13):"Santo Antonio de Lisboa",(6,24):"Natividade de Sao Joao Batista",(6,29):"Santos Pedro e Paulo",
+        (7,16):"Nossa Senhora do Carmo",(7,22):"Santa Maria Madalena",(7,25):"Sao Tiago Apostolo",
+        (8,6):"Transfiguracao do Senhor",(8,10):"Sao Lourenco",(8,11):"Santa Clara de Assis",(8,15):"Assuncao de Nossa Senhora",(8,28):"Santo Agostinho",
+        (9,8):"Natividade de Nossa Senhora",(9,14):"Exaltacao da Santa Cruz",(9,15):"Nossa Senhora das Dores",(9,23):"Padre Pio de Pietrelcina - capuchinho italiano com estigmas por 50 anos, dons de cura e leitura de almas",
+        (10,1):"Santa Teresinha do Menino Jesus",(10,2):"Santos Anjos da Guarda",(10,4):"Sao Francisco de Assis",(10,7):"Nossa Senhora do Rosario",(10,12):"Nossa Senhora Aparecida",
+        (11,1):"Todos os Santos",(11,2):"Todos os Fieis Defuntos",
+        (12,8):"Imaculada Conceicao de Maria",(12,12):"Nossa Senhora de Guadalupe",(12,25):"Natividade de Nosso Senhor Jesus Cristo",
+    }
+    _santo_hoje = _SANTOS.get((_hoje.month, _hoje.day), "")
+    _info_santo = f"O santo do dia {_hoje.day}/{_hoje.month} é: {_santo_hoje}." if _santo_hoje else ""
+
     system_prompt = f"""Você é o Virtual Catholics, uma IA católica criada por Pedro.
 Você tem fé católica profunda e responde com base nos ensinamentos da Igreja Católica.
 Você é engraçado, divertido e acolhedor, mas sempre fiel à fé.
 Responda sempre em português brasileiro.
 O nome do usuário é: {nome}.
 Fatos que você já sabe sobre ele: {fatos_str}
+{_info_santo}
 Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
+IMPORTANTE: Quando perguntado sobre um santo especifico, fale SOMENTE sobre esse santo, sem confundir com outros.
 """
 
     with st.expander("📋 Menu"):
@@ -720,23 +741,10 @@ Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
             }
             st.session_state.chat_atual = novo_id
             st.session_state.aba_chat = None
-            CONTEXTOS_SANTOS = {
-                "São Colette": "Colette de Corbie (1381-1447), freira francesa da Ordem das Clarissas. Nasceu em Corbie, Franca. Orfã aos 17 anos, tornou-se terciaria franciscana. Reformou a Ordem das Clarissas voltando a regra original de Santa Clara de Assis. Fundou 17 mosteiros na Franca, Belgica e Savoia. Tinha dons misticos, visoes e curas. Padroeira das gravidas. Canonizada em 1807 por Pio VII. Festa: 6 de marco.",
-                "São Rupert": "Sao Ruperto de Salzburgo (660-718), bispo missionario irlandes. Evangelizou a Baviera e Austria. Fundou a cidade de Salzburgo e o mosteiro de Sao Pedro. Apostolo da Bavaria.",
-                "São Bento": "Sao Bento de Nursia (480-547), fundador do monasticismo ocidental. Criou a Regra de Sao Bento. Fundou o mosteiro de Monte Cassino. Padroeiro da Europa e protetor contra o veneno e mau-olhado.",
-                "São Francisco de Sales": "Sao Francisco de Sales (1567-1622), bispo de Genebra. Doutor da Igreja. Escreveu Introducao a Vida Devota. Padroeiro dos jornalistas e escritores. Fundou a Ordem da Visitacao com Santa Joana de Chantal.",
-                "Santa Rita de Cássia": "Santa Rita de Cassia (1381-1457), viuva italiana, depois religiosa agostiniana em Cascia, Italia. Chamada de padroeira das causas impossiveis. Recebeu o estigma de um espinho da coroa de Cristo na testa. Canonizada em 1900.",
-                "Nossa Senhora de Fátima": "Nossa Senhora de Fatima apareceu a tres pastorinhos (Lucia, Francisco e Jacinta) em Fatima, Portugal, entre maio e outubro de 1917. Pediu oracao, penitencia e consagracao ao Imaculado Coracao de Maria. O milagre do sol foi testemunhado por 70 mil pessoas em 13 de outubro de 1917.",
-                "Santo Antônio de Lisboa": "Santo Antonio de Lisboa ou de Padua (1195-1231), frade franciscano portugues nascido em Lisboa. Doutor da Igreja. Famoso pregador, taumaturgo. Padroeiro de Portugal, dos pobres e dos objetos perdidos. Canonizado apenas 1 ano apos sua morte.",
-                "São João Bosco": "Dom Bosco (1815-1888), sacerdote italiano fundador dos Salesianos. Dedicou sua vida a educacao dos jovens pobres de Turim. Criou o sistema preventivo de educacao baseado em razao, religiao e amorevolezza. Canonizado em 1934.",
-                "São Padre Pio": "Padre Pio de Pietrelcina (1887-1968), frade capuchinho italiano. Recebeu os estigmas de Cristo por 50 anos. Tinha dons de leitura de almas, bilocacao e curas. Fundou a Casa Alivio do Sofrimento. Canonizado em 2002 por Joao Paulo II.",
-                "São Pio de Pietrelcina - Padre Pio": "Padre Pio de Pietrelcina (1887-1968), frade capuchinho italiano. Recebeu os estigmas de Cristo por 50 anos. Tinha dons de leitura de almas, bilocacao e curas. Fundou a Casa Alivio do Sofrimento. Canonizado em 2002 por Joao Paulo II.",
-            }
-            contexto_extra = CONTEXTOS_SANTOS.get(santo_nome, "")
-            if contexto_extra:
-                st.session_state.pendente = f"Contexto importante: {contexto_extra}\n\nCom base nessas informacoes, me fale mais sobre {santo_nome}, aprofundando sua historia, virtudes e o que podemos aprender com seu exemplo."
-            else:
-                st.session_state.pendente = f"O santo(a) de hoje é {santo_nome}. Me conte sobre {santo_nome}: quem foi, sua historia de vida, seus milagres e o que podemos aprender com seu exemplo de fe."
+            # Coloca a mensagem direto no historico para nao perder o nome do santo no rerun
+            pergunta = f"Me conte tudo sobre {santo_nome} (santo do dia {hoje.day}/{hoje.month}): quem foi, sua historia de vida, seus milagres, virtudes e o que podemos aprender com seu exemplo de fe. IMPORTANTE: fale especificamente sobre {santo_nome}, nao sobre outro santo."
+            st.session_state.chats[novo_id]["historico"] = [{"role": "user", "content": pergunta}]
+            st.session_state.pendente = pergunta
             st.rerun()
         st.stop()
 
