@@ -395,8 +395,56 @@ API_KEY = st.secrets.get("GROQ_API_KEY", os.environ.get("GROQ_API_KEY", ""))
 for key, val in [("logado", False), ("username", None), ("chats", {}),
                   ("chat_atual", None), ("input_key", 0), ("pendente", None), ("nome_usuario", ""),
                   ("aba_chat", "chat"), ("oracao_aberta", None), ("terco_aberto", None), ("terco_misterio", None), ("novena_aberta", None), ("novena_dia", None),
-                  ("cookie_lido", False), ("modo_escuro", False)]:
+                  ("cookie_lido", False), ("modo_escuro", False), ("idioma", "pt")]:
     if key not in st.session_state: st.session_state[key] = val
+
+# ── TRADUÇÕES ─────────────────────────────────────────────────────────────────
+TRADUCOES = {
+    "pt": {
+        "novo_chat": T["novo_chat"], "chats": T["chats"], "recursos": T["recursos"],
+        "sobre": T["sobre"], "conta": T["conta"], "sair": "🚪 Sair",
+        "oracoes": T["oracoes"], "biblia": T["biblia"], "terco": T["terco"],
+        "liturgia": T["liturgia"], "calendario": T["calendario"],
+        "santo": T["santo"], "novenas": T["novenas"], "catecismo": T["catecismo"],
+        "creditos": T["creditos"], "doacoes": T["doacoes"],
+        "modo_escuro": "🌙 Modo Escuro", "modo_claro": "☀️ Modo Claro",
+        "bem_vindo": "Olá", "novo_chat_btn": "Abra **Conversas** e clique em **Novo chat**.",
+        "deletar": T["deletar"], "idioma": "🌐 Idioma",
+    },
+    "en": {
+        "novo_chat": "＋ New chat", "chats": T["chats"], "recursos": "🙏 RESOURCES",
+        "sobre": "ℹ️ ABOUT", "conta": "👤 ACCOUNT", "sair": "🚪 Sign out",
+        "oracoes": "🙏 Prayers", "biblia": "📖 Bible", "terco": "📿 Rosary",
+        "liturgia": "📘 Liturgy of the Day", "calendario": "📅 Liturgical Calendar",
+        "santo": "⭐ Saint of the Day", "novenas": T["novenas"], "catecismo": "📖 Catechism",
+        "creditos": "⭐ Credits", "doacoes": "💛 Donations",
+        "modo_escuro": "🌙 Dark Mode", "modo_claro": "☀️ Light Mode",
+        "bem_vindo": "Hello", "novo_chat_btn": "Open **Conversations** and click **New chat**.",
+        "deletar": "🗑️ Delete conversation", "idioma": "🌐 Language",
+    },
+    "es": {
+        "novo_chat": "＋ Nuevo chat", "chats": T["chats"], "recursos": T["recursos"],
+        "sobre": T["sobre"], "conta": "👤 CUENTA", "sair": "🚪 Salir",
+        "oracoes": "🙏 Oraciones", "biblia": "📖 Biblia", "terco": "📿 Rosario",
+        "liturgia": "📘 Liturgia del Día", "calendario": "📅 Calendario Litúrgico",
+        "santo": "⭐ Santo del Día", "novenas": T["novenas"], "catecismo": T["catecismo"],
+        "creditos": T["creditos"], "doacoes": "💛 Donaciones",
+        "modo_escuro": "🌙 Modo Oscuro", "modo_claro": "☀️ Modo Claro",
+        "bem_vindo": "Hola", "novo_chat_btn": "Abre **Conversaciones** y haz clic en **Nuevo chat**.",
+        "deletar": "🗑️ Eliminar conversación", "idioma": "🌐 Idioma",
+    },
+    "it": {
+        "novo_chat": "＋ Nuova chat", "chats": "💬 CHAT", "recursos": "🙏 RISORSE",
+        "sobre": "ℹ️ INFO", "conta": "👤 ACCOUNT", "sair": "🚪 Esci",
+        "oracoes": "🙏 Preghiere", "biblia": "📖 Bibbia", "terco": "📿 Rosario",
+        "liturgia": "📘 Liturgia del Giorno", "calendario": "📅 Calendario Liturgico",
+        "santo": "⭐ Santo del Giorno", "novenas": "🕯️ Novene", "catecismo": "📖 Catechismo",
+        "creditos": "⭐ Crediti", "doacoes": "💛 Donazioni",
+        "modo_escuro": "🌙 Modalità Scura", "modo_claro": "☀️ Modalità Chiara",
+        "bem_vindo": "Ciao", "novo_chat_btn": "Apri **Conversazioni** e clicca su **Nuova chat**.",
+        "deletar": "🗑️ Elimina conversazione", "idioma": "🌐 Lingua",
+    },
+}
 
 # ── AUTOLOGIN via localStorage → Streamlit ────────────────────────────────────
 # Lê query params (enviados pelo JS abaixo em execução anterior)
@@ -584,6 +632,7 @@ else:
 
     username = st.session_state.username
     nome = st.session_state.nome_usuario
+    T = TRADUCOES[st.session_state.idioma]
     memoria = carregar_memoria(username)
     fatos = memoria.get("fatos", [])
     fatos_str = "\n".join(fatos) if fatos else "Nenhum ainda."
@@ -607,13 +656,24 @@ else:
     _santo_hoje = _SANTOS.get((_hoje.month, _hoje.day), "")
     _info_santo = f"O santo do dia {_hoje.day}/{_hoje.month} é: {_santo_hoje}." if _santo_hoje else ""
 
+    idioma_instrucao = {
+        "pt": "Responda SEMPRE em português brasileiro.",
+        "en": "ALWAYS respond in English.",
+        "es": "Responde SIEMPRE en español.",
+        "it": "Rispondi SEMPRE in italiano.",
+    }[st.session_state.idioma]
+
+    num_msgs = len(st.session_state.chats.get(st.session_state.chat_atual, {}).get("historico", [])) if st.session_state.chat_atual else 0
+    saudacao_instrucao = "NUNCA comece sua resposta com saudações como Olá, Oi, Olá {nome} ou similares — a conversa já está em andamento." if num_msgs > 1 else "Você pode cumprimentar o usuário apenas nesta primeira mensagem."
+
     system_prompt = f"""Você é o Virtual Catholics, uma IA católica criada por Pedro.
 Você tem fé católica profunda e responde com base nos ensinamentos da Igreja Católica.
 Você é engraçado, divertido e acolhedor, mas sempre fiel à fé.
-Responda sempre em português brasileiro.
+{idioma_instrucao}
 O nome do usuário é: {nome}.
 Fatos que você já sabe sobre ele: {fatos_str}
 {_info_santo}
+{saudacao_instrucao}
 Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
 IMPORTANTE: Quando perguntado sobre um santo especifico, fale SOMENTE sobre esse santo, sem confundir com outros.
 """
@@ -637,7 +697,7 @@ IMPORTANTE: Quando perguntado sobre um santo especifico, fale SOMENTE sobre esse
                 st.session_state.input_key += 1
                 st.rerun()
         if st.session_state.chat_atual and st.session_state.chat_atual in st.session_state.chats:
-            if st.button("🗑️ Deletar conversa", use_container_width=True):
+            if st.button(T["deletar"], use_container_width=True):
                 deletar_chat(username, st.session_state.chat_atual)
                 del st.session_state.chats[st.session_state.chat_atual]
                 st.session_state.chat_atual = None
@@ -647,14 +707,14 @@ IMPORTANTE: Quando perguntado sobre um santo especifico, fale SOMENTE sobre esse
 
         # ── ORAÇÕES / BÍBLIA ──
         st.markdown("<p style='color:#c8a96e;font-weight:700;margin:0.3rem 0;'>🙏 RECURSOS</p>", unsafe_allow_html=True)
-        if st.button("🙏 Orações", use_container_width=True, key="btn_oracoes"):
+        if st.button(T["oracoes"], use_container_width=True, key="btn_oracoes"):
             st.session_state.aba_chat = "oracoes"
             st.session_state.oracao_aberta = None
             st.rerun()
-        if st.button("📖 Bíblia", use_container_width=True, key="btn_biblia"):
+        if st.button(T["biblia"], use_container_width=True, key="btn_biblia"):
             st.session_state.aba_chat = "biblia"
             st.rerun()
-        if st.button("📿 Terço", use_container_width=True, key="btn_terco"):
+        if st.button(T["terco"], use_container_width=True, key="btn_terco"):
             st.session_state.aba_chat = "terco"
             st.session_state.terco_aberto = None
             st.session_state.terco_misterio = None
@@ -665,15 +725,15 @@ IMPORTANTE: Quando perguntado sobre um santo especifico, fale SOMENTE sobre esse
         if st.button("📅 Calendario Liturgico", use_container_width=True, key="btn_calendario"):
             st.session_state.aba_chat = "calendario"
             st.rerun()
-        if st.button("⭐ Santo do Dia", use_container_width=True, key="btn_santo"):
+        if st.button(T["santo"], use_container_width=True, key="btn_santo"):
             st.session_state.aba_chat = "santo"
             st.rerun()
-        if st.button("🕯️ Novenas", use_container_width=True, key="btn_novenas"):
+        if st.button(T["novenas"], use_container_width=True, key="btn_novenas"):
             st.session_state.aba_chat = "novenas"
             st.session_state.novena_aberta = None
             st.session_state.novena_dia = None
             st.rerun()
-        if st.button("📖 Catecismo", use_container_width=True, key="btn_catecismo"):
+        if st.button(T["catecismo"], use_container_width=True, key="btn_catecismo"):
             st.session_state.aba_chat = "catecismo"
             st.rerun()
 
@@ -684,7 +744,7 @@ IMPORTANTE: Quando perguntado sobre um santo especifico, fale SOMENTE sobre esse
         if st.button("⭐ Creditos", use_container_width=True, key="btn_creditos"):
             st.session_state.aba_chat = "creditos"
             st.rerun()
-        if st.button("💛 Doações", use_container_width=True, key="btn_doacoes"):
+        if st.button(T["doacoes"], use_container_width=True, key="btn_doacoes"):
             st.session_state.aba_chat = "doacoes"
             st.rerun()
 
@@ -692,8 +752,17 @@ IMPORTANTE: Quando perguntado sobre um santo especifico, fale SOMENTE sobre esse
 
         # ── CONTA ──
         st.markdown("<p style='color:#c8a96e;font-weight:700;margin:0.3rem 0;'>👤 CONTA</p>", unsafe_allow_html=True)
+        # Seletor de idioma
+        st.markdown(f"<small style='color:#c8a96e;font-weight:600;'>🌐 {T['idioma']}</small>", unsafe_allow_html=True)
+        idioma_opcoes = {"🇧🇷 Português": "pt", "🇺🇸 English": "en", "🇪🇸 Español": "es", "🇮🇹 Italiano": "it"}
+        idioma_atual = [k for k, v in idioma_opcoes.items() if v == st.session_state.idioma][0]
+        idioma_sel = st.selectbox("", list(idioma_opcoes.keys()), index=list(idioma_opcoes.keys()).index(idioma_atual), label_visibility="collapsed", key="sel_idioma")
+        if idioma_opcoes[idioma_sel] != st.session_state.idioma:
+            st.session_state.idioma = idioma_opcoes[idioma_sel]
+            st.rerun()
+
         # Toggle modo escuro
-        modo_label = "☀️ Modo Claro" if st.session_state.modo_escuro else "🌙 Modo Escuro"
+        modo_label = T["modo_claro"] if st.session_state.modo_escuro else T["modo_escuro"]
         if st.button(modo_label, use_container_width=True, key="btn_modo"):
             st.session_state.modo_escuro = not st.session_state.modo_escuro
             st.rerun()
@@ -1245,7 +1314,10 @@ IMPORTANTE: Quando perguntado sobre um santo especifico, fale SOMENTE sobre esse
             "margin-bottom:1rem;border:2px solid #c8a96e;'>"
             "<p style='color:#c8a96e;font-weight:700;margin:0 0 0.5rem 0;font-size:1.1rem;'>&#128241; Chave Pix</p>"
             "<p style='color:#1a1a1a;font-size:1.3rem;font-weight:700;margin:0 0 0.5rem 0;letter-spacing:1px;'>61 98510-1908</p>"
-            "<p style='color:#888;font-size:0.8rem;margin:0;'>Qualquer valor &#233; uma b&#234;n&#231;&#227;o enorme! &#128591;</p>"
+            "<p style='color:#888;font-size:0.8rem;margin:0 0 1rem 0;'>Qualquer valor &#233; uma b&#234;n&#231;&#227;o enorme! &#128591;</p>"
+            "<img src='https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=61985101908&bgcolor=ffffff&color=a07840&qzone=2' "
+            "style='border-radius:12px;border:3px solid #c8a96e;' alt='QR Code Pix'/>"
+            "<p style='color:#888;font-size:0.75rem;margin:0.5rem 0 0 0;'>&#128247; Aponte a c&#226;mera para pagar via Pix</p>"
             "</div>"
             "<p style='color:#aaa;font-size:0.8rem;margin:0;'>"
             "Que Deus aben&#231;oe imensamente cada pessoa que contribui<br>"
