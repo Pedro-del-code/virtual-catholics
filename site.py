@@ -398,35 +398,28 @@ for key, val in [("logado", False), ("username", None), ("chats", {}),
                   ("cookie_lido", False)]:
     if key not in st.session_state: st.session_state[key] = val
 
-# ── COOKIE: ler login salvo ────────────────────────────────────────────────────
-if not st.session_state.cookie_lido:
-    cookie_html = """
+# ── AUTOLOGIN via localStorage ────────────────────────────────────────────────
+import streamlit.components.v1 as components
+
+# Passo 1: JS lê localStorage e injeta nos query params se não estiver logado
+if not st.session_state.logado and not st.session_state.cookie_lido:
+    components.html("""
     <script>
-    function getCookie(name) {
-        const value = "; " + document.cookie;
-        const parts = value.split("; " + name + "=");
-        if (parts.length === 2) return decodeURIComponent(parts.pop().split(";").shift());
-        return null;
-    }
-    const u = getCookie("vc_user");
-    const n = getCookie("vc_nome");
+    const u = localStorage.getItem("vc_user");
+    const n = localStorage.getItem("vc_nome");
     if (u && n) {
-        const el = window.parent.document.querySelector("#vc_cookie_val");
-        if (!el) {
-            const div = window.parent.document.createElement("div");
-            div.id = "vc_cookie_val";
-            div.setAttribute("data-user", u);
-            div.setAttribute("data-nome", n);
-            div.style.display = "none";
-            window.parent.document.body.appendChild(div);
+        const url = new URL(window.parent.location.href);
+        if (url.searchParams.get("vc_u") !== u) {
+            url.searchParams.set("vc_u", u);
+            url.searchParams.set("vc_n", n);
+            window.parent.location.replace(url.toString());
         }
     }
     </script>
-    """
-    import streamlit.components.v1 as components
-    components.html(cookie_html, height=0)
+    """, height=0)
 
-    # Verificar cookie via query params (metodo alternativo confiavel)
+# Passo 2: Streamlit lê os query params e loga
+if not st.session_state.logado:
     qp = st.query_params
     if "vc_u" in qp and "vc_n" in qp:
         u_cookie = qp["vc_u"]
@@ -440,7 +433,7 @@ if not st.session_state.cookie_lido:
                 st.session_state.chats = carregar_chats(u_cookie)
                 st.session_state.cookie_lido = True
                 st.rerun()
-    st.session_state.cookie_lido = True
+st.session_state.cookie_lido = True
 
 if "cliente" not in st.session_state:
     st.session_state.cliente = Groq(api_key=API_KEY)
@@ -483,9 +476,15 @@ if not st.session_state.logado:
                         st.session_state.username = u
                         st.session_state.nome_usuario = usuario["nome"]
                         st.session_state.chats = carregar_chats(u)
-                        # Salvar login via query params (persiste no URL)
                         st.query_params["vc_u"] = u
                         st.query_params["vc_n"] = usuario["nome"]
+                        # Salvar no localStorage para autologin futuro
+                        components.html(f"""
+                        <script>
+                        localStorage.setItem("vc_user", "{u}");
+                        localStorage.setItem("vc_nome", "{usuario["nome"]}");
+                        </script>
+                        """, height=0)
                         st.rerun()
                     else:
                         st.error("Usuário ou senha incorretos!")
@@ -513,6 +512,12 @@ if not st.session_state.logado:
                             st.session_state.chats = {}
                             st.query_params["vc_u"] = user_n
                             st.query_params["vc_n"] = nome_n.strip()
+                            components.html(f"""
+                            <script>
+                            localStorage.setItem("vc_user", "{user_n}");
+                            localStorage.setItem("vc_nome", "{nome_n.strip()}");
+                            </script>
+                            """, height=0)
                             st.rerun()
                     else:
                         st.error("Preencha todos os campos!")
@@ -655,8 +660,15 @@ IMPORTANTE: Quando perguntado sobre um santo especifico, fale SOMENTE sobre esse
         st.markdown("<p style='color:#c8a96e;font-weight:700;margin:0.3rem 0;'>👤 CONTA</p>", unsafe_allow_html=True)
         if st.button("🚪 Sair", use_container_width=True):
             st.query_params.clear()
-            for k in ["logado", "username", "chats", "chat_atual", "nome_usuario"]:
-                st.session_state[k] = False if k == "logado" else None if k != "chats" else {}
+            components.html("""
+            <script>
+            localStorage.removeItem("vc_user");
+            localStorage.removeItem("vc_nome");
+            window.parent.location.replace(window.parent.location.pathname);
+            </script>
+            """, height=0)
+            for k in ["logado", "username", "chats", "chat_atual", "nome_usuario", "cookie_lido"]:
+                st.session_state[k] = False if k == "logado" else None if k not in ["chats", "cookie_lido"] else ({} if k == "chats" else False)
             st.rerun()
 
     # ── ABA ORAÇÕES ──
