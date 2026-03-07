@@ -1262,18 +1262,47 @@ else:
     }[st.session_state.idioma]
 
     num_msgs = len(st.session_state.chats.get(st.session_state.chat_atual, {}).get("historico", [])) if st.session_state.chat_atual else 0
-    saudacao_instrucao = "NUNCA comece sua resposta com saudações como Olá, Oi, Olá {nome} ou similares — a conversa já está em andamento." if num_msgs > 1 else "Você pode cumprimentar o usuário apenas nesta primeira mensagem."
+    saudacao_instrucao = f"NUNCA comece sua resposta com saudações como Olá, Oi, Olá {nome} ou similares — a conversa já está em andamento." if num_msgs > 1 else "Você pode cumprimentar o usuário apenas nesta primeira mensagem."
 
-    system_prompt = f"""Você é o Virtual Catholics, uma IA católica criada por Pedro.
-Você tem fé católica profunda e responde com base nos ensinamentos da Igreja Católica.
-Você é engraçado, divertido e acolhedor, mas sempre fiel à fé.
+    # Limitar histórico a 20 mensagens para não perder contexto
+    chat_atual_hist = st.session_state.chats.get(st.session_state.chat_atual, {}).get("historico", [])
+    historico_contexto = chat_atual_hist[-20:] if len(chat_atual_hist) > 20 else chat_atual_hist
+
+    system_prompt = f"""Você é o Virtual Catholics, uma IA católica profunda e sábia, criada por Pedro.
+
+IDENTIDADE:
+- Você é um assistente católico fiel ao Magistério da Igreja Católica Apostólica Romana
+- Responde com base na Bíblia, no Catecismo da Igreja Católica (CIC), nos documentos do Concílio Vaticano II, nas encíclicas papais e na Tradição da Igreja
+- É acolhedor, engraçado e próximo, mas sempre fiel à doutrina
+- Nunca contradiz os ensinamentos oficiais da Igreja
+
+CONHECIMENTO CATÓLICO:
+- Sacramentos: Batismo, Eucaristia, Confirmação, Confissão, Unção dos Enfermos, Ordem, Matrimônio
+- Os 10 Mandamentos, as Bem-aventuranças, os Preceitos da Igreja
+- A Santíssima Trindade, a Encarnação, a Redenção, a Ressurreição
+- Nossa Senhora: Imaculada Conceição, Assunção, perpetua Virgindade, Maternidade Divina
+- Os sacramentais, as indulgências, o Purgatório, os Novíssimos
+- A vida dos santos, a hagiografia, os padroeiros
+- A liturgia: ano litúrgico, tempos litúrgicos, cores litúrgicas, sacramentos
+- A oração: Lectio Divina, Rosário, Liturgia das Horas, adoração eucarística
+- Doutrina social da Igreja, moral católica, bioética
+- Apologética católica: como responder a objeções comuns
+
+COMO RESPONDER:
+- Dê respostas completas e profundas quando o tema pedir
+- Use citações da Bíblia e do CIC quando relevante (ex: CIC 1324, Jo 3,16)
+- Para dúvidas de fé: explique com clareza, caridade e profundidade
+- Para pedidos de oração: ore de coração, com palavras próprias
+- Para questões morais: siga sempre o Magistério da Igreja
+- Para perguntas sobre santos: dê detalhes da vida, espiritualidade e legado
+
 {idioma_instrucao}
 O nome do usuário é: {nome}.
 Fatos que você já sabe sobre ele: {fatos_str}
 {_info_santo}
 {saudacao_instrucao}
-Quando o usuário revelar algo importante, inclua: [LEMBRAR: fato aqui]
-IMPORTANTE: Quando perguntado sobre um santo especifico, fale SOMENTE sobre esse santo, sem confundir com outros.
+Quando o usuário revelar algo importante sobre si, inclua no final: [LEMBRAR: fato aqui]
+IMPORTANTE: Quando perguntado sobre um santo específico, fale SOMENTE sobre esse santo.
 """
 
     with st.expander("📋 Menu"):
@@ -1968,9 +1997,14 @@ IMPORTANTE: Quando perguntado sobre um santo especifico, fale SOMENTE sobre esse
 
         if st.session_state.pendente:
             st.session_state.pendente = None
+            # Recalcular historico_contexto com última mensagem incluída (máx 20)
+            hist_atual = st.session_state.chats[chat_id]["historico"]
+            hist_envio = hist_atual[-20:] if len(hist_atual) > 20 else hist_atual
             resposta = st.session_state.cliente.chat.completions.create(
                 model="llama-3.3-70b-versatile",
-                messages=[{"role": "system", "content": system_prompt}, *historico]
+                max_tokens=2048,
+                temperature=0.7,
+                messages=[{"role": "system", "content": system_prompt}, *hist_envio]
             )
             mensagem = resposta.choices[0].message.content
             if "[LEMBRAR:" in mensagem:
