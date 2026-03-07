@@ -398,10 +398,10 @@ for key, val in [("logado", False), ("username", None), ("chats", {}),
                   ("cookie_lido", False), ("modo_escuro", False)]:
     if key not in st.session_state: st.session_state[key] = val
 
-# ── AUTOLOGIN via cookie HTTP ─────────────────────────────────────────────────
+# ── AUTOLOGIN via localStorage → Streamlit ────────────────────────────────────
 import streamlit.components.v1 as components
 
-# Lê query params primeiro (vindo de redirect do JS)
+# Lê query params (enviados pelo JS abaixo em execução anterior)
 if not st.session_state.logado:
     qp = st.query_params
     if "vc_u" in qp and "vc_n" in qp:
@@ -418,25 +418,28 @@ if not st.session_state.logado:
                 st.query_params.clear()
                 st.rerun()
 
-# JS: ao carregar, lê cookie e redireciona com query params
+# Se ainda não logou: JS injeta script no topo da página via st.markdown
 if not st.session_state.logado and not st.session_state.cookie_lido:
     st.session_state.cookie_lido = True
-    components.html("""
+    # Este script roda FORA do iframe, direto no HTML do Streamlit
+    st.markdown("""
     <script>
     (function() {
-        function getCookie(name) {
-            const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
-            return match ? decodeURIComponent(match[2]) : null;
-        }
-        const u = getCookie('vc_user') || localStorage.getItem('vc_user');
-        const n = getCookie('vc_nome') || localStorage.getItem('vc_nome');
-        if (u && n) {
-            const base = window.location.origin + window.location.pathname;
-            window.location.replace(base + '?vc_u=' + encodeURIComponent(u) + '&vc_n=' + encodeURIComponent(n));
-        }
+        try {
+            const u = localStorage.getItem('vc_user');
+            const n = localStorage.getItem('vc_nome');
+            if (u && n) {
+                const url = new URL(window.location.href);
+                if (!url.searchParams.get('vc_u')) {
+                    url.searchParams.set('vc_u', u);
+                    url.searchParams.set('vc_n', n);
+                    window.location.replace(url.toString());
+                }
+            }
+        } catch(e) { console.log('autologin error', e); }
     })();
     </script>
-    """, height=0)
+    """, unsafe_allow_html=True)
 
 if "cliente" not in st.session_state:
     st.session_state.cliente = Groq(api_key=API_KEY)
