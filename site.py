@@ -74,35 +74,247 @@ def deletar_chat(username, chat_id):
 def novo_chat_id(): return datetime.now().strftime("%Y%m%d%H%M%S")
 
 ORACOES = {
-    "Pai Nosso": "Pai nossó que estais no ceu,\nsantificado sejá o vossó nome,\nvenha a nós o vossó reino,\nsejá féita a vossa vontade,\nassim na terra como no ceu.\nO pao nossó de cada dia nós dai hoje,\npérdoai as nossas ofénsas,\nassim como nós pérdoamos\na quem nós tem oféndido,\ne não nós deixeis cair em tentação,\nmas livrai-nós do mal.\nAmem.",
-    "Ave Maria": "Ave Maria, cheia de graça,\no Senhor e convosco,\nbendita sois vos entre as mulheres,\ne bendito e o fruto do vossó ventre, Jesus.\nSanta Maria, Mãe de Deus,\nrogai por nós péçadores,\nagora e na hora de nossa morte.\nAmem.",
-    "Gloria ao Pai": "Gloria ao Pai,\não Filho\ne ao Espírito Santo.\nComo era no principio,\nagora e sempre,\npélos seculos dos seculos.\nAmem.",
-    "Creio em Deus Pai": "Creio em Deus Pai todo-poderoso,\ncriador do ceu e da terra;\ne em Jesus Cristo, seu único Filho, nossó Senhor;\nque foi concebido pélo poder do Espírito Santo;\nnasceu da Virgem Maria;\npadeceu sob Poncio Pilatos;\nfoi crucificado, morto e sepultado;\ndesceu a mansao dos mortos;\nressuscitou ao terceiro dia;\nsubiu aos ceus;\nesta sentado a direita de Deus Pai todo-poderoso;\ndonde ha de vir a julgar os vivos e os mortos.\nCreio no Espírito Santo;\nna Santa Igreja Catolica;\nna comunhao dos santos;\nna remissão dos péçados;\nna ressurreição da carne;\nna vida eterna.\nAmem."
-,
-    "Salve Rainha": "Salve Rainha, Mae de Misericordia,\\nvida, docura e esperanca nossa, salve!\\nA Vos bradamos, os degredados filhos de Eva.\\nA Vos suspiramos, gemendo e chorando neste vale de lagrimas.\\nEia, pois, advogada nossa,\\nessas Vossas misericordias para nos volvei os olhos.\\nE depois deste desterro nos mostrai Jesus,\\nbento fruto do Vosso ventre.\\nO clemente! O piedosa! O doce Virgem Maria!\\nRogai por nos Santa Mae de Deus,\\npara que sejamos dignos das promessas de Cristo. Amem.",
-    "Sinal da Santa Cruz": "Pelo sinal da Santa Cruz,\\nlivrai-nos, Deus, nosso Senhor, dos nossos inimigos.\\nEm nome do Pai, do Filho e do Espirito Santo. Amem.",
-    "Vinde Espirito Santo": "Vinde, Espirito Santo,\\nenchei os coracoes dos Vossos fieis\\ne acendei neles o fogo do Vosso Amor.\\nEnviai o Vosso Espirito e tudo sera criado\\ne renovareis a face da terra.\\nOremos: O Deus, que iluminastes os coracoes dos Vossos fieis\\ncom a luz do Espirito Santo,\\nfazei que apreciemos retamente todas as coisas,\\nsegundo o mesmo Espirito e gozemos da Vossa consolacao.\\nPor Cristo Senhor Nosso. Amem.",
-    "Santo Anjo do Senhor": "Anjo de Deus, que sois minha guarda e protecao,\\nInspirai-me, Defendei-me, Dirigei-me, Governai-me, Protegei-me. Amem.",
-    "Consagracao a Nossa Senhora": "O minha Senhora, o minha Mae,\\neu me ofereço todo a Vos,\\ne em prova de minha devocao para convosco,\\neu Vos consagro hoje meus olhos, meus ouvidos,\\nminha boca, meu coracao, inteiramente todo o meu ser.\\nE como assim sou Vosso,\\nconservai-me, guardai-me, como coisa e propriedade Vossa. Amem.",
-    "Oracao a Sao Miguel Arcanjo": "Sao Miguel Arcanjo, defendei-nos no combate,\\nSede nosso amparo contra as maldades e ciladas do diabo.\\nDeus o reprima, oramos suplicantes.\\nE Vos, Principe da Milicia Celestial,\\npelo poder divino, aterrai no inferno a Satanas\\ne a outros espiritos malignos\\nque andam pelo mundo para perdicao das almas. Amem.",
-    "Oracao a Nossa Senhora Desatadora dos Nos": "Em nome do Pai, do Filho e do Espirito Santo.\\nSanta Maria, Mae de Deus, Virgem cheia de graca,\\nVos sois a nossa desatadora dos nos.\\nCom as Vossas maos cheias do amor de Deus,\\nVos desatais os obstaculos de nosso caminho.\\nDesatai, Virgem e Mae, Santa e admiravel,\\ntodos os nos que criamos por vontade propria,\\ne todos os nos que impedem o nosso caminho.\\nLancai Vossos olhos de luz sobre eles,\\npara que todos os nos se desatem e,\\npara que, cheios de gratidao, possamos,\\npor Vossas maos, solucionar aquilo que nos parece impossivel. Amem.",
-    "Oracao a Santa Rita de Cassia": "O poderosa e gloriosa Santa Rita,\\neis a vossos pes uma alma desamparada\\nque necessitando de auxilio, a vos recorre com fe e esperanca,\\nque tens o titulo de Santa dos casos impossiveis.\\nO gloriosa Santa, olhai por minha causa,\\nintercedei junto a Deus para que me consiga\\na graca de que tanto necessito (faca seu pedido).\\nO Santa Rita, advogada dos impossiveis,\\nrogai por mim, rogai por todos nos. Amem!",
-    "Oracao para a Familia": "Jesus, Maria e Jose, modelos perfeitos de caridade e uniao,\\nalcancai-nos a graca de vos imitar.\\nLembrai-vos que somos todos vossos.\\nDefendei-nos de todo o perigo, socorrei-nos em nossas necessidades\\na fim de que, servindo-vos fielmente na terra,\\npossamos bendizer-vos eternamente no ceu.\\nAssim seja! Senhor, escutai nossa prece!",
-    "Oracao contra Enfermidade": "O querido e doce Menino Jesus,\\neis aqui um pobre enfermo que, movido pela mais viva fe,\\nsinceramente invoca Vossa divina ajuda em favor de sua enfermidade.\\nPonho em Vos toda a minha confianca.\\nSei que tudo podeis e sois muito misericordioso.\\nGrande pequenino, por Vossas divinas virtudes\\ne pelo imenso amor que nutris pelos sofredores,\\nouvi-me, bendizei-me, socorrei-me, consolai-me. Amem.\\nTres Gloria ao Pai.",
-    "Oracao a Santa Edwiges": "O Santa Edwiges,\\nvos que na terra fostes o amparo dos pobres,\\na ajuda dos desvalidos e o socorro dos endividados,\\nsuplicante te peco que sejais a minha advogada,\\npara que eu obtenha de Deus o auxilio de que urgentemente preciso (faca o pedido).\\nAlcancai-me tambem a suprema graca da salvacao eterna.\\nSanta Edwiges, rogai por nos. Amem.",
-    "Oracao pelas Vocacoes": "Filho de Deus, enviado pelo Pai para junto dos homens de todos os tempos!\\nInvocamos-Vos por meio de Maria, Vossa e nossa Mae;\\nfazei com que na Igreja nao faltem vocacoes,\\nem particular as de especial consagracao ao Vosso Reino.\\nJesus, unico Salvador do mundo!\\nPedimos-Vos pelos nossos irmaos e irmas,\\nque responderam sim ao Vosso apelo ao sacerdocio, a vida consagrada e a missao.\\nSenhor misericordioso e santo,\\ncontinuai a enviar novos trabalhadores para a messe do Vosso Reino!\\nVos, que sois Deus, vivei e reinais com o Pai e o Espirito Santo,\\nnos seculos dos seculos. Amem!",
-    "Oracao pelo Trabalhador": "Bom dia meu Deus!\\nAntes que comece este dia, quero falar com o Senhor.\\nDentro de mim existe uma gratidao imensa,\\nporque eu tenho um ganha-pao,\\nenquanto tantas pessoas sofrem com o desemprego e a fome.\\nMuitas vezes, quando chego em casa, sinto o meu corpo cansado,\\nmas ate por esse cansaco eu Lhe agradeco.\\nConceda-me, Senhor, aprender com as pessoas que trabalham comigo.\\nPermita-me ama-las, ainda que nao estejam abertas para o amor.\\nDerrame sobre o meu ambiente de trabalho a Sua paz.\\nQuero crescer com dignidade e respeito.\\nDe-me a coragem para prosseguir\\ne a certeza de que, atraves do meu trabalho,\\npoderei fazer com que um pedacinho do mundo se transforme num lugar melhor. Amem.",
-    "Oracao a Sao Bento": "Glorioso Sao Bento, que dedicaste toda sua vida a Cristo e aos irmaos,\\nprotegei-me contra os ataques do mal,\\nlivrai-me das insidias do inimigo,\\nconcedei-me a paz interior e a fortaleza diante das tempestades da vida.\\nO poderoso Sao Bento, defendei-me dos olhares invejosos\\ne ensinai-me a partilhar o amor com todos.\\nQue a Cruz do Senhor me guie pelos caminhos de luz.\\nAfasta de minha vida e de minha familia toda forca do mal. Amem!",
-    "Oracao pela Protecao": "Que Deus Pai, Senhor do Universo, Todo Poderoso,\\nnos proteja, nos ilumine e nos guarde.\\nQue os santos derramem sobre nos suas bencaos.\\nQue os anjos estejam sempre conosco, guardando nossas vidas,\\npara que por onde passarmos, a Sua luz chegue primeiro.\\nEm nome do Pai, do Filho e do Espirito Santo. Amem.",
-    "Oracao para Dormir": "Meu Pai, agora que as vozes silenciaram,\\naqui ao pe da cama minha alma se eleva a Ti.\\nDeposito nas Tuas maos a fadiga e a luta,\\nas alegrias e desencantos deste dia.\\nSe os nervos me trairam, se dei lugar ao rancor,\\nperdao, Senhor! Tem piedade de mim.\\nNesta noite nao quero entregar-me ao sono\\nsem sentir na minha alma a seguranca da Tua misericordia.\\nEu Te agradeco, meu Pai,\\nporque foste a sombra fresca que me cobriu durante todo este dia.\\nEnvia o anjo da paz a esta casa.\\nRelaxa meus nervos, sossega o meu espirito.\\nVela por mim, Pai querido,\\nenquanto eu me entrego confiante ao sono,\\ncomo uma crianca que dorme feliz em Teus bracos.\\nEm Teu Nome, Senhor, descansarei tranquilo. Amem.",
-    "Ato de Fe": "Meus Deus, creio firmemente em todas as verdades\\nque nos revelastes e que nos ensinais por Tua Igreja,\\nporque nao podes enganar nem nos enganar.",
-    "Ato de Esperanca": "Meu Deus, espero com firme confianca que me concederas,\\npelos meritos de Jesus Cristo, Tua graca neste mundo\\ne a felicidade eterna no outro,\\nporque assim o prometestes e sempre es fiel a Tuas promessas.",
-    "Ato de Caridade": "Meu Deus, amo-Te com todo meu coracao e sobre todas as coisas,\\nporque es infinitamente bom e amavel.\\nPrometo, com Tua graca, amar a meu proximo como a mim mesmo por Teu amor.",
-    "Ato de Contricao": "Meu Deus, tenho muita pena de ter pecado,\\npois mereci ser castigado por ter ofendido a Vos,\\nmeu Pai e meu Salvador.\\nPerdoai-me, Senhor. Nao quero mais pecar.",
-    "Invocacao ao Anjo da Guarda": "Anjo de Deus, que por Divina piedade,\\nsois minha guarda e protecao.\\nInspirai-me, Defendei-me, Dirigi-me, Governai-me, Protegei-me. Amem.",
-    "O Anjo do Senhor": "O anjo do Senhor anunciou a Maria...\\nE Ela concebeu do Espirito Santo.\\n(Reza-se a Ave-Maria 1x)\\nEis aqui a Serva do Senhor. Faca-se em mim segundo a Tua Palavra.\\n(Reza-se a Ave-Maria 1x)\\nE o Verbo se fez carne. E habitou entre nos.\\n(Reza-se a Ave-Maria 1x)\\nOREMOS: Infundi Senhor, nos Vos suplicamos,\\na Vossa graca em nossas almas,\\npara que nos, pela Anunciacao do Anjo,\\nconhecamos a Encarnacao de Jesus Cristo Vosso Filho,\\ne pela Sua Paixao e Morte na Cruz,\\nsejamos conduzidos a gloria na ressurreicao.\\n(Reza-se o Gloria ao Pai 1x). Amem.",
-    "Dons do Espirito Santo": "Espirito Santo, concedei-me o dom da sabedoria, a fim de que cada vez mais aprecie as coisas divinas e, abrasado pelo fogo do Vosso amor, prefira com alegria as coisas do ceu a tudo o que e mundano e me una para sempre a Cristo, sofrendo neste mundo por Seu amor.\nEspirito Santo, concedei-me o dom do entendimento, para que, iluminado pela luz celeste da Vossa graca, bem entenda as sublimes verdades da salvacao e da doutrina da santa religiao.\nEspirito Santo, concedei-me o dom do conselho, tao necessario nos melindrosos passos da vida, para que escolha sempre aquilo que mais Vos seja do agrado, siga em tudo Vossa divina graca e saiba socorrer meu proximo com bons conselhos.\nEspirito Santo, concedei-me o dom da fortaleza, para que despreze todo respeito humano, fuja do pecado, pratique a virtude do espirito, o desprezo, o prejuizo, as perseguicoes e a propria morte, antes de renegar por palavras e obras a Cristo.\nEspirito Santo, concedei-me o dom da ciencia, para que conheca cada vez mais minha propria miseria e fraqueza, a beleza da virtude e o valor inestimavel da alma e para que sempre veja claramente as ciladas do demonio, da carne, do mundo, a fim de as evitar.\nEspirito Santo, concedei-me o dom da piedade, que me tornara delicioso o trato e coloquio Convosco na oracao e me fara amar a Deus com intimo amor como a meu Pai, Maria Santissima e a todos os homens como a meus irmaos em Jesus Cristo.\nEspirito Santo, concedei-me o dom do temor de Deus, para que eu me lembre sempre, com suma reverencia e profundo respeito, da Vossa divina presenca, trema como os anjos diante da Vossa divina majestade e nada receie tanto como desagradar Vossos santos olhos!\nVinde, Espirito Santo, ficai comigo e derramai sobre mim Vossas divinas bencaos. Em nome de Jesus Cristo Nosso Senhor.\nAmem."
+    "Abri Senhor": """Abri, Senhor, minha boca para bendizer o vosso santo nome;\nPurificai meu coração de todo pensamento vão, perturbador e estranho;\nIluminai meu entendimento, inflamai minha vontade,\npara que eu possa recitar dignamente este Ofício,\nouvir atentamente e dedicar a esta oração todo o meu coração.\nAmém.""",
 
+    "Alma de Cristo": """Alma de Cristo, santificai-me.\nCorpo de Cristo, salvai-me.\nSangue de Cristo, embriagai-me.\nÁgua do lado de Cristo, lavai-me.\nPaixão de Cristo, confortai-me.\nÓ bom Jesus, ouvi-me.\nDentro das vossas chagas, escondei-me.\nNão permita que me separe de vós.\nDo maligno inimigo, defendei-me.\nNa hora de minha morte, chamai-me.\nE mandai que venha a vós,\nPara que com os vossos santos vos louve,\nPor todos os séculos dos séculos.\nAmém.""",
+
+    "Antes das Refeições": """Abençoai-nos, Senhor,\ne os alimentos que vamos tomar,\ne dai pão a quem não tem.\nAmém.""",
+
+    "Após as Refeições": """Graças vos damos, Senhor,\npor todos os benefícios que de vós recebemos.\nE dai o descanso eterno às almas dos fiéis defuntos.\nAmém.""",
+
+    "Ato de Contrição": """Meu Deus, porque sois infinitamente bom e digno de ser amado,\npesam-me de todo coração os meus pecados,\npelo horror que tenho do mal e pelo desejo que tenho de vos amar.\nProponho firmemente, com o auxílio da vossa graça,\ncumprir a penitência que me for imposta,\nnão mais pecar e evitar as ocasiões de pecado.\nAmém.""",
+
+    "Ato de Louvor": """Bendito e louvado seja o Santíssimo Sacramento do Altar.\nBendita seja a Santa e Imaculada Conceição da Santíssima Virgem Maria, Mãe de Deus.\nBendito seja o nome de Maria, Virgem e Mãe.\nBendito seja São José, seu castíssimo esposo.\nBendito seja Deus no seu anjos e nos seus santos.\nAmém.""",
+
+    "Ave Maria": """Ave Maria, cheia de graça,\no Senhor é convosco,\nbendita sois vós entre as mulheres,\ne bendito é o fruto do vosso ventre, Jesus.\nSanta Maria, Mãe de Deus,\norai por nós pecadores,\nagora e na hora de nossa morte.\nAmém.""",
+
+    "Bênção do Santíssimo Sacramento": """Bendito seja Deus.\nBendito seja o seu Santo Nome.\nBendito seja Jesus Cristo, verdadeiro Deus e verdadeiro Homem.\nBendito seja o Nome de Jesus.\nBendito seja o seu Sacratíssimo Coração.\nBendito seja o seu Preciosíssimo Sangue.\nBendito seja Jesus no Santíssimo Sacramento do Altar.\nBendito seja o Espírito Santo, o Consolador.\nBendita seja a grande Mãe de Deus, Maria Santíssima.\nBendita seja sua Santa e Imaculada Conceição.\nBendita seja sua gloriosa Assunção.\nBendito seja o nome de Maria, Virgem e Mãe.\nBendito seja São José, seu castíssimo esposo.\nBendito seja Deus nos seus Anjos e nos seus Santos.\nAmém.""",
+
+    "Comunhão Espiritual": """Meu Jesus, creio que estais verdadeiramente presente\nno Santíssimo Sacramento do Altar.\nAmo-vos sobre todas as coisas e desejo ardentemente\nreceber-vos em minha alma.\nPorém, como agora não posso receber-vos sacramentalmente,\nvinde pelo menos espiritualmente ao meu coração.\nComo se já houvésseis vindo, eu vos abraço\ne me uno inteiramente a vós.\nNão permitais que me separe de vós.\nAmém.""",
+
+    "Consagração a Nossa Senhora Aparecida": """Ó Maria Imaculada, Mãe de Deus e Mãe nossa,\nNossa Senhora da Conceição Aparecida,\nRainha e Padroeira do Brasil,\nnós vos consagramos neste momento\nnossas almas e corpos, nossas famílias e casas,\nnossa paróquia e toda a nossa pátria.\nOrai por nós, ó Santa Mãe de Deus,\npara que sejamos dignos das promessas de Cristo.\nAmém.""",
+
+    "Consagração a Santíssima Virgem Maria": """Virgem Maria, Mãe de Deus e Mãe nossa,\nrecebei esta consagração que vos fazemos.\nVós sois nossa Mãe e Rainha.\nConsagro-vos meu corpo e minha alma,\nminhas faculdades, minhas potências, toda a minha pessoa.\nSocorrei-me em todas as minhas necessidades.\nAmém.""",
+
+    "Consagração ao Divino Pai Eterno": """Pai Eterno, prostrado diante de vossa Majestade Infinita,\nvos ofereço, com todo o amor de meu coração,\no Sangue Precioso de Jesus Cristo,\nem expiação dos meus pecados,\npelas necessidades da Santa Igreja\ne pela conversão dos pecadores.\nAmém.""",
+
+    "Consagração ao Imaculado Coração de Maria": """Ó Maria, Virgem poderosa, grande Mãe de Deus,\nImacula Conceição, e Auxiliadora dos cristãos,\nconsagro-me ao vosso Imaculado Coração.\nRecebei-me sob vossa proteção materna\ne defendei-me em todas as lutas\ncontra o mundo, a carne e o demônio.\nAmém.""",
+
+    "Cordeiro de Deus": """Cordeiro de Deus, que tirais o pecado do mundo, perdoai-nos, Senhor.\nCordeiro de Deus, que tirais o pecado do mundo, ouvi-nos, Senhor.\nCordeiro de Deus, que tirais o pecado do mundo, tende piedade de nós.""",
+
+    "Credo Apostólico": """Creio em Deus Pai todo-poderoso,\nCriador do céu e da terra;\ne em Jesus Cristo, seu único Filho, Nosso Senhor,\nque foi concebido pelo poder do Espírito Santo,\nnasceu da Virgem Maria,\npade ceu sob Pôncio Pilatos,\nfoi crucificado, morto e sepultado,\ndesceu à mansão dos mortos,\nressuscitou ao terceiro dia,\nsubiu aos céus,\nestá sentado à direita de Deus Pai todo-poderoso,\nde onde há de vir a julgar os vivos e os mortos.\nCreio no Espírito Santo,\nna Santa Igreja Católica,\nna comunhão dos santos,\nna remissão dos pecados,\nna ressurreição da carne,\nna vida eterna.\nAmém.""",
+
+    "Credo Niceno-Constantinopolitano": """Creio em um só Deus, Pai todo-poderoso,\nCriador do céu e da terra,\nde todas as coisas visíveis e invisíveis.\nCreio em um só Senhor, Jesus Cristo,\nFilho Unigênito de Deus,\nnascido do Pai antes de todos os séculos:\nDeus de Deus, Luz da Luz,\nDeus verdadeiro de Deus verdadeiro,\ngera do, não criado, consubstancial ao Pai.\nPor ele todas as coisas foram feitas.\nE por nós, homens, e para nossa salvação,\ndesceu dos céus:\ne se encarnou pelo Espírito Santo,\nno seio da Virgem Maria,\ne se fez homem.\nFoi crucificado por nós sob Pôncio Pilatos,\npadeceu e foi sepultado.\nRessuscitou ao terceiro dia,\nconforme as Escrituras,\nsubiu aos céus e está sentado à direita do Pai.\nVirá novamente em glória\npara julgar os vivos e os mortos;\ne o seu reino não terá fim.\nCreio no Espírito Santo,\nSenhor que dá a vida,\nque procede do Pai e do Filho,\nque com o Pai e o Filho é adorado e glorificado,\nque falou pelos profetas.\nCreio na Igreja, Una, Santa, Católica e Apostólica.\nProfesso um só batismo para a remissão dos pecados.\nEspero a ressurreição dos mortos\ne a vida do mundo que há de vir.\nAmém.""",
+
+    "Diante do Crucifixo": """Olhai-me, ó meu amado e bom Jesus,\nprostrado diante de vós,\nvos suplico com o mais ardente desejo,\nque gravais em meu coração vívidos sentimentos de fé, esperança e caridade,\ndor dos meus pecados e firme propósito de emendá-los,\nenquanto com grande amor e compaixão contemplo\nvossas cinco chagas, meditando as palavras\nque de vós, ó meu Jesus, disse o profeta David:\nFuraram minhas mãos e meus pés;\npoderia contar todos os meus ossos.\nAmém.""",
+
+    "Divino Pai Eterno": """Divino Pai Eterno, vos ofereço o Preciosíssimo Sangue de Jesus Cristo\nem expiação dos meus pecados\ne em socorro das almas do Purgatório.\nAmém.""",
+
+    "Dons do Espírito Santo": """Espírito Santo, Deus de amor e de luz,\nvinde encher meu coração com os vossos sete dons.\nDai-me a Sabedoria, para que eu estime as coisas eternas\nacima das coisas passageiras.\nDai-me o Entendimento, para que eu compreenda as verdades da fé.\nDai-me o Conselho, para que eu escolha sempre o caminho da salvação.\nDai-me a Fortaleza, para que eu supere todos os obstáculos no serviço de Deus.\nDai-me a Ciência, para que eu conheça Deus e a mim mesmo.\nDai-me a Piedade, para que ame a Deus acima de tudo.\nDai-me o Temor de Deus, para que eu tema o pecado e confie em vós.\nAmém.""",
+
+    "Dos Esposos": """Senhor Jesus Cristo,\nvós que abençoastes as bodas de Caná,\nderramai vossas bênçãos sobre nós.\nFazei que o nosso amor seja fiel,\nnosso lar um reflexo do vosso amor,\ne que juntos caminhemos para vós.\nAmém.""",
+
+    "Enfermidade / Doença": """Senhor Jesus Cristo, que passastes pela terra\nfazendo o bem e curando todos os enfermos,\nolhai com compaixão para este vosso servo enfermo.\nRestaurar-lhe a saúde se for vossa santa vontade,\nou dai-lhe força e paciência para suportar\nesta provação com amor e confiança em vós.\nAmém.""",
+
+    "Espírito Santo": """Vinde, Espírito Santo, enchei os corações dos vossos fiéis\ne acendei neles o fogo do vosso amor.\nEnviai o vosso Espírito e tudo será criado\ne renovareis a face da terra.\nÓ Deus, que iluminastes os corações dos vossos fiéis\ncom a luz do Espírito Santo,\nfazei que, pelo mesmo Espírito,\ntenhamos sempre o gosto das coisas retas\ne gozemos sempre de sua consolação.\nPor Cristo Nosso Senhor.\nAmém.""",
+
+    "Eu Vos Adoro Devotamente": """Eu vos adoro devotamente, Deus escondido,\nque neste sacramento estais de verdade.\nMeu coração se submete inteiramente a vós\npois contemplando-vos fica como abismado.\nAmém.""",
+
+    "Fórmula de Intenção para a Missa": """Senhor, uni todas as Missas que hoje se celebram\nem todo o mundo à Missa que vou assistir,\ne ofereço a Santíssima Trindade,\na vossa glória e louvor,\npelo Papa, pelos bispos, pelos sacerdotes,\npela conversão dos pecadores,\npela libertação das almas do Purgatório\ne por todas as minhas intenções.\nAmém.""",
+
+    "Glória a Deus nas Alturas": """Glória a Deus nas alturas, e paz na terra aos homens por ele amados.\nSenhor Deus, Rei dos céus, Deus Pai todo-poderoso, nós vos louvamos,\nnós vos bendizemos, nós vos adoramos, nós vos glorificamos,\nnós vos damos graças por vossa imensa glória.\nSenhor Jesus Cristo, Filho Unigênito,\nSenhor Deus, Cordeiro de Deus, Filho do Pai,\nvós que tirais o pecado do mundo, tende piedade de nós;\nvós que tirais o pecado do mundo, acolhei a nossa súplica;\nvós que estais à direita do Pai, tende piedade de nós.\nPois só vós sois Santo, só vós sois o Senhor,\nsó vós sois o Altíssimo, Jesus Cristo, com o Espírito Santo,\nna glória de Deus Pai.\nAmém.""",
+
+    "Glória ao Pai": """Glória ao Pai, ao Filho e ao Espírito Santo.\nComo era no princípio, agora e sempre,\ne por todos os séculos dos séculos.\nAmém.""",
+
+    "Graças e Louvores": """Graças e louvores sejam dados a todo momento\nao Santíssimo e Diviníssimo Sacramento.\nAmém.""",
+
+    "Jesus Manso e Humilde": """Jesus manso e humilde de coração,\nfazei o meu coração semelhante ao vosso.\nAmém.""",
+
+    "Lembrai-vos": """Lembrai-vos, ó piíssima Virgem Maria,\nque jamais se ouviu dizer que algum daqueles\nque recorreram à vossa proteção,\nimplorou o vosso socorro\nou buscou a vossa intercessão,\ntenha sido por vós desamparado.\nAnimado por esta confiança,\na vós recorro, ó Mãe, Virgem das virgens,\na vós venho e, gemente sob o peso dos meus pecados,\nme prostro diante de vós.\nNão desprezeis as minhas súplicas,\nó Mãe do Verbo Encarnado,\nmas ouvi-as e atendei-as benignamente.\nAmém.""",
+
+    "Mãe de Misericórdia": """Mãe de Misericórdia, esperança nossa, salve!\nA vós bradamos, degredados filhos de Eva.\nA vós suspiramos, gemendo e chorando\nneste vale de lágrimas.\nEia pois, advogada nossa,\nesses vossos olhos misericordiosos a nós volvei.\nE depois deste desterro,\nmostrai-nos Jesus, bendito fruto do vosso ventre.\nÓ clemente, ó piedosa, ó doce Virgem Maria.\nAmém.""",
+
+    "Mãos Ensanguentadas": """Senhor Jesus Cristo, que por amor a nós\nsofrestes a agonia no jardim das Oliveiras,\ne deixastes que vossas sagradas mãos\nfossem trespassadas pelos cravos da cruz,\nolhai com misericórdia para nós.\nPelo mérito de vossas mãos ensanguentadas,\nperdoai nossos pecados,\nprotegei nossas famílias\ne guiai-nos ao vosso santo reino.\nAmém.""",
+
+    "Menino Jesus de Praga": """Ó Menino Jesus de Praga,\nrefúgio dos que vos invocam,\nrecorrei à vossa bondade infinita.\nVós que dissestes: quanto mais me honrardes,\nmais vos favorecerei,\nprotegei-nos em todas as nossas necessidades.\nAmém.""",
+
+    "Meu Deus Eu Creio": """Meu Deus! Eu creio, adoro, espero e amo-Vos.\nPeço-Vos perdão para os que não creem,\nnão adoram, não esperam e não Vos amam.\nAmém.""",
+
+    "Nossa Senhora Aparecida": """Nossa Senhora da Conceição Aparecida,\nRainha e Padroeira do Brasil,\nolhai para nós com misericórdia.\nPelos vossos olhos cheios de ternura,\nprotegei esta nação amada.\nAmém.""",
+
+    "Nossa Senhora Auxiliadora": """Nossa Senhora Auxiliadora,\nvós que sois a ajuda dos cristãos,\nocorrei a nós em todas as tribulações\nda alma e do corpo.\nAmém.""",
+
+    "Nossa Senhora Desatadora dos Nós": """Santa Maria, cheia de graça,\nvós que desatais os nós da vida,\npegai os nós da minha vida e desatai-os.\nIntercedam por mim junto a vosso Filho Jesus.\nAmém.""",
+
+    "Nossa Senhora da Cabeça": """Ó Nossa Senhora da Cabeça,\nMãe de Deus e nossa,\nvós que protegeis os vossos filhos,\ncobri-nos com o vosso manto sagrado.\nAmém.""",
+
+    "Nossa Senhora da Conceição": """Ó Maria, concebida sem pecado original,\npedimos a vossa intercessão\npara que sejamos preservados de todo mal.\nAmém.""",
+
+    "Nossa Senhora da Defesa": """Ó Nossa Senhora da Defesa,\nvós que sois nossa protetora,\ndefendei-nos dos inimigos visíveis e invisíveis.\nAmém.""",
+
+    "Nossa Senhora da Saúde": """Ó Nossa Senhora da Saúde,\nMãe amorosa dos enfermos,\nsocorrei todos os que estão doentes.\nRestituí a saúde aos enfermos\nse for vontade de Deus.\nAmém.""",
+
+    "Nossa Senhora das Dores": """Santíssima Virgem Maria,\nMãe das Dores,\nvós que participastes tão intimamente\nda Paixão de Jesus,\nintercedam por nós pecadores.\nAmém.""",
+
+    "Nossa Senhora das Graças": """Ó Maria, cheia de graças,\nvós que distribuís as graças de Deus,\nderramai sobre nós as graças de que necessitamos.\nAmém.""",
+
+    "Nossa Senhora de Fátima": """Ó Nossa Senhora de Fátima,\nvós que aparecestes a três pastorinhos,\ntransmitindo a mensagem de paz,\nintercedam por nós junto a Deus.\nAmém.""",
+
+    "Nossa Senhora de Lourdes": """Ó Imaculada Virgem de Lourdes,\nvós que curastes tantos enfermos,\nolhai para nós com misericórdia.\nAmém.""",
+
+    "Nossa Senhora do Carmo": """Nossa Senhora do Carmo,\nRainha dos profetas e dos santos,\nprotegei a todos os que vestem o vosso escapulário\ne cumprem as condições para gozar de vossos privilégios.\nAmém.""",
+
+    "Nossa Senhora do Perpétuo Socorro": """Mãe do Perpétuo Socorro,\nvós sois a imagem de amor e de proteção.\nEstendei sobre nós o vosso manto maternal.\nAmém.""",
+
+    "Nossa Senhora dos Navegantes": """Ó Virgem dos Navegantes,\nMãe dos que andam pelo mar,\nprotegei todos os que partem em viagem.\nGuiai-os com segurança ao porto da salvação.\nAmém.""",
+
+    "O Anjo do Senhor": """O Anjo do Senhor anunciou a Maria,\ne ela concebeu do Espírito Santo.\nAve Maria...\nEis aqui a serva do Senhor,\nfaça-se em mim segundo a Vossa palavra.\nAve Maria...\nE o Verbo se fez carne,\ne habitou entre nós.\nAve Maria...\nRogai por nós, Santa Mãe de Deus,\npara que sejamos dignos das promessas de Cristo.\nOremos: Derramai, Senhor, a vossa graça em nossas almas,\npara que, nós que conhecemos, pela mensagem do Anjo,\na Encarnação de Cristo vosso Filho,\npela sua Paixão e Cruz sejamos conduzidos\nà glória da Ressurreição.\nPor Cristo Nosso Senhor. Amém.""",
+
+    "Oferecimento de Si Mesmo": """Recebei, Senhor, toda a minha liberdade.\nAceitai minha memória, meu entendimento e minha vontade.\nTudo o que tenho e possuo, vós mo destes.\nA vós, Senhor, o devolvo.\nTudo é vosso; disponde de tudo segundo a vossa vontade.\nDai-me o vosso amor e a vossa graça,\nque isto me basta.\nAmém.""",
+
+    "Oh Sangue e Água": """Ó Sangue e Água que jorrastes do Coração de Jesus\ncomo fonte de misericórdia para nós,\nconfio em vós.\nAmém.""",
+
+    "Oração a Nossa Senhora": """Ó Maria, Mãe de Jesus e Mãe nossa,\nvós que intercedeis por todos os que a vós recorrem,\nocorrei a nós nesta hora.\nAmém.""",
+
+    "Oração a Nossa Senhora da Paz": """Rainha da Paz, orai por nós.\nVós que sois Mãe do Príncipe da Paz,\nderramai a paz no mundo,\nnos lares, nos corações.\nAmém.""",
+
+    "Oração a Nosso Senhor Jesus Cristo Crucificado": """Ó bom Jesus, Senhor e Salvador nosso,\nvós que morrestes na cruz por amor a nós,\nolhai-nos com misericórdia.\nPerdoai nossos pecados\ne conduzi-nos à vida eterna.\nAmém.""",
+
+    "Oração a Santa Ana": """Gloriosa Santa Ana,\navó de Jesus e mãe da Virgem Maria,\nvós que fostes cheia da graça de Deus,\nintercedam por nossas famílias.\nAmém.""",
+
+    "Oração a Santa Bárbara": """Santa Bárbara virgem e mártir,\nprotetora contra os raios e tempestades,\nintercedam por nós junto a Deus.\nAmém.""",
+
+    "Oração a Santo Antônio": """Santo Antônio de Lisboa,\npadroeiro de Portugal e de tantos devotos,\nvós que operastes tantos milagres em vida,\nintercedam por nós em nossas necessidades.\nAmém.""",
+
+    "Oração a São Bento": """Glorioso patriarca São Bento,\nque obtivestes de Deus o poder de afastar os malefícios do inimigo,\nprotegei-nos de todos os males do corpo e da alma.\nAmém.""",
+
+    "Oração a São Francisco de Assis": """Senhor, fazei de mim um instrumento de vossa paz.\nOnde houver ódio, que eu leve o amor;\nonde houver ofensa, que eu leve o perdão;\nonge houver discórdia, que eu leve a união;\nonde houver dúvida, que eu leve a fé;\nonge houver erro, que eu leve a verdade;\nonde houver desespero, que eu leve a esperança;\nonde houver tristeza, que eu leve a alegria;\nonde houver trevas, que eu leve a luz.\nÓ Mestre, fazei que eu procure mais\nconsoler do que ser consolado;\ncompreender do que ser compreendido;\namar do que ser amado.\nPois é dando que se recebe,\né perdoando que se é perdoado,\ne é morrendo que se vive para a vida eterna.\nAmém.""",
+
+    "Oração a São Jorge": """São Jorge, cavaleiro de Cristo,\nvós que vencestes o dragão da maldade,\nprotegei-nos de todos os nossos inimigos.\nAmém.""",
+
+    "Oração a São José": """São José, esposo da Virgem Maria\ne pai adotivo de Jesus,\nvós que cuidastes com tanto amor da Sagrada Família,\nprotegei nossas famílias.\nAmém.""",
+
+    "Oração a São João Batista": """São João Batista,\nprecursor do Messias,\nvós que preparastes o caminho do Senhor,\nintercedam por nós.\nAmém.""",
+
+    "Oração a São Judas Tadeu": """Glorioso apóstolo São Judas Tadeu,\npadroeiro das causas difíceis e desesperadas,\nintercedam por nós junto a Deus.\nAmém.""",
+
+    "Oração a São Miguel Arcanjo": """São Miguel Arcanjo, defendei-nos no combate.\nSede o nosso amparo contra a maldade e as ciladas do demônio.\nQue Deus lhe imponha o seu domínio, assim humildemente suplicamos.\nE vós, Príncipe da Milícia Celestial,\ncom o poder divino recebido,\nprecipitai no inferno Satanás\ne todos os espíritos malignos\nque andam pelo mundo para perder as almas.\nAmém.""",
+
+    "Oração a São Pio de Pietrelcina": """São Pio de Pietrelcina,\nvós que durante cinquenta anos carregardes os estigmas de Cristo,\nintercedam por nós junto ao Pai das Misericórdias.\nAmém.""",
+
+    "Oração a São Rafael Arcanjo": """São Rafael Arcanjo,\nguia dos viajantes e médico dos enfermos,\nintercedam por nós em todas as nossas necessidades.\nAmém.""",
+
+    "Oração a São Sebastião": """São Sebastião, mártir invicto,\npadroeiro dos soldados e protetor contra a fome e a guerra,\nintercedam por nós.\nAmém.""",
+
+    "Oração da Manhã": """Senhor meu Deus, ao despertar neste novo dia,\nvos ofereço meus pensamentos, palavras e obras.\nGuiai-me durante todo este dia\ne preservai-me do pecado.\nAmém.""",
+
+    "Oração da Noite": """Senhor meu Deus, antes de terminar este dia,\nvos agradeço por todas as graças recebidas.\nPerdoai minhas faltas de hoje\ne protegei-me durante esta noite.\nAmém.""",
+
+    "Oração da Serenidade": """Senhor, concedei-me a serenidade\npara aceitar as coisas que não posso mudar,\na coragem para mudar as que posso\ne a sabedoria para distinguir umas das outras.\nAmém.""",
+
+    "Oração de Santo Ambrósio": """Senhor Jesus Cristo,\nvós que sois o pão dos anjos\ne o alimento dos viajantes,\nsantificai minha alma e meu corpo\npara que me acerque dignamente da vossa sagrada mesa.\nAmém.""",
+
+    "Oração de Santo Tomás de Aquino": """Deus todo-poderoso e eterno,\nvede que me aproximo do sacramento\nde vosso Unigênito Filho, Nosso Senhor Jesus Cristo.\nDivino médico das almas, purificai-me.\nAmém.""",
+
+    "Oração de São João Crisóstomo": """Senhor meu Deus,\nei que sou indigno de entrar sob o vosso teto,\nnão me privais da graça de vossa presença.\nAmém.""",
+
+    "Oração do Músico Cristão": """Senhor, fazei de mim um instrumento vosso.\nQue a música que eu toco ou canto\nseja sempre em vosso louvor e glória.\nAmém.""",
+
+    "Oração dos Casais": """Senhor Jesus, vós que abençoastes as famílias,\nabençoai o nosso lar.\nQue o amor seja a base do nosso casamento\ne que juntos caminhemos para vós.\nAmém.""",
+
+    "Oração para Antes dos Estudos": """Vinde, Espírito Santo,\nenchei as mentes dos vossos fiéis\ne acendei neles o fogo do vosso amor.\nIluminai meu entendimento, Senhor,\npara que eu possa aprender e guardar o que estudar.\nAmém.""",
+
+    "Oração para a Família": """Senhor Jesus Cristo, que sendo jovem\nfostes obediente a Maria e a José,\nolhai com compaixão para as famílias\nque estão necessitadas de vossa ajuda.\nAmém.""",
+
+    "Oração para obter Saúde": """Senhor meu Deus,\nvós que podeis tudo,\nolhai para este vosso servo enfermo\ne se for a vossa vontade,\nrestituí a saúde a este corpo sofredor.\nAmém.""",
+
+    "Oração para uma Viagem": """Senhor, que partimos em viagem,\nguiai nossos passos.\nAnjos de Deus, acompanhai-nos.\nSão Cristóvão, padroeiro dos motoristas, protegei-nos.\nAmém.""",
+
+    "Pai Eterno": """Pai Eterno, eu vos ofereço o Corpo e o Sangue,\na Alma e a Divindade de vosso Preciosíssimo Filho,\nNosso Senhor Jesus Cristo,\nem propiciação pelos nossos pecados\ne pelos do mundo inteiro.\nPelos seus dolorosíssimos sofrimentos,\ntende misericórdia de nós e do mundo inteiro.\nAmém.""",
+
+    "Pai Nosso": """Pai nosso que estais no céu,\nsantificado seja o vosso nome,\nvenha a nós o vosso reino,\nseja feita a vossa vontade,\nassim na terra como no céu.\nO pão nosso de cada dia nos dai hoje,\nperdoai-nos as nossas ofensas,\nassim como nós perdoamos a quem nos tem ofendido,\ne não nos deixeis cair em tentação,\nmas livrai-nos do mal.\nAmém.""",
+
+    "Para os Falecidos": """Senhor, dai o descanso eterno a todos os fiéis defuntos,\ne brilhe para eles a luz perpétua.\nQue descansem em paz.\nAmém.""",
+
+    "Para os Filhos": """Senhor Jesus, vós que amais as crianças,\nprotegei nossos filhos.\nGuardai-os de todo mal\ne conduzi-los pelos caminhos da virtude e da fé.\nAmém.""",
+
+    "Para os Pais": """Senhor, abençoai nossos pais.\nRecompensai o amor e o sacrifício\ncom que nos criaram e educaram.\nAmém.""",
+
+    "Para os Parentes Ausentes": """Senhor, lembrai-vos de todos os nossos parentes\nque estão longe de nós.\nGuardai-os de todo mal\ne reuni-nos um dia na vossa glória.\nAmém.""",
+
+    "Pastorzinhos de Fátima": """Ó meu Jesus, perdoai-nos, livrai-nos do fogo do inferno,\nlevai as almas todas para o Céu,\nespecialmente as que mais precisarem.\nAmém.""",
+
+    "Pelos Mais Necessitados": """Senhor, lembrai-vos dos pobres e necessitados.\nDai-lhes o pão de cada dia\ne consolai os que sofrem.\nAmém.""",
+
+    "Reparação ao Santíssimo Sacramento": """Meu Senhor Jesus Cristo,\naqui presente no Santíssimo Sacramento,\ncrendo em vós, adorando-vos e amando-vos,\npeco-vos perdão por todos os que não creem,\nnão adoram, não esperam e não vos amam.\nAmém.""",
+
+    "Responsório de Santo Antônio": """Santo Antônio, padroeiro dos perdidos,\nvos pedimos que intercedais por nós\npara encontrar o que perdemos.\nAmém.""",
+
+    "Sagrado Coração de Jesus": """Ó Sagrado Coração de Jesus,\nfazei que eu vos ame cada vez mais.\nAmém.""",
+
+    "Salmo 4 Oração da Noite": """Quando invocardes, o Senhor me escuta,\nDeus que me faz triunfar.\nTende piedade de mim e escutai minha oração!\nDeponho em paz e logo adormeço,\npois só tu, Senhor, me fazes descansar em segurança.\nAmém.""",
+
+    "Salmo 5 Oração da Manhã": """Escuta, Senhor, as minhas palavras,\natende ao meu gemido.\nSuplico a ti, meu Rei e meu Deus!\nPois é a ti que elevo a minha oração.\nAmém.""",
+
+    "Salve Cruz Vitoriosa": """Salve, ó Cruz, única esperança!\nNesta Paixão aumentai a graça nos piedosos\ne apagai os crimes dos culpados.\nAmém.""",
+
+    "Salve Rainha": """Salve Rainha, Mãe de misericórdia,\nvida, doçura e esperança nossa, salve!\nA vós bradamos, os degredados filhos de Eva.\nA vós suspiramos, gemendo e chorando\nneste vale de lágrimas.\nEia pois, advogada nossa,\nesses vossos olhos misericordiosos a nós volvei.\nE depois deste desterro,\nmostrai-nos Jesus, bendito fruto do vosso ventre.\nÓ clemente, ó piedosa, ó doce sempre Virgem Maria.\nAmém.""",
+
+    "Santa Clara": """Santa Clara de Assis,\nvós que seguistes os passos de Francisco na pobreza e na humildade,\nintercedam por nós junto a Deus.\nAmém.""",
+
+    "Santa Edwiges": """Santa Edwiges,\npadroeira dos pobres e dos endividados,\nintercedam por nós em nossas necessidades financeiras.\nAmém.""",
+
+    "Santa Joana d'Arc": """Santa Joana d'Arc,\nherína e mártir de França,\nvós que seguistes a voz de Deus com coragem,\nintercedam por nós.\nAmém.""",
+
+    "Santa Josefina Bakhita": """Santa Josefina Bakhita,\nvós que sofrestes a escravidão e encontrastes liberdade em Deus,\nintercedam por todos os que sofrem.\nAmém.""",
+
+    "Santa Lúzia": """Santa Lúzia, virgem e mártir,\nprotetora dos olhos e da visão,\nintercedam por todos os que sofrem dos olhos.\nAmém.""",
+
+    "Santa Mônica": """Santa Mônica,\nvós que com lágrimas e orações convertestes vosso filho Agostinho,\nintercedam por nossas famílias\ne pelos que estão longe de Deus.\nAmém.""",
+
+    "Santa Rita de Cássia": """Santa Rita de Cássia,\npadroeira das causas impossíveis,\nvós que sofrestes tanto por amor a Cristo,\nintercedam por nós em nossas causas difíceis.\nAmém.""",
+
+    "Santa Teresinha": """Jesus, vós que dissestes: quem não se tornar como criança\nnão entrará no Reino dos Céus,\nconcedei-me, por intercessão de Santa Teresinha,\na graça de ter um coração simples e humilde.\nAmém.""",
+
+    "Santo Agostinho": """Senhor, fizestes-nos para vós\ne nosso coração não sossega enquanto não repousa em vós.\nAmém.""",
+
+    "Santo Anjo do Senhor": """Santo Anjo do Senhor, meu zeloso guardador,\nse a ti me confiou a piedade divina,\nsempre me rege, guarda, governa e ilumina.\nAmém.""",
+
+    "Santo Antônio para Alcançar uma Graça": """Santo Antônio, glorioso servo de Deus,\nvós que fizestes tantos milagres em vida,\nintercedam por mim nesta necessidade.\nAmém.""",
+
+    "Santo Expedito": """Santo Expedito, padroeiro das causas urgentes,\nvós que nenhuma causa difícil ou urgente abandonais,\nintercedam por mim nesta hora.\nAmém.""",
+
+    "Santo Inácio de Loyola": """Tomai, Senhor, e recebei\ntoda a minha liberdade, minha memória,\nmeu entendimento e toda a minha vontade,\ntudo o que tenho e possuo.\nVós mo destes, a vós Senhor, o devolvo.\nTudo é vosso; disponde de tudo segundo a vossa vontade.\nDai-me o vosso amor e a vossa graça,\nisto me basta.\nAmém.""",
+
+    "Senhor do Bonfim": """Senhor do Bonfim,\nvós que sois o senhor das bênçãos,\nenviai sobre nós a vossa graça\ne curai as enfermidades de nosso corpo e alma.\nAmém.""",
+
+    "Sinal da Cruz": """Pelo sinal da Santa Cruz,\nlivrai-nos, Deus nosso Senhor,\ndos nossos inimigos.\nEm nome do Pai, do Filho\ne do Espírito Santo.\nAmém.""",
+
+    "Socorrei Maria": """Socorrei, ó Maria, os necessitados,\nconfortai os que estão em pranto,\norai pelo povo, intercedei pelo clero,\nintercedei por todas as mulheres consagradas.\nQue todos experimentem o vosso auxílio, todos os que celebram as vossas santas festas.\nAmém.""",
+
+    "São Brás": """São Brás, bispo e mártir,\npadroeiro das doenças da garganta,\nintercedam por todos os que sofrem\ndas vias respiratórias.\nAmém.""",
+
+    "São Cristóvão": """São Cristóvão, padroeiro dos motoristas,\nprotegei todos os que estão na estrada.\nQue cheguem ao seu destino com segurança.\nAmém.""",
+
+    "São Gabriel Arcanjo": """São Gabriel Arcanjo,\nmensageiro de Deus,\nvós que anunciastes a Encarnação do Filho de Deus,\nintercedam por nós.\nAmém.""",
+
+    "São Geraldo": """São Geraldo, padroeiro das mães,\nintercedam por todas as mães grávidas\ne pelos seus filhos ainda por nascer.\nAmém.""",
+
+    "São Joaquim": """São Joaquim, avô de Jesus,\nvós que fostes pai da Virgem Maria,\nintercedam pelas famílias cristãs.\nAmém.""",
+
+    "São Josemaría Escrivá": """São Josemaría Escrivá,\nfundador do Opus Dei,\nque ensinastes que o trabalho cotidiano\npode ser caminho de santidade,\nintercedam por nós.\nAmém.""",
+
+    "São Pelegrino": """São Pelegrino, protetor dos que sofrem de câncer,\nvós que fostes milagrosamente curado por Cristo,\nintercedam por todos os doentes.\nAmém.""",
+
+    "Vem Espírito Criador": """Vem, ó Espírito Criador,\nvisita os corações dos teus fiéis.\nEnche de graça celestial\nos corações que criaste.\nAmém.""",
+
+    "Visita ao Santíssimo Sacramento": """Ó doce Jesus meu, aqui estou diante de vós.\nCreio que estais verdadeiramente presente neste Santíssimo Sacramento.\nAdoro-vos e amo-vos.\nObrigado pela graça desta visita.\nAmém.""",
+
+    "À Vossa Proteção": """À vossa proteção nos acolhemos,\nSanta Mãe de Deus.\nNão desprezeis as nossas súplicas,\nnós que estamos em provação,\ne livrai-nos de todos os perigos,\nó sempre Virgem gloriosa e bendita.\nAmém.""",
+
+    "Ó Maria Concebida Sem Pecado": """Ó Maria concebida sem pecado,\norai por nós que recorremos a vós.\nAmém.""",
+
+    "Ó Meu Jesus": """Ó meu Jesus, perdoai-nos,\nlivrai-nos do fogo do inferno,\nlevai as almas todas para o Céu,\nespecialmente as que mais precisarem.\nAmém.""",
 }
 
 NOVENAS = {
@@ -284,6 +496,161 @@ TERCOS = {
         ("Nas contas", "Obrigado Senhor pélá minha vida. Obrigado Senhor pélá natureza. Obrigado Senhor pélo pao de cada dia. Obrigado Senhor por... (faca seu agradecimento)"),
         ("Encerramento", "Gloria ao Pai, ao Filho e ao Espírito Santo. Como era no principio, agora e sempre. Amem.")
     ]
+,
+    "Coroinha ao Sagrado Coração de Jesus": [
+        "Eterno Pai, vos ofereço o Santíssimo Coração de Jesus como reparação de todos os meus pecados.",
+        "Por amor do Sagrado Coração de Jesus, perdoai-nos, ó Pai Eterno.",
+        "Ó Sagrado Coração de Jesus, vinde o vosso reino.",
+        "Doce Coração de Maria, sede a salvação dos pecadores.",
+        "Sagrado Coração de Jesus, em vós confio.",
+        "Sagrado Coração de Jesus, fazei que vos ame cada vez mais.",
+        "Sagrado Coração de Jesus, misericórdia.",
+        "Sagrado Coração de Jesus, que vosso reino venha.",
+        "Sagrado Coração de Jesus, eu creio no vosso amor por mim. Amém."
+    ],
+    "Coroinha de Nossa Senhora": [
+        "Em nome do Pai e do Filho e do Espírito Santo. Amém.",
+        "Eu me ofereço a vós, ó Maria, e vos peço que intercedais por mim.",
+        "Pai Nosso... Ave Maria... Glória...",
+        "Ó Maria, cheia de graça, lembrai-vos de nós.",
+        "Ave Maria... Glória...",
+        "Ó Maria, sede nossa guia e nossa mãe.",
+        "Ave Maria... Glória...",
+        "Ó Maria, aceitai a nossa consagração.",
+        "Ave Maria... Glória... Amém."
+    ],
+    "Rosário do Espírito Santo": [
+        "Em nome do Pai e do Filho e do Espírito Santo. Amém. Vinde, Espírito Santo...",
+        "Vinde, Espírito Santo, enchei os corações dos vossos fiéis.",
+        "Acendei neles o fogo do vosso amor.",
+        "Enviai o vosso Espírito e tudo será criado.",
+        "E renovareis a face da terra.",
+        "Ó Deus, que iluminastes os corações dos fiéis pela luz do Espírito Santo.",
+        "Fazei que tenhamos o gosto das coisas retas.",
+        "E gozemos sempre de sua consolação.",
+        "Por Cristo Nosso Senhor. Amém."
+    ],
+    "Terço a Nossa Senhora Mãe de Jesus": [
+        "Em nome do Pai e do Filho e do Espírito Santo. Amém.",
+        "Ó Maria, Mãe de Jesus e Mãe nossa, vimos a vós.",
+        "Sede nossa mãe e nossa guia.",
+        "Intercedei por nós junto a vosso Filho.",
+        "Dai-nos a graça de amar a Deus sobre todas as coisas.",
+        "Protegei nossas famílias com o vosso manto.",
+        "Afastai de nós todo o mal.",
+        "Conduzi-nos a Jesus, fruto bendito do vosso ventre.",
+        "Amém. Salve Rainha..."
+    ],
+    "Terço da Divina Misericórdia": [
+        "Pai Eterno, vos ofereço o Corpo e o Sangue, a Alma e a Divindade de vosso Preciosíssimo Filho.",
+        "Em propiciação pelos nossos pecados e pelos do mundo inteiro.",
+        "Pelos seus dolorosíssimos sofrimentos, tende misericórdia de nós.",
+        "E do mundo inteiro.",
+        "Santo Deus, Santo Forte, Santo Imortal, tende piedade de nós e do mundo inteiro.",
+        "Ó Sangue e Água, que jorraste do Coração de Jesus como fonte de misericórdia, confio em vós.",
+        "Jesus, eu confio em vós.",
+        "Pela sua dolorosa Paixão, tende misericórdia de nós.",
+        "Amém."
+    ],
+    "Terço da Imaculada Conceição": [
+        "Em nome do Pai e do Filho e do Espírito Santo. Amém.",
+        "Ó Maria concebida sem pecado original, rogai por nós que recorremos a vós.",
+        "Pai Nosso... 3 Ave Marias pela fé, esperança e caridade... Glória...",
+        "Imaculada Virgem, rogai por nós pelos 10 mistérios da vossa vida imaculada.",
+        "Ó Maria, sede nossa intercessora junto a Deus.",
+        "Vós que foste preservada do pecado original, intercedei por nós.",
+        "Ó Imaculada, sede nosso refúgio.",
+        "Amém. Salve Rainha...",
+        "Amém."
+    ],
+    "Terço da Nossa Senhora da Assunção": [
+        "Em nome do Pai e do Filho e do Espírito Santo. Amém.",
+        "Ó Maria, que subistes ao Céu em corpo e alma.",
+        "Sede nossa esperança e nossa alegria.",
+        "Intercedei por nós para que um dia também alcancemos a glória.",
+        "Pai Nosso... 10 Ave Marias... Glória...",
+        "Ó Maria Assunta, olhai por nós do alto do Céu.",
+        "Alcançai-nos as graças que necessitamos.",
+        "Para que sigamos vosso exemplo de fidelidade a Deus.",
+        "Amém. Salve Rainha..."
+    ],
+    "Terço da Providência": [
+        "Em nome do Pai e do Filho e do Espírito Santo. Amém.",
+        "Senhor, vós que alimentais as aves do céu e vestis os lírios do campo.",
+        "Cuidai de nós que vos buscamos primeiro o vosso Reino.",
+        "Pai Nosso... 10 Ave Marias... Glória...",
+        "Senhor, confiamos na vossa Providência.",
+        "Não nos abandoneis em nossas necessidades.",
+        "Que possamos confiar em vós como filhos amados.",
+        "Ó Maria, sede vós a nossa providência.",
+        "Amém."
+    ],
+    "Terço das Lágrimas de Sangue de Maria": [
+        "Em nome do Pai e do Filho e do Espírito Santo. Amém.",
+        "Ó Maria, Rosa Mística, que choraste lágrimas de sangue, intercedei por nós.",
+        "Pai Nosso... 10 Ave Marias... Glória...",
+        "Ó Maria, pelo sofrimento que experimentastes, alcançai a conversão dos pecadores.",
+        "E a paz para o mundo inteiro.",
+        "Pelo vosso pranto que derramastes por amor a nós.",
+        "Sede nossa mãe e consoladora.",
+        "Amém.",
+        "Salve Rainha..."
+    ],
+    "Terço das Santas Chagas de Cristo": [
+        "Em nome do Pai e do Filho e do Espírito Santo. Amém.",
+        "Pelas chagas de Jesus Cristo, tende piedade de nós.",
+        "Pelos cravos que trespassaram vossas mãos e pés.",
+        "Pai Nosso... 10 Ave Marias... Glória...",
+        "Pelas chagas de Jesus, sede-nos misericordioso.",
+        "Pelo sangue que jorrou do vosso lado.",
+        "Pelos espinhos que cravaram em vossa cabeça.",
+        "Misericórdia, Senhor, misericórdia.",
+        "Amém."
+    ],
+    "Terço de Nossa Senhora das Graças": [
+        "Em nome do Pai e do Filho e do Espírito Santo. Amém.",
+        "Ó Maria cheia de graças, distribuí as vossas graças sobre nós.",
+        "Pai Nosso... 10 Ave Marias... Glória...",
+        "Ó Nossa Senhora das Graças, sede nossa mãe.",
+        "Derramai sobre nós as graças de que necessitamos.",
+        "Para a salvação de nossas almas.",
+        "Para a santificação de nossas famílias.",
+        "Para a conversão dos pecadores.",
+        "Amém. Salve Rainha..."
+    ],
+    "Terço de São Miguel Arcanjo": [
+        "Em nome do Pai e do Filho e do Espírito Santo. Amém.",
+        "São Miguel Arcanjo, defendei-nos no combate.",
+        "Sede o nosso amparo contra a maldade e as ciladas do demônio.",
+        "Pai Nosso... 3 Ave Marias... Glória...",
+        "São Miguel, protegei a Santa Igreja.",
+        "São Gabriel, anunciai a paz.",
+        "São Rafael, curai os enfermos.",
+        "Santos Anjos e Arcanjos, orai por nós.",
+        "Amém."
+    ],
+    "Terço do Desagravo": [
+        "Em nome do Pai e do Filho e do Espírito Santo. Amém.",
+        "Senhor, em desagravo de todos os pecados cometidos contra vós, vos oferecemos este terço.",
+        "Pai Nosso... 10 Ave Marias... Glória...",
+        "Sagrado Coração de Jesus, tende piedade dos pecadores.",
+        "Imaculado Coração de Maria, sede o refúgio dos pecadores.",
+        "Em reparação pelos ultrajes cometidos contra o Santíssimo Sacramento.",
+        "Em reparação pelos pecados do mundo inteiro.",
+        "Jesus, misericórdia. Maria, rogai por nós.",
+        "Amém."
+    ],
+    "Terço do Imaculado Coração de Maria": [
+        "Em nome do Pai e do Filho e do Espírito Santo. Amém.",
+        "Ó Imaculado Coração de Maria, triunfai!",
+        "Ó Maria, vosso Coração Imaculado seja o nosso refúgio.",
+        "Pai Nosso... 10 Ave Marias... Glória...",
+        "Ó Imaculado Coração de Maria, intercedei por nós.",
+        "Sede nosso auxílio em todas as tribulações.",
+        "Que a devoção ao vosso Coração Imaculado se espalhe pelo mundo.",
+        "E que o reinado de vosso Filho Jesus Cristo triunfe.",
+        "Amém. Salve Rainha..."
+    ]
 }
 
 COMO_REZAR_TERCO = """Como rezar o Terco:
@@ -395,8 +762,239 @@ API_KEY = st.secrets.get("GROQ_API_KEY", os.environ.get("GROQ_API_KEY", ""))
 for key, val in [("logado", False), ("username", None), ("chats", {}),
                   ("chat_atual", None), ("input_key", 0), ("pendente", None), ("nome_usuario", ""),
                   ("aba_chat", "chat"), ("oracao_aberta", None), ("terco_aberto", None), ("terco_misterio", None), ("novena_aberta", None), ("novena_dia", None),
-                  ("cookie_lido", False), ("modo_escuro", False), ("idioma", "pt")]:
+                  ("cookie_lido", False), ("modo_escuro", False), ("idioma", "pt"), ("cat_pilar", None)]:
     if key not in st.session_state: st.session_state[key] = val
+
+COMO_REZAR_TERCO = """Como rezar o Terco:
+
+1. Comece com o Credo (Creio em Deus Pai)
+2. Reze 1 Pai Nosso
+3. Reze 3 Ave Marias (pelas virtudes de fé, espéranca e caridade)
+4. Reze 1 Gloria ao Pai
+5. Anuncie o 1 misterio e medite
+6. Reze 1 Pai Nosso
+7. Reze 10 Ave Marias meditando no misterio
+8. Reze 1 Gloria ao Pai
+9. Repita os passos 5 a 8 para cada misterio
+10. Termine com a Salve Rainha"""
+
+if "aba_login" not in st.session_state:
+    st.session_state.aba_login = "entrar"
+
+st.markdown(f"""
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+* {{ font-family: 'Inter', sans-serif; box-sizing: border-box; }}
+#MainMenu, footer, header {{ visibility: hidden; }}
+.block-container {{ padding: 1rem 1rem 160px 1rem !important; max-width: 700px !important; }}
+
+.stApp {{
+    background-color: #ffffff;
+    color-scheme: light !important;
+    background-image: url('{NOSSA_SENHORA}');
+    background-size: 100% 100% !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    background-attachment: scroll !important;
+    min-height: 100vh !important;
+}}
+
+:root {{ color-scheme: light !important; }}
+input, textarea, select {{ color-scheme: light !important; background-color: white !important; color: black !important; }}
+
+.stTextInput > div > div > input {{
+    background: rgba(255,255,255,0.95) !important;
+    border: 1.5px solid #d4c5a0 !important;
+    color: #1a1a1a !important;
+    border-radius: 12px !important;
+    padding: 0.8rem 1rem !important;
+    font-size: 1rem !important;
+    -webkit-text-fill-color: #1a1a1a !important;
+    color-scheme: light !important;
+}}
+.stTextInput > div > div > input::placeholder {{ color: #999 !important; }}
+
+div[data-testid="stForm"] {{
+    border: none !important;
+    padding: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}}
+
+.stFormSubmitButton > button {{
+    background: linear-gradient(135deg, #c8a96e, #a07840) !important;
+    border: none !important;
+    border-radius: 14px !important;
+    color: #fff !important;
+    font-size: 1rem !important;
+    font-weight: 700 !important;
+    padding: 0.9rem !important;
+    box-shadow: 0 4px 15px rgba(200,169,110,0.4) !important;
+}}
+
+.msg-user {{ display: flex; justify-content: flex-end; margin: 0.8rem 0; }}
+.bubble-user {{
+    background-color: #c8a96e; color: #fff;
+    padding: 0.75rem 1rem; border-radius: 18px 18px 4px 18px;
+    max-width: 85%; font-size: 0.95rem; line-height: 1.6; word-break: break-word;
+}}
+.msg-bot {{ display: flex; gap: 0.6rem; margin: 0.8rem 0; align-items: flex-start; }}
+.bubble-bot {{ font-size: 0.95rem; line-height: 1.7; max-width: 85%; word-break: break-word; }}
+
+.typing {{ display: flex; align-items: center; gap: 4px; padding: 0.5rem 0; }}
+.typing span {{ width: 8px; height: 8px; background: #888; border-radius: 50%; animation: bounce 1.2s infinite; }}
+.typing span:nth-child(2) {{ animation-delay: 0.2s; }}
+.typing span:nth-child(3) {{ animation-delay: 0.4s; }}
+@keyframes bounce {{
+    0%, 80%, 100% {{ transform: scale(0.7); opacity: 0.4; }}
+    40% {{ transform: scale(1); opacity: 1; }}
+}}
+
+.welcome {{ text-align: center; padding: 3rem 1rem 2rem 1rem; }}
+.welcome h2 {{ font-size: 1.6rem; font-weight: 600; margin-bottom: 0.5rem; }}
+.welcome p {{ font-size: 0.9rem; }}
+
+.stButton > button {{
+    background: #2f2f2f !important; border: 1px solid #3e3e3e !important;
+    color: #ececec !important; border-radius: 12px !important;
+    padding: 0.75rem 1rem !important; font-size: 0.95rem !important;
+    width: 100% !important; min-height: 48px !important;
+}}
+.stButton > button:hover {{ background: #3e3e3e !important; }}
+.streamlit-expanderHeader {{
+    background: #2f2f2f !important; border-radius: 12px !important;
+    color: #ececec !important; border: 1px solid #3e3e3e !important;
+    min-height: 48px !important;
+}}
+</style>
+""", unsafe_allow_html=True)
+
+API_KEY = st.secrets.get("GROQ_API_KEY", os.environ.get("GROQ_API_KEY", ""))
+
+# ── LITURGIA DAS HORAS ────────────────────────────────────────────────────────
+LITURGIA_HORAS = {
+    "Matinas e Laudes (Manhã)": """MATINAS E LAUDES — Oração da Manhã\n\n
+Senhor, abri meus lábios\ne minha boca anunciará vosso louvor.\n\n
+Hino:\nGlória ao Pai que nos criou,\nGlória ao Filho que nos salvou,\nGlória ao Espírito que nos santificou.\n\n
+Salmo 63: Ó Deus, tu és meu Deus, eu te procuro desde a aurora.\nMinha alma tem sede de ti, meu corpo te anseia\ncomo terra árida, seca, sem água.\n\n
+Cântico de Zacarias (Benedictus):\nBendito seja o Senhor, Deus de Israel,\npois visitou e resgatou o seu povo.\nE nos suscitou poderoso Salvador\nna casa de Davi, seu servo.\n\n
+Oração final:\nSenhor, que este dia comece sob o vosso olhar.\nGuiai meus pensamentos, palavras e obras.\nAmém.""",
+
+    "Prima (6h da manhã)": """PRIMA — Hora Primeira\n\n
+Em nome do Pai e do Filho e do Espírito Santo. Amém.\n\n
+Hino da manhã:\nJá raia a luz do novo dia,\nó Cristo, sol da eternidade.\nAfastai de nós a escuridão\ne dai-nos vossa claridade.\n\n
+Versículo:\nMeu Deus, vinde em meu auxílio.\nSenhor, apressai-vos em me socorrer.\n\n
+Oração:\nDeus nosso Pai, ao começar este dia,\nconsagramos a vós o nosso trabalho.\nQue tudo o que fizermos hoje\nseja para a vossa glória.\nPor Cristo Nosso Senhor. Amém.""",
+
+    "Terça (9h da manhã)": """HORA TERÇA — 9 horas\n\n
+Em nome do Pai e do Filho e do Espírito Santo. Amém.\n\n
+Hino:\nVinde, ó Espírito criador,\nvisitai as almas dos vossos fiéis.\nEnchei de graça celestial\nos corações que criastes.\n\n
+Versículo:\nEnviai o vosso Espírito e tudo será criado.\nE renovareis a face da terra.\n\n
+Oração:\nSenhor, nesta hora em que o Espírito Santo desceu sobre os Apóstolos,\nconcedei-nos os seus dons para cumprirmos a vossa vontade.\nAmém.""",
+
+    "Sexta (meio-dia)": """HORA SEXTA — Meio-dia\n\n
+Em nome do Pai e do Filho e do Espírito Santo. Amém.\n\n
+Hino:\nNo alto da santa cruz,\nó Jesus, vós pendestes.\nPor nós pecadores morrestes\ne o mundo resgatastes.\n\n
+Versículo:\nCordeiro de Deus, que tirais o pecado do mundo,\ntende piedade de nós.\n\n
+Oração:\nSenhor Jesus, que nesta hora fostes crucificado por amor a nós,\nfazei que nunca nos esqueçamos do vosso sacrifício.\nAmém.""",
+
+    "Nona (3h da tarde)": """HORA NONA — 3 horas\n\n
+Em nome do Pai e do Filho e do Espírito Santo. Amém.\n\n
+Hino:\nNesta hora de trevas e dor,\nó Jesus, vós morrestes por nós.\nAceitastes o cálice amargo\ne as culpas do mundo expiaste.\n\n
+Versículo:\nCristo foi obediente até a morte,\ne morte de cruz.\n\n
+Oração:\nSenhor Jesus, que nesta hora entregastes o espírito ao Pai,\nconcedei-nos a graça de um dia morrer em paz, unidos a vós.\nAmém.""",
+
+    "Vésperas (6h da tarde)": """VÉSPERAS — Oração da Tarde\n\n
+Em nome do Pai e do Filho e do Espírito Santo. Amém.\n\n
+Hino:\nLuz grata e bela, claridade\nda eterna glória, Pai celeste.\nAo pôr do sol cantamos hinos\ne à lâmpada da noite oramos.\n\n
+Cântico de Maria (Magnificat):\nMinha alma glorifica o Senhor,\nmeu espírito exulta em Deus, meu Salvador,\nporque olhou para a humildade de sua serva.\nDoravante me chamarão bem-aventurada todas as gerações.\n\n
+Oração:\nSenhor, ao terminar este dia, agradecemos por tudo.\nPerdoai nossas falhas e protegei-nos esta noite.\nAmém.""",
+
+    "Completas (9h da noite)": """COMPLETAS — Oração da Noite\n\n
+Em nome do Pai e do Filho e do Espírito Santo. Amém.\n\n
+Exame de consciência breve.\n\nConfissão geral:\nConfesso a Deus todo-poderoso e a vós, irmãos,\nque pequei muitas vezes por pensamentos, palavras, atos e omissões.\n\n
+Hino:\nAntes de pousar, ó Pai, em vossas mãos\no nosso espírito entregamos.\nGuardai-nos durante a noite\ne protegei-nos com vosso amor.\n\n
+Cântico de Simeão (Nunc Dimittis):\nAgora, Senhor, podeis deixar partir o vosso servo em paz,\nsegundo a vossa palavra,\npois os meus olhos viram a vossa salvação.\n\n
+Antífona final:\nSalve Rainha, Mãe de misericórdia...\n\n
+Bênção final:\nO Senhor todo-poderoso nos conceda uma noite tranquila e uma morte santa.\nAmém.""",
+
+    "Ofício de Nossa Senhora (dia único)": """OFÍCIO DE NOSSA SENHORA\n\n
+Para ser rezado em um único dia em honra a Maria.\n\n
+Introdução:\nSenhora, abri meus lábios.\nE minha boca anunciará vosso louvor.\n\n
+I — Matinas:\nAve Maria, cheia de graça...\nMinha alma glorifica o Senhor (Magnificat)...\n\n
+II — Prima:\nSubiu o sol sobre a terra, e Nossa Senhora permaneceu fiel.\n\n
+III — Hora Terça:\nO Espírito Santo desceu sobre Maria. Ela é o Sacrário de Deus.\n\n
+IV — Hora Sexta:\nMaria esteve junto à Cruz. Ela é Mãe das Dores.\n\n
+V — Hora Nona:\nMaria recebeu o discípulo amado. Ela é Mãe de todos nós.\n\n
+VI — Vésperas:\nMaria foi assunta ao Céu. Ela é nossa esperança.\n\n
+VII — Completas:\nSalve Rainha, Mãe de misericórdia, vida, doçura e esperança nossa.\nAmém.""",
+
+    "Quaresma de São Miguel Arcanjo": """QUARESMA DE SÃO MIGUEL ARCANJO\n\n
+Período de 29 de agosto a 29 de setembro.\n\n
+Oração inicial:\nGloriosos Príncipes do Paraíso, Santos Anjos e Arcanjos,\nvós que assistis diante do trono de Deus,\nintercedem por nós pecadores.\n\n
+Hino a São Miguel:\nSão Miguel, Arcanjo poderoso,\ndefensor dos filhos de Deus,\nvós que derrubastes Lúcifer,\nprotegei-nos do mal.\n\n
+Oração de São Miguel:\nSão Miguel Arcanjo, defendei-nos no combate.\nSede o nosso amparo contra a maldade e as ciladas do demônio.\nQue Deus lhe imponha o seu domínio.\nE vós, Príncipe da Milícia Celestial,\ncom o poder divino recebido,\nprecipitai no inferno Satanás\ne todos os espíritos malignos.\nAmém.""",
+}
+
+# ── CÂNTICOS E HINOS LITÚRGICOS ───────────────────────────────────────────────
+CANTICOS = {
+    "Benedictus (Cântico de Zacarias)": """Bendito seja o Senhor, Deus de Israel,\npois visitou e resgatou o seu povo,\ne nos suscitou poderoso Salvador\nna casa de Davi, seu servo,\ncomo prometera pela boca dos seus santos profetas desde a antiguidade:\nsalvação dos nossos inimigos\ne da mão de todos os que nos odeiam.\nAssim mostrou misericórdia para com nossos pais\ne se lembrou de sua santa aliança,\ndo juramento que fez a Abraão, nosso pai,\nde nos conceder que, livres das mãos dos inimigos,\no sirvamos sem temor,\nem santidade e justiça diante dele,\ntodos os dias da nossa vida.\nE tu, criança, serás chamado profeta do Altíssimo,\npois irás à frente do Senhor, para preparar seus caminhos,\npara dar ao seu povo o conhecimento da salvação\npelo perdão dos pecados,\ngodas as entranhas de misericórdia do nosso Deus,\npor que nos visitará o Sol que nasce do alto,\npara iluminar os que se acham nas trevas e na sombra da morte,\ne dirigir os nossos passos no caminho da paz.\nAmém.""",
+
+    "Cântico de Simeão (Nunc Dimittis)": """Agora, Senhor, podeis deixar partir o vosso servo em paz,\nsegundo a vossa palavra;\npois os meus olhos viram a vossa salvação,\nque preparastes diante de todos os povos:\nluz para iluminar as nações\ne glória do vosso povo Israel.\nAmém.""",
+
+    "Cântico dos 3 Jovens na Fornalha": """Bendito sois vós, Senhor Deus de nossos pais,\ndigno de louvor e glória para sempre.\nBendito o vosso nome glorioso e santo,\ndigno de louvor e glória para sempre.\nBendito sois vós no vosso templo santo e glorioso,\ndigno de todo louvor e glória para sempre.\nBendito sois vós que contemplais os abismos e assentais sobre os querubins,\ndigno de louvor e glória para sempre.\nBendito sois vós no firmamento do céu,\ndigno de louvor e glória para sempre.\nBendai o Senhor, todas as obras do Senhor,\nlouvai e exaltai-o para sempre.\nAmém.""",
+
+    "Magnificat (Cântico de Maria)": """Minha alma glorifica o Senhor,\nmeu espírito exulta em Deus, meu Salvador,\nporque olhou para a humildade de sua serva.\nDoravante me chamarão bem-aventurada todas as gerações,\nporque realizou em mim maravilhas o Todo-Poderoso.\nSanto é o seu nome!\nSua misericórdia se estende de geração em geração\nsobre os que o temem.\nAgiu com a força do seu braço,\ndispersou os soberbos de coração.\nDerrubou os poderosos de seus tronos\ne exaltou os humildes.\nEncheu de bens os famintos\ne despediu os ricos de mãos vazias.\nSocorreu a Israel, seu servo,\nlembrado de sua misericórdia,\ncomo prometera a nossos pais,\nem favor de Abraão e sua descendência para sempre.\nAmém.""",
+
+    "Rainha do Céu (Regina Coeli)": """Rainha do Céu, alegrai-vos, aleluia!\nPois aquele que merecestes trazer no vosso seio, aleluia!\nRessuscitou como disse, aleluia!\nOrai a Deus por nós, aleluia!\nAlegrai-vos, Virgem Maria, aleluia!\nPois ressuscitou o Senhor verdadeiramente, aleluia!\nAmém.""",
+
+    "Te Deum": """A vós, ó Deus, louvamos,\na vós, Senhor, reconhecemos.\nA vós, eterno Pai,\ntoda a terra venera.\nA vós todos os Anjos,\nos Céus e todas as Potências,\nos Querubins e Serafins\nvos aclamam sem cessar:\nSanto, Santo, Santo, Senhor Deus do universo!\nOs Céus e a terra estão cheios da majestade da vossa glória.\nA vós glorifica o coro dos Apóstolos,\na vós louva o número admirável dos Profetas,\na vós exalta o alvo exército dos Mártires.\nA vós proclama a Santa Igreja por toda a terra:\nPai de imensa majestade,\nVosso Filho Unigênito adorável e verdadeiro,\nEspírito Santo, Paráclito.\nAmém.""",
+
+    "Via Sacra": """ABERTURA:\nMeu Senhor Jesus Cristo, que por amor a nós suportastes a Paixão,\nconservai em nossos corações os frutos da vossa Redenção.\n\n
+1ª ESTAÇÃO: Jesus é condenado à morte.\nAdoramos-te, ó Cristo, e bendizemos-te.\nPorque pela tua Santa Cruz remiste o mundo.\n\n
+2ª ESTAÇÃO: Jesus carrega a Cruz.\nAdoramos-te, ó Cristo...\n\n
+3ª ESTAÇÃO: Jesus cai pela primeira vez.\nAdoramos-te, ó Cristo...\n\n
+4ª ESTAÇÃO: Jesus encontra sua Mãe.\nAdoramos-te, ó Cristo...\n\n
+5ª ESTAÇÃO: Simão Cireneu ajuda Jesus a carregar a Cruz.\nAdoramos-te, ó Cristo...\n\n
+6ª ESTAÇÃO: Verônica enxuga o rosto de Jesus.\nAdoramos-te, ó Cristo...\n\n
+7ª ESTAÇÃO: Jesus cai pela segunda vez.\nAdoramos-te, ó Cristo...\n\n
+8ª ESTAÇÃO: Jesus consola as filhas de Jerusalém.\nAdoramos-te, ó Cristo...\n\n
+9ª ESTAÇÃO: Jesus cai pela terceira vez.\nAdoramos-te, ó Cristo...\n\n
+10ª ESTAÇÃO: Jesus é despojado de suas vestes.\nAdoramos-te, ó Cristo...\n\n
+11ª ESTAÇÃO: Jesus é pregado na Cruz.\nAdoramos-te, ó Cristo...\n\n
+12ª ESTAÇÃO: Jesus morre na Cruz.\nAdoramos-te, ó Cristo...\n\n
+13ª ESTAÇÃO: Jesus é descido da Cruz.\nAdoramos-te, ó Cristo...\n\n
+14ª ESTAÇÃO: Jesus é sepultado.\nAdoramos-te, ó Cristo, e bendizemos-te.\nPorque pela tua Santa Cruz remiste o mundo.\n\n
+ORAÇÃO FINAL:\nÓ meu amado Jesus, perdoai os nossos pecados,\nlivrai-nos do fogo do inferno,\nlevai as almas todas para o Céu,\nespecialmente as que mais precisarem.\nAmém.""",
+
+    "Ladainha da Divina Misericórdia": """Misericórdia de Deus, que emana do seio do Pai... confio em vós.\nMisericórdia de Deus, maior do que todos os pecados... confio em vós.\nMisericórdia de Deus, que brota da íntima morada da Santíssima Trindade... confio em vós.\nMisericórdia de Deus, insondável, incompreensível, inconcebível... confio em vós.\nMisericórdia de Deus, na qual Jesus se torna nosso médico... confio em vós.\nMisericórdia de Deus, superior a todos os entendimentos angélicos e humanos... confio em vós.\nMisericórdia de Deus, de quem tudo flui como de sua fonte... confio em vós.\nMisericórdia de Deus, que nos envolvestes em vida e na morte... confio em vós.\nMisericórdia de Deus, que nos livras dos tormentos do inferno... confio em vós.\nMisericórdia de Deus, que é toda alegria e exultação para os bem-aventurados... confio em vós.\nAmém.""",
+
+    "Ladainha de Nossa Senhora": """Senhor, tende piedade de nós. Senhor, tende piedade de nós.\nCristo, tende piedade de nós. Cristo, tende piedade de nós.\nSenhor, tende piedade de nós.\nCristo, ouvi-nos. Cristo, atendei-nos.\n\n
+Santa Maria... rogai por nós.\nSanta Mãe de Deus... rogai por nós.\nSanta Virgem das virgens... rogai por nós.\nMãe de Cristo... rogai por nós.\nMãe da Igreja... rogai por nós.\nMãe da Misericórdia... rogai por nós.\nMãe da graça divina... rogai por nós.\nMãe da esperança... rogai por nós.\nMãe puríssima... rogai por nós.\nMãe castíssima... rogai por nós.\nMãe sem mácula... rogai por nós.\nMãe imaculada... rogai por nós.\nMãe amabilíssima... rogai por nós.\nMãe admirável... rogai por nós.\nMãe do bom conselho... rogai por nós.\nMãe do Criador... rogai por nós.\nMãe do Salvador... rogai por nós.\nVirgem prudentíssima... rogai por nós.\nVirgem venerável... rogai por nós.\nVirgem louvável... rogai por nós.\nVirgem poderosa... rogai por nós.\nVirgem clemente... rogai por nós.\nVirgem fiel... rogai por nós.\nEspelho de justiça... rogai por nós.\nSede da sabedoria... rogai por nós.\nCausa da nossa alegria... rogai por nós.\nVaso espiritual... rogai por nós.\nVaso honorável... rogai por nós.\nVaso insigne de devoção... rogai por nós.\nRosa mística... rogai por nós.\nTorre de David... rogai por nós.\nTorre de marfim... rogai por nós.\nCasa de ouro... rogai por nós.\nArca da aliança... rogai por nós.\nPorta do Céu... rogai por nós.\nEstrela da manhã... rogai por nós.\nSaúde dos enfermos... rogai por nós.\nRefúgio dos pecadores... rogai por nós.\nConsoladora dos aflitos... rogai por nós.\nAuxílio dos cristãos... rogai por nós.\nRainha dos anjos... rogai por nós.\nRainha dos patriarcas... rogai por nós.\nRainha dos profetas... rogai por nós.\nRainha dos apóstolos... rogai por nós.\nRainha dos mártires... rogai por nós.\nRainha dos confessores... rogai por nós.\nRainha das virgens... rogai por nós.\nRainha de todos os santos... rogai por nós.\nRainha concebida sem pecado original... rogai por nós.\nRainha assunta ao Céu... rogai por nós.\nRainha do Santíssimo Rosário... rogai por nós.\nRainha da família... rogai por nós.\nRainha da paz... rogai por nós.\n\n
+Cordeiro de Deus, que tirais o pecado do mundo, perdoai-nos, Senhor.\nCordeiro de Deus, que tirais o pecado do mundo, ouvi-nos, Senhor.\nCordeiro de Deus, que tirais o pecado do mundo, tende piedade de nós.\n\n
+Rogai por nós, Santa Mãe de Deus,\npara que sejamos dignos das promessas de Cristo.\nAmém.""",
+
+    "Ladainha de São José": """Senhor, tende piedade de nós.\nCristo, tende piedade de nós.\nSenhor, tende piedade de nós.\n\n
+São José... rogai por nós.\nIlústre descendente de Davi... rogai por nós.\nLuz dos patriarcas... rogai por nós.\nEsposo da Mãe de Deus... rogai por nós.\nGuardião casto da Virgem... rogai por nós.\nNutridor do Filho de Deus... rogai por nós.\nDiligente defensor de Cristo... rogai por nós.\nChefe da Sagrada Família... rogai por nós.\nJosé justíssimo... rogai por nós.\nJosé castíssimo... rogai por nós.\nJosé prudentíssimo... rogai por nós.\nJosé fortíssimo... rogai por nós.\nJosé obedientíssimo... rogai por nós.\nJosé fidelíssimo... rogai por nós.\nEspelho de paciência... rogai por nós.\nAmante da pobreza... rogai por nós.\nModelo dos operários... rogai por nós.\nOrnamento da vida doméstica... rogai por nós.\nGuarda das virgens... rogai por nós.\nAmparo das famílias... rogai por nós.\nConforto dos aflitos... rogai por nós.\nEsperança dos enfermos... rogai por nós.\nPatroeiro dos moribundos... rogai por nós.\nTerror dos demônios... rogai por nós.\nProtetor da Santa Igreja... rogai por nós.\n\n
+Cordeiro de Deus, que tirais o pecado do mundo, perdoai-nos, Senhor.\nCordeiro de Deus, que tirais o pecado do mundo, ouvi-nos, Senhor.\nCordeiro de Deus, que tirais o pecado do mundo, tende piedade de nós.\n\n
+Constituiu-o Senhor sobre a sua família.\nE sobre todos os seus bens.\nAmém.""",
+
+    "Ladainha de Todos os Santos": """Senhor, tende piedade de nós.\nCristo, tende piedade de nós.\nSenhor, tende piedade de nós.\n\n
+Santa Maria... rogai por nós.\nSanta Mãe de Deus... rogai por nós.\nSanta Virgem das virgens... rogai por nós.\nSão Miguel... rogai por nós.\nSão Gabriel... rogai por nós.\nSão Rafael... rogai por nós.\nSantos Anjos e Arcanjos... rogai por nós.\nSão João Batista... rogai por nós.\nSão José... rogai por nós.\nSantos Apóstolos e Evangelistas... rogai por nós.\nSantos Mártires... rogai por nós.\nSantos Bispos e Doutores... rogai por nós.\nSantos Presbíteros e Diáconos... rogai por nós.\nSantas Virgens e Viúvas... rogai por nós.\nTodos os Santos de Deus... rogai por nós.\n\n
+Sede-nos propício, perdoai-nos, Senhor.\nSede-nos propício, ouvi-nos, Senhor.\n\n
+Cordeiro de Deus, que tirais o pecado do mundo, perdoai-nos, Senhor.\nCordeiro de Deus, que tirais o pecado do mundo, ouvi-nos, Senhor.\nCordeiro de Deus, que tirais o pecado do mundo, tende piedade de nós.\nAmém.""",
+
+    "Ladainha do Sagrado Coração de Jesus": """Senhor, tende piedade de nós.\nCristo, tende piedade de nós.\n\n
+Coração de Jesus, Filho do Eterno Pai... tende piedade de nós.\nCoração de Jesus, formado pelo Espírito Santo no seio da Virgem Mãe... tende piedade de nós.\nCoração de Jesus, unido ao Verbo de Deus... tende piedade de nós.\nCoração de Jesus, de majestade infinita... tende piedade de nós.\nCoração de Jesus, templo santo de Deus... tende piedade de nós.\nCoração de Jesus, tabernáculo do Altíssimo... tende piedade de nós.\nCoração de Jesus, casa de Deus e porta do Céu... tende piedade de nós.\nCoração de Jesus, fornalha ardente de caridade... tende piedade de nós.\nCoração de Jesus, abismo de justiça e de amor... tende piedade de nós.\nCoração de Jesus, cheio de bondade e misericórdia... tende piedade de nós.\nCoração de Jesus, abismo de todas as virtudes... tende piedade de nós.\nCoração de Jesus, digníssimo de todo louvor... tende piedade de nós.\nCoração de Jesus, rei e centro de todos os corações... tende piedade de nós.\nCoração de Jesus, em quem estão todos os tesouros de sabedoria e ciência... tende piedade de nós.\nCoração de Jesus, em quem habita toda a plenitude da divindade... tende piedade de nós.\nCoração de Jesus, em quem o Pai se complaceu... tende piedade de nós.\nCoração de Jesus, de cuja plenitude todos recebemos... tende piedade de nós.\nCoração de Jesus, desejo dos eternos outeiros... tende piedade de nós.\nCoração de Jesus, paciente e misericordioso... tende piedade de nós.\nCoração de Jesus, generoso para todos os que vos invocam... tende piedade de nós.\nCoração de Jesus, fonte de vida e santidade... tende piedade de nós.\nCoração de Jesus, propiciação pelos nossos pecados... tende piedade de nós.\nCoração de Jesus, saturado de opróbrios... tende piedade de nós.\nCoração de Jesus, esmagado pelas nossas iniquidades... tende piedade de nós.\nCoração de Jesus, obediente até a morte... tende piedade de nós.\nCoração de Jesus, trespassado por uma lança... tende piedade de nós.\nCoração de Jesus, fonte de toda consolação... tende piedade de nós.\nCoração de Jesus, vida e ressurreição nossa... tende piedade de nós.\nCoração de Jesus, paz e reconciliação nossa... tende piedade de nós.\nCoração de Jesus, vítima dos pecadores... tende piedade de nós.\nCoração de Jesus, salvação dos que em vós esperam... tende piedade de nós.\nCoração de Jesus, esperança dos que em vós morrem... tende piedade de nós.\nCoração de Jesus, alegria de todos os santos... tende piedade de nós.\n\n
+Cordeiro de Deus, que tirais o pecado do mundo, perdoai-nos, Senhor.\nCordeiro de Deus, que tirais o pecado do mundo, ouvi-nos, Senhor.\nCordeiro de Deus, que tirais o pecado do mundo, tende piedade de nós.\n\n
+Jesus manso e humilde de coração, fazei o nosso coração semelhante ao vosso.\nAmém.""",
+
+    "Ladainha pelas Almas": """Senhor, tende piedade de nós.\nCristo, tende piedade de nós.\nSenhor, tende piedade de nós.\n\n
+Por todos os fiéis defuntos... tende piedade, Senhor.\nPelos que morreram hoje... tende piedade, Senhor.\nPelos que ninguém reza... tende piedade, Senhor.\nPelos nossos pais e avós... tende piedade, Senhor.\nPelos nossos irmãos e amigos... tende piedade, Senhor.\nPelos sacerdotes e religiosos falecidos... tende piedade, Senhor.\nPelos que morreram em guerra... tende piedade, Senhor.\nPelos que morreram de repente... tende piedade, Senhor.\nPor todas as almas do Purgatório... tende piedade, Senhor.\n\n
+Cordeiro de Deus, que tirais o pecado do mundo, dai-lhes o descanso eterno.\nCordeiro de Deus, que tirais o pecado do mundo, dai-lhes o descanso eterno.\nCordeiro de Deus, que tirais o pecado do mundo, dai-lhes o descanso eterno.\n\n
+Dai-lhes, Senhor, o descanso eterno,\ne brilhe para eles a luz perpétua.\nDescansem em paz. Amém.""",
+}
+
 
 # ── TRADUÇÕES ─────────────────────────────────────────────────────────────────
 TRADUCOES = {
@@ -735,6 +1333,12 @@ IMPORTANTE: Quando perguntado sobre um santo especifico, fale SOMENTE sobre esse
             st.rerun()
         if st.button(T["catecismo"], use_container_width=True, key="btn_catecismo"):
             st.session_state.aba_chat = "catecismo"
+            st.rerun()
+        if st.button("⛪ Liturgia das Horas", use_container_width=True, key="btn_liturgia_horas"):
+            st.session_state.aba_chat = "liturgia_horas"
+            st.rerun()
+        if st.button("🎵 Cânticos e Hinos", use_container_width=True, key="btn_canticos"):
+            st.session_state.aba_chat = "canticos"
             st.rerun()
 
         st.markdown("<hr style='border-color:#3e3e3e;margin:0.8rem 0;'>", unsafe_allow_html=True)
@@ -1290,6 +1894,27 @@ IMPORTANTE: Quando perguntado sobre um santo especifico, fale SOMENTE sobre esse
         </div>
         """, unsafe_allow_html=True)
         st.stop()
+
+    # ── ABA LITURGIA DAS HORAS ──
+    if st.session_state.aba_chat == "liturgia_horas":
+        st.markdown("<br>", unsafe_allow_html=True)
+        bg = "rgba(20,20,50,0.97)" if st.session_state.modo_escuro else "rgba(255,255,255,0.93)"
+        cor = "#f0e6d0" if st.session_state.modo_escuro else "#1a1a1a"
+        st.markdown(f"<h2 style='color:#c8a96e;text-align:center;'>⛪ Liturgia das Horas</h2>", unsafe_allow_html=True)
+        st.markdown(f"<p style='color:{cor};text-align:center;font-size:0.85rem;'>Ofício Divino — Oração da Igreja ao longo do dia</p>", unsafe_allow_html=True)
+        for hora, texto in LITURGIA_HORAS.items():
+            with st.expander(hora):
+                st.markdown(f"<div style='background:{bg};color:{cor};padding:1rem;border-radius:8px;white-space:pre-wrap;font-size:0.95rem;line-height:1.8;'>{texto}</div>", unsafe_allow_html=True)
+
+    # ── ABA CÂNTICOS E HINOS ──
+    if st.session_state.aba_chat == "canticos":
+        st.markdown("<br>", unsafe_allow_html=True)
+        bg = "rgba(20,20,50,0.97)" if st.session_state.modo_escuro else "rgba(255,255,255,0.93)"
+        cor = "#f0e6d0" if st.session_state.modo_escuro else "#1a1a1a"
+        st.markdown(f"<h2 style='color:#c8a96e;text-align:center;'>🎵 Cânticos e Hinos Litúrgicos</h2>", unsafe_allow_html=True)
+        for cantico, texto in CANTICOS.items():
+            with st.expander(cantico):
+                st.markdown(f"<div style='background:{bg};color:{cor};padding:1rem;border-radius:8px;white-space:pre-wrap;font-size:0.95rem;line-height:1.8;'>{texto}</div>", unsafe_allow_html=True)
 
     # ── ABA DOACOES ──
     if st.session_state.aba_chat == "doacoes":
