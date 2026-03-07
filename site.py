@@ -5,6 +5,65 @@ import os
 import hashlib
 from datetime import datetime
 import requests
+import re as _re
+
+# ── SEGURANÇA ──────────────────────────────────────────────────────────────────
+_PALAVROES = [
+    # Português
+    "porra","caralho","buceta","viado","cuzão","merda","foda","fdp","vsf",
+    "puta","prostituta","vagabunda","arrombado","filha da puta","filho da puta",
+    "vai toma","toma no cu","cu","pau","pênis","vagina","sexo","pornografia",
+    "porno","xvideos","xnxx","safada","safado","piranha","vadia","corno",
+    "inferno","satanas","satã","666","lúcifer","luzbel",
+    # Inglês
+    "fuck","shit","ass","bitch","damn","crap","bastard","nigger","faggot",
+    "porn","sex","cock","pussy","dick","nude","naked",
+    # Espanhol
+    "mierda","cono","pendejo","puta madre","joder","coño","culo",
+    # Italiano
+    "cazzo","vaffanculo","stronzo","porco",
+]
+
+_USUARIOS_PROIBIDOS = [
+    "admin","root","system","hack","exploit","satan","lucifer","diabo",
+    "demonio","666","antichrist","nazi","hitler","terror","isis",
+]
+
+_INJECOES = [
+    "ignore previous","ignore as instruções","esqueça o sistema","novo prompt",
+    "act as","pretend you are","you are now","jailbreak","dan mode",
+    "ignore your training","forget everything","override system",
+    "ignore tudo","você agora é","finja ser","ignore instrução",
+    "ignore system","new instructions","disregard","roleplay as",
+]
+
+def contem_palavrao(texto: str) -> bool:
+    if not texto:
+        return False
+    t = texto.lower()
+    t = _re.sub(r'[^a-záàâãéêíóôõúüçñ0-9 ]', ' ', t)
+    return any(p in t for p in _PALAVROES)
+
+def usuario_valido(username: str) -> bool:
+    if not _re.match(r'^[a-zA-Z0-9_]{3,20}$', username):
+        return False
+    t = username.lower()
+    return not any(p in t for p in _USUARIOS_PROIBIDOS)
+
+def contem_injecao(texto: str) -> bool:
+    if not texto:
+        return False
+    t = texto.lower()
+    return any(i in t for i in _INJECOES)
+
+def mensagem_segura(texto: str):
+    if contem_palavrao(texto):
+        return False, "palavrao"
+    if contem_injecao(texto):
+        return False, "injecao"
+    return True, ""
+# ───────────────────────────────────────────────────────────────────────────────
+
 
 st.set_page_config(
     page_title="Virtual Catholics",
@@ -1132,9 +1191,11 @@ if not st.session_state.logado:
                 if submitted:
                     if nome_n.strip() and user_n.strip() and senha_n.strip():
                         if not usuario_valido(user_n.strip()):
-                            st.error("❌ Usuário inválido. Use letras, números e _ (3-20 caracteres).")
-                        elif contem_palavrao(nome_n) or contem_palavrao(user_n):
-                            st.error("❌ Nome não permitido. Escolha um nome apropriado. 🙏")
+                            st.error("❌ Usuário inválido. Use apenas letras, números e _ (3-20 caracteres).")
+                        elif contem_palavrao(nome_n.strip()) or contem_palavrao(user_n.strip()):
+                            st.error("❌ Nome ou usuário não permitido. Escolha um nome apropriado. 🙏")
+                        elif contem_palavrao(senha_n.strip()):
+                            st.error("❌ Senha não permitida. Escolha uma senha apropriada. 🙏")
                         elif carregar_usuario(user_n):
                             st.error("Usuário já existe!")
                         else:
