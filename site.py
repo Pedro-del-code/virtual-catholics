@@ -991,6 +991,15 @@ TRADUCOES = {
     },
 }
 
+# ── SESSION STATE ─────────────────────────────────────────────────────────────
+for key, val in [("logado", False), ("username", None), ("chats", {}),
+                  ("chat_atual", None), ("input_key", 0), ("pendente", None), ("nome_usuario", ""),
+                  ("aba_chat", "chat"), ("oracao_aberta", None), ("terco_aberto", None),
+                  ("terco_misterio", None), ("novena_aberta", None), ("novena_dia", None),
+                  ("cookie_lido", False), ("modo_escuro", False), ("idioma", "pt"),
+                  ("cat_pilar", None), ("aba_login", "entrar")]:
+    if key not in st.session_state: st.session_state[key] = val
+
 # ── AUTOLOGIN via localStorage → Streamlit ────────────────────────────────────
 # Lê query params (enviados pelo JS abaixo em execução anterior)
 if not st.session_state.logado:
