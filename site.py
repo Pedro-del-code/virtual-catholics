@@ -1445,10 +1445,10 @@ else:
     _info_santo = f"O santo do dia {_hoje.day}/{_hoje.month} é: {_santo_hoje}." if _santo_hoje else ""
 
     idioma_instrucao = {
-        "pt": "Responda SEMPRE em português brasileiro.",
-        "en": "ALWAYS respond in English.",
-        "es": "Responde SIEMPRE en español.",
-        "it": "Rispondi SEMPRE in italiano.",
+        "pt": "REGRA ABSOLUTA DE IDIOMA: Responda SEMPRE e EXCLUSIVAMENTE em português brasileiro. NUNCA misture palavras ou frases em inglês, espanhol ou italiano na mesma resposta. Expressões como 'It's wonderful', 'I understand', 'Would you like' são PROIBIDAS. Use APENAS português.",
+        "en": "ABSOLUTE LANGUAGE RULE: ALWAYS respond EXCLUSIVELY in English. NEVER mix words or phrases in Portuguese, Spanish or Italian. Expressions like 'Louvado seja', 'Que Deus te abençoe' must be translated to English. Use ONLY English.",
+        "es": "REGLA ABSOLUTA DE IDIOMA: Responde SIEMPRE y EXCLUSIVAMENTE en español. NUNCA mezcles palabras en portugués, inglés o italiano. Usa SOLO español.",
+        "it": "REGOLA ASSOLUTA DI LINGUA: Rispondi SEMPRE ed ESCLUSIVAMENTE in italiano. NON mischiare mai parole in portoghese, inglese o spagnolo. Usa SOLO italiano.",
     }[st.session_state.idioma]
 
     num_msgs = len(st.session_state.chats.get(st.session_state.chat_atual, {}).get("historico", [])) if st.session_state.chat_atual else 0
