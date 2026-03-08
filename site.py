@@ -953,7 +953,7 @@ TRADUCOES = {
         "liturgia": "📘 Liturgia do Dia", "calendario": "📅 Calendário Litúrgico",
         "santo": "⭐ Santo do Dia", "novenas": "🕯️ Novenas", "catecismo": "📖 Catecismo",
         "creditos": "⭐ Créditos", "doacoes": "💛 Doações", "feedback": "📧 Feedback",
-        "liturgia_horas": T["liturgia_horas"], "canticos": "🎵 Cânticos e Hinos",
+        "liturgia_horas": "⛪ Liturgia das Horas", "canticos": "🎵 Cânticos e Hinos",
         "modo_escuro": "🌙 Modo Escuro", "modo_claro": "☀️ Modo Claro",
         "idioma": "🌐 Idioma", "deletar": "🗑️ Deletar conversa",
         # Tela inicial
