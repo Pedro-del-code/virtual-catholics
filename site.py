@@ -946,51 +946,279 @@ Dai-lhes, Senhor, o descanso eterno,\ne brilhe para eles a luz perpétua.\nDesca
 # ── TRADUÇÕES ─────────────────────────────────────────────────────────────────
 TRADUCOES = {
     "pt": {
+        # Menu
         "novo_chat": "＋ Novo chat", "chats": "💬 CHATS", "recursos": "🙏 RECURSOS",
         "sobre": "ℹ️ SOBRE", "conta": "👤 CONTA", "sair": "🚪 Sair",
         "oracoes": "🙏 Orações", "biblia": "📖 Bíblia", "terco": "📿 Terço",
         "liturgia": "📘 Liturgia do Dia", "calendario": "📅 Calendário Litúrgico",
         "santo": "⭐ Santo do Dia", "novenas": "🕯️ Novenas", "catecismo": "📖 Catecismo",
-        "creditos": "⭐ Créditos", "doacoes": "💛 Doações",
+        "creditos": "⭐ Créditos", "doacoes": "💛 Doações", "feedback": "📧 Feedback",
+        "liturgia_horas": T["liturgia_horas"], "canticos": "🎵 Cânticos e Hinos",
         "modo_escuro": "🌙 Modo Escuro", "modo_claro": "☀️ Modo Claro",
+        "idioma": "🌐 Idioma", "deletar": "🗑️ Deletar conversa",
+        # Tela inicial
         "bem_vindo": "Olá", "novo_chat_btn": "Abra **Conversas** e clique em **Novo chat**.",
-        "deletar": "🗑️ Deletar conversa", "idioma": "🌐 Idioma",
+        "subtitulo": "Assistente Católico",
+        # Login
+        "entrar": "Entrar", "criar_conta": "✏️ Criar conta", "voltar_login": "← Voltar para login",
+        "placeholder_usuario": "👤  Usuário", "placeholder_senha": "🔒  Senha",
+        "placeholder_nome": "👤  Seu nome", "placeholder_usuario_novo": "🔑  Escolha um usuário",
+        "placeholder_senha_nova": "🔒  Escolha uma senha",
+        "erro_login": "Usuário ou senha incorretos!",
+        "erro_campos": "Preencha todos os campos!",
+        "erro_usuario_existe": "Usuário já existe!",
+        "erro_usuario_invalido": "❌ Usuário inválido. Use apenas letras, números e _ (3-20 caracteres).",
+        "erro_nome_impróprio": "❌ Nome não permitido. Escolha um nome apropriado. 🙏",
+        "erro_senha_impropria": "❌ Senha não permitida. Escolha uma senha apropriada. 🙏",
+        # Chat
+        "placeholder_mensagem": "Manda uma mensagem...",
+        "sem_chat": "Selecione ou crie um novo chat",
+        "nova_conversa": "Nova conversa",
+        "aviso_palavrao": "🙏 Virtual Catholics pede um vocabulário mais respeitoso, meu irmão!",
+        "aviso_injecao": "🛡️ Não é possível alterar as instruções do Virtual Catholics.",
+        # Bíblia
+        "biblia_titulo": "📖 Bíblia Sagrada", "biblia_subtitulo": "Buscar passagem bíblica",
+        "biblia_placeholder": "Ex: João 3:16 ou Salmo 23",
+        "biblia_btn": T["biblia_btn"], "biblia_loading": "Buscando passagem...",
+        # Santo
+        "santo_titulo": "⭐ Santo do Dia", "santo_btn": "🤖 Saiba mais com a IA",
+        "santo_sem": "Nenhum santo registrado para hoje.",
+        # Doações
+        "doacoes_titulo": "💛 Apoie o Virtual Catholics",
+        "doacoes_subtitulo": "Sua doação ajuda a manter e expandir este ministério digital",
+        "doacoes_pix": "Chave Pix (Telefone)",
+        "doacoes_qr": "📱 Aponte a câmera para pagar via Pix",
+        "doacoes_obrigado": "Qualquer valor é uma bênção enorme! 🙏",
+        # Feedback
+        "feedback_titulo": "📧 Feedback & Suporte",
+        "feedback_subtitulo": "Encontrou um bug? Tem uma sugestão? Fale conosco!",
+        "feedback_email_label": "📬 Email de contato",
+        "feedback_aviso": "Responderemos o mais breve possível. Que Deus te abençoe! 🙏",
+        # Créditos
+        "creditos_titulo": "⭐ Créditos",
+        "creditos_criado": "Criado com fé e dedicação por",
+        "creditos_tecnologia": "Tecnologias utilizadas",
+        # Catecismo
+        "cat_titulo": "📖 Catecismo da Igreja Católica",
+        "cat_voltar": "← Voltar",
+        # Novenas
+        "nov_titulo": "🕯️ Novenas",
+        "nov_dia": "Dia", "nov_anterior": T["nov_anterior"], "nov_proximo": T["nov_proximo"],
+        "nov_voltar": T["nov_voltar"], "nov_fim": T["nov_fim"],
+        # Terço
+        "terco_titulo": "📿 Terço", "terco_como": "Como rezar",
+        "terco_voltar": "← Voltar",
+        # Liturgia
+        "liturgia_titulo": "📘 Liturgia do Dia",
+        "lit_horas_titulo": T["liturgia_horas"],
+        "lit_horas_sub": "Ofício Divino — Oração da Igreja ao longo do dia",
+        "canticos_titulo": T["canticos_titulo"],
     },
     "en": {
+        # Menu
         "novo_chat": "＋ New chat", "chats": "💬 CHATS", "recursos": "🙏 RESOURCES",
         "sobre": "ℹ️ ABOUT", "conta": "👤 ACCOUNT", "sair": "🚪 Sign out",
         "oracoes": "🙏 Prayers", "biblia": "📖 Bible", "terco": "📿 Rosary",
         "liturgia": "📘 Liturgy of the Day", "calendario": "📅 Liturgical Calendar",
         "santo": "⭐ Saint of the Day", "novenas": "🕯️ Novenas", "catecismo": "📖 Catechism",
-        "creditos": "⭐ Credits", "doacoes": "💛 Donations",
+        "creditos": "⭐ Credits", "doacoes": "💛 Donations", "feedback": "📧 Feedback",
+        "liturgia_horas": "⛪ Liturgy of the Hours", "canticos": "🎵 Canticles & Hymns",
         "modo_escuro": "🌙 Dark Mode", "modo_claro": "☀️ Light Mode",
+        "idioma": "🌐 Language", "deletar": "🗑️ Delete conversation",
+        # Login screen
         "bem_vindo": "Hello", "novo_chat_btn": "Open **Conversations** and click **New chat**.",
-        "deletar": "🗑️ Delete conversation", "idioma": "🌐 Language",
+        "subtitulo": "Catholic Assistant",
+        "entrar": "Sign in", "criar_conta": "✏️ Create account", "voltar_login": "← Back to login",
+        "placeholder_usuario": "👤  Username", "placeholder_senha": "🔒  Password",
+        "placeholder_nome": "👤  Your name", "placeholder_usuario_novo": "🔑  Choose a username",
+        "placeholder_senha_nova": "🔒  Choose a password",
+        "erro_login": "Incorrect username or password!",
+        "erro_campos": "Please fill in all fields!",
+        "erro_usuario_existe": "Username already exists!",
+        "erro_usuario_invalido": "❌ Invalid username. Use only letters, numbers and _ (3-20 chars).",
+        "erro_nome_impróprio": "❌ Name not allowed. Please choose an appropriate name. 🙏",
+        "erro_senha_impropria": "❌ Password not allowed. Please choose an appropriate one. 🙏",
+        # Chat
+        "placeholder_mensagem": "Send a message...",
+        "sem_chat": "Select or create a new chat",
+        "nova_conversa": "New conversation",
+        "aviso_palavrao": "🙏 Virtual Catholics asks for more respectful language, my friend!",
+        "aviso_injecao": "🛡️ It is not possible to change Virtual Catholics instructions.",
+        # Bible
+        "biblia_titulo": "📖 Holy Bible", "biblia_subtitulo": "Search Bible passage",
+        "biblia_placeholder": "E.g.: John 3:16 or Psalm 23",
+        "biblia_btn": "🔍 Search", "biblia_loading": "Searching passage...",
+        # Saint
+        "santo_titulo": "⭐ Saint of the Day", "santo_btn": "🤖 Learn more with AI",
+        "santo_sem": "No saint registered for today.",
+        # Donations
+        "doacoes_titulo": "💛 Support Virtual Catholics",
+        "doacoes_subtitulo": "Your donation helps maintain and expand this digital ministry",
+        "doacoes_pix": "Pix Key (Phone)",
+        "doacoes_qr": "📱 Point your camera to pay via Pix",
+        "doacoes_obrigado": "Any amount is a huge blessing! 🙏",
+        # Feedback
+        "feedback_titulo": "📧 Feedback & Support",
+        "feedback_subtitulo": "Found a bug? Have a suggestion? Contact us!",
+        "feedback_email_label": "📬 Contact email",
+        "feedback_aviso": "We will reply as soon as possible. God bless you! 🙏",
+        # Credits
+        "creditos_titulo": "⭐ Credits",
+        "creditos_criado": "Created with faith and dedication by",
+        "creditos_tecnologia": "Technologies used",
+        # Catechism
+        "cat_titulo": "📖 Catechism of the Catholic Church",
+        "cat_voltar": "← Back",
+        # Novenas
+        "nov_titulo": "🕯️ Novenas",
+        "nov_dia": "Day", "nov_anterior": "← Previous", "nov_proximo": "Next →",
+        "nov_voltar": "← Back to Novenas", "nov_fim": "✅ Novena completed!",
+        # Rosary
+        "terco_titulo": "📿 Rosary", "terco_como": "How to pray",
+        "terco_voltar": "← Back",
+        # Liturgy
+        "liturgia_titulo": "📘 Liturgy of the Day",
+        "lit_horas_titulo": "⛪ Liturgy of the Hours",
+        "lit_horas_sub": "Divine Office — Prayer of the Church throughout the day",
+        "canticos_titulo": "🎵 Canticles and Liturgical Hymns",
     },
     "es": {
-        "novo_chat": "＋ Nuevo chat", "chats": "💬 CHATS", "recursos": "🙏 RECURSOS",
+        # Menú
+        "novo_chat": "＋ Nueva conversación", "chats": "💬 CHATS", "recursos": "🙏 RECURSOS",
         "sobre": "ℹ️ SOBRE", "conta": "👤 CUENTA", "sair": "🚪 Salir",
         "oracoes": "🙏 Oraciones", "biblia": "📖 Biblia", "terco": "📿 Rosario",
         "liturgia": "📘 Liturgia del Día", "calendario": "📅 Calendario Litúrgico",
         "santo": "⭐ Santo del Día", "novenas": "🕯️ Novenas", "catecismo": "📖 Catecismo",
-        "creditos": "⭐ Créditos", "doacoes": "💛 Donaciones",
+        "creditos": "⭐ Créditos", "doacoes": "💛 Donaciones", "feedback": "📧 Feedback",
+        "liturgia_horas": "⛪ Liturgia de las Horas", "canticos": "🎵 Cánticos e Himnos",
         "modo_escuro": "🌙 Modo Oscuro", "modo_claro": "☀️ Modo Claro",
-        "bem_vindo": "Hola", "novo_chat_btn": "Abre **Conversaciones** y haz clic en **Nuevo chat**.",
-        "deletar": "🗑️ Eliminar conversación", "idioma": "🌐 Idioma",
+        "idioma": "🌐 Idioma", "deletar": "🗑️ Eliminar conversación",
+        # Pantalla inicial
+        "bem_vindo": "Hola", "novo_chat_btn": "Abre **Conversaciones** y haz clic en **Nueva conversación**.",
+        "subtitulo": "Asistente Católico",
+        "entrar": "Entrar", "criar_conta": "✏️ Crear cuenta", "voltar_login": "← Volver al inicio",
+        "placeholder_usuario": "👤  Usuario", "placeholder_senha": "🔒  Contraseña",
+        "placeholder_nome": "👤  Tu nombre", "placeholder_usuario_novo": "🔑  Elige un usuario",
+        "placeholder_senha_nova": "🔒  Elige una contraseña",
+        "erro_login": "¡Usuario o contraseña incorrectos!",
+        "erro_campos": "¡Por favor, completa todos los campos!",
+        "erro_usuario_existe": "¡El usuario ya existe!",
+        "erro_usuario_invalido": "❌ Usuario inválido. Usa solo letras, números y _ (3-20 chars).",
+        "erro_nome_impróprio": "❌ Nombre no permitido. Por favor, elige un nombre apropiado. 🙏",
+        "erro_senha_impropria": "❌ Contraseña no permitida. Por favor, elige una apropiada. 🙏",
+        # Chat
+        "placeholder_mensagem": "Envía un mensaje...",
+        "sem_chat": "Selecciona o crea una nueva conversación",
+        "nova_conversa": "Nueva conversación",
+        "aviso_palavrao": "🙏 Virtual Catholics pide un vocabulario más respetuoso, ¡hermano!",
+        "aviso_injecao": "🛡️ No es posible modificar las instrucciones de Virtual Catholics.",
+        # Biblia
+        "biblia_titulo": "📖 Santa Biblia", "biblia_subtitulo": "Buscar pasaje bíblico",
+        "biblia_placeholder": "Ej: Juan 3:16 o Salmo 23",
+        "biblia_btn": T["biblia_btn"], "biblia_loading": "Buscando pasaje...",
+        # Santo
+        "santo_titulo": "⭐ Santo del Día", "santo_btn": "🤖 Saber más con la IA",
+        "santo_sem": "Ningún santo registrado para hoy.",
+        # Donaciones
+        "doacoes_titulo": "💛 Apoya Virtual Catholics",
+        "doacoes_subtitulo": "Tu donación ayuda a mantener y expandir este ministerio digital",
+        "doacoes_pix": "Clave Pix (Teléfono)",
+        "doacoes_qr": "📱 Apunta la cámara para pagar via Pix",
+        "doacoes_obrigado": "¡Cualquier valor es una enorme bendición! 🙏",
+        # Feedback
+        "feedback_titulo": "📧 Feedback y Soporte",
+        "feedback_subtitulo": "¿Encontraste un error? ¿Tienes una sugerencia? ¡Contáctanos!",
+        "feedback_email_label": "📬 Email de contacto",
+        "feedback_aviso": "Responderemos lo antes posible. ¡Que Dios te bendiga! 🙏",
+        # Créditos
+        "creditos_titulo": "⭐ Créditos",
+        "creditos_criado": "Creado con fe y dedicación por",
+        "creditos_tecnologia": "Tecnologías utilizadas",
+        # Catecismo
+        "cat_titulo": "📖 Catecismo de la Iglesia Católica",
+        "cat_voltar": "← Volver",
+        # Novenas
+        "nov_titulo": "🕯️ Novenas",
+        "nov_dia": "Día", "nov_anterior": T["nov_anterior"], "nov_proximo": "Siguiente →",
+        "nov_voltar": "← Volver a Novenas", "nov_fim": "✅ ¡Novena completada!",
+        # Rosario
+        "terco_titulo": "📿 Rosario", "terco_como": "Cómo rezar",
+        "terco_voltar": "← Volver",
+        # Liturgia
+        "liturgia_titulo": "📘 Liturgia del Día",
+        "lit_horas_titulo": "⛪ Liturgia de las Horas",
+        "lit_horas_sub": "Oficio Divino — Oración de la Iglesia a lo largo del día",
+        "canticos_titulo": "🎵 Cánticos e Himnos Litúrgicos",
     },
     "it": {
+        # Menu
         "novo_chat": "＋ Nuova chat", "chats": "💬 CHAT", "recursos": "🙏 RISORSE",
         "sobre": "ℹ️ INFO", "conta": "👤 ACCOUNT", "sair": "🚪 Esci",
         "oracoes": "🙏 Preghiere", "biblia": "📖 Bibbia", "terco": "📿 Rosario",
         "liturgia": "📘 Liturgia del Giorno", "calendario": "📅 Calendario Liturgico",
         "santo": "⭐ Santo del Giorno", "novenas": "🕯️ Novene", "catecismo": "📖 Catechismo",
-        "creditos": "⭐ Crediti", "doacoes": "💛 Donazioni",
+        "creditos": "⭐ Crediti", "doacoes": "💛 Donazioni", "feedback": "📧 Feedback",
+        "liturgia_horas": "⛪ Liturgia delle Ore", "canticos": "🎵 Cantici e Inni",
         "modo_escuro": "🌙 Modalità Scura", "modo_claro": "☀️ Modalità Chiara",
+        "idioma": "🌐 Lingua", "deletar": "🗑️ Elimina conversazione",
+        # Schermata iniziale
         "bem_vindo": "Ciao", "novo_chat_btn": "Apri **Conversazioni** e clicca su **Nuova chat**.",
-        "deletar": "🗑️ Elimina conversazione", "idioma": "🌐 Lingua",
+        "subtitulo": "Assistente Cattolico",
+        "entrar": "Accedi", "criar_conta": "✏️ Crea account", "voltar_login": "← Torna al login",
+        "placeholder_usuario": "👤  Nome utente", "placeholder_senha": "🔒  Password",
+        "placeholder_nome": "👤  Il tuo nome", "placeholder_usuario_novo": "🔑  Scegli un nome utente",
+        "placeholder_senha_nova": "🔒  Scegli una password",
+        "erro_login": "Nome utente o password errati!",
+        "erro_campos": "Per favore, compila tutti i campi!",
+        "erro_usuario_existe": "Nome utente già esistente!",
+        "erro_usuario_invalido": "❌ Nome utente non valido. Usa solo lettere, numeri e _ (3-20 chars).",
+        "erro_nome_impróprio": "❌ Nome non consentito. Per favore scegli un nome appropriato. 🙏",
+        "erro_senha_impropria": "❌ Password non consentita. Per favore scegline una appropriata. 🙏",
+        # Chat
+        "placeholder_mensagem": "Invia un messaggio...",
+        "sem_chat": "Seleziona o crea una nuova chat",
+        "nova_conversa": "Nuova conversazione",
+        "aviso_palavrao": "🙏 Virtual Catholics chiede un linguaggio più rispettoso, fratello!",
+        "aviso_injecao": "🛡️ Non è possibile modificare le istruzioni di Virtual Catholics.",
+        # Bibbia
+        "biblia_titulo": "📖 Sacra Bibbia", "biblia_subtitulo": "Cerca passo biblico",
+        "biblia_placeholder": "Es: Giovanni 3:16 o Salmo 23",
+        "biblia_btn": "🔍 Cerca", "biblia_loading": "Ricerca in corso...",
+        # Santo
+        "santo_titulo": "⭐ Santo del Giorno", "santo_btn": "🤖 Scopri di più con l'IA",
+        "santo_sem": "Nessun santo registrato per oggi.",
+        # Donazioni
+        "doacoes_titulo": "💛 Supporta Virtual Catholics",
+        "doacoes_subtitulo": "La tua donazione aiuta a mantenere e sviluppare questo ministero digitale",
+        "doacoes_pix": "Chiave Pix (Telefono)",
+        "doacoes_qr": "📱 Punta la fotocamera per pagare tramite Pix",
+        "doacoes_obrigado": "Qualsiasi importo è una grande benedizione! 🙏",
+        # Feedback
+        "feedback_titulo": "📧 Feedback e Supporto",
+        "feedback_subtitulo": "Hai trovato un bug? Hai un suggerimento? Contattaci!",
+        "feedback_email_label": "📬 Email di contatto",
+        "feedback_aviso": "Risponderemo il prima possibile. Dio ti benedica! 🙏",
+        # Crediti
+        "creditos_titulo": "⭐ Crediti",
+        "creditos_criado": "Creato con fede e dedizione da",
+        "creditos_tecnologia": "Tecnologie utilizzate",
+        # Catechismo
+        "cat_titulo": "📖 Catechismo della Chiesa Cattolica",
+        "cat_voltar": "← Indietro",
+        # Novene
+        "nov_titulo": "🕯️ Novene",
+        "nov_dia": "Giorno", "nov_anterior": "← Precedente", "nov_proximo": "Successivo →",
+        "nov_voltar": "← Torna alle Novene", "nov_fim": "✅ Novena completata!",
+        # Rosario
+        "terco_titulo": "📿 Rosario", "terco_como": "Come pregare",
+        "terco_voltar": "← Indietro",
+        # Liturgia
+        "liturgia_titulo": "📘 Liturgia del Giorno",
+        "lit_horas_titulo": "⛪ Liturgia delle Ore",
+        "lit_horas_sub": "Ufficio Divino — Preghiera della Chiesa nel corso della giornata",
+        "canticos_titulo": "🎵 Cantici e Inni Liturgici",
     },
 }
-
 # ── SESSION STATE ─────────────────────────────────────────────────────────────
 for key, val in [("logado", False), ("username", None), ("chats", {}),
                   ("chat_atual", None), ("input_key", 0), ("pendente", None), ("nome_usuario", ""),
@@ -1072,7 +1300,7 @@ if not st.session_state.logado:
                         </script>""", unsafe_allow_html=True)
                         st.rerun()
                     else:
-                        st.error("Usuário ou senha incorretos!")
+                        st.error(T["erro_login"])
 
             col_a, col_b = st.columns(2)
             with col_a:
@@ -1084,17 +1312,17 @@ if not st.session_state.logado:
                 nome_n = st.text_input("", placeholder="👤  Seu nome", label_visibility="collapsed")
                 user_n = st.text_input("", placeholder="🔑  Escolha um usuário", label_visibility="collapsed")
                 senha_n = st.text_input("", placeholder="🔒  Escolha uma senha", type="password", label_visibility="collapsed")
-                submitted = st.form_submit_button("Criar conta")
+                submitted = st.form_submit_button("criar_conta" if False else T.get("entrar","Criar conta"))
                 if submitted:
                     if nome_n.strip() and user_n.strip() and senha_n.strip():
                         if not usuario_valido(user_n.strip()):
-                            st.error("❌ Usuário inválido. Use apenas letras, números e _ (3-20 caracteres).")
+                            st.error(T["erro_usuario_invalido"])
                         elif contem_palavrao(nome_n.strip()) or contem_palavrao(user_n.strip()):
-                            st.error("❌ Nome ou usuário não permitido. Escolha um nome apropriado. 🙏")
+                            st.error(T["erro_nome_impróprio"])
                         elif contem_palavrao(senha_n.strip()):
-                            st.error("❌ Senha não permitida. Escolha uma senha apropriada. 🙏")
+                            st.error(T["erro_senha_impropria"])
                         elif carregar_usuario(user_n):
-                            st.error("Usuário já existe!")
+                            st.error(T["erro_usuario_existe"])
                         else:
                             criar_usuario(user_n, nome_n.strip(), senha_n)
                             st.session_state.logado = True
@@ -1109,7 +1337,7 @@ if not st.session_state.logado:
                             </script>""", unsafe_allow_html=True)
                             st.rerun()
                     else:
-                        st.error("Preencha todos os campos!")
+                        st.error(T["erro_campos"])
 
             if st.button("← Voltar para login"):
                 st.session_state.aba_login = "entrar"
@@ -1341,7 +1569,7 @@ IMPORTANTE: Quando perguntado sobre um santo específico, fale SOMENTE sobre ess
         if st.button(T["catecismo"], use_container_width=True, key="btn_catecismo"):
             st.session_state.aba_chat = "catecismo"
             st.rerun()
-        if st.button("⛪ Liturgia das Horas", use_container_width=True, key="btn_liturgia_horas"):
+        if st.button(T["liturgia_horas"], use_container_width=True, key="btn_liturgia_horas"):
             st.session_state.aba_chat = "liturgia_horas"
             st.rerun()
         if st.button("🎵 Cânticos e Hinos", use_container_width=True, key="btn_canticos"):
@@ -1352,11 +1580,14 @@ IMPORTANTE: Quando perguntado sobre um santo específico, fale SOMENTE sobre ess
 
         # ── SOBRE / DOACOES ──
         st.markdown("<p style='color:#c8a96e;font-weight:700;margin:0.3rem 0;'>ℹ️ SOBRE</p>", unsafe_allow_html=True)
-        if st.button("⭐ Creditos", use_container_width=True, key="btn_creditos"):
+        if st.button(T["creditos"], use_container_width=True, key="btn_creditos"):
             st.session_state.aba_chat = "creditos"
             st.rerun()
         if st.button(T["doacoes"], use_container_width=True, key="btn_doacoes"):
             st.session_state.aba_chat = "doacoes"
+            st.rerun()
+        if st.button(T["feedback"], use_container_width=True, key="btn_feedback"):
+            st.session_state.aba_chat = "feedback"
             st.rerun()
 
         st.markdown("<hr style='border-color:#3e3e3e;margin:0.8rem 0;'>", unsafe_allow_html=True)
@@ -1430,7 +1661,7 @@ IMPORTANTE: Quando perguntado sobre um santo específico, fale SOMENTE sobre ess
             col_ant, col_prox = st.columns(2)
             with col_ant:
                 if idx > 0:
-                    if st.button("← Anterior", use_container_width=True):
+                    if st.button(T["nov_anterior"], use_container_width=True):
                         st.session_state.terco_misterio -= 1
                         st.rerun()
             with col_prox:
@@ -1682,7 +1913,7 @@ IMPORTANTE: Quando perguntado sobre um santo específico, fale SOMENTE sobre ess
             col_a, col_p = st.columns(2)
             with col_a:
                 if dia_idx > 0:
-                    if st.button("← Anterior", use_container_width=True):
+                    if st.button(T["nov_anterior"], use_container_width=True):
                         st.session_state.novena_dia -= 1
                         st.rerun()
             with col_p:
@@ -1923,6 +2154,26 @@ IMPORTANTE: Quando perguntado sobre um santo específico, fale SOMENTE sobre ess
             with st.expander(cantico):
                 st.markdown(f"<div style='background:{bg};color:{cor};padding:1rem;border-radius:8px;white-space:pre-wrap;font-size:0.95rem;line-height:1.8;'>{texto}</div>", unsafe_allow_html=True)
 
+    # ── ABA FEEDBACK ──
+    if st.session_state.aba_chat == "feedback":
+        st.markdown("<br>", unsafe_allow_html=True)
+        bg = "rgba(20,20,50,0.97)" if st.session_state.modo_escuro else "rgba(255,255,255,0.93)"
+        cor = "#f0e6d0" if st.session_state.modo_escuro else "#1a1a1a"
+        st.markdown(f"""
+        <div style='background:{bg};border-radius:16px;padding:2rem;margin-top:1rem;
+        border:1px solid #c8a96e44;text-align:center;'>
+            <h2 style='color:#c8a96e;margin:0 0 0.5rem 0;'>{T["feedback_titulo"]}</h2>
+            <p style='color:{cor};font-size:0.95rem;margin:0 0 1.5rem 0;'>{T["feedback_subtitulo"]}</p>
+            <div style='background:rgba(200,169,110,0.1);border-radius:12px;padding:1.5rem;
+            border:1px solid #c8a96e44;text-align:left;'>
+                <p style='color:#c8a96e;font-weight:700;margin:0 0 0.5rem 0;'>{T["feedback_email_label"]}</p>
+                <p style='color:{cor};font-size:1.1rem;font-weight:600;margin:0 0 1rem 0;letter-spacing:0.5px;'>
+                    📧 virtualcatholics@gmail.com</p>
+                <p style='color:{cor};font-size:0.85rem;margin:0;opacity:0.8;'>{T["feedback_aviso"]}</p>
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+
     # ── ABA DOACOES ──
     if st.session_state.aba_chat == "doacoes":
         st.markdown("<br>", unsafe_allow_html=True)
@@ -2022,15 +2273,15 @@ IMPORTANTE: Quando perguntado sobre um santo específico, fale SOMENTE sobre ess
 
         st.markdown(chat_html, unsafe_allow_html=True)
 
-        user_input = st.text_input("", placeholder="Manda uma mensagem...", key=f"inp_{st.session_state.input_key}", label_visibility="collapsed")
+        user_input = st.text_input("", placeholder=T["placeholder_mensagem"], key=f"inp_{st.session_state.input_key}", label_visibility="collapsed")
         if user_input and user_input.strip():
             msg_limpa = user_input.strip()
             permitido, motivo = mensagem_segura(msg_limpa)
             if not permitido:
                 if motivo == "palavrao":
-                    st.warning("🙏 Frei Tomás pede um vocabulário mais respeitoso, meu irmão!")
+                    st.warning(T["aviso_palavrao"])
                 elif motivo == "injecao":
-                    st.warning("🛡️ Não é possível alterar as instruções do Frei Tomás.")
+                    st.warning(T["aviso_injecao"])
             else:
                 historico.append({"role": "user", "content": msg_limpa})
                 st.session_state.chats[chat_id]["historico"] = historico
