@@ -979,7 +979,7 @@ TRADUCOES = {
         # Bíblia
         "biblia_titulo": "📖 Bíblia Sagrada", "biblia_subtitulo": "Buscar passagem bíblica",
         "biblia_placeholder": "Ex: João 3:16 ou Salmo 23",
-        "biblia_btn": T["biblia_btn"], "biblia_loading": "Buscando passagem...",
+        "biblia_btn": "🔍 Buscar", "biblia_loading": "Buscando passagem...",
         # Santo
         "santo_titulo": "⭐ Santo do Dia", "santo_btn": "🤖 Saiba mais com a IA",
         "santo_sem": "Nenhum santo registrado para hoje.",
@@ -1003,16 +1003,16 @@ TRADUCOES = {
         "cat_voltar": "← Voltar",
         # Novenas
         "nov_titulo": "🕯️ Novenas",
-        "nov_dia": "Dia", "nov_anterior": T["nov_anterior"], "nov_proximo": T["nov_proximo"],
-        "nov_voltar": T["nov_voltar"], "nov_fim": T["nov_fim"],
+        "nov_dia": "Dia", "nov_anterior": "← Anterior", "nov_proximo": "Próximo →",
+        "nov_voltar": "← Voltar para Novenas", "nov_fim": "✅ Novena concluída!",
         # Terço
         "terco_titulo": "📿 Terço", "terco_como": "Como rezar",
         "terco_voltar": "← Voltar",
         # Liturgia
         "liturgia_titulo": "📘 Liturgia do Dia",
-        "lit_horas_titulo": T["liturgia_horas"],
+        "lit_horas_titulo": "⛪ Liturgia das Horas",
         "lit_horas_sub": "Ofício Divino — Oração da Igreja ao longo do dia",
-        "canticos_titulo": T["canticos_titulo"],
+        "canticos_titulo": "🎵 Cânticos e Hinos Litúrgicos",
     },
     "en": {
         # Menu
@@ -1115,7 +1115,7 @@ TRADUCOES = {
         # Biblia
         "biblia_titulo": "📖 Santa Biblia", "biblia_subtitulo": "Buscar pasaje bíblico",
         "biblia_placeholder": "Ej: Juan 3:16 o Salmo 23",
-        "biblia_btn": T["biblia_btn"], "biblia_loading": "Buscando pasaje...",
+        "biblia_btn": "🔍 Buscar", "biblia_loading": "Buscando pasaje...",
         # Santo
         "santo_titulo": "⭐ Santo del Día", "santo_btn": "🤖 Saber más con la IA",
         "santo_sem": "Ningún santo registrado para hoy.",
@@ -1139,7 +1139,7 @@ TRADUCOES = {
         "cat_voltar": "← Volver",
         # Novenas
         "nov_titulo": "🕯️ Novenas",
-        "nov_dia": "Día", "nov_anterior": T["nov_anterior"], "nov_proximo": "Siguiente →",
+        "nov_dia": "Día", "nov_anterior": "← Anterior", "nov_proximo": "Siguiente →",
         "nov_voltar": "← Volver a Novenas", "nov_fim": "✅ ¡Novena completada!",
         # Rosario
         "terco_titulo": "📿 Rosario", "terco_como": "Cómo rezar",
