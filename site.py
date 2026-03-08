@@ -86,11 +86,21 @@ def sb_get(table, filters=""):
 
 def sb_post(table, data):
     r = requests.post(f"{SUPABASE_URL}/rest/v1/{table}", headers={**HEADERS, "Prefer": "return=representation"}, json=data)
-    return r.json()
+    if not r.content or r.status_code == 204:
+        return []
+    try:
+        return r.json()
+    except Exception:
+        return []
 
 def sb_patch(table, filters, data):
     r = requests.patch(f"{SUPABASE_URL}/rest/v1/{table}?{filters}", headers={**HEADERS, "Prefer": "return=representation"}, json=data)
-    return r.json()
+    if not r.content or r.status_code == 204:
+        return []
+    try:
+        return r.json()
+    except Exception:
+        return []
 
 def hash_senha(s): return hashlib.sha256(s.encode()).hexdigest()
 
