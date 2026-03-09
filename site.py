@@ -818,7 +818,9 @@ div[data-testid="stForm"] {{
     width: 100% !important; min-height: 48px !important;
 }}
 .stButton > button:hover {{ background: #3e3e3e !important; }}
-.streamlit-expanderHeader {{
+.streamlit-expanderHeader,
+[data-testid="stExpander"] summary,
+[data-testid="stExpanderToggleIcon"] {{
     background: linear-gradient(135deg, #1a1a2e 0%, #2a1a0e 100%) !important;
     border-radius: 12px !important;
     color: #c8a96e !important;
@@ -826,19 +828,24 @@ div[data-testid="stForm"] {{
     min-height: 52px !important;
     font-weight: 700 !important;
     font-size: 1.05rem !important;
-    box-shadow: 0 0 12px rgba(200,169,110,0.3) !important;
+    box-shadow: 0 0 14px rgba(200,169,110,0.4) !important;
     letter-spacing: 0.5px !important;
 }}
-.streamlit-expanderHeader:hover {{
+.streamlit-expanderHeader:hover,
+[data-testid="stExpander"] summary:hover {{
     background: linear-gradient(135deg, #2a1a0e 0%, #3a2a1e 100%) !important;
-    box-shadow: 0 0 20px rgba(200,169,110,0.5) !important;
+    box-shadow: 0 0 22px rgba(200,169,110,0.6) !important;
     border-color: #f0c060 !important;
 }}
-.streamlit-expanderContent {{
+[data-testid="stExpander"] {{
+    border: 1.5px solid #c8a96e !important;
+    border-radius: 12px !important;
+    box-shadow: 0 0 14px rgba(200,169,110,0.3) !important;
+    overflow: hidden !important;
+}}
+[data-testid="stExpander"] > div:last-child {{
     background: rgba(20,10,5,0.97) !important;
-    border: 1.5px solid #c8a96e44 !important;
-    border-top: none !important;
-    border-radius: 0 0 12px 12px !important;
+    border-top: 1px solid #c8a96e44 !important;
 }}
 </style>
 """, unsafe_allow_html=True)
