@@ -819,9 +819,26 @@ div[data-testid="stForm"] {{
 }}
 .stButton > button:hover {{ background: #3e3e3e !important; }}
 .streamlit-expanderHeader {{
-    background: #2f2f2f !important; border-radius: 12px !important;
-    color: #ececec !important; border: 1px solid #3e3e3e !important;
-    min-height: 48px !important;
+    background: linear-gradient(135deg, #1a1a2e 0%, #2a1a0e 100%) !important;
+    border-radius: 12px !important;
+    color: #c8a96e !important;
+    border: 1.5px solid #c8a96e !important;
+    min-height: 52px !important;
+    font-weight: 700 !important;
+    font-size: 1.05rem !important;
+    box-shadow: 0 0 12px rgba(200,169,110,0.3) !important;
+    letter-spacing: 0.5px !important;
+}}
+.streamlit-expanderHeader:hover {{
+    background: linear-gradient(135deg, #2a1a0e 0%, #3a2a1e 100%) !important;
+    box-shadow: 0 0 20px rgba(200,169,110,0.5) !important;
+    border-color: #f0c060 !important;
+}}
+.streamlit-expanderContent {{
+    background: rgba(20,10,5,0.97) !important;
+    border: 1.5px solid #c8a96e44 !important;
+    border-top: none !important;
+    border-radius: 0 0 12px 12px !important;
 }}
 </style>
 """, unsafe_allow_html=True)
@@ -967,7 +984,7 @@ TRADUCOES = {
         "modo_escuro": "🌙 Modo Escuro", "modo_claro": "☀️ Modo Claro",
         "idioma": "🌐 Idioma", "deletar": "🗑️ Deletar conversa",
         # Tela inicial
-        "bem_vindo": "Olá", "novo_chat_btn": "Abra **Conversas** e clique em **Novo chat**.",
+        "bem_vindo": "Bem-vindo(a)", "novo_chat_btn": "Abra **Conversas** e clique em **Novo chat**.",
         "subtitulo": "Assistente Católico",
         # Login
         "entrar": "Entrar", "criar_conta": "✏️ Criar conta", "voltar_login": "← Voltar para login",
@@ -1036,7 +1053,7 @@ TRADUCOES = {
         "modo_escuro": "🌙 Dark Mode", "modo_claro": "☀️ Light Mode",
         "idioma": "🌐 Language", "deletar": "🗑️ Delete conversation",
         # Login screen
-        "bem_vindo": "Hello", "novo_chat_btn": "Open **Conversations** and click **New chat**.",
+        "bem_vindo": "Welcome", "novo_chat_btn": "Open **Conversations** and click **New chat**.",
         "subtitulo": "Catholic Assistant",
         "entrar": "Sign in", "criar_conta": "✏️ Create account", "voltar_login": "← Back to login",
         "placeholder_usuario": "👤  Username", "placeholder_senha": "🔒  Password",
@@ -1104,7 +1121,7 @@ TRADUCOES = {
         "modo_escuro": "🌙 Modo Oscuro", "modo_claro": "☀️ Modo Claro",
         "idioma": "🌐 Idioma", "deletar": "🗑️ Eliminar conversación",
         # Pantalla inicial
-        "bem_vindo": "Hola", "novo_chat_btn": "Abre **Conversaciones** y haz clic en **Nueva conversación**.",
+        "bem_vindo": "Bienvenido(a)", "novo_chat_btn": "Abre **Conversaciones** y haz clic en **Nueva conversación**.",
         "subtitulo": "Asistente Católico",
         "entrar": "Entrar", "criar_conta": "✏️ Crear cuenta", "voltar_login": "← Volver al inicio",
         "placeholder_usuario": "👤  Usuario", "placeholder_senha": "🔒  Contraseña",
@@ -1172,7 +1189,7 @@ TRADUCOES = {
         "modo_escuro": "🌙 Modalità Scura", "modo_claro": "☀️ Modalità Chiara",
         "idioma": "🌐 Lingua", "deletar": "🗑️ Elimina conversazione",
         # Schermata iniziale
-        "bem_vindo": "Ciao", "novo_chat_btn": "Apri **Conversazioni** e clicca su **Nuova chat**.",
+        "bem_vindo": "Benvenuto(a)", "novo_chat_btn": "Apri **Conversazioni** e clicca su **Nuova chat**.",
         "subtitulo": "Assistente Cattolico",
         "entrar": "Accedi", "criar_conta": "✏️ Crea account", "voltar_login": "← Torna al login",
         "placeholder_usuario": "👤  Nome utente", "placeholder_senha": "🔒  Password",
@@ -2226,8 +2243,9 @@ IMPORTANTE: Quando perguntado sobre um santo específico, fale SOMENTE sobre ess
         st.markdown(f"""
         <div class="welcome">
             <div style="margin-bottom:1rem;">{logo_html}</div>
-            <h2 style="color:#1a1a1a !important;-webkit-text-fill-color:#1a1a1a;">Olá, {nome}! 🙏</h2>
-            <p style="color:#333!important;">Abra <b>Conversas</b> e clique em <b>Novo chat</b>.</p>
+            <h2 style="color:#1a1a1a !important;-webkit-text-fill-color:#1a1a1a;">Bem-vindo(a), {nome}! 🙏</h2>
+            <p style="color:#c8a96e!important;font-weight:700;font-size:1.05rem;">✝️ Abra o menu e seja muito bem-vindo(a)!</p>
+            <p style="color:#555!important;font-size:0.95rem;margin-top:0.3rem;">🌹 Viva Nossa Senhora!</p>
         </div>
         """, unsafe_allow_html=True)
     else:
