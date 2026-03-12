@@ -1333,7 +1333,7 @@ if not st.session_state.logado:
         z-index: 0;
         pointer-events: none;
     }
-    .block-container { padding-top: 0 !important; position: relative; z-index: 1; }
+    .block-container { padding-top: 2rem !important; position: relative; z-index: 1; }
     [data-testid="stHeader"] { background: transparent !important; }
     [data-testid="stSidebar"] { display: none !important; }
 
@@ -1353,6 +1353,13 @@ if not st.session_state.logado:
 
     col1, col2, col3 = st.columns([1, 4, 1])
     with col2:
+        st.markdown(f"""
+        <div style="text-align:center;padding:1.5rem 0 1rem 0;">
+          <img src="{LOGO}" style="width:70px;height:70px;border-radius:50%;object-fit:cover;box-shadow:0 4px 24px rgba(180,130,0,0.35);"/>
+          <div style="font-family:'Cinzel',serif;font-size:1.4rem;font-weight:700;color:#6b4a0a;letter-spacing:.06em;margin-top:.5rem;">Virtual Catholics</div>
+          <div style="font-family:'Crimson Text',serif;font-size:.8rem;color:rgba(130,90,10,.7);letter-spacing:.18em;text-transform:uppercase;">✝ Assistente Católico</div>
+        </div>
+        """, unsafe_allow_html=True)
 
 
         if st.session_state.aba_login == "entrar":
