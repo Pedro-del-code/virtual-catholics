@@ -1416,7 +1416,12 @@ html,body{width:100%;height:100%;overflow:hidden;}
 </div>
 <script>
 function vcSkip() {
-  window.parent.postMessage({type: 'streamlit:setComponentValue', value: 'skip'}, '*');
+  // Cria link invisível com target=_top para furar qualquer sandbox
+  var a = document.createElement('a');
+  a.href = '?vc_skip=1';
+  a.target = '_top';
+  document.body.appendChild(a);
+  a.click();
 }
 setTimeout(vcSkip, 7000);
 (function(){
@@ -1443,10 +1448,7 @@ setTimeout(vcSkip, 7000);
 </body>
 </html>"""
 
-    resultado = _components.html(intro_html, height=700, scrolling=False)
-    if resultado == 'skip':
-        st.session_state.intro_vista = True
-        st.rerun()
+    _components.html(intro_html, height=700, scrolling=False)
     st.stop()
 
 # ── LOGIN ─────────────────────────────────────────────────────────────────────
