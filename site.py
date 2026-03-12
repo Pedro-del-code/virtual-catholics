@@ -1318,7 +1318,12 @@ if not st.session_state.logado:
     <meta name="color-scheme" content="light only">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Crimson+Text:ital@0;1&display=swap" rel="stylesheet">
     <style>
-    // Fix input colors
+    .stApp { background: linear-gradient(160deg,#fff 0%,#fdf6e3 45%,#fffbe8 100%) !important; }
+    .block-container { padding-top: 0 !important; }
+    [data-testid="stHeader"] { background: transparent !important; }
+    [data-testid="stSidebar"] { display: none !important; }
+    </style>
+    <script>
     var _obs=new MutationObserver(function(){
       document.querySelectorAll("input").forEach(function(el){
         el.style.backgroundColor="rgba(255,253,245,1)";
@@ -1419,6 +1424,7 @@ if not st.session_state.logado:
                 st.rerun()
 
         st.markdown('</div></div>', unsafe_allow_html=True)
+    st.stop()
 
 # ── CHAT ──────────────────────────────────────────────────────────────────────
 else:
