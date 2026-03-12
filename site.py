@@ -1341,7 +1341,7 @@ if not st.session_state.logado:
         <div class="vc-login-wrap">
           <div class="vc-login-card">
             <div class="vc-login-logo">
-              <img src="{LOGO}" alt="Virtual Catholics"/>
+              <img src="{NOSSA_SENHORA}" alt="Nossa Senhora"/>
               <div class="vc-login-title">Virtual Catholics</div>
               <div class="vc-login-sub">✝ Companheiro Espiritual</div>
             </div>
