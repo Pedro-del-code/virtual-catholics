@@ -1338,14 +1338,6 @@ if not st.session_state.logado:
     [data-testid="stSidebar"] { display: none !important; }
 
     /* ── LOGIN CARD ── */
-    .vc-login-wrap {
-      min-height: 100vh;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      padding: 2rem 1rem;
-      font-family: 'Cinzel', serif;
-      position: relative;
-    }
     .vc-login-card {
       width: 100%; max-width: 420px;
       background: rgba(255,255,255,0.72);
@@ -1393,13 +1385,12 @@ if not st.session_state.logado:
     col1, col2, col3 = st.columns([1, 4, 1])
     with col2:
         st.markdown(f"""
-        <div class="vc-login-wrap">
-          <div class="vc-login-card">
-            <div class="vc-login-logo">
-              <img src="{LOGO}" alt="Virtual Catholics"/>
-              <div class="vc-login-title">Virtual Catholics</div>
-              <div class="vc-login-sub">✝ Assistente Católico</div>
-            </div>
+        <div class="vc-login-card">
+          <div class="vc-login-logo">
+            <img src="{LOGO}" alt="Virtual Catholics"/>
+            <div class="vc-login-title">Virtual Catholics</div>
+            <div class="vc-login-sub">✝ Assistente Católico</div>
+          </div>
         """, unsafe_allow_html=True)
 
         if st.session_state.aba_login == "entrar":
@@ -1477,7 +1468,7 @@ if not st.session_state.logado:
                 st.session_state.aba_login = "entrar"
                 st.rerun()
 
-        st.markdown('</div></div>', unsafe_allow_html=True)
+        st.markdown('</div>', unsafe_allow_html=True)
     st.stop()
 
 # ── CHAT ──────────────────────────────────────────────────────────────────────
