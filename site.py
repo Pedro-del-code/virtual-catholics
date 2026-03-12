@@ -1291,303 +1291,33 @@ if "cliente" not in st.session_state:
 if not st.session_state.logado:
     st.markdown('''
     <meta name="color-scheme" content="light only">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Crimson+Text:ital@0;1&display=swap" rel="stylesheet">
-    <style>
-    /* ── INTRO OVERLAY ── */
-    #vc-intro {
-      position:fixed;inset:0;z-index:9999;
-      display:flex;flex-direction:column;align-items:center;justify-content:center;
-      cursor:pointer;
-      background:linear-gradient(160deg,#fff 0%,#fdf6e3 45%,#f0cc55 100%);
-      transition:opacity .9s ease, visibility .9s ease;
-    }
-    #vc-intro.out { opacity:0; visibility:hidden; pointer-events:none; }
-    #vc-bg-pulse {
-      position:absolute;inset:0;
-      background:radial-gradient(ellipse at 50% 50%, rgba(245,210,80,.45) 0%, transparent 70%);
-      animation:vcBgPulse 4s ease-in-out infinite;pointer-events:none;
-    }
-    @keyframes vcBgPulse{0%,100%{transform:scale(1);opacity:.6}50%{transform:scale(1.15);opacity:1}}
-    .vc-ring{position:absolute;border-radius:50%;border:1.5px solid rgba(180,130,0,.25);
-      animation:vcExpand 3.5s ease-out infinite;pointer-events:none;}
-    @keyframes vcExpand{
-      0%{width:80px;height:80px;opacity:.9;transform:translate(-50%,-50%)}
-      100%{width:600px;height:600px;opacity:0;transform:translate(-50%,-50%)}
-    }
-    #vc-particles{position:absolute;inset:0;pointer-events:none;overflow:hidden}
-    .vc-p{position:absolute;border-radius:50%;opacity:0;animation:vcFloat linear infinite}
-    @keyframes vcFloat{
-      0%{transform:translateY(100vh) translateX(0);opacity:0}
-      8%{opacity:var(--op)}92%{opacity:calc(var(--op)*.5)}
-      100%{transform:translateY(-30px) translateX(var(--dx));opacity:0}
-    }
-    #vc-wrap{position:relative;display:flex;flex-direction:column;align-items:center;gap:18px;}
-    #vc-logo-wrap{position:relative;width:230px;height:230px;display:flex;align-items:center;justify-content:center;}
-    #vc-logo-img{width:230px;height:230px;object-fit:contain;
-      opacity:0;transform:scale(.1) rotate(-15deg);
-      animation:vcLogoReveal 1.2s cubic-bezier(.17,.67,.35,1.3) forwards .4s;}
-    @keyframes vcLogoReveal{
-      0%{opacity:0;transform:scale(.1) rotate(-15deg)}
-      60%{opacity:1;transform:scale(1.08) rotate(2deg)}
-      100%{opacity:1;transform:scale(1) rotate(0deg)}
-    }
-    #vc-logo-halo{position:absolute;inset:-20px;border-radius:50%;
-      background:radial-gradient(ellipse, rgba(200,160,0,.35) 0%, transparent 70%);
-      opacity:0;animation:vcHaloIn .8s ease forwards 1.4s, vcHaloPulse 3s ease-in-out infinite 2.2s;}
-    @keyframes vcHaloIn{to{opacity:1}}
-    @keyframes vcHaloPulse{0%,100%{transform:scale(1);opacity:.6}50%{transform:scale(1.12);opacity:1}}
-    #vc-logo-svg{width:310px;height:72px;overflow:visible}
-    #vc-logo-text{stroke-dasharray:2200;stroke-dashoffset:2200;
-      animation:vcDraw 2.2s ease forwards 1.6s;fill:none;}
-    @keyframes vcDraw{to{stroke-dashoffset:0}}
-    #vc-shimmer-rect{animation:vcShimmer 2.5s ease-in-out infinite 3.8s;opacity:0;}
-    @keyframes vcShimmer{
-      0%{transform:translateX(-320px);opacity:0}10%{opacity:.7}100%{transform:translateX(320px);opacity:0}
-    }
-    #vc-deco-line{stroke-dasharray:250;stroke-dashoffset:250;opacity:0;
-      animation:vcDrawLine .9s ease forwards 3.5s, vcOpLine 0s forwards 3.5s}
-    @keyframes vcDrawLine{to{stroke-dashoffset:0}}@keyframes vcOpLine{to{opacity:1}}
-    #vc-tagline{font-family:'Crimson Text',serif;font-size:13px;
-      color:rgba(100,70,10,0);font-style:italic;letter-spacing:.18em;
-      animation:vcFadeInText .9s ease forwards 3.9s;}
-    @keyframes vcFadeInText{to{color:rgba(100,70,10,.65)}}
-    #vc-skip{position:absolute;bottom:24px;font-size:9px;color:rgba(100,70,10,.3);
-      letter-spacing:.3em;text-transform:uppercase;animation:vcFadeInText 1s ease forwards 4.5s}
-
-    /* ── PAGE / LOGIN ── */
-    .stApp { background: linear-gradient(160deg,#fff 0%,#fdf6e3 45%,#fffbe8 100%) !important; }
-    .block-container { padding-top: 0 !important; }
-    [data-testid="stHeader"] { background: transparent !important; }
-    [data-testid="stSidebar"] { display: none !important; }
-
-    /* ── LOGIN CARD ── */
-    .vc-login-wrap {
-      min-height: 100vh;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      padding: 2rem 1rem;
-      font-family: 'Cinzel', serif;
-      position: relative;
-    }
-    .vc-login-card {
-      width: 100%; max-width: 420px;
-      background: rgba(255,255,255,0.72);
-      backdrop-filter: blur(18px);
-      border: 1px solid rgba(200,169,110,0.35);
-      border-radius: 24px;
-      padding: 2.8rem 2.4rem 2.4rem;
-      box-shadow: 0 8px 60px rgba(180,130,0,0.10), 0 2px 12px rgba(180,130,0,0.06);
-      animation: vcCardIn .7s cubic-bezier(.17,.67,.35,1.3) forwards;
-    }
-    @keyframes vcCardIn{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
-    .vc-login-logo {
-      display:flex; flex-direction:column; align-items:center; gap:.6rem;
-      margin-bottom:1.8rem;
-    }
-    .vc-login-logo img {
-      width: 72px; height: 72px; border-radius: 50%; object-fit: cover;
-      box-shadow: 0 4px 24px rgba(180,130,0,0.28);
-      animation: vcLogoPulse 4s ease-in-out infinite;
-    }
-    @keyframes vcLogoPulse{0%,100%{box-shadow:0 4px 24px rgba(180,130,0,.28)}50%{box-shadow:0 4px 36px rgba(180,130,0,.48)}}
-    .vc-login-title {
-      font-family: 'Cinzel', serif;
-      font-size: 1.5rem; font-weight: 700;
-      color: #6b4a0a; letter-spacing: .06em;
-      text-shadow: 0 1px 6px rgba(180,130,0,.10);
-    }
-    .vc-login-sub {
-      font-family: 'Crimson Text', serif;
-      font-size: .85rem; color: #b08020; letter-spacing: .2em;
-      font-style: italic;
-    }
-    .vc-divider {
-      display:flex;align-items:center;gap:.8rem;margin:0 0 1.4rem;
-    }
-    .vc-divider span {
-      font-family:'Cinzel',serif;font-size:.7rem;color:#c8a96e;letter-spacing:.18em;
-    }
-    .vc-divider::before,.vc-divider::after {
-      content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(200,169,110,.4),transparent);
-    }
-    /* Override Streamlit inputs for the login form */
-    div[data-testid="stTextInput"] input {
-      background: rgba(255,253,245,0.95) !important;
-      border: 1px solid rgba(200,169,110,0.45) !important;
-      border-radius: 12px !important;
-      color: #1a1a1a !important;
-      font-family: 'Cinzel', serif !important;
-      font-size: .85rem !important;
-      padding: .7rem 1rem !important;
-      transition: border-color .2s, box-shadow .2s !important;
-    }
-    div[data-testid="stTextInput"] input:focus {
-      border-color: rgba(200,169,110,0.85) !important;
-      box-shadow: 0 0 0 3px rgba(200,169,110,0.12) !important;
-      outline: none !important;
-    }
-    div[data-testid="stTextInput"] label { display: none !important; }
-    /* Submit button */
-    div[data-testid="stFormSubmitButton"] button {
-      width: 100% !important;
-      background: linear-gradient(135deg, #c8a020 0%, #8b6010 100%) !important;
-      color: #fff8e8 !important;
-      font-family: 'Cinzel', serif !important;
-      font-size: .88rem !important;
-      font-weight: 700 !important;
-      letter-spacing: .12em !important;
-      border: none !important;
-      border-radius: 12px !important;
-      padding: .75rem 1.5rem !important;
-      cursor: pointer !important;
-      box-shadow: 0 4px 20px rgba(140,90,0,0.25) !important;
-      transition: transform .15s, box-shadow .15s !important;
-      margin-top: .5rem !important;
-    }
-    div[data-testid="stFormSubmitButton"] button:hover {
-      transform: translateY(-1px) !important;
-      box-shadow: 0 6px 28px rgba(140,90,0,0.35) !important;
-    }
-    /* Secondary buttons */
-    div[data-testid="stButton"] button {
-      background: rgba(255,253,245,0.7) !important;
-      border: 1px solid rgba(200,169,110,0.4) !important;
-      color: #7a5210 !important;
-      font-family: 'Cinzel', serif !important;
-      font-size: .78rem !important;
-      letter-spacing: .08em !important;
-      border-radius: 10px !important;
-      transition: background .2s, border-color .2s !important;
-    }
-    div[data-testid="stButton"] button:hover {
-      background: rgba(200,169,110,0.15) !important;
-      border-color: rgba(200,169,110,0.7) !important;
-    }
-    /* Ornament floats */
-    .vc-ornament {
-      position:fixed;pointer-events:none;font-size:1.5rem;opacity:0;
-      animation:vcOrnFloat linear infinite;
-    }
-    @keyframes vcOrnFloat{
-      0%{transform:translateY(100vh);opacity:0}
-      8%{opacity:.18}92%{opacity:.08}
-      100%{transform:translateY(-60px);opacity:0}
-    }
-    </style>
-
-    <!-- INTRO OVERLAY -->
-    <div id="vc-intro" onclick="vcFinish()">
-      <div id="vc-bg-pulse"></div>
-      <div id="vc-particles"></div>
-      <div class="vc-ring" style="left:50%;top:50%;animation-delay:0s"></div>
-      <div class="vc-ring" style="left:50%;top:50%;animation-delay:1.2s"></div>
-      <div class="vc-ring" style="left:50%;top:50%;animation-delay:2.4s"></div>
-      <div id="vc-wrap">
-        <div id="vc-logo-wrap">
-          <div id="vc-logo-halo"></div>
-          <img id="vc-logo-img" src="''' + LOGO + '''" alt="Virtual Catholics">
-        </div>
-        <svg id="vc-logo-svg" viewBox="0 0 310 60" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <filter id="vc-glow">
-              <feGaussianBlur stdDeviation="2.5" result="b"/>
-              <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-            </filter>
-            <linearGradient id="vc-shimmerGrad" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stop-color="rgba(255,255,255,0)"/>
-              <stop offset="50%" stop-color="rgba(255,240,150,.9)"/>
-              <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
-            </linearGradient>
-            <clipPath id="vc-textClip">
-              <text x="155" y="38" text-anchor="middle" font-family="Cinzel,serif" font-size="30" font-weight="700" letter-spacing="2">Virtual Catholics</text>
-            </clipPath>
-          </defs>
-          <text id="vc-logo-text"
-            x="155" y="38" text-anchor="middle"
-            font-family="Cinzel,serif" font-size="30" font-weight="700"
-            stroke="#8B6914" stroke-width="1.1"
-            filter="url(#vc-glow)" letter-spacing="2">Virtual Catholics</text>
-          <rect id="vc-shimmer-rect" x="-40" y="8" width="80" height="44"
-            fill="url(#vc-shimmerGrad)" clip-path="url(#vc-textClip)"/>
-          <line id="vc-deco-line" x1="25" y1="52" x2="285" y2="52" stroke="#8B6914" stroke-width=".8"/>
-        </svg>
-        <div id="vc-tagline">Companheiro Espiritual</div>
-      </div>
-      <div id="vc-skip">toque para pular</div>
-    </div>
-
     <script>
-    // Partículas intro
-    (function(){
-      var c=document.getElementById('vc-particles');
-      if(!c)return;
-      for(var i=0;i<55;i++){
-        var p=document.createElement('div');
-        var big=Math.random()<.15;
-        var sz=big?(3+Math.random()*4):(1+Math.random()*2.5);
-        var op=big?.7:.45;
-        p.className='vc-p';
-        p.style.cssText='left:'+Math.random()*100+'%;'
-          +'width:'+sz+'px;height:'+sz+'px;'
-          +'background:'+(Math.random()<.3?'rgba(255,255,200,.8)':'rgba(180,130,0,.75)')+';'
-          +'--dx:'+((Math.random()-.5)*120)+'px;'
-          +'--op:'+op+';'
-          +'animation-duration:'+(5+Math.random()*10)+'s;'
-          +'animation-delay:'+Math.random()*8+'s;'
-          +(big?'box-shadow:0 0 4px rgba(200,160,0,.6)':'');
-        c.appendChild(p);
-      }
-    })();
-    // Ornamentos flutuantes no fundo do login
-    (function(){
-      var syms=['✝','✦','☩','✟','♱'];
-      for(var i=0;i<12;i++){
-        var o=document.createElement('div');
-        o.className='vc-ornament';
-        o.textContent=syms[i%syms.length];
-        o.style.left=Math.random()*100+'%';
-        o.style.animationDuration=(12+Math.random()*18)+'s';
-        o.style.animationDelay=(Math.random()*20)+'s';
-        document.body.appendChild(o);
-      }
-    })();
-    var _vcDone=false;
-    function vcFinish(){
-      if(_vcDone)return;_vcDone=true;
-      var el=document.getElementById('vc-intro');
-      if(el)el.classList.add('out');
-    }
-    setTimeout(vcFinish,7000);
-    // Fix input colors
-    var _obs=new MutationObserver(function(){
-      document.querySelectorAll("input").forEach(function(el){
-        el.style.backgroundColor="rgba(255,253,245,1)";
-        el.style.color="#1a1a1a";
-        el.style.webkitTextFillColor="#1a1a1a";
-      });
+    const obs = new MutationObserver(() => {
+        document.querySelectorAll("input").forEach(el => {
+            el.style.backgroundColor = "rgba(245,240,232,1)";
+            el.style.color = "#1a1a1a";
+            el.style.webkitTextFillColor = "#1a1a1a";
+        });
     });
-    _obs.observe(document.body,{childList:true,subtree:true});
+    obs.observe(document.body, { childList: true, subtree: true });
     </script>
     ''', unsafe_allow_html=True)
 
     col1, col2, col3 = st.columns([1, 4, 1])
     with col2:
         st.markdown(f"""
-        <div class="vc-login-wrap">
-          <div class="vc-login-card">
-            <div class="vc-login-logo">
-              <img src="{LOGO}" alt="Virtual Catholics"/>
-              <div class="vc-login-title">Virtual Catholics</div>
-              <div class="vc-login-sub">✝ Companheiro Espiritual</div>
-            </div>
+        <div style="text-align:center; padding: 3rem 0 1.5rem 0;">
+            <img src="{LOGO}" style="width:70px;height:70px;border-radius:50%;object-fit:cover;box-shadow:0 4px 20px rgba(200,169,110,0.3);"/>
+            <div style="font-size:1.8rem;font-weight:700;color:#1a1a1a;margin:0.7rem 0 0.2rem 0;">Virtual Catholics</div>
+            <div style="color:#c8a96e;font-size:0.8rem;letter-spacing:1.5px;font-weight:500;">✝️ ASSISTENTE CATÓLICO</div>
+        </div>
         """, unsafe_allow_html=True)
 
         if st.session_state.aba_login == "entrar":
-            st.markdown('<div class="vc-divider"><span>ENTRAR</span></div>', unsafe_allow_html=True)
             with st.form("form_login"):
                 u = st.text_input("", placeholder="👤  Usuário", label_visibility="collapsed")
                 s = st.text_input("", placeholder="🔒  Senha", type="password", label_visibility="collapsed")
-                submitted = st.form_submit_button("✝  Entrar")
+                submitted = st.form_submit_button("Entrar")
                 if submitted:
                     usuario = carregar_usuario(u)
                     if usuario and usuario["senha_hash"] == hash_senha(s):
@@ -1597,6 +1327,7 @@ if not st.session_state.logado:
                         st.session_state.chats = carregar_chats(u)
                         st.query_params["vc_u"] = u
                         st.query_params["vc_n"] = usuario["nome"]
+                        # Salvar no localStorage para autologin futuro
                         st.markdown(f"""<script>
                         localStorage.setItem('vc_user', '{u}');
                         localStorage.setItem('vc_nome', '{usuario["nome"]}');
@@ -1605,28 +1336,17 @@ if not st.session_state.logado:
                     else:
                         st.error(T["erro_login"])
 
-            st.markdown('<div style="height:.5rem"></div>', unsafe_allow_html=True)
             col_a, col_b = st.columns(2)
             with col_a:
-                if st.button("✏️  Criar conta", use_container_width=True):
+                if st.button("✏️ Criar conta"):
                     st.session_state.aba_login = "criar"
                     st.rerun()
-            st.markdown("""
-            <div style="text-align:center;margin-top:1.4rem;padding-top:1.2rem;
-            border-top:1px solid rgba(200,169,110,0.2);">
-              <span style="font-family:'Crimson Text',serif;font-size:.78rem;
-              color:rgba(130,100,20,.5);font-style:italic;letter-spacing:.12em;">
-              Que Deus te abençoe ✦ Paz e Bem!
-              </span>
-            </div>
-            """, unsafe_allow_html=True)
         else:
-            st.markdown('<div class="vc-divider"><span>CRIAR CONTA</span></div>', unsafe_allow_html=True)
             with st.form("form_criar"):
-                nome_n = st.text_input("", placeholder="🙏  Seu nome", label_visibility="collapsed")
-                user_n = st.text_input("", placeholder="👤  Escolha um usuário", label_visibility="collapsed")
+                nome_n = st.text_input("", placeholder="👤  Seu nome", label_visibility="collapsed")
+                user_n = st.text_input("", placeholder="🔑  Escolha um usuário", label_visibility="collapsed")
                 senha_n = st.text_input("", placeholder="🔒  Escolha uma senha", type="password", label_visibility="collapsed")
-                submitted = st.form_submit_button("✝  Criar conta")
+                submitted = st.form_submit_button("criar_conta" if False else T.get("entrar","Criar conta"))
                 if submitted:
                     if nome_n.strip() and user_n.strip() and senha_n.strip():
                         if not usuario_valido(user_n.strip()):
@@ -1653,12 +1373,9 @@ if not st.session_state.logado:
                     else:
                         st.error(T["erro_campos"])
 
-            st.markdown('<div style="height:.5rem"></div>', unsafe_allow_html=True)
-            if st.button("← Voltar para login", use_container_width=True):
+            if st.button("← Voltar para login"):
                 st.session_state.aba_login = "entrar"
                 st.rerun()
-
-        st.markdown('</div></div>', unsafe_allow_html=True)
 
 # ── CHAT ──────────────────────────────────────────────────────────────────────
 else:
