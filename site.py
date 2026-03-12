@@ -1337,38 +1337,7 @@ if not st.session_state.logado:
     [data-testid="stHeader"] { background: transparent !important; }
     [data-testid="stSidebar"] { display: none !important; }
 
-    /* ── LOGIN CARD ── */
-    .vc-login-card {
-      width: 100%; max-width: 420px;
-      background: rgba(255,255,255,0.72);
-      backdrop-filter: blur(18px);
-      border: 1px solid rgba(200,169,110,0.35);
-      border-radius: 24px;
-      padding: 2.8rem 2.4rem 2.4rem;
-      box-shadow: 0 8px 60px rgba(180,130,0,0.10), 0 2px 12px rgba(180,130,0,0.06);
-      animation: vcCardIn .7s cubic-bezier(.17,.67,.35,1.3) forwards;
-    }
-    @keyframes vcCardIn{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
-    .vc-login-logo {
-      display:flex; flex-direction:column; align-items:center; gap:.6rem;
-      margin-bottom:1.8rem;
-    }
-    .vc-login-logo img {
-      width: 72px; height: 72px; border-radius: 50%; object-fit: cover;
-      box-shadow: 0 4px 24px rgba(180,130,0,0.28);
-      animation: vcLogoPulse 4s ease-in-out infinite;
-    }
-    @keyframes vcLogoPulse{0%,100%{box-shadow:0 4px 24px rgba(180,130,0,.28)}50%{box-shadow:0 4px 36px rgba(180,130,0,.48)}}
-    .vc-login-title {
-      font-family: 'Cinzel', serif;
-      font-size: 1.5rem; font-weight: 700;
-      color: #6b4a0a; letter-spacing: .06em;
-    }
-    .vc-login-sub {
-      font-family: 'Crimson Text', serif;
-      font-size: .8rem; color: rgba(130,90,10,.6);
-      letter-spacing: .18em; text-transform: uppercase;
-    }
+    /* ── LOGIN ── */
     </style>
     <script>
     var _obs=new MutationObserver(function(){
@@ -1384,14 +1353,7 @@ if not st.session_state.logado:
 
     col1, col2, col3 = st.columns([1, 4, 1])
     with col2:
-        st.markdown(f"""
-        <div class="vc-login-card">
-          <div class="vc-login-logo">
-            <img src="{LOGO}" alt="Virtual Catholics"/>
-            <div class="vc-login-title">Virtual Catholics</div>
-            <div class="vc-login-sub">✝ Assistente Católico</div>
-          </div>
-        """, unsafe_allow_html=True)
+
 
         if st.session_state.aba_login == "entrar":
             with st.form("form_login"):
@@ -1468,7 +1430,6 @@ if not st.session_state.logado:
                 st.session_state.aba_login = "entrar"
                 st.rerun()
 
-        st.markdown('</div>', unsafe_allow_html=True)
     st.stop()
 
 # ── CHAT ──────────────────────────────────────────────────────────────────────
