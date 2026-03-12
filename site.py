@@ -1259,7 +1259,7 @@ for key, val in [("logado", False), ("username", None), ("chats", {}),
                   ("aba_chat", "chat"), ("oracao_aberta", None), ("terco_aberto", None),
                   ("terco_misterio", None), ("novena_aberta", None), ("novena_dia", None),
                   ("cookie_lido", False), ("modo_escuro", False), ("idioma", "pt"),
-                  ("cat_pilar", None), ("aba_login", "entrar")]:
+                  ("cat_pilar", None), ("aba_login", "entrar"), ("intro_vista", False)]:
     if key not in st.session_state: st.session_state[key] = val
 
 # ── AUTOLOGIN via localStorage → Streamlit ────────────────────────────────────
@@ -1287,72 +1287,163 @@ if not st.session_state.logado:
 if "cliente" not in st.session_state:
     st.session_state.cliente = Groq(api_key=API_KEY)
 
+# ── INTRO SCREEN (Python-controlled) ─────────────────────────────────────────
+if not st.session_state.logado and not st.session_state.intro_vista:
+    st.markdown(f'''
+    <meta name="color-scheme" content="light only">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Crimson+Text:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+    .stApp {{ background: linear-gradient(160deg,#fff 0%,#fdf6e3 45%,#f0cc55 100%) !important; }}
+    .block-container {{ padding-top: 0 !important; max-width:100% !important; }}
+    [data-testid="stHeader"] {{ display:none !important; }}
+    [data-testid="stSidebar"] {{ display: none !important; }}
+    footer {{ display:none !important; }}
+    #vc-bg-pulse {{
+      position:fixed;inset:0;pointer-events:none;
+      background:radial-gradient(ellipse at 50% 50%, rgba(245,210,80,.45) 0%, transparent 70%);
+      animation:vcBgPulse 4s ease-in-out infinite;
+    }}
+    @keyframes vcBgPulse{{0%,100%{{transform:scale(1);opacity:.6}}50%{{transform:scale(1.15);opacity:1}}}}
+    .vc-ring{{position:fixed;border-radius:50%;border:1.5px solid rgba(180,130,0,.25);
+      animation:vcExpand 3.5s ease-out infinite;pointer-events:none;}}
+    @keyframes vcExpand{{
+      0%{{width:80px;height:80px;opacity:.9;transform:translate(-50%,-50%)}}
+      100%{{width:600px;height:600px;opacity:0;transform:translate(-50%,-50%)}}
+    }}
+    #vc-particles{{position:fixed;inset:0;pointer-events:none;overflow:hidden}}
+    .vc-p{{position:absolute;border-radius:50%;opacity:0;animation:vcFloat linear infinite}}
+    @keyframes vcFloat{{
+      0%{{transform:translateY(100vh) translateX(0);opacity:0}}
+      8%{{opacity:var(--op)}}92%{{opacity:calc(var(--op)*.5)}}
+      100%{{transform:translateY(-30px) translateX(var(--dx));opacity:0}}
+    }}
+    #vc-intro-wrap{{
+      min-height:100vh;display:flex;flex-direction:column;
+      align-items:center;justify-content:center;gap:18px;
+      position:relative;
+    }}
+    #vc-logo-img{{width:200px;height:200px;object-fit:contain;border-radius:50%;
+      opacity:0;transform:scale(.1) rotate(-15deg);
+      animation:vcLogoReveal 1.2s cubic-bezier(.17,.67,.35,1.3) forwards .4s;}}
+    @keyframes vcLogoReveal{{
+      0%{{opacity:0;transform:scale(.1) rotate(-15deg)}}
+      60%{{opacity:1;transform:scale(1.08) rotate(2deg)}}
+      100%{{opacity:1;transform:scale(1) rotate(0deg)}}
+    }}
+    #vc-logo-halo{{position:absolute;width:240px;height:240px;border-radius:50%;
+      background:radial-gradient(ellipse, rgba(200,160,0,.35) 0%, transparent 70%);
+      opacity:0;animation:vcHaloIn .8s ease forwards 1.4s, vcHaloPulse 3s ease-in-out infinite 2.2s;}}
+    @keyframes vcHaloIn{{to{{opacity:1}}}}
+    @keyframes vcHaloPulse{{0%,100%{{transform:scale(1);opacity:.6}}50%{{transform:scale(1.12);opacity:1}}}}
+    #vc-logo-svg{{width:310px;height:72px;overflow:visible}}
+    #vc-logo-text{{stroke-dasharray:2200;stroke-dashoffset:2200;
+      animation:vcDraw 2.2s ease forwards 1.6s;fill:none;}}
+    @keyframes vcDraw{{to{{stroke-dashoffset:0}}}}
+    #vc-shimmer-rect{{animation:vcShimmer 2.5s ease-in-out infinite 3.8s;opacity:0;}}
+    @keyframes vcShimmer{{
+      0%{{transform:translateX(-320px);opacity:0}}10%{{opacity:.7}}100%{{transform:translateX(320px);opacity:0}}
+    }}
+    #vc-deco-line{{stroke-dasharray:250;stroke-dashoffset:250;opacity:0;
+      animation:vcDrawLine .9s ease forwards 3.5s, vcOpLine 0s forwards 3.5s}}
+    @keyframes vcDrawLine{{to{{stroke-dashoffset:0}}}}@keyframes vcOpLine{{to{{opacity:1}}}}
+    #vc-tagline{{font-family:'Crimson Text',serif;font-size:13px;
+      color:rgba(100,70,10,0);font-style:italic;letter-spacing:.18em;
+      animation:vcFadeInText .9s ease forwards 3.9s;}}
+    @keyframes vcFadeInText{{to{{color:rgba(100,70,10,.65)}}}}
+    #vc-skip-btn{{
+      position:fixed;bottom:40px;left:50%;transform:translateX(-50%);
+      font-size:9px;color:rgba(100,70,10,.4);letter-spacing:.3em;
+      text-transform:uppercase;animation:vcFadeInText 1s ease forwards 4.5s;
+      background:none;border:none;cursor:pointer;font-family:'Cinzel',serif;
+      padding:12px 24px;
+    }}
+    </style>
+    <div id="vc-bg-pulse"></div>
+    <div id="vc-particles"></div>
+    <div class="vc-ring" style="left:50%;top:50%;animation-delay:0s"></div>
+    <div class="vc-ring" style="left:50%;top:50%;animation-delay:1.2s"></div>
+    <div class="vc-ring" style="left:50%;top:50%;animation-delay:2.4s"></div>
+    <div id="vc-intro-wrap">
+      <div style="position:relative;display:flex;align-items:center;justify-content:center;">
+        <div id="vc-logo-halo"></div>
+        <img id="vc-logo-img" src="{LOGO}" alt="Virtual Catholics">
+      </div>
+      <svg id="vc-logo-svg" viewBox="0 0 310 60" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="vc-glow">
+            <feGaussianBlur stdDeviation="2.5" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <linearGradient id="vc-shimmerGrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="rgba(255,255,255,0)"/>
+            <stop offset="50%" stop-color="rgba(255,240,150,.9)"/>
+            <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+          </linearGradient>
+          <clipPath id="vc-textClip">
+            <text x="155" y="38" text-anchor="middle" font-family="Cinzel,serif" font-size="30" font-weight="700" letter-spacing="2">Virtual Catholics</text>
+          </clipPath>
+        </defs>
+        <text id="vc-logo-text"
+          x="155" y="38" text-anchor="middle"
+          font-family="Cinzel,serif" font-size="30" font-weight="700"
+          stroke="#8B6914" stroke-width="1.1"
+          filter="url(#vc-glow)" letter-spacing="2">Virtual Catholics</text>
+        <rect id="vc-shimmer-rect" x="-40" y="8" width="80" height="44"
+          fill="url(#vc-shimmerGrad)" clip-path="url(#vc-textClip)"/>
+        <line id="vc-deco-line" x1="25" y1="52" x2="285" y2="52" stroke="#8B6914" stroke-width=".8"/>
+      </svg>
+      <div id="vc-tagline">Companheiro Espiritual</div>
+    </div>
+    <script>
+    (function(){{
+      var c=document.getElementById('vc-particles');
+      if(!c)return;
+      for(var i=0;i<55;i++){{
+        var p=document.createElement('div');
+        var big=Math.random()<.15;
+        var sz=big?(3+Math.random()*4):(1+Math.random()*2.5);
+        var op=big?.7:.45;
+        p.className='vc-p';
+        p.style.cssText='left:'+Math.random()*100+'%;'
+          +'width:'+sz+'px;height:'+sz+'px;'
+          +'background:'+(Math.random()<.3?'rgba(255,255,200,.8)':'rgba(180,130,0,.75)')+';'
+          +'--dx:'+((Math.random()-.5)*120)+'px;'
+          +'--op:'+op+';'
+          +'animation-duration:'+(5+Math.random()*10)+'s;'
+          +'animation-delay:'+Math.random()*8+'s;'
+          +(big?'box-shadow:0 0 4px rgba(200,160,0,.6)':'');
+        c.appendChild(p);
+      }}
+    }})();
+    </script>
+    ''', unsafe_allow_html=True)
+
+    col_skip1, col_skip2, col_skip3 = st.columns([1, 2, 1])
+    with col_skip2:
+        st.markdown("<div style='height:75vh'></div>", unsafe_allow_html=True)
+        if st.button("✦  Toque para pular", use_container_width=True, key="btn_pular_intro"):
+            st.session_state.intro_vista = True
+            st.rerun()
+
+    # Auto-avança após 7s via query param trick não é possível no Streamlit puro,
+    # então usamos JS pra simular clique no botão após 7s
+    st.markdown("""
+    <script>
+    setTimeout(function(){
+      var btns = window.parent.document.querySelectorAll('button');
+      btns.forEach(function(b){ if(b.innerText.includes('pular')) b.click(); });
+    }, 7000);
+    </script>
+    """, unsafe_allow_html=True)
+
+    st.stop()
+
 # ── LOGIN ─────────────────────────────────────────────────────────────────────
 if not st.session_state.logado:
     st.markdown('''
     <meta name="color-scheme" content="light only">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Crimson+Text:ital@0;1&display=swap" rel="stylesheet">
     <style>
-    /* ── INTRO OVERLAY ── */
-    #vc-intro {
-      position:fixed;inset:0;z-index:9999;
-      display:flex;flex-direction:column;align-items:center;justify-content:center;
-      cursor:pointer;
-      background:linear-gradient(160deg,#fff 0%,#fdf6e3 45%,#f0cc55 100%);
-      transition:opacity .9s ease, visibility .9s ease;
-    }
-    #vc-intro.out { opacity:0; visibility:hidden; pointer-events:none; }
-    #vc-bg-pulse {
-      position:absolute;inset:0;
-      background:radial-gradient(ellipse at 50% 50%, rgba(245,210,80,.45) 0%, transparent 70%);
-      animation:vcBgPulse 4s ease-in-out infinite;pointer-events:none;
-    }
-    @keyframes vcBgPulse{0%,100%{transform:scale(1);opacity:.6}50%{transform:scale(1.15);opacity:1}}
-    .vc-ring{position:absolute;border-radius:50%;border:1.5px solid rgba(180,130,0,.25);
-      animation:vcExpand 3.5s ease-out infinite;pointer-events:none;}
-    @keyframes vcExpand{
-      0%{width:80px;height:80px;opacity:.9;transform:translate(-50%,-50%)}
-      100%{width:600px;height:600px;opacity:0;transform:translate(-50%,-50%)}
-    }
-    #vc-particles{position:absolute;inset:0;pointer-events:none;overflow:hidden}
-    .vc-p{position:absolute;border-radius:50%;opacity:0;animation:vcFloat linear infinite}
-    @keyframes vcFloat{
-      0%{transform:translateY(100vh) translateX(0);opacity:0}
-      8%{opacity:var(--op)}92%{opacity:calc(var(--op)*.5)}
-      100%{transform:translateY(-30px) translateX(var(--dx));opacity:0}
-    }
-    #vc-wrap{position:relative;display:flex;flex-direction:column;align-items:center;gap:18px;}
-    #vc-logo-wrap{position:relative;width:230px;height:230px;display:flex;align-items:center;justify-content:center;}
-    #vc-logo-img{width:230px;height:230px;object-fit:contain;
-      opacity:0;transform:scale(.1) rotate(-15deg);
-      animation:vcLogoReveal 1.2s cubic-bezier(.17,.67,.35,1.3) forwards .4s;}
-    @keyframes vcLogoReveal{
-      0%{opacity:0;transform:scale(.1) rotate(-15deg)}
-      60%{opacity:1;transform:scale(1.08) rotate(2deg)}
-      100%{opacity:1;transform:scale(1) rotate(0deg)}
-    }
-    #vc-logo-halo{position:absolute;inset:-20px;border-radius:50%;
-      background:radial-gradient(ellipse, rgba(200,160,0,.35) 0%, transparent 70%);
-      opacity:0;animation:vcHaloIn .8s ease forwards 1.4s, vcHaloPulse 3s ease-in-out infinite 2.2s;}
-    @keyframes vcHaloIn{to{opacity:1}}
-    @keyframes vcHaloPulse{0%,100%{transform:scale(1);opacity:.6}50%{transform:scale(1.12);opacity:1}}
-    #vc-logo-svg{width:310px;height:72px;overflow:visible}
-    #vc-logo-text{stroke-dasharray:2200;stroke-dashoffset:2200;
-      animation:vcDraw 2.2s ease forwards 1.6s;fill:none;}
-    @keyframes vcDraw{to{stroke-dashoffset:0}}
-    #vc-shimmer-rect{animation:vcShimmer 2.5s ease-in-out infinite 3.8s;opacity:0;}
-    @keyframes vcShimmer{
-      0%{transform:translateX(-320px);opacity:0}10%{opacity:.7}100%{transform:translateX(320px);opacity:0}
-    }
-    #vc-deco-line{stroke-dasharray:250;stroke-dashoffset:250;opacity:0;
-      animation:vcDrawLine .9s ease forwards 3.5s, vcOpLine 0s forwards 3.5s}
-    @keyframes vcDrawLine{to{stroke-dashoffset:0}}@keyframes vcOpLine{to{opacity:1}}
-    #vc-tagline{font-family:'Crimson Text',serif;font-size:13px;
-      color:rgba(100,70,10,0);font-style:italic;letter-spacing:.18em;
-      animation:vcFadeInText .9s ease forwards 3.9s;}
-    @keyframes vcFadeInText{to{color:rgba(100,70,10,.65)}}
-    #vc-skip{position:absolute;bottom:24px;font-size:9px;color:rgba(100,70,10,.3);
-      letter-spacing:.3em;text-transform:uppercase;animation:vcFadeInText 1s ease forwards 4.5s}
 
     /* ── PAGE / LOGIN ── */
     .stApp { background: linear-gradient(160deg,#fff 0%,#fdf6e3 45%,#fffbe8 100%) !important; }
@@ -1475,70 +1566,8 @@ if not st.session_state.logado:
     }
     </style>
 
-    <!-- INTRO OVERLAY -->
-    <div id="vc-intro" onclick="vcFinish()">
-      <div id="vc-bg-pulse"></div>
-      <div id="vc-particles"></div>
-      <div class="vc-ring" style="left:50%;top:50%;animation-delay:0s"></div>
-      <div class="vc-ring" style="left:50%;top:50%;animation-delay:1.2s"></div>
-      <div class="vc-ring" style="left:50%;top:50%;animation-delay:2.4s"></div>
-      <div id="vc-wrap">
-        <div id="vc-logo-wrap">
-          <div id="vc-logo-halo"></div>
-          <img id="vc-logo-img" src="''' + LOGO + '''" alt="Virtual Catholics">
-        </div>
-        <svg id="vc-logo-svg" viewBox="0 0 310 60" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <filter id="vc-glow">
-              <feGaussianBlur stdDeviation="2.5" result="b"/>
-              <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-            </filter>
-            <linearGradient id="vc-shimmerGrad" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stop-color="rgba(255,255,255,0)"/>
-              <stop offset="50%" stop-color="rgba(255,240,150,.9)"/>
-              <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
-            </linearGradient>
-            <clipPath id="vc-textClip">
-              <text x="155" y="38" text-anchor="middle" font-family="Cinzel,serif" font-size="30" font-weight="700" letter-spacing="2">Virtual Catholics</text>
-            </clipPath>
-          </defs>
-          <text id="vc-logo-text"
-            x="155" y="38" text-anchor="middle"
-            font-family="Cinzel,serif" font-size="30" font-weight="700"
-            stroke="#8B6914" stroke-width="1.1"
-            filter="url(#vc-glow)" letter-spacing="2">Virtual Catholics</text>
-          <rect id="vc-shimmer-rect" x="-40" y="8" width="80" height="44"
-            fill="url(#vc-shimmerGrad)" clip-path="url(#vc-textClip)"/>
-          <line id="vc-deco-line" x1="25" y1="52" x2="285" y2="52" stroke="#8B6914" stroke-width=".8"/>
-        </svg>
-        <div id="vc-tagline">Companheiro Espiritual</div>
-      </div>
-      <div id="vc-skip">toque para pular</div>
-    </div>
-
+    <!-- Ornamentos flutuantes no fundo do login -->
     <script>
-    // Partículas intro
-    (function(){
-      var c=document.getElementById('vc-particles');
-      if(!c)return;
-      for(var i=0;i<55;i++){
-        var p=document.createElement('div');
-        var big=Math.random()<.15;
-        var sz=big?(3+Math.random()*4):(1+Math.random()*2.5);
-        var op=big?.7:.45;
-        p.className='vc-p';
-        p.style.cssText='left:'+Math.random()*100+'%;'
-          +'width:'+sz+'px;height:'+sz+'px;'
-          +'background:'+(Math.random()<.3?'rgba(255,255,200,.8)':'rgba(180,130,0,.75)')+';'
-          +'--dx:'+((Math.random()-.5)*120)+'px;'
-          +'--op:'+op+';'
-          +'animation-duration:'+(5+Math.random()*10)+'s;'
-          +'animation-delay:'+Math.random()*8+'s;'
-          +(big?'box-shadow:0 0 4px rgba(200,160,0,.6)':'');
-        c.appendChild(p);
-      }
-    })();
-    // Ornamentos flutuantes no fundo do login
     (function(){
       var syms=['✝','✦','☩','✟','♱'];
       for(var i=0;i<12;i++){
@@ -1551,21 +1580,6 @@ if not st.session_state.logado:
         document.body.appendChild(o);
       }
     })();
-    var _vcDone=false;
-    function vcFinish(){
-      if(_vcDone)return;_vcDone=true;
-      sessionStorage.setItem('vc_intro_done','1');
-      var el=document.getElementById('vc-intro');
-      if(el)el.classList.add('out');
-    }
-    // Se intro já foi vista nesta sessão, esconde imediatamente
-    if(sessionStorage.getItem('vc_intro_done')==='1'){
-      var el=document.getElementById('vc-intro');
-      if(el){ el.style.transition='none'; el.classList.add('out'); }
-      _vcDone=true;
-    } else {
-      setTimeout(vcFinish,7000);
-    }
     // Fix input colors
     var _obs=new MutationObserver(function(){
       document.querySelectorAll("input").forEach(function(el){
