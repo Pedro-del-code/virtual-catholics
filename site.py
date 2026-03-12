@@ -1318,8 +1318,22 @@ if not st.session_state.logado:
     <meta name="color-scheme" content="light only">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Crimson+Text:ital@0;1&display=swap" rel="stylesheet">
     <style>
-    .stApp { background: linear-gradient(160deg,#fff 0%,#fdf6e3 45%,#fffbe8 100%) !important; }
-    .block-container { padding-top: 0 !important; }
+    .stApp {
+        background-image: url('https://i.imgur.com/8OWNsBk.png') !important;
+        background-size: cover !important;
+        background-position: center top !important;
+        background-repeat: no-repeat !important;
+        background-attachment: fixed !important;
+    }
+    .stApp::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: rgba(255,252,240,0.50);
+        z-index: 0;
+        pointer-events: none;
+    }
+    .block-container { padding-top: 0 !important; position: relative; z-index: 1; }
     [data-testid="stHeader"] { background: transparent !important; }
     [data-testid="stSidebar"] { display: none !important; }
     </style>
@@ -1341,14 +1355,11 @@ if not st.session_state.logado:
         <div class="vc-login-wrap">
           <div class="vc-login-card">
             <div class="vc-login-logo">
-              <img src="{NOSSA_SENHORA}" alt="Nossa Senhora"/>
-              <div class="vc-login-title">Virtual Catholics</div>
-              <div class="vc-login-sub">✝ Companheiro Espiritual</div>
+              <img src="{LOGO}" alt="Virtual Catholics" style="width:70px;height:70px;border-radius:50%;object-fit:cover;box-shadow:0 4px 24px rgba(180,130,0,0.3);"/>
             </div>
         """, unsafe_allow_html=True)
 
         if st.session_state.aba_login == "entrar":
-            st.markdown('<div class="vc-divider"><span>ENTRAR</span></div>', unsafe_allow_html=True)
             with st.form("form_login"):
                 u = st.text_input("", placeholder="👤  Usuário", label_visibility="collapsed")
                 s = st.text_input("", placeholder="🔒  Senha", type="password", label_visibility="collapsed")
