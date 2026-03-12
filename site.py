@@ -1287,8 +1287,10 @@ if not st.session_state.logado:
 if "cliente" not in st.session_state:
     st.session_state.cliente = Groq(api_key=API_KEY)
 
-# ── INTRO SCREEN (Python-controlled) ─────────────────────────────────────────
-# Detecta se JS sinalizou que a intro terminou via query param
+# ── INTRO SCREEN (st.components) ────────────────────────────────────────────
+import streamlit.components.v1 as _components
+
+# Detecta sinal do componente via query param
 if not st.session_state.logado and not st.session_state.intro_vista:
     if st.query_params.get("vc_skip") == "1":
         st.session_state.intro_vista = True
@@ -1296,150 +1298,155 @@ if not st.session_state.logado and not st.session_state.intro_vista:
         st.rerun()
 
 if not st.session_state.logado and not st.session_state.intro_vista:
-    st.markdown(f'''
-    <meta name="color-scheme" content="light only">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Crimson+Text:ital@0;1&display=swap" rel="stylesheet">
+    st.markdown("""
     <style>
-    .stApp {{ background: linear-gradient(160deg,#fff 0%,#fdf6e3 45%,#f0cc55 100%) !important; }}
-    .block-container {{ padding-top: 0 !important; max-width:100% !important; }}
-    [data-testid="stHeader"] {{ display:none !important; }}
-    [data-testid="stSidebar"] {{ display: none !important; }}
-    footer {{ display:none !important; }}
-    * {{ box-sizing:border-box; }}
-    #vc-fullscreen {{
-      position:fixed;inset:0;z-index:9999;cursor:pointer;
-      background:linear-gradient(160deg,#fff 0%,#fdf6e3 45%,#f0cc55 100%);
-      display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;
-    }}
-    #vc-bg-pulse {{
-      position:absolute;inset:0;pointer-events:none;
-      background:radial-gradient(ellipse at 50% 50%, rgba(245,210,80,.45) 0%, transparent 70%);
-      animation:vcBgPulse 4s ease-in-out infinite;
-    }}
-    @keyframes vcBgPulse{{0%,100%{{transform:scale(1);opacity:.6}}50%{{transform:scale(1.15);opacity:1}}}}
-    .vc-ring{{position:absolute;border-radius:50%;border:1.5px solid rgba(180,130,0,.25);
-      animation:vcExpand 3.5s ease-out infinite;pointer-events:none;left:50%;top:50%;}}
-    @keyframes vcExpand{{
-      0%{{width:80px;height:80px;opacity:.9;transform:translate(-50%,-50%)}}
-      100%{{width:600px;height:600px;opacity:0;transform:translate(-50%,-50%)}}
-    }}
-    #vc-particles{{position:absolute;inset:0;pointer-events:none;overflow:hidden}}
-    .vc-p{{position:absolute;border-radius:50%;opacity:0;animation:vcFloat linear infinite}}
-    @keyframes vcFloat{{
-      0%{{transform:translateY(100vh) translateX(0);opacity:0}}
-      8%{{opacity:var(--op)}}92%{{opacity:calc(var(--op)*.5)}}
-      100%{{transform:translateY(-30px) translateX(var(--dx));opacity:0}}
-    }}
-    #vc-logo-img{{width:200px;height:200px;object-fit:contain;border-radius:50%;
-      opacity:0;transform:scale(.1) rotate(-15deg);
-      animation:vcLogoReveal 1.2s cubic-bezier(.17,.67,.35,1.3) forwards .4s;}}
-    @keyframes vcLogoReveal{{
-      0%{{opacity:0;transform:scale(.1) rotate(-15deg)}}
-      60%{{opacity:1;transform:scale(1.08) rotate(2deg)}}
-      100%{{opacity:1;transform:scale(1) rotate(0deg)}}
-    }}
-    #vc-logo-halo{{position:absolute;width:240px;height:240px;border-radius:50%;
-      background:radial-gradient(ellipse, rgba(200,160,0,.35) 0%, transparent 70%);
-      opacity:0;animation:vcHaloIn .8s ease forwards 1.4s, vcHaloPulse 3s ease-in-out infinite 2.2s;}}
-    @keyframes vcHaloIn{{to{{opacity:1}}}}
-    @keyframes vcHaloPulse{{0%,100%{{transform:scale(1);opacity:.6}}50%{{transform:scale(1.12);opacity:1}}}}
-    #vc-logo-svg{{width:290px;height:60px;overflow:visible}}
-    #vc-logo-text{{stroke-dasharray:2200;stroke-dashoffset:2200;
-      animation:vcDraw 2.2s ease forwards 1.6s;fill:none;}}
-    @keyframes vcDraw{{to{{stroke-dashoffset:0}}}}
-    #vc-shimmer-rect{{animation:vcShimmer 2.5s ease-in-out infinite 3.8s;opacity:0;}}
-    @keyframes vcShimmer{{
-      0%{{transform:translateX(-320px);opacity:0}}10%{{opacity:.7}}100%{{transform:translateX(320px);opacity:0}}
-    }}
-    #vc-deco-line{{stroke-dasharray:250;stroke-dashoffset:250;opacity:0;
-      animation:vcDrawLine .9s ease forwards 3.5s, vcOpLine 0s forwards 3.5s}}
-    @keyframes vcDrawLine{{to{{stroke-dashoffset:0}}}}@keyframes vcOpLine{{to{{opacity:1}}}}
-    #vc-tagline{{font-family:'Crimson Text',serif;font-size:13px;
-      color:rgba(100,70,10,0);font-style:italic;letter-spacing:.18em;
-      animation:vcFadeInText .9s ease forwards 3.9s;}}
-    @keyframes vcFadeInText{{to{{color:rgba(100,70,10,.65)}}}}
-    #vc-skip-label{{
-      position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
-      font-size:9px;color:rgba(100,70,10,0);letter-spacing:.3em;
-      text-transform:uppercase;font-family:'Cinzel',serif;white-space:nowrap;
-      animation:vcFadeInText 1s ease forwards 4.5s;pointer-events:none;
-    }}
+    .stApp { background: linear-gradient(160deg,#fff 0%,#fdf6e3 45%,#f0cc55 100%) !important; }
+    .block-container { padding-top:0 !important; padding-bottom:0 !important; }
+    [data-testid="stHeader"] { display:none !important; }
+    [data-testid="stSidebar"] { display:none !important; }
+    footer { display:none !important; }
     </style>
-    <div id="vc-fullscreen" onclick="vcSkip()">
-      <div id="vc-bg-pulse"></div>
-      <div id="vc-particles"></div>
-      <div class="vc-ring" style="animation-delay:0s"></div>
-      <div class="vc-ring" style="animation-delay:1.2s"></div>
-      <div class="vc-ring" style="animation-delay:2.4s"></div>
-      <div style="position:relative;display:flex;align-items:center;justify-content:center;">
-        <div id="vc-logo-halo"></div>
-        <img id="vc-logo-img" src="{LOGO}" alt="Virtual Catholics">
-      </div>
-      <svg id="vc-logo-svg" viewBox="0 0 310 60" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <filter id="vc-glow">
-            <feGaussianBlur stdDeviation="2.5" result="b"/>
-            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-          </filter>
-          <linearGradient id="vc-shimmerGrad" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stop-color="rgba(255,255,255,0)"/>
-            <stop offset="50%" stop-color="rgba(255,240,150,.9)"/>
-            <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
-          </linearGradient>
-          <clipPath id="vc-textClip">
-            <text x="155" y="38" text-anchor="middle" font-family="Cinzel,serif" font-size="30" font-weight="700" letter-spacing="2">Virtual Catholics</text>
-          </clipPath>
-        </defs>
-        <text id="vc-logo-text"
-          x="155" y="38" text-anchor="middle"
-          font-family="Cinzel,serif" font-size="30" font-weight="700"
-          stroke="#8B6914" stroke-width="1.1"
-          filter="url(#vc-glow)" letter-spacing="2">Virtual Catholics</text>
-        <rect id="vc-shimmer-rect" x="-40" y="8" width="80" height="44"
-          fill="url(#vc-shimmerGrad)" clip-path="url(#vc-textClip)"/>
-        <line id="vc-deco-line" x1="25" y1="52" x2="285" y2="52" stroke="#8B6914" stroke-width=".8"/>
-      </svg>
-      <div id="vc-tagline">Companheiro Espiritual</div>
-      <div id="vc-skip-label">✦ toque para pular ✦</div>
-    </div>
-    <script>
-    function vcSkip() {{
-      try {{
-        // Tenta via window.parent (Streamlit iframe)
-        var url = window.parent.location.href.split('?')[0] + '?vc_skip=1';
-        window.parent.location.href = url;
-      }} catch(e) {{
-        // Fallback: tenta na própria janela
-        var url = window.location.href.split('?')[0] + '?vc_skip=1';
-        window.location.href = url;
-      }}
-    }}
-    // Auto-skip após 7s
-    setTimeout(vcSkip, 7000);
-    // Partículas
-    (function(){{
-      var c=document.getElementById('vc-particles');
-      if(!c)return;
-      for(var i=0;i<55;i++){{
-        var p=document.createElement('div');
-        var big=Math.random()<.15;
-        var sz=big?(3+Math.random()*4):(1+Math.random()*2.5);
-        var op=big?.7:.45;
-        p.className='vc-p';
-        p.style.cssText='left:'+Math.random()*100+'%;'
-          +'width:'+sz+'px;height:'+sz+'px;'
-          +'background:'+(Math.random()<.3?'rgba(255,255,200,.8)':'rgba(180,130,0,.75)')+';'
-          +'--dx:'+((Math.random()-.5)*120)+'px;'
-          +'--op:'+op+';'
-          +'animation-duration:'+(5+Math.random()*10)+'s;'
-          +'animation-delay:'+Math.random()*8+'s;'
-          +(big?'box-shadow:0 0 4px rgba(200,160,0,.6)':'');
-        c.appendChild(p);
-      }}
-    }})();
-    </script>
-    ''', unsafe_allow_html=True)
+    """, unsafe_allow_html=True)
 
+    intro_html = """<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Crimson+Text:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{width:100%;height:100%;overflow:hidden;}
+#vc-fullscreen{
+  position:fixed;inset:0;cursor:pointer;
+  background:linear-gradient(160deg,#fff 0%,#fdf6e3 45%,#f0cc55 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;
+}
+#vc-bg-pulse{
+  position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse at 50% 50%, rgba(245,210,80,.45) 0%, transparent 70%);
+  animation:vcBgPulse 4s ease-in-out infinite;
+}
+@keyframes vcBgPulse{0%,100%{transform:scale(1);opacity:.6}50%{transform:scale(1.15);opacity:1}}
+.vc-ring{position:absolute;border-radius:50%;border:1.5px solid rgba(180,130,0,.25);
+  animation:vcExpand 3.5s ease-out infinite;pointer-events:none;left:50%;top:50%;}
+@keyframes vcExpand{
+  0%{width:80px;height:80px;opacity:.9;transform:translate(-50%,-50%)}
+  100%{width:600px;height:600px;opacity:0;transform:translate(-50%,-50%)}
+}
+#vc-particles{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.vc-p{position:absolute;border-radius:50%;opacity:0;animation:vcFloat linear infinite}
+@keyframes vcFloat{
+  0%{transform:translateY(100vh) translateX(0);opacity:0}
+  8%{opacity:var(--op)}92%{opacity:calc(var(--op)*.5)}
+  100%{transform:translateY(-30px) translateX(var(--dx));opacity:0}
+}
+#vc-logo-img{width:200px;height:200px;object-fit:contain;border-radius:50%;
+  opacity:0;transform:scale(.1) rotate(-15deg);
+  animation:vcLogoReveal 1.2s cubic-bezier(.17,.67,.35,1.3) forwards .4s;}
+@keyframes vcLogoReveal{
+  0%{opacity:0;transform:scale(.1) rotate(-15deg)}
+  60%{opacity:1;transform:scale(1.08) rotate(2deg)}
+  100%{opacity:1;transform:scale(1) rotate(0deg)}
+}
+#vc-logo-halo{position:absolute;width:240px;height:240px;border-radius:50%;
+  background:radial-gradient(ellipse, rgba(200,160,0,.35) 0%, transparent 70%);
+  opacity:0;animation:vcHaloIn .8s ease forwards 1.4s, vcHaloPulse 3s ease-in-out infinite 2.2s;}
+@keyframes vcHaloIn{to{opacity:1}}
+@keyframes vcHaloPulse{0%,100%{transform:scale(1);opacity:.6}50%{transform:scale(1.12);opacity:1}}
+#vc-logo-svg{width:290px;height:60px;overflow:visible}
+#vc-logo-text{stroke-dasharray:2200;stroke-dashoffset:2200;
+  animation:vcDraw 2.2s ease forwards 1.6s;fill:none;}
+@keyframes vcDraw{to{stroke-dashoffset:0}}
+#vc-shimmer-rect{animation:vcShimmer 2.5s ease-in-out infinite 3.8s;opacity:0;}
+@keyframes vcShimmer{
+  0%{transform:translateX(-320px);opacity:0}10%{opacity:.7}100%{transform:translateX(320px);opacity:0}
+}
+#vc-deco-line{stroke-dasharray:250;stroke-dashoffset:250;opacity:0;
+  animation:vcDrawLine .9s ease forwards 3.5s, vcOpLine 0s forwards 3.5s}
+@keyframes vcDrawLine{to{stroke-dashoffset:0}}
+@keyframes vcOpLine{to{opacity:1}}
+#vc-tagline{font-family:'Crimson Text',serif;font-size:13px;
+  color:rgba(100,70,10,0);font-style:italic;letter-spacing:.18em;
+  animation:vcFadeInText .9s ease forwards 3.9s;}
+@keyframes vcFadeInText{to{color:rgba(100,70,10,.65)}}
+#vc-skip-label{
+  position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
+  font-size:9px;color:rgba(100,70,10,0);letter-spacing:.3em;
+  text-transform:uppercase;font-family:'Cinzel',serif;white-space:nowrap;
+  animation:vcFadeInText 1s ease forwards 4.5s;pointer-events:none;
+}
+</style>
+</head>
+<body>
+<div id="vc-fullscreen" onclick="vcSkip()">
+  <div id="vc-bg-pulse"></div>
+  <div id="vc-particles"></div>
+  <div class="vc-ring" style="animation-delay:0s"></div>
+  <div class="vc-ring" style="animation-delay:1.2s"></div>
+  <div class="vc-ring" style="animation-delay:2.4s"></div>
+  <div style="position:relative;display:flex;align-items:center;justify-content:center;">
+    <div id="vc-logo-halo"></div>
+    <img id="vc-logo-img" src="https://i.imgur.com/ilafAhJ.png" alt="Virtual Catholics">
+  </div>
+  <svg id="vc-logo-svg" viewBox="0 0 310 60" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="vc-glow">
+        <feGaussianBlur stdDeviation="2.5" result="b"/>
+        <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+      <linearGradient id="vc-shimmerGrad" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="rgba(255,255,255,0)"/>
+        <stop offset="50%" stop-color="rgba(255,240,150,.9)"/>
+        <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+      </linearGradient>
+      <clipPath id="vc-textClip">
+        <text x="155" y="38" text-anchor="middle" font-family="Cinzel,serif" font-size="30" font-weight="700" letter-spacing="2">Virtual Catholics</text>
+      </clipPath>
+    </defs>
+    <text id="vc-logo-text" x="155" y="38" text-anchor="middle"
+      font-family="Cinzel,serif" font-size="30" font-weight="700"
+      stroke="#8B6914" stroke-width="1.1"
+      filter="url(#vc-glow)" letter-spacing="2">Virtual Catholics</text>
+    <rect id="vc-shimmer-rect" x="-40" y="8" width="80" height="44"
+      fill="url(#vc-shimmerGrad)" clip-path="url(#vc-textClip)"/>
+    <line id="vc-deco-line" x1="25" y1="52" x2="285" y2="52" stroke="#8B6914" stroke-width=".8"/>
+  </svg>
+  <div id="vc-tagline">Companheiro Espiritual</div>
+  <div id="vc-skip-label">✦ toque para pular ✦</div>
+</div>
+<script>
+function vcSkip() {
+  window.parent.postMessage({type: 'streamlit:setComponentValue', value: 'skip'}, '*');
+}
+setTimeout(vcSkip, 7000);
+(function(){
+  var c=document.getElementById('vc-particles');
+  if(!c)return;
+  for(var i=0;i<55;i++){
+    var p=document.createElement('div');
+    var big=Math.random()<.15;
+    var sz=big?(3+Math.random()*4):(1+Math.random()*2.5);
+    var op=big?.7:.45;
+    p.className='vc-p';
+    p.style.cssText='left:'+Math.random()*100+'%;'
+      +'width:'+sz+'px;height:'+sz+'px;'
+      +'background:'+(Math.random()<.3?'rgba(255,255,200,.8)':'rgba(180,130,0,.75)')+';'
+      +'--dx:'+((Math.random()-.5)*120)+'px;'
+      +'--op:'+op+';'
+      +'animation-duration:'+(5+Math.random()*10)+'s;'
+      +'animation-delay:'+Math.random()*8+'s;'
+      +(big?'box-shadow:0 0 4px rgba(200,160,0,.6)':'');
+    c.appendChild(p);
+  }
+})();
+</script>
+</body>
+</html>"""
+
+    resultado = _components.html(intro_html, height=700, scrolling=False)
+    if resultado == 'skip':
+        st.session_state.intro_vista = True
+        st.rerun()
     st.stop()
 
 # ── LOGIN ─────────────────────────────────────────────────────────────────────
