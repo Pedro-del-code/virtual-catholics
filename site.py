@@ -1336,6 +1336,35 @@ if not st.session_state.logado:
     .block-container { padding-top: 0 !important; position: relative; z-index: 1; }
     [data-testid="stHeader"] { background: transparent !important; }
     [data-testid="stSidebar"] { display: none !important; }
+
+    /* ── LOGIN CARD (bottom sheet) ── */
+    .vc-login-wrap {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: stretch; justify-content: flex-end;
+      padding: 0; font-family: 'Cinzel', serif;
+    }
+    .vc-login-card {
+      width: 100%;
+      background: rgba(255,252,240,0.97);
+      border-top: 1px solid rgba(200,169,110,0.4);
+      border-radius: 28px 28px 0 0;
+      padding: 1.6rem 1.4rem 2rem;
+      box-shadow: 0 -8px 40px rgba(180,130,0,0.15);
+      animation: vcCardIn .6s cubic-bezier(.17,.67,.35,1.3) forwards;
+    }
+    @keyframes vcCardIn{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+    .vc-login-logo { display:none; }
+    .vc-login-title { display:none; }
+    .vc-login-sub { display:none; }
+    .vc-bem-vindo {
+      font-family: 'Cinzel', serif;
+      font-size: 1.3rem; font-weight: 700;
+      color: #8B6914;
+      text-align: center;
+      margin-bottom: 1rem;
+      letter-spacing: .06em;
+    }
     </style>
     <script>
     var _obs=new MutationObserver(function(){
@@ -1349,14 +1378,11 @@ if not st.session_state.logado:
     </script>
     ''', unsafe_allow_html=True)
 
-    col1, col2, col3 = st.columns([1, 4, 1])
-    with col2:
-        st.markdown(f"""
+    if True:
+        st.markdown("""
         <div class="vc-login-wrap">
           <div class="vc-login-card">
-            <div class="vc-login-logo">
-              <img src="{LOGO}" alt="Virtual Catholics" style="width:70px;height:70px;border-radius:50%;object-fit:cover;box-shadow:0 4px 24px rgba(180,130,0,0.3);"/>
-            </div>
+            <div class="vc-bem-vindo">✝ Bem-vindo</div>
         """, unsafe_allow_html=True)
 
         if st.session_state.aba_login == "entrar":
