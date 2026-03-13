@@ -1430,7 +1430,7 @@ if not st.session_state.logado:
                             </script>""", unsafe_allow_html=True)
                             st.rerun()
                     else:
-                        st.error(T["erro_campos"])
+                        st.error("Por favor, preencha todos os campos.")
 
             st.markdown('<div style="height:.5rem"></div>', unsafe_allow_html=True)
             if st.button("← Voltar para login", use_container_width=True):
