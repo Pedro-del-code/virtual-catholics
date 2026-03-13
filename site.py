@@ -850,7 +850,7 @@ div[data-testid="stForm"] {{
 </style>
 """, unsafe_allow_html=True)
 
-`API_KEY = os.environ.get("GROQ_API_KEY", "")`
+API_KEY = os.environ.get("GROQ_API_KEY", "")
 
 # ── LITURGIA DAS HORAS ────────────────────────────────────────────────────────
 LITURGIA_HORAS = {
