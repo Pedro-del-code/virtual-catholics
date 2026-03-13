@@ -1409,13 +1409,13 @@ if not st.session_state.logado:
                 if submitted:
                     if nome_n.strip() and user_n.strip() and senha_n.strip():
                         if not usuario_valido(user_n.strip()):
-                            st.error(T["erro_usuario_invalido"])
+                            st.error("Nome de usuário inválido.")
                         elif contem_palavrao(nome_n.strip()) or contem_palavrao(user_n.strip()):
-                            st.error(T["erro_nome_impróprio"])
+                            st.error("Nome impróprio.")
                         elif contem_palavrao(senha_n.strip()):
-                            st.error(T["erro_senha_impropria"])
+                            st.error("Senha imprópria.")
                         elif carregar_usuario(user_n):
-                            st.error(T["erro_usuario_existe"])
+                            st.error("Usuário já existe.")
                         else:
                             criar_usuario(user_n, nome_n.strip(), senha_n)
                             st.session_state.logado = True
